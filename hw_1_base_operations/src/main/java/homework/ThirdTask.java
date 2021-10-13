@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 public class ThirdTask {
     private int startLesson = 540;//время начала уроков в минутах.
-    private int lessonTime=45;
+    private int lessonTime = 45;
     private int smallBreak = 5;
     private int bigBreak = 15;
     private int hours;
