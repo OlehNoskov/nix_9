@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 public class ThirdTask {
     private int startLesson = 540;//время начала уроков в минутах.
+    private int lessonTime=45;
     private int smallBreak = 5;
     private int bigBreak = 15;
     private int hours;
@@ -27,8 +28,8 @@ public class ThirdTask {
 
             } else if (numberLesson >= 1 && numberLesson <= 10) {
 
-                hours = (startLesson + numberLesson * 45 + countBreak / 2 * 15 + (countBreak - countBreak / 2) * 5) / 60;
-                minutes = (startLesson + numberLesson * 45 + countBreak / 2 * 5 + (countBreak - countBreak / 2) * 15) % 60;
+                hours = (startLesson + numberLesson * lessonTime + countBreak / 2 * 15 + (countBreak - countBreak / 2) * 5) / 60;
+                minutes = (startLesson + numberLesson * lessonTime + countBreak / 2 * 5 + (countBreak - countBreak / 2) * 15) % 60;
 
                 System.out.println("Время окончание " + numberLesson + " урока " + hours + ":" + minutes);
 
