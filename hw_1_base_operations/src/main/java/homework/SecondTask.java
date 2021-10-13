@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class SecondTask {
+
     private static TreeMap<Character, Integer> treeMap = new TreeMap<>();
 
     public static void countCharAndShowResult() {
@@ -19,10 +20,14 @@ public class SecondTask {
             int count = 1;
 
             for (int i = 0; i < chars.length; i++) {
-                if (!treeMap.containsKey(chars[i])) {
-                    treeMap.put(chars[i], count);
-                } else {
-                    treeMap.put(chars[i], treeMap.get(chars[i]) + 1);
+
+                if (Character.isLetter(chars[i])) {
+
+                    if (!treeMap.containsKey(chars[i])) {
+                        treeMap.put(chars[i], count);
+                    } else {
+                        treeMap.put(chars[i], treeMap.get(chars[i]) + 1);
+                    }
                 }
             }
 
