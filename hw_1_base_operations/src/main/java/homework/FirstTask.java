@@ -5,22 +5,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class FirstTask {
-    public static void sumNumbers() {
+    public void sumNumbers(BufferedReader reader) throws IOException {
         int sumResult = 0;
-        System.out.println("Введите строку:");
+        System.out.println("Запуск 1-го домашнего задания");
+        System.out.println("Введите в строке цифры для нахождения их суммы:");
 
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-            String line = bufferedReader.readLine();
-            for (int i = 0; i < line.length(); i++) {
-                char symbol = line.charAt(i);
-                if (Character.isDigit(symbol)) {
-                    int number = Integer.parseInt(String.valueOf(symbol));
-                    sumResult += number;
-                }
+        String line = reader.readLine();
+
+        for (int i = 0; i < line.length(); i++) {
+            char symbol = line.charAt(i);
+            if (Character.isDigit(symbol)) {
+                int number = Integer.parseInt(String.valueOf(symbol));
+                sumResult += number;
             }
-            System.out.println("Сумма всех цифр в строке: " + sumResult);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        System.out.println("Сумма всех цифр в строке: " + sumResult);
     }
 }
