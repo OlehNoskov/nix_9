@@ -77,10 +77,10 @@ public class UserController {
             user.setLastName(lastname);
             user.setAge(age);
             userService.create(user);
-            System.out.println("Новый пользователь "+user.getName()+" был успешно создан!");
+            System.out.println("Новый пользователь " + user.getName() + " был успешно создан!");
         } catch (IOException e) {
             System.out.println("Ошибка: = " + e.getMessage());
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Некорректно введен возраст!");
         }
     }
@@ -106,9 +106,9 @@ public class UserController {
             System.out.println("Данные пользователя обновлены!");
         } catch (IOException e) {
             System.out.println("Ошибка: = " + e.getMessage());
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Некорректно введен возраст!");
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Данный пользователь не найден!");
         }
     }
@@ -121,7 +121,7 @@ public class UserController {
             userService.delete(id);
         } catch (IOException e) {
             System.out.println("Возникла ошибка: = " + e.getMessage());
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Пользователь был успешно удалён!");
         }
     }
@@ -135,7 +135,7 @@ public class UserController {
             System.out.println("Пользователь = " + user);
         } catch (IOException e) {
             System.out.println("Ошибка: = " + e.getMessage());
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Пользователь не найден!");
         }
     }

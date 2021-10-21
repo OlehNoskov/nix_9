@@ -18,9 +18,7 @@ public class UserService {
         userDao.delete(id);
     }
 
-    public User findById(String id) {
-        return userDao.findById(id);
-    }
+    public User findById(String id) {return userDao.findById(id);}
 
     public User[] findAllUsers() {
         return userDao.findAllUsers();
