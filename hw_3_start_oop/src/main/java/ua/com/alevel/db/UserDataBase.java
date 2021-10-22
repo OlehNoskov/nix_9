@@ -7,8 +7,7 @@ import java.util.UUID;
 
 public class UserDataBase {
     private int index = 0;
-    private final int DEFAULT_SIZE = 3;
-    private final double DEFAULT_LOAD = 0.75;
+    private final int DEFAULT_SIZE = 0;
     private User[] users;
     private static UserDataBase instance;
 
@@ -17,23 +16,9 @@ public class UserDataBase {
     }
 
     private void increaseArrayUsers(User user) {
-        if (index >= users.length * DEFAULT_LOAD) {
-            users = Arrays.copyOf(users, users.length + 3);
-        }
-        users[index++] = user;
+        users = Arrays.copyOf(users, users.length + 1);
+        users[users.length-1] = user;
     }
-
-//    private void decreaseArrayUsers() {
-//        User[] copyUserArray = Arrays.copyOf(users, users.length);
-//        users = new User[users.length - 1];
-//        int count = 0;
-//        for (User user : copyUserArray) {
-//            if (user != null){
-//                users[count] = user;
-//                count++;
-//            }
-//        }
-//    }
 
     public static UserDataBase getInstance() {
         if (instance == null) {
@@ -71,7 +56,7 @@ public class UserDataBase {
             arrayUserDeleted[i] = users[i + 1];
         }
         users = Arrays.copyOf(arrayUserDeleted, users.length - 1);
-
+        System.out.println("Пользователь был удалён!");
     }
 
     public User findById(String id) {

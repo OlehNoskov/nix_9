@@ -120,8 +120,11 @@ public class UserController {
             String id = reader.readLine();
             userService.delete(id);
         } catch (NullPointerException e) {
-            System.out.println("Пользователь был удален!");
-        } catch (IOException e) {
+            System.out.println("Пользователь не найден!");
+        } catch (NegativeArraySizeException e){
+            System.out.println("Список пользователей пуст!");
+        }
+        catch (IOException e) {
             System.out.println("Возникла ошибка: = " + e.getMessage());
         }
     }
@@ -141,9 +144,9 @@ public class UserController {
     }
 
     private void findAll(BufferedReader reader) {
-        System.out.println("Поиск всех доступных пользователей:");
         User[] users = userService.findAllUsers();
         if (users != null && users.length != 0) {
+            System.out.println("Поиск всех доступных пользователей:");
             for (User user : users) {
                 System.out.println("Пользователь = " + user);
             }
