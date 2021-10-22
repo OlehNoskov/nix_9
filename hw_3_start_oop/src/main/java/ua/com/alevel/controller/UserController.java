@@ -103,7 +103,7 @@ public class UserController {
             user.setLastName(lastname);
             user.setAge(age);
             userService.update(user);
-            System.out.println("Данные пользователя обновлены!");
+            System.out.println("Данные пользователя успешно обновлены!");
         } catch (IOException e) {
             System.out.println("Ошибка: = " + e.getMessage());
         } catch (NumberFormatException e) {
@@ -119,10 +119,10 @@ public class UserController {
             System.out.println("Введите ID пользователя");
             String id = reader.readLine();
             userService.delete(id);
+        } catch (NullPointerException e) {
+            System.out.println("Пользователь был удален!");
         } catch (IOException e) {
             System.out.println("Возникла ошибка: = " + e.getMessage());
-        } catch (NullPointerException e) {
-            System.out.println("Пользователь был успешно удалён!");
         }
     }
 
@@ -141,7 +141,7 @@ public class UserController {
     }
 
     private void findAll(BufferedReader reader) {
-        System.out.println("Поиск всех пользователей:");
+        System.out.println("Поиск всех доступных пользователей:");
         User[] users = userService.findAllUsers();
         if (users != null && users.length != 0) {
             for (User user : users) {
