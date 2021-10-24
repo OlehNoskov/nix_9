@@ -1,6 +1,7 @@
 package ua.com.alevel;
 
 public class StringReverseUtil {
+
     private StringReverseUtil() {
     }
 
