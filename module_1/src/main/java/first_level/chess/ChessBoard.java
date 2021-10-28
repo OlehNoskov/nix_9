@@ -4,7 +4,7 @@ public class ChessBoard {
     private static int chessBoard[][] = new int[8][8];
 
     public static void createChessBoard() {
-        int count = 0;
+        int count = 1;
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard.length; j++)
                 if ((i + j) % 2 == 0)
