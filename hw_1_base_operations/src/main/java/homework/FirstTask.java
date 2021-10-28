@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class FirstTask {
+
     public void sumNumbers(BufferedReader reader) throws IOException {
         int sumResult = 0;
         System.out.println("Запуск 1-го домашнего задания");

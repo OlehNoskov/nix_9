@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class UserDataBase {
+
     private int index = 0;
     private final int DEFAULT_SIZE = 0;
     private User[] users;

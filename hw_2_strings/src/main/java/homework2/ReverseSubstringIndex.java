@@ -1,6 +1,5 @@
 package homework2;
 
-
 import ua.com.alevel.StringReverseUtil;
 
 import java.io.BufferedReader;
@@ -27,7 +26,7 @@ public class ReverseSubstringIndex {
 
             System.out.print("Ваша новая строка:");
             System.out.println(StringReverseUtil.reverse(line, firstIndex, lastIndex));
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Введен некорректный индекс начала или конца подстроки!");
         }
     }
