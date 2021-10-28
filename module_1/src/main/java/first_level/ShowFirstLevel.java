@@ -1,6 +1,8 @@
 package first_level;
 
 import console_menu.MenuProgram;
+import first_level.chess.ChessBoard;
+import first_level.chess.ChessGame;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,10 +24,10 @@ public class ShowFirstLevel {
             while ((choiceMenu = reader.readLine()) != null) {
                 switch (choiceMenu) {
                     case "1":
-                        System.out.println("1");
+                        UniqNumbers.countDigit(bufferedReader);
                         break;
                     case "2":
-                        System.out.println("2");
+                        ChessGame.startMoveKnight(reader);
                         break;
                     case "3":
                         AreaTriangle.findAreaTriangle(bufferedReader);

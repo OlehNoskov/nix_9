@@ -2,41 +2,45 @@ package first_level;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class AreaTriangle {
-    private static double firstSide;
-    private static double secondSide;
-    private static double thirdSide;
+
+    private static int areaTriangle;
+    private static int count = 0;
+    private static int[] coordinatesX = new int[3];
+    private static int[] coordinatesY = new int[3];
 
     public static void findAreaTriangle(BufferedReader reader) throws IOException {
-        try {
-            System.out.println("===== Поиск площади треугольника =====");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("===== Поиск площади треугольника =====");
 
-            System.out.print("Введите 1-ую сторону треугольника:  ");
-            firstSide = Double.parseDouble(bufferedReader.readLine());
+        for (int i = 0; i < 3; i++) {
+            do {
+                try {
+                    System.out.print("Введите координаты X вершины №" + (i + 1) + ": ");
+                    coordinatesX[i] = Integer.parseInt(reader.readLine());
 
-            System.out.print("Введите 2-ую сторону треугольника:  ");
-            secondSide = Double.parseDouble(bufferedReader.readLine());
-
-            System.out.print("Введите 3-ю сторону треугольника:  ");
-            thirdSide = Double.parseDouble(bufferedReader.readLine());
-
-            System.out.print("Площадь треугольника: " + getAreaTriangle(firstSide, secondSide, thirdSide));
-            System.out.println();
-            ShowFirstLevel.showTasksFirstLevel(reader);
-
-        } catch (NumberFormatException e) {
-            System.out.println("Введена некорректная длина стороны треугольника!");
+                    System.out.print("Введите координаты Y вершины №" + (i + 1) + ": ");
+                    coordinatesY[i] = Integer.parseInt(reader.readLine());
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Введены некорректные координаты треугольника!");
+                    AreaTriangle.findAreaTriangle(reader);
+                }
+            } while (count < 3);
+            {
+                count++;
+            }
         }
-    }
+        areaTriangle = ((coordinatesX[1] - (coordinatesX[0]))
+                * (coordinatesY[2] - (coordinatesY[0]))
+                - (coordinatesX[2] - (coordinatesX[0]))
+                * (coordinatesY[1] - (coordinatesY[0]))) / -2;
 
-    private static double getAreaTriangle(double firstSide, double secondSide, double thirdSide) {
-        double halfPerimeter = (firstSide + secondSide + thirdSide) / 2;
-
-        return Math.sqrt(halfPerimeter * (halfPerimeter - firstSide)
-                * (halfPerimeter - secondSide)
-                * (halfPerimeter - thirdSide));
+        System.out.println("Площадь треyгольника: " + areaTriangle);
+        ShowFirstLevel.showTasksFirstLevel(reader);
     }
 }
+
+
+
+

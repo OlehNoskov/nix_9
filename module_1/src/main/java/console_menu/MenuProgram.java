@@ -1,6 +1,8 @@
 package console_menu;
 
 import first_level.ShowFirstLevel;
+import second_level.ShowSecondLevel;
+import third_level.ShowThirdLevel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,10 +20,10 @@ public class MenuProgram {
                         new ShowFirstLevel().showTasksFirstLevel(reader);
                         break;
                     case "2":
-                        System.out.println("2");
+                        new ShowSecondLevel().showTasksSecondLevel(reader);
                         break;
                     case "3":
-                        System.out.println("3");
+                        new ShowThirdLevel().showTasksThirdLevel(reader);
                         break;
                     case "0":
                        System.exit(0);
