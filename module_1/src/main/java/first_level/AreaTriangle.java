@@ -23,7 +23,7 @@ public class AreaTriangle {
                     coordinatesY[i] = Integer.parseInt(reader.readLine());
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.println("Введены некорректные координаты треугольника!");
+                    System.out.println("Введены некорректные координаты треугольника!"+"\n");
                     AreaTriangle.findAreaTriangle(reader);
                 }
             } while (count < 3);
@@ -36,7 +36,7 @@ public class AreaTriangle {
                 - (coordinatesX[2] - (coordinatesX[0]))
                 * (coordinatesY[1] - (coordinatesY[0]))) / -2;
 
-        System.out.println("Площадь треyгольника: " + areaTriangle);
+        System.out.println("Площадь треyгольника: " + areaTriangle+"\n");
         ShowFirstLevel.showTasksFirstLevel(reader);
     }
 }

@@ -46,7 +46,7 @@ public class ChessGame {
 
             ShowFirstLevel.showTasksFirstLevel(reader);
         } catch (NumberFormatException e) {
-            System.out.println("Введены некорректные данные!");
+            System.out.println("Введены некорректные данные!"+"\n");
             ShowFirstLevel.showTasksFirstLevel(reader);
             System.out.println();
 

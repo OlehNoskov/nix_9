@@ -62,8 +62,7 @@ public class BinaryTree {
                     break;
                 }
                 case "2": {
-                    System.out.println("Максимальная глубина: " + deepest(rootNode));
-                    System.out.println();
+                    System.out.println("Максимальная глубина: " + deepest(rootNode)+"\n");
                     ShowSecondLevel.showTasksSecondLevel(reader);
                     break;
                 }
