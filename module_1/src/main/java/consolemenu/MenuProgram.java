@@ -1,8 +1,8 @@
-package console_menu;
+package consolemenu;
 
-import first_level.ShowFirstLevel;
-import second_level.ShowSecondLevel;
-import third_level.ShowThirdLevel;
+import level1.ShowFirstLevel;
+import level2.ShowSecondLevel;
+import level3.ShowThirdLevel;
 
 import java.io.BufferedReader;
 import java.io.IOException;

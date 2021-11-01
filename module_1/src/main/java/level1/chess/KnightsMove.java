@@ -1,4 +1,4 @@
-package first_level.chess;
+package level1.chess;
 
 public class KnightsMove {
 

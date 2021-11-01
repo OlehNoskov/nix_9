@@ -1,20 +1,17 @@
-package first_level;
+package level2;
 
-import console_menu.MenuProgram;
-import first_level.chess.ChessBoard;
-import first_level.chess.ChessGame;
+import consolemenu.MenuProgram;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ShowFirstLevel {
+public class ShowSecondLevel {
 
-    public static void showTasksFirstLevel(BufferedReader reader) throws IOException {
-        System.out.println("===== Демонстрация заданий 1-го уровня =====");
-        System.out.println("1.Поиск количества уникальных символов");
-        System.out.println("2.Ход конём");
-        System.out.println("3.Поиск площадь треугольника");
+    public static void showTasksSecondLevel(BufferedReader reader) throws IOException {
+        System.out.println("===== Демонстрация заданий 2-го уровня =====");
+        System.out.println("1.Поиск допустимой строки");
+        System.out.println("2.Максимальная глубина бинарного дерева");
         System.out.println("0.Главное меню");
         System.out.println("Выберите один из предложенных вариантов:");
 
@@ -24,19 +21,16 @@ public class ShowFirstLevel {
             while ((choiceMenu = reader.readLine()) != null) {
                 switch (choiceMenu) {
                     case "1":
-                        UniqNumbers.countDigit(bufferedReader);
+                        StringValid.verifyValidString(reader);
                         break;
                     case "2":
-                        ChessGame.startMoveKnight(reader);
-                        break;
-                    case "3":
-                        AreaTriangle.findAreaTriangle(bufferedReader);
+                        BinaryTree.startSearchDeepest();
                         break;
                     case "0":
                         MenuProgram.run();
                         break;
                     default:
-                        System.out.println("Введите число от 1 до 3 для запуска задания");
+                        System.out.println("Введите число от 1 до 2 для запуска задания");
                         System.out.println("Для выхода в главное меню введите 0");
                 }
             }

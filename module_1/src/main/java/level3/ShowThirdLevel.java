@@ -1,17 +1,16 @@
-package second_level;
+package level3;
 
-import console_menu.MenuProgram;
+import consolemenu.MenuProgram;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ShowSecondLevel {
+public class ShowThirdLevel {
 
-    public static void showTasksSecondLevel(BufferedReader reader) throws IOException {
-        System.out.println("===== Демонстрация заданий 2-го уровня =====");
-        System.out.println("1.Поиск допустимой строки");
-        System.out.println("2.Максимальная глубина бинарного дерева");
+    public  void showTasksThirdLevel(BufferedReader reader) throws IOException {
+        System.out.println("===== Демонстрация заданий 3-го уровня =====");
+        System.out.println("1.Игра жизни.");
         System.out.println("0.Главное меню");
         System.out.println("Выберите один из предложенных вариантов:");
 
@@ -21,16 +20,13 @@ public class ShowSecondLevel {
             while ((choiceMenu = reader.readLine()) != null) {
                 switch (choiceMenu) {
                     case "1":
-                        StringValid.verifyValidString(reader);
-                        break;
-                    case "2":
-                        BinaryTree.startSearchDeepest();
+                        new GameOfLife().go();
                         break;
                     case "0":
                         MenuProgram.run();
                         break;
                     default:
-                        System.out.println("Введите число от 1 до 2 для запуска задания");
+                        System.out.println("Введите число 1 для запуска задания");
                         System.out.println("Для выхода в главное меню введите 0");
                 }
             }

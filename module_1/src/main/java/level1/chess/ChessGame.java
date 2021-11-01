@@ -1,10 +1,9 @@
-package first_level.chess;
+package level1.chess;
 
-import first_level.ShowFirstLevel;
+import level1.ShowFirstLevel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Locale;
 
 public class ChessGame {
 

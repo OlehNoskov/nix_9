@@ -1,4 +1,4 @@
-import console_menu.MenuProgram;
+import consolemenu.MenuProgram;
 
 public class Main {
     public static void main(String[] args) {

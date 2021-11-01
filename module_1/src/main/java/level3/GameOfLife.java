@@ -1,4 +1,4 @@
-package third_level;
+package level3;
 
 import javax.swing.*;
 import java.awt.*;

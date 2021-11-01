@@ -1,4 +1,4 @@
-package first_level;
+package level1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
