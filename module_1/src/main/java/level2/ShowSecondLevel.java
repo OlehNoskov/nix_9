@@ -15,7 +15,6 @@ public class ShowSecondLevel {
         System.out.println("0.Главное меню");
         System.out.println("Выберите один из предложенных вариантов:");
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String choiceMenu;
         try {
             while ((choiceMenu = reader.readLine()) != null) {

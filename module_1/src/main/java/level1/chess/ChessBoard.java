@@ -1,6 +1,7 @@
 package level1.chess;
 
 public class ChessBoard {
+
     private static int chessBoard[][] = new int[8][8];
 
     public static void createChessBoard() {

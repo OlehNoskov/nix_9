@@ -20,8 +20,7 @@ public class StringValid {
         ShowSecondLevel.showTasksSecondLevel(reader);
     }
 
-    private static boolean isValidBrackets(String input) throws IOException {
-
+    private static boolean isValidBrackets(String input) {
         Map<Character, Character> brackets = new HashMap<>();
         brackets.put(')', '(');
         brackets.put('}', '{');
@@ -42,5 +41,3 @@ public class StringValid {
         return stack.isEmpty();
     }
 }
-
-

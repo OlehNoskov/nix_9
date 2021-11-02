@@ -28,6 +28,7 @@ public class UniqNumbers {
         cleanMap();
         ShowFirstLevel.showTasksFirstLevel(reader);
     }
+
     private static void cleanMap() {
         uniqNumbers.clear();
     }

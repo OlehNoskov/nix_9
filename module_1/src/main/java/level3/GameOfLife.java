@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class GameOfLife {
+
     final String NAME_OF_GAME = "Conway's Game of Life";
     final int START_LOCATION = 200;
     final int LIFE_SIZE = 50;
@@ -129,6 +130,3 @@ public class GameOfLife {
         }
     }
 }
-
-
-
