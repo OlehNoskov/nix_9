@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class MenuProgram {
+
     public static void run() {
         showMenu();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -37,6 +38,7 @@ public class MenuProgram {
             e.printStackTrace();
         }
     }
+
     private static void showMenu() {
         System.out.println("Данная программа выполняет 3 действия:");
         System.out.println("1.Демонстрация заданий 1-го уровня");
@@ -47,4 +49,3 @@ public class MenuProgram {
         System.out.println("Выберите один из предложенных вариантов:");
     }
 }
-
