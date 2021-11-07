@@ -11,5 +11,3 @@ public class KnightsMove {
             System.out.println("Данный ход конём невозможно осуществить!"+"\n");
     }
 }
-
-

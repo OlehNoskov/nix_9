@@ -103,6 +103,7 @@ public class UserController {
             user.setLastName(lastname);
             user.setAge(age);
             userService.update(user);
+
             System.out.println("Данные пользователя успешно обновлены!");
         } catch (IOException e) {
             System.out.println("Ошибка: = " + e.getMessage());
