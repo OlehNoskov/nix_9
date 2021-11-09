@@ -13,7 +13,7 @@ public class MenuProgram {
             while ((menu = reader.readLine()) != null) {
                 switch (menu) {
                     case "1":
-
+                    SetNumbers.createNewMathSet(reader);
                         break;
                     case "2":
 
@@ -22,11 +22,23 @@ public class MenuProgram {
 
                         break;
                     case "4":
-                        System.exit(4);
+
+                        break;
+                    case "5":
+
+                        break;
+                    case "6":
+
+                        break;
+                    case "7":
+
+                        break;
+                    case "0":
+                        System.exit(0);
                         break;
                     default:
-                        System.out.println("Введите число от 1 до 3 для запуска программы");
-                        System.out.println("Для выхода из программы введите 4");
+                        System.out.println("Введите число от 1 до 7 для запуска программы");
+                        System.out.println("Для выхода из программы введите 0");
                 }
             }
         } catch (IOException e) {
@@ -35,12 +47,14 @@ public class MenuProgram {
     }
 
     private static void showMenu() {
-        System.out.println("Данная программа выполняет 3 действия:");
-        System.out.println("1.Обычный реверс строки");
-        System.out.println("2.Реверс по указанной подстроке в строке");
-        System.out.println("3.Реверс подстроки в строке по заданным индексам.");
-        System.out.println("4.Выход из программы");
-        System.out.println();
+        System.out.println("Home Work Collections"+"\n");
+        System.out.println("1.Создание массива уникальных чисел");
+        System.out.println("2.Добавить числа в массив");
+        System.out.println("3.Найти общие числа массивов");
+        System.out.println("4.Сортировка чисел");
+        System.out.println("5.Нахождение чисел по заданным критериям");
+        System.out.println("6.Преобразование чисел в строку");
+        System.out.println("7.Удаление чисел из массива");
         System.out.println("Выберите один из предложенных вариантов:");
     }
 }

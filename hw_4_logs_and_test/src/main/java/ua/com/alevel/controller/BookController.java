@@ -201,7 +201,6 @@ public class BookController {
         String id;
         try {
             do {
-
                 choice = reader.readLine();
                 switch (choice) {
                     case "1": {
