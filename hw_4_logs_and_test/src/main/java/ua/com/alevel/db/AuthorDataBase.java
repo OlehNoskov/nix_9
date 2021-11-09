@@ -9,17 +9,17 @@ public class AuthorDataBase {
 
     private static AuthorDataBase instance;
     private Author[] authors;
-    int size = 0;
+    private static int DEFAULT_SIZE = 0;
 
     private AuthorDataBase() {
-        authors = new Author[size];
+        authors = new Author[DEFAULT_SIZE];
     }
 
     private void increaseArrayAuthors(Author author) {
-        Author[] temporaryAuthors = new Author[size + 1];
-        if (size >= 0) System.arraycopy(authors, 0, temporaryAuthors, 0, size);
-        size++;
-        temporaryAuthors[size - 1] = author;
+        Author[] temporaryAuthors = new Author[DEFAULT_SIZE + 1];
+        if (DEFAULT_SIZE >= 0) System.arraycopy(authors, 0, temporaryAuthors, 0, DEFAULT_SIZE);
+        DEFAULT_SIZE++;
+        temporaryAuthors[DEFAULT_SIZE - 1] = author;
         authors = temporaryAuthors;
     }
 

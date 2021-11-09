@@ -15,39 +15,6 @@ public class BookController {
     private final AuthorService authorService = new AuthorService();
     private final AuthorController authorController = new AuthorController();
 
-    public static String checkNotNullInput(BufferedReader reader) {
-        String result = null;
-        try {
-            do {
-                result = reader.readLine();
-                if (result.isEmpty())
-                    System.out.println("Ошибка! Название должно содержать хотя бы один символ!");
-            }
-            while (result.isEmpty());
-        } catch (IOException e) {
-            System.out.println("Ошибка: = " + e.getMessage());
-        }
-        return result;
-    }
-
-    public static Book checkNotNullBookById(BufferedReader reader) {
-        BookService bookService = new BookService();
-        Book result = null;
-        String id;
-        try {
-            do {
-                id = reader.readLine();
-                result = bookService.findById(id);
-                if (result == null && !id.equals("0"))
-                    System.out.println("Ошибка! Введите правильный Id  или 0 для выхода:");
-            }
-            while (result == null && !id.equals("0"));
-        } catch (IOException e) {
-            System.out.println("Ошибка: = " + e.getMessage());
-        }
-        return result;
-    }
-
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Выберите, что будете делать:");
@@ -101,60 +68,92 @@ public class BookController {
 
     private void create(BufferedReader reader) {
         System.out.println("Введите название новой книги:");
-        String name = checkNotNullInput(reader);
-        Author author = selectOrCreateAuthor(reader);
-        if (author == null) {
-            System.out.println("Не удалось создать книгу, автор не указан!");
-            return;
+        try {
+            String name = reader.readLine();
+            if (!name.isEmpty()) {
+                Author author = selectOrCreateAuthor(reader);
+                if (author == null) {
+                    System.out.println("Не удалось создать книгу, автор не указан!");
+                    return;
+                }
+                Book book = new Book();
+                book.setBookTitle(name);
+                book.setAuthor(author);
+                bookService.create(book);
+            } else {
+                System.out.println("Вы не ввели название книги!");
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка " + e.getMessage());
         }
-        Book book = new Book();
-        book.setBookTitle(name);
-        book.setAuthor(author);
-        bookService.create(book);
     }
 
     private void update(BufferedReader reader) {
         System.out.println("Введите Id книги, которую хотите изменить:");
-        Book book;
-        book = checkNotNullBookById(reader);
-        if (book == null) {
-            System.out.println("Id не был введен корректно");
-            return;
+        try {
+            String idBook = reader.readLine();
+            Book book = bookService.findById(idBook);
+            if (book == null) {
+                System.out.println("Id не был введен корректно");
+                return;
+            }
+            System.out.println("Введите новое название книги:");
+            String name = reader.readLine();
+            if (!name.isEmpty()) {
+                Author author = selectOrCreateAuthor(reader);
+                if (author == null) {
+                    System.out.println("Не удалось создать книгу, автор не указан!");
+                    return;
+                }
+                book.setBookTitle(name);
+                book.setAuthor(author);
+                bookService.update(book);
+            } else {
+                System.out.println("Вы не ввели название книги!");
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка " + e.getMessage());
         }
-        System.out.println("Введите новое название книги:");
-        String name = checkNotNullInput(reader);
-        Author author = selectOrCreateAuthor(reader);
-        if (author == null) {
-            System.out.println("Не удалось создать книгу, автор не указан!");
-            return;
-        }
-        book.setBookTitle(name);
-        book.setAuthor(author);
-        bookService.update(book);
     }
 
     private void delete(BufferedReader reader) {
         System.out.println("Введите Id книги, которую хотите удалить:");
-        Book book;
-        book = checkNotNullBookById(reader);
-        if (book == null) {
-            System.out.println("Некорректный ID");
-            return;
-        }
-        boolean deleteResult = bookService.delete(book.getId());
-        if (deleteResult) {
-            System.out.println("Книга удалена!");
+        try {
+            String idBook = reader.readLine();
+            if (!idBook.isEmpty()) {
+                Book book;
+                book = bookService.findById(idBook);
+                if (book == null) {
+                    System.out.println("Некорректный ID");
+                    return;
+                }
+                boolean deleteResult = bookService.delete(book.getId());
+                if (deleteResult) {
+                    System.out.println("Книга удалена!");
+                }
+            } else {
+                System.out.println("Книга не найдена!");
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка " + e.getMessage());
         }
     }
 
     private void findById(BufferedReader reader) {
         Book book;
         System.out.println("Введите ID книги, которую хотите найти:");
-        book = checkNotNullBookById(reader);
-        if (book == null) {
-            System.out.println("Некорректный ID");
-        } else
-            System.out.println(book);
+        try {
+            String idBook = reader.readLine();
+            if (!idBook.isEmpty()) {
+                book = bookService.findById(idBook);
+                if (book == null) {
+                    System.out.println("Некорректный ID");
+                } else
+                    System.out.println(book);
+            }
+        } catch (IOException e) {
+            System.out.println("Error+ " + e.getMessage());
+        }
     }
 
     private void findAllBooks() {
@@ -168,28 +167,28 @@ public class BookController {
     }
 
     private void findAllAuthorBooks(BufferedReader reader) {
-            Author author;
-            try {
-                System.out.println("Введите Id автора:");
-                do {
-                    String id = reader.readLine();
-                    author = authorService.findById(id);
-                    if (author == null)
-                        System.out.println("Ошибка! Укажите правильный Id!");
-                }
-                while (author == null);
-
-                Book[] books = authorService.findAllAuthorBooks(author);
-                System.out.println("=== Список книг автора "+author.getName() +" "+author.getLastName()+" ===");
-                if (books != null && books.length != 0) {
-                    for (Book book : books) {
-                    }
-                } else {
-                    System.out.println("Книг не найдено!");
-                }
-            } catch (IOException e) {
-                System.out.println("Ошибка: = " + e.getMessage());
+        Author author;
+        try {
+            System.out.println("Введите Id автора:");
+            do {
+                String id = reader.readLine();
+                author = authorService.findById(id);
+                if (author == null)
+                    System.out.println("Ошибка! Укажите правильный Id!");
             }
+            while (author == null);
+
+            Book[] books = authorService.findAllAuthorBooks(author);
+            System.out.println("=== Список книг автора " + author.getName() + " " + author.getLastName() + " ===");
+            if (books != null && books.length != 0) {
+                for (Book book : books) {
+                }
+            } else {
+                System.out.println("Книг не найдено!");
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка: = " + e.getMessage());
+        }
     }
 
     private Author selectOrCreateAuthor(BufferedReader reader) {
@@ -214,8 +213,9 @@ public class BookController {
                         while (author == null && !id.equals("0"));
                     }
                     break;
-                    case "2":author = authorController.create(reader);
-                    break;
+                    case "2":
+                        author = authorController.create(reader);
+                        break;
                 }
             }
             while (!choice.equals("1") && !choice.equals("2"));

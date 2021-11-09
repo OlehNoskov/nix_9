@@ -15,39 +15,6 @@ public class AuthorController {
     private final AuthorService authorService = new AuthorService();
     private final BookService bookService = new BookService();
 
-    public static String checkNotNullInput(BufferedReader reader) {
-        String result = null;
-        try {
-            do {
-                result = reader.readLine();
-                if (result.isEmpty())
-                    System.out.println("Ошибка! Название должно содержать хотя бы один символ!");
-            }
-            while (result.isEmpty());
-        } catch (IOException e) {
-            System.out.println("Ошибка: = " + e.getMessage());
-        }
-        return result;
-    }
-
-    public static Author checkNotNullAuthorById(BufferedReader reader) {
-        AuthorService authorService = new AuthorService();
-        Author result = null;
-        String id;
-        try {
-            do {
-                id = reader.readLine();
-                result = authorService.findById(id);
-                if (result == null && !id.equals("0"))
-                    System.out.println("Ошибка! Введите правильный Id  или 0 для выхода:");
-            }
-            while (result == null && !id.equals("0"));
-        } catch (IOException e) {
-            System.out.println("Ошибка: = " + e.getMessage());
-        }
-        return result;
-    }
-
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String choice;
@@ -97,57 +64,78 @@ public class AuthorController {
     }
 
     public Author create(BufferedReader reader) {
-        System.out.println("=== Создание автора ===");
         Author author = new Author();
-        System.out.println("Введите имя автора:");
-        String name = checkNotNullInput(reader);
-        System.out.println("Введите Фамилию автора:");
-        String lastname = checkNotNullInput(reader);
-        author.setName(name);
-        author.setLastName(lastname);
-        authorService.create(author);
+        try {
+            System.out.println("=== Создание автора ===");
+            System.out.println("Введите имя автора:");
+            String name = reader.readLine();
+            System.out.println("Введите Фамилию автора:");
+            String lastname = reader.readLine();
+            if (!name.isEmpty() && !lastname.isEmpty()) {
+                author.setName(name);
+                author.setLastName(lastname);
+                authorService.create(author);
+            } else {
+                System.out.println("Автор не создан!");
+                System.out.println("Вы не ввели имя или фамилию автора!");
+            }
+            return author;
+        } catch (NumberFormatException e) {
+            System.out.println("Введены некорректные данные автора!");
+        } catch (IOException e) {
+            System.out.println("Ошибка " + e.getMessage());
+        }
         return author;
     }
 
-    private void update(BufferedReader reader) {
+    private void update(BufferedReader reader) throws IOException {
         System.out.println("=== Обновление данных автора ===");
-        Author author;
         System.out.println("Укажите Id автора для обновления данных:");
-        author = checkNotNullAuthorById(reader);
+        String idAuthor = reader.readLine();
+        Author author = authorService.findById(idAuthor);
         if (author == null) {
             System.out.println("Введен некорректный Id!!!");
             return;
+        } else {
+            System.out.println("Укажите новое имя автора:");
+            String name = reader.readLine();
+            System.out.println("Укажите новую фамилию автора:");
+            String lastname = reader.readLine();
+            author.setName(name);
+            author.setLastName(lastname);
+            authorService.update(author);
         }
-        System.out.println("Укажите новое имя автора:");
-        String name = checkNotNullInput(reader);
-        System.out.println("Укажите новую фамилию автора:");
-        String lastname = checkNotNullInput(reader);
-        author.setName(name);
-        author.setLastName(lastname);
-        authorService.update(author);
     }
 
     private void delete(BufferedReader reader) {
-        System.out.println("=== Удаление автора ===");
-        System.out.println("Введите Id автора:");
-        Author author;
-        author = checkNotNullAuthorById(reader);
-        if (author == null) {
-            System.out.println("Id не был введен корректно");
-            return;
+        try {
+            System.out.println("=== Удаление автора ===");
+            System.out.println("Введите Id автора:");
+            Author author;
+            String idAuthor = reader.readLine();
+            author = authorService.findById(idAuthor);
+            if (author == null) {
+                System.out.println("Id не был введен корректно");
+                return;
+            }
+            Book[] books = authorService.findAllAuthorBooks(author);
+            for (Book book : books) {
+                bookService.delete(book.getId());
+            }
+            authorService.delete(author.getId());
+        } catch (IOException e) {
+            System.out.println("Ошибка " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректный id!");
         }
-        Book[] books = authorService.findAllAuthorBooks(author);
-        for (Book book : books) {
-            bookService.delete(book.getId());
-        }
-        authorService.delete(author.getId());
     }
 
-    private void findById(BufferedReader reader) {
+    private void findById(BufferedReader reader) throws IOException {
         System.out.println("=== Поиск автора ===");
         System.out.println("Укажите Id автора, которого хотите найти:");
         Author author;
-        author = checkNotNullAuthorById(reader);
+        String idAuthor = reader.readLine();
+        author = authorService.findById(idAuthor);
         if (author == null) {
             System.out.println("Id не был введен корректно");
             return;
