@@ -1,11 +1,13 @@
 package ua.com.alevel;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
-public class MathSetUtil<T extends Number> {
+public class MathSetUtil <NumberSet extends Number> {
 
     private Number[] setNumbers;
     private final int DEFAULT_CAPACITY = 10;
+    private int size = 0;
     private static final Number[] EMPTY_ARRAY_NUMBERS = {};
 
     public MathSetUtil() {
@@ -45,24 +47,17 @@ public class MathSetUtil<T extends Number> {
         }
     }
 
-    public MathSetUtil(MathSetUtil mathSetNumbers) {
-
+    public MathSetUtil(MathSetUtil... mathSetUtils) {
+        setNumbers = new Number[DEFAULT_CAPACITY];
+        for (int i = 0; i < setNumbers.length; i++) {
+            Number[] arrayNumbers = mathSetUtils[i].toArray();
+            for (int j = 0; j < arrayNumbers.length; j++) {
+                add(arrayNumbers[j]);
+            }
+        }
     }
 
-
-//    public MathSetUtil(MathSetUtil... mathSetUtils) {
-//        setNumbers = new Number[DEFAULT_CAPACITY];
-//
-//        for (int i = 0; i < setNumbers.length; i++) {
-//            Number[] arrNum = setNumbers[i].toArray();
-//            for (int j = 0; j < arrNum.length; j++) {
-//                add(arrNum[j]);
-//            }
-//        }
-//    }
-
-    //DONE
-    void add(Number n) {
+    public void add(Number n) {
         int countSizeNumbersArray = 0;
         for (Number number : setNumbers) {
             if (number != null)
@@ -80,25 +75,43 @@ public class MathSetUtil<T extends Number> {
         }
     }
 
-    void add(Number... numbers) {
+    public void add(Number... numbers) {
         for (int i = 0; i < numbers.length; i++) {
             add(numbers[i]);
         }
     }
 
-    void join(MathSetUtil mathSetUtil) {
+    public void join(MathSetUtil... mathSetUtil) {
+        for (int i = 0; i < mathSetUtil.length; i++) {
+            Number[] newArrayNumbers = mathSetUtil[i].toArray();
+            for (int j = 0; j < newArrayNumbers.length; j++) {
+                add(newArrayNumbers[j]);
+            }
+        }
     }
 
-    void join(MathSetUtil... mathSetUtil) {
+    public void intersection(MathSetUtil<NumberSet> mathSet) {
+        int mathSetLength = Math.max(this.setNumbers.length, mathSet.size());
+        Number[] mathSetNew = new Number[mathSetLength];
+        Number[] mathSetIntersection = mathSet.toArray();
+        int mathSetNewIndex = 0;
+        for (Number number : this.setNumbers) {
+            for (Number value : mathSetIntersection) {
+                if (compareNumber((NumberSet) number, (NumberSet) value) == 0) {
+                    mathSetNew[mathSetNewIndex] = number;
+                }
+            }
+        }
+        this.setNumbers = mathSetNew;
     }
 
-    void intersection(MathSetUtil mathSetUtil) {
+    public void intersection(MathSetUtil... mathSets) {
+        for (MathSetUtil mathSet : mathSets) {
+            intersection(mathSet);
+        }
     }
 
-    void intersection(MathSetUtil... mathSetUtil) {
-    }
-    //DONE
-    void sortDesc() {
+    public void sortDesc() {
         boolean needIteration = true;
         while (needIteration) {
             needIteration = false;
@@ -110,8 +123,8 @@ public class MathSetUtil<T extends Number> {
             }
         }
     }
-    //DONE
-    void sortDesc(int firstIndex, int lastIndex) {
+
+    public void sortDesc(int firstIndex, int lastIndex) {
         if (setNumbers.length != 0) {
             boolean needIteration = true;
             while (needIteration) {
@@ -125,8 +138,8 @@ public class MathSetUtil<T extends Number> {
             }
         }
     }
-    //DONE
-    void sortDesc(Number value) {
+
+    public void sortDesc(Number value) {
         boolean needIteration = true;
         while (needIteration) {
             needIteration = false;
@@ -137,8 +150,8 @@ public class MathSetUtil<T extends Number> {
             }
         }
     }
-    //DONE
-    void sortAsc() {
+
+    public void sortAsc() {
         boolean needIteration = true;
         while (needIteration) {
             needIteration = false;
@@ -150,8 +163,8 @@ public class MathSetUtil<T extends Number> {
             }
         }
     }
-    //DONE
-    void sortAsc(int firstIndex, int lastIndex) {
+
+    public void sortAsc(int firstIndex, int lastIndex) {
         boolean needIteration = true;
         while (needIteration) {
             needIteration = false;
@@ -163,8 +176,8 @@ public class MathSetUtil<T extends Number> {
             }
         }
     }
-    //DONE
-    void sortAsc(Number value) {
+
+    public void sortAsc(Number value) {
         boolean needIteration = true;
         while (needIteration) {
             needIteration = false;
@@ -175,8 +188,8 @@ public class MathSetUtil<T extends Number> {
             }
         }
     }
-    //DONE
-    Number get(int index) {
+
+    public Number get(int index) {
         if (setNumbers.length != 0)
             return setNumbers[index];
         else {
@@ -184,8 +197,7 @@ public class MathSetUtil<T extends Number> {
         }
     }
 
-    //DONE
-    Number getMax() {
+    public Number getMax() {
         double maxNumber;
         if (setNumbers.length == 0) {
             return 0;
@@ -197,8 +209,7 @@ public class MathSetUtil<T extends Number> {
         return maxNumber;
     }
 
-    //DONE
-    Number getMin() {
+    public Number getMin() {
         double minNumber;
         if (setNumbers.length == 0) {
             return 0;
@@ -210,8 +221,7 @@ public class MathSetUtil<T extends Number> {
         return minNumber;
     }
 
-    //DONE
-    Number getAverage() {
+    public Number getAverage() {
         double average = 0;
         int sizeArrayNumbers = setNumbers.length;
         for (int i = 0; i < sizeArrayNumbers; i++)
@@ -219,16 +229,14 @@ public class MathSetUtil<T extends Number> {
         return average / sizeArrayNumbers;
     }
 
-    //DONE
-    Number getMedian() {
+    public Number getMedian() {
         MathSetUtil mathSetUtil = new MathSetUtil(setNumbers);
         int medianIndex = setNumbers.length / 2;
         Number[] newArraySortAsxNumbers = mathSetUtil.setNumbers;
         return newArraySortAsxNumbers[medianIndex];
     }
 
-    //DONE
-    Number[] toArray() {
+    public Number[] toArray() {
         Number[] toArrayNumbers = new Number[setNumbers.length];
         for (int i = 0; i < setNumbers.length; i++) {
             toArrayNumbers[i] = setNumbers[i];
@@ -236,8 +244,7 @@ public class MathSetUtil<T extends Number> {
         return toArrayNumbers;
     }
 
-    //DONE
-    Number[] toArray(int firstIndex, int lastIndex) {
+    public Number[] toArray(int firstIndex, int lastIndex) {
         Number[] toArrayNumbers = new Number[setNumbers.length];
         for (int i = firstIndex; i < lastIndex + 1; i++) {
             toArrayNumbers[i] = setNumbers[i];
@@ -245,8 +252,7 @@ public class MathSetUtil<T extends Number> {
         return toArrayNumbers;
     }
 
-    //DONE
-    MathSetUtil cut(int firstIndex, int lastIndex) {
+    public MathSetUtil cut(int firstIndex, int lastIndex) {
         Number[] cutArrayNumbers = new Number[lastIndex + 1 - firstIndex];
         int countSizeCutArray = 0;
         for (int i = firstIndex; i < lastIndex + 1 && i < setNumbers.length; i++) {
@@ -256,12 +262,11 @@ public class MathSetUtil<T extends Number> {
         return new MathSetUtil(cutArrayNumbers);
     }
 
-    //DONE
-    void clear() {
+    public void clear() {
         setNumbers = null;
     }
-//DONE
-    void clear(Number[] numbers) {
+
+    public void clear(Number[] numbers) {
         for (Number number : numbers) {
             number = null;
         }
@@ -283,10 +288,17 @@ public class MathSetUtil<T extends Number> {
         array[ind2] = temporary;
     }
 
+    private int compareNumber(NumberSet e1, NumberSet e2) {
+        return new BigDecimal(e1.toString()).compareTo(new BigDecimal(e2.toString()));
+    }
+
+    private int size() {
+        return this.size;
+    }
+
     @Override
     public String toString() {
-        return "MathSetUtil{" +
-                "setNumbers=" + Arrays.toString(setNumbers) +
-                '}';
+        return "MathSetUtil " +
+                "setNumbers: " + Arrays.toString(setNumbers);
     }
 }

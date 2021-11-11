@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class NumbersToArray {
-    public static void showNumbersToArray(BufferedReader reader) {
-        System.out.println("=== Преобразование MathSet toArray ===" + "\n");
-        System.out.println("1.Преобразование MathSet toArray ");
-        System.out.println("2.Преобразование MathSet toArray от № индекс до № индекс");
+public class IntersectionNumbers {
+    public static void showIntersectionNumbers(BufferedReader reader) {
+        System.out.println("=== Нахождение общих чисел ===" + "\n");
+        System.out.println("1.Нахождение общих чисел 2-ух MathSet");
+        System.out.println("2.Нахождение общих чисел нескольких MathSet");
         System.out.println("0. Выход в Меню редактирования MathSet.");
         System.out.println("Выберите один из предложенных вариантов:");
 

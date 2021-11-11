@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MenuProgram {
+public class MenuCreateMathSet {
+
     public static void run() {
         showMenu();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -13,25 +14,25 @@ public class MenuProgram {
             while ((menu = reader.readLine()) != null) {
                 switch (menu) {
                     case "1":
-                    SetNumbers.createNewMathSet(reader);
+                        CreationMathSetObject.createEmptyMathSet(reader);
                         break;
                     case "2":
-
+                        CreationMathSetObject.setSizeMathSet(reader);
                         break;
                     case "3":
-
+                        CreationMathSetObject.createMathSetArrayNumbers(reader);
                         break;
                     case "4":
-
+//                        CreationMathSetObject.createMathSetArraysNumbers(reader);
                         break;
                     case "5":
-
+//                        CreationMathSetObject.createMathSet(reader);
                         break;
                     case "6":
-
+                        CreationMathSetObject.showList();
                         break;
                     case "7":
-
+                        EditingMathSet.showMenuEditMathSet(reader);
                         break;
                     case "0":
                         System.exit(0);
@@ -47,14 +48,16 @@ public class MenuProgram {
     }
 
     private static void showMenu() {
-        System.out.println("Home Work Collections"+"\n");
-        System.out.println("1.Создание массива уникальных чисел");
-        System.out.println("2.Добавить числа в массив");
-        System.out.println("3.Найти общие числа массивов");
-        System.out.println("4.Сортировка чисел");
-        System.out.println("5.Нахождение чисел по заданным критериям");
-        System.out.println("6.Преобразование чисел в строку");
-        System.out.println("7.Удаление чисел из массива");
-        System.out.println("Выберите один из предложенных вариантов:");
+        System.out.println("===== Home Work Collections =====" + "\n");
+        System.out.println("Для дальнейшей работы необходимо создать MathSet");
+        System.out.println("Выберите способ иниализации MathSet");
+        System.out.println("1. MathSet()");
+        System.out.println("2. MathSet(int capacity)");
+        System.out.println("3. MathSet(Number[] numbers)");
+        System.out.println("4. MathSet(Number[] ... numbers)");
+        System.out.println("5. MathSet(MathSet mathSet)");
+        System.out.println("6. MathSet(MathSet ... mathSet)");
+        System.out.println("7. Меню добавлений изменений в MathSet");
+        System.out.println("0. Выход из программы.");
     }
 }
