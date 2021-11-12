@@ -64,7 +64,7 @@ public class SortedNumbers {
                 } else {
                     CreationMathSetObject.listMathSet.get(choice).sortDesc();
                     System.out.println("Успешно отсортировано по убыванию!");
-                    CreationMathSetObject.listMathSet.get(choice).toString();
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
             } catch (IOException e) {
@@ -88,7 +88,7 @@ public class SortedNumbers {
                 } else {
                     CreationMathSetObject.listMathSet.get(choice).sortAsc();
                     System.out.println("Успешно отсортировано по возростанию!");
-                    CreationMathSetObject.listMathSet.get(choice).toString();
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
             } catch (IOException e) {
@@ -115,7 +115,7 @@ public class SortedNumbers {
                     if (index > 0 && index < CreationMathSetObject.listMathSet.get(choice).size()) {
                         CreationMathSetObject.listMathSet.get(choice).sortDesc(index);
                         System.out.println("Успешно отсортировано по убыванию!");
-                        CreationMathSetObject.listMathSet.get(choice).toString();
+                        System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                         EditingMathSet.showMenuEditMathSet(reader);
                     } else {
                         System.out.println("Введены некорректные данные");
@@ -145,7 +145,7 @@ public class SortedNumbers {
                     if (index > 0 && index < CreationMathSetObject.listMathSet.get(choice).size()) {
                         CreationMathSetObject.listMathSet.get(choice).sortAsc(index);
                         System.out.println("Успешно отсортировано по возростанию!!");
-                        CreationMathSetObject.listMathSet.get(choice).toString();
+                        System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                         EditingMathSet.showMenuEditMathSet(reader);
                     } else {
                         System.out.println("Введены некорректные данные");
@@ -178,7 +178,7 @@ public class SortedNumbers {
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).sortDesc(index1, index2);
                         System.out.println("Успешно отсортировано по возростанию!!");
-                        CreationMathSetObject.listMathSet.get(choice).toString();
+                        System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                         EditingMathSet.showMenuEditMathSet(reader);
                     } else {
                         System.out.println("Введены некорректные данные!");
@@ -211,7 +211,7 @@ public class SortedNumbers {
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).sortAsc(index1, index2);
                         System.out.println("Успешно отсортировано по возростанию!!");
-                        CreationMathSetObject.listMathSet.get(choice).toString();
+                        System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                         EditingMathSet.showMenuEditMathSet(reader);
                     } else {
                         System.out.println("Введены некорректные данные!");

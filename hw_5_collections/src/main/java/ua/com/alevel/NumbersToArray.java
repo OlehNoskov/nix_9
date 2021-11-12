@@ -47,7 +47,7 @@ public class NumbersToArray {
                 } else {
                     CreationMathSetObject.listMathSet.get(choice).toArray();
                     System.out.println("Успешно!!!");
-                    CreationMathSetObject.listMathSet.get(choice).toString();
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
             } catch (IOException e) {
@@ -77,7 +77,7 @@ public class NumbersToArray {
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).toArray(index1, index2);
                         System.out.println("Успешно отсортировано по возростанию!!");
-                        CreationMathSetObject.listMathSet.get(choice).toString();
+                        System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                         EditingMathSet.showMenuEditMathSet(reader);
                     } else {
                         System.out.println("Ввкдены некорректные данные!");

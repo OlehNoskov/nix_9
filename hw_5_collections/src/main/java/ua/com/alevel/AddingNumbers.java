@@ -54,6 +54,7 @@ public class AddingNumbers {
                     double add = Double.parseDouble(reader.readLine());
                     CreationMathSetObject.listMathSet.get(choice).add(add);
                     System.out.println("Число " + add + " добавлено!");
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -84,6 +85,7 @@ public class AddingNumbers {
                         double number1 = Double.parseDouble(number);
                         CreationMathSetObject.listMathSet.get(choice).add(number1);
                         System.out.println("Число " + number + " добавлено!");
+                        System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                     }
                 }
             } catch (IOException e) {
@@ -97,6 +99,7 @@ public class AddingNumbers {
             System.out.println("На данный момент нет добавленных MathSet");
         MenuCreateMathSet.run();
     }
+
     private static void joinMathSet(BufferedReader reader) {
         System.out.println("Выберите 1-ый MathSet для обьединения  от 0 до " + (CreationMathSetObject.listMathSet.size() - 1));
         if (CreationMathSetObject.listMathSet.size() != 0) {
@@ -110,7 +113,7 @@ public class AddingNumbers {
                     int secondChoice = Integer.parseInt(reader.readLine());
                     mathSet.add(CreationMathSetObject.listMathSet.get(secondChoice).toArray());
                     System.out.println("MathSet успешно создан!");
-                    System.out.println("Номер данного MathSet "+CreationMathSetObject.listMathSet.indexOf(mathSet));
+                    System.out.println("Номер данного MathSet " + CreationMathSetObject.listMathSet.indexOf(mathSet));
                 }
             } catch (IOException e) {
                 e.printStackTrace();

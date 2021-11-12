@@ -57,7 +57,7 @@ public class DeletedNumbers {
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).sortDesc(index1, index2);
                         System.out.println("Успешно вырезано!!!");
-                        CreationMathSetObject.listMathSet.get(choice).toString();
+                        System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                         showDeletedNumbers(reader);
                     } else {
                         System.out.println("Введены некорректные данные!");
@@ -83,6 +83,7 @@ public class DeletedNumbers {
                     showDeletedNumbers(reader);
                 } else {
                     CreationMathSetObject.listMathSet = null;
+                    System.out.println("Список MathSet пуст!");
                     showDeletedNumbers(reader);
                 }
             } catch (IOException e) {
@@ -105,6 +106,7 @@ public class DeletedNumbers {
                     showDeletedNumbers(reader);
                 } else {
                     CreationMathSetObject.listMathSet.get(choice).clear();
+                    System.out.println("Список MathSet пуст!");
                     showDeletedNumbers(reader);
                 }
             } catch (IOException e) {

@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class EditingMathSet {
     public static void showMenuEditMathSet(BufferedReader reader) throws IOException {
-        System.out.println("=== Меню работы с MathSet ==="+"\n");
+        System.out.println("=== Меню работы с MathSet ===" + "\n");
         System.out.println("1.Добавить числа");
         System.out.println("2.Найти общие числа массивов");
         System.out.println("3.Сортировка чисел");
@@ -22,22 +22,22 @@ public class EditingMathSet {
             while ((choiceMenu = reader.readLine()) != null) {
                 switch (choiceMenu) {
                     case "1":
-                    AddingNumbers.showAddingNumbers(reader);
+                        AddingNumbers.showAddingNumbers(reader);
                         break;
                     case "2":
-                    IntersectionNumbers.showIntersectionNumbers(reader);
+                        IntersectionNumbers.showIntersectionNumbers(reader);
                         break;
                     case "3":
-                    SortedNumbers.showSortedNumbers(reader);
+                        SortedNumbers.showSortedNumbers(reader);
                         break;
                     case "4":
-                    GettingNumbers.showGettingNumbers(reader);
+                        GettingNumbers.showGettingNumbers(reader);
                         break;
                     case "5":
-                    NumbersToArray.showNumbersToArray(reader);
+                        NumbersToArray.showNumbersToArray(reader);
                         break;
                     case "6":
-
+                        DeletedNumbers.showDeletedNumbers(reader);
                         break;
                     case "0":
                         MenuCreateMathSet.run();

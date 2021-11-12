@@ -42,12 +42,12 @@ public class IntersectionNumbers {
         if (CreationMathSetObject.listMathSet.size() != 0) {
             try {
                 int choice1 = Integer.parseInt(reader.readLine());
-                if (choice1 < 0 || choice1 > CreationMathSetObject.listMathSet.size()) {
+                if (choice1 > 0 && choice1 < CreationMathSetObject.listMathSet.size()) {
                     System.out.println("Введены некорректные данные");
                     showIntersectionNumbers(reader);
                     System.out.println("Выберите 2-ый MathSet от 0 до " + (CreationMathSetObject.listMathSet.size() - 1));
                     int choice2 = Integer.parseInt(reader.readLine());
-                    if (choice2 < 0 || choice2 > CreationMathSetObject.listMathSet.size()) {
+                    if (choice2 > 0 && choice2 < CreationMathSetObject.listMathSet.size()) {
                         CreationMathSetObject.listMathSet.get(choice1).
                                 intersection(CreationMathSetObject.listMathSet.get(choice2));
                         System.out.println("Действие выполнено успешно!");
@@ -70,12 +70,12 @@ public class IntersectionNumbers {
         if (CreationMathSetObject.listMathSet.size() != 0) {
             try {
                 int choice1 = Integer.parseInt(reader.readLine());
-                if (choice1 < 0 || choice1 > CreationMathSetObject.listMathSet.size()) {
+                if (choice1 > 0 && choice1 < CreationMathSetObject.listMathSet.size()) {
                     System.out.println("Введены некорректные данные");
                     showIntersectionNumbers(reader);
                     System.out.println("Выберите 2-ый MathSet от 0 до " + (CreationMathSetObject.listMathSet.size() - 1));
                     int choice2 = Integer.parseInt(reader.readLine());
-                    if (choice2 < 0 || choice2 > CreationMathSetObject.listMathSet.size()) {
+                    if (choice2 > 0 && choice2 < CreationMathSetObject.listMathSet.size()) {
                         CreationMathSetObject.listMathSet.get(choice1).
                                 intersection(CreationMathSetObject.listMathSet.get(choice2));
                         System.out.println("Действие выполнено успешно!");
