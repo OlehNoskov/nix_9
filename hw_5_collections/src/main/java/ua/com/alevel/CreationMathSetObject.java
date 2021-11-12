@@ -46,7 +46,6 @@ public class CreationMathSetObject {
         System.out.print("Введите числа через пробел:");
         try {
             String inputString = reader.readLine();
-            if (isValidString(inputString)) {
             String[] numbersForLine = inputString.trim().split(" ");
             Number[] arrayNumbers = new Number[numbersForLine.length];
 
@@ -56,82 +55,75 @@ public class CreationMathSetObject {
 
             Number[] result = new Number[arrayNumbers.length];
             for (int i = 0; i < arrayNumbers.length; i++) {
-                for (int j = 1; j < arrayNumbers.length; j++) {
-                    if(Objects.equals(arrayNumbers[i], arrayNumbers[j])){
-                        result[i] = arrayNumbers[i];
-                    }
-                }
+                result[i] = arrayNumbers[i];
             }
             MathSetUtil mathSet = new MathSetUtil(result);
             listMathSet.add(mathSet);
             System.out.println("Массив успешно создан!");
             System.out.println("Номер данного MathSet " + listMathSet.indexOf(mathSet) + "\n");
             EditingMathSet.showMenuEditMathSet(reader);
-            } else
-                System.out.println("Введены некорректные данные!" + "\n");
-            CreationMathSetObject.createMathSetArrayNumbers(reader);
         } catch (IOException e) {
             System.out.println(e.getMessage() + "\n");
+            MenuCreateMathSet.run();
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректные данные");
             MenuCreateMathSet.run();
         }
     }
 
-//    public static void createMathSetArraysNumbers(BufferedReader reader) {
-//        System.out.println("=== Создание MathSet с помощью массивов ===");
-//        if (arrayNumbers.size() == 0) {
-//            System.out.println("На данный момент нет созданных массивов!");
-//        } else {
-//            System.out.println("Доступные номера масивов от 0 до " + (arrayNumbers.size()-1) + ":");
-//            System.out.print("Введите номер массива Numbers:");
-//            try {
-//                int choiceArray = Integer.parseInt(reader.readLine());
-//                List<Number[]> arrayForCreateMathSet = new ArrayList<>();
-//                while (reader.ready()) {
-//                    arrayForCreateMathSet.add(arrayNumbers.get(choiceArray));
-//                }
-//                Number[] arrayMathSet = (Number[]) arrayForCreateMathSet.toArray();
-//                MathSetUtil mathSet = new MathSetUtil(arrayMathSet);
-//                listMathSet.add(mathSet);
-//                System.out.println("MathSet успешно создан!");
-//                System.out.println("Номер данного MathSet " + listMathSet.indexOf(mathSet));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                MenuCreateMathSet.run();
-//            } catch (NumberFormatException e) {
-//                System.out.println("Введены некорректные данные!"+ "\n");
-//                MenuCreateMathSet.run();
-//            }
-//        }
-//    }
-//    public static void createMathSet(BufferedReader reader){
-//        System.out.println("=== Создание MathSet с помощью MathSet ===");
-//        if (listMathSet.size() == 0) {
-//            System.out.println("На данный момент нет созданных MathSet!");
-//        } else {
-//            System.out.println("Доступные номера MathSet от 0 до " + (arrayNumbers.size()-1) + ":");
-//            System.out.print("Введите номер MathSet:");
-//            try {
-//                int choiceMathSet = Integer.parseInt(reader.readLine());
-//                for(int i=0; i<listMathSet.size(); i++){
-//                    if(choiceMathSet == i){
-//                        MathSetUtil mathSetUtil = new MathSetUtil(listMathSet.get(i));
-//                        listMathSet.add(mathSetUtil);
-//                        System.out.println("MathSet успешно создан!");
-//                        System.out.println("Номер данного MathSet " + listMathSet.indexOf(mathSetUtil)+ "\n");
-//                    }
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                MenuCreateMathSet.run();
-//            } catch (NumberFormatException e) {
-//                System.out.println("Введены некорректные данные!"+ "\n");
-//                MenuCreateMathSet.run();
-//            }
-//        }
-//    }
+    public static void createMathSetArraysNumbers(BufferedReader reader) {
+        System.out.println("=== Создание MathSet с помощью массивов ===");
+        if (listMathSet.size() == 0) {
+            System.out.println("На данный момент нет созданных массивов!");
+        } else {
+            System.out.println("Доступные номера масивов от 0 до " + (listMathSet.size() - 1) + ":");
+            System.out.print("Введите номер массивов через пробел Numbers:");
+            try {
+                String choice = reader.readLine();
+                String[] choiceArray = choice.trim().split(" ");
+                int[] choiceIndexList = new int[choiceArray.length];
+                for (int i = 0; i < choiceArray.length; i++) {
+                    choiceIndexList[i] = Integer.parseInt(choiceArray[i]);
+                }
+                MathSetUtil mathSet = new MathSetUtil();
+                System.out.println("MathSet успешно создан!");
+                System.out.println("Номер данного MathSet " + listMathSet.indexOf(mathSet));
+                MenuCreateMathSet.run();
+            } catch (IOException e) {
+                e.printStackTrace();
+                MenuCreateMathSet.run();
+            } catch (NumberFormatException e) {
+                System.out.println("Введены некорректные данные!" + "\n");
+                MenuCreateMathSet.run();
+            }
+        }
+    }
 
-    public static boolean isValidString(String inputString) {
-        return inputString.matches("^(-?\\d+(\\.\\d+)?)+$");
+    public static void createMathSet(BufferedReader reader) {
+        System.out.println("=== Создание MathSet с помощью MathSet ===");
+        if (listMathSet.size() == 0) {
+            System.out.println("На данный момент нет созданных MathSet!");
+        } else {
+            System.out.println("Доступные номера MathSet от 0 до " + (listMathSet.size() - 1) + ":");
+            System.out.print("Введите номер MathSet:");
+            try {
+                int choiceMathSet = Integer.parseInt(reader.readLine());
+                for (int i = 0; i < listMathSet.size(); i++) {
+                    if (choiceMathSet == i) {
+                        MathSetUtil mathSetUtil = new MathSetUtil(listMathSet.get(i));
+                        listMathSet.add(mathSetUtil);
+                        System.out.println("MathSet успешно создан!");
+                        System.out.println("Номер данного MathSet " + listMathSet.indexOf(mathSetUtil) + "\n");
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                MenuCreateMathSet.run();
+            } catch (NumberFormatException e) {
+                System.out.println("Введены некорректные данные!" + "\n");
+                MenuCreateMathSet.run();
+            }
+        }
     }
 
     public static void showList() {
@@ -140,32 +132,3 @@ public class CreationMathSetObject {
         }
     }
 }
-
-
-//    private static Number[] checkUniqueNumbers(BufferedReader reader) throws IOException {
-//        Number[] numbers = new Number[reader.readLine().length()];
-//        int count = 0;
-//        try {
-//            String inputString = reader.readLine();
-//            if (inputString.isEmpty()) {
-//                String[] uniqNumbers = inputString.trim().split(" ");
-//                numbers = new Number[uniqNumbers.length];
-//                for (String number : uniqNumbers) {
-//                    char[] digit = number.toCharArray();
-//
-//                    for (int charNumber : digit) {
-//                        if (Character.isDigit(charNumber)) {
-//                            numbers[count] = charNumber;
-//                            count++;
-//                        }
-//                    }
-//                }
-//            } else {
-//                System.out.println("Вы не ввели значения!");
-//                SetNumbers.createArrayNumbers(reader);
-//            }
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        return numbers;
-//    }

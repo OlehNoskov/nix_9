@@ -18,10 +18,10 @@ public class NumbersToArray {
             while ((choiceMenu = reader.readLine()) != null) {
                 switch (choiceMenu) {
                     case "1":
-
+                    showMathSetToArray(reader);
                         break;
                     case "2":
-
+                    showMathSetToArrayByIndex(reader);
                         break;
                     case "0":
                         MenuCreateMathSet.run();
@@ -35,5 +35,61 @@ public class NumbersToArray {
             System.out.println("Некорректный выбор!");
         }
         System.out.println("Выберите один из предложенных вариантов:");
+    }
+    private static void showMathSetToArray(BufferedReader reader) {
+        System.out.println("Выберите MathSet от 0 до " + (CreationMathSetObject.listMathSet.size() - 1));
+        if (CreationMathSetObject.listMathSet.size() != 0) {
+            try {
+                int choice = Integer.parseInt(reader.readLine());
+                if (choice < 0 || choice > CreationMathSetObject.listMathSet.size()) {
+                    System.out.println("Введены некорректные данные");
+                    showNumbersToArray(reader);
+                } else {
+                    CreationMathSetObject.listMathSet.get(choice).toArray();
+                    System.out.println("Успешно!!!");
+                    CreationMathSetObject.listMathSet.get(choice).toString();
+                    EditingMathSet.showMenuEditMathSet(reader);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (NumberFormatException e) {
+                System.out.println("Введены некорректные данные");
+            }
+        } else
+            System.out.println("На данный момент нет добавленных MathSet");
+        MenuCreateMathSet.run();
+    }
+
+    private static void showMathSetToArrayByIndex(BufferedReader reader) {
+        System.out.println("Выберите MathSet от 0 до " + (CreationMathSetObject.listMathSet.size() - 1));
+        if (CreationMathSetObject.listMathSet.size() != 0) {
+            try {
+                int choice = Integer.parseInt(reader.readLine());
+                if (choice < 0 || choice > CreationMathSetObject.listMathSet.size()) {
+                    System.out.println("Введены некорректные данные");
+                    showNumbersToArray(reader);
+                } else {
+                    System.out.println("Введите  1-ый индекс");
+                    int index1 = Integer.parseInt(reader.readLine());
+                    System.out.println("Введите  2-ой индекс");
+                    CreationMathSetObject.listMathSet.get(choice).sortAsc(index1);
+                    int index2 = Integer.parseInt(reader.readLine());
+                    if (index1 < index2) {
+                        CreationMathSetObject.listMathSet.get(choice).toArray(index1, index2);
+                        System.out.println("Успешно отсортировано по возростанию!!");
+                        CreationMathSetObject.listMathSet.get(choice).toString();
+                        EditingMathSet.showMenuEditMathSet(reader);
+                    } else {
+                        System.out.println("Ввкдены некорректные данные!");
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (NumberFormatException e) {
+                System.out.println("Введены некорректные данные");
+            }
+        } else
+            System.out.println("На данный момент нет добавленных MathSet");
+        MenuCreateMathSet.run();
     }
 }

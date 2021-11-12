@@ -292,7 +292,7 @@ public class MathSetUtil <NumberSet extends Number> {
         return new BigDecimal(e1.toString()).compareTo(new BigDecimal(e2.toString()));
     }
 
-    private int size() {
+    public int size() {
         return this.size;
     }
 

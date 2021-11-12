@@ -23,10 +23,10 @@ public class MenuCreateMathSet {
                         CreationMathSetObject.createMathSetArrayNumbers(reader);
                         break;
                     case "4":
-//                        CreationMathSetObject.createMathSetArraysNumbers(reader);
+                        CreationMathSetObject.createMathSetArraysNumbers(reader);
                         break;
                     case "5":
-//                        CreationMathSetObject.createMathSet(reader);
+                        CreationMathSetObject.createMathSet(reader);
                         break;
                     case "6":
                         CreationMathSetObject.showList();

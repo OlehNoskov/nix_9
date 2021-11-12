@@ -31,10 +31,10 @@ public class EditingMathSet {
                     SortedNumbers.showSortedNumbers(reader);
                         break;
                     case "4":
-
+                    GettingNumbers.showGettingNumbers(reader);
                         break;
                     case "5":
-
+                    NumbersToArray.showNumbersToArray(reader);
                         break;
                     case "6":
 
