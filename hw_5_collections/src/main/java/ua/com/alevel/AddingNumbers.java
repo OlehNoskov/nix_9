@@ -78,15 +78,15 @@ public class AddingNumbers {
                     AddingNumbers.addingNumber(reader);
                 } else {
                     System.out.println("== Добавить числа ==");
-                    System.out.println("Введите числоа через пробел");
+                    System.out.println("Введите числа через пробел");
                     String line = reader.readLine();
                     String[] numbers = line.trim().split(" ");
                     for (String number : numbers) {
                         double number1 = Double.parseDouble(number);
                         CreationMathSetObject.listMathSet.get(choice).add(number1);
                         System.out.println("Число " + number + " добавлено!");
-                        System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                     }
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                 }
             } catch (IOException e) {
                 e.printStackTrace();

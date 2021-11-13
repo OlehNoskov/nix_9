@@ -27,12 +27,15 @@ public class GettingNumbers {
                         getMAxNumberForMathSet(reader);
                         break;
                     case "3":
-                        getAverageNumberForMathSet(reader);
+                        getMinNumberForMathSet(reader);
                         break;
                     case "4":
-
+                        getAverageNumberForMathSet(reader);
                         break;
                     case "5":
+                        getMedianeNumberForMathSet(reader);
+                        break;
+                    case "6":
                         EditingMathSet.showMenuEditMathSet(reader);
                         break;
                     case "0":

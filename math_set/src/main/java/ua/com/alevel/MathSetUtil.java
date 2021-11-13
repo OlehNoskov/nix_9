@@ -3,7 +3,7 @@ package ua.com.alevel;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-public class MathSetUtil <NumberSet extends Number> {
+public class MathSetUtil<NumberSet extends Number> {
 
     private Number[] setNumbers;
     private final int DEFAULT_CAPACITY = 10;
@@ -112,16 +112,7 @@ public class MathSetUtil <NumberSet extends Number> {
     }
 
     public void sortDesc() {
-        boolean needIteration = true;
-        while (needIteration) {
-            needIteration = false;
-            for (int i = 1; i < setNumbers.length; i++) {
-                if (setNumbers[i].doubleValue() > setNumbers[i - 1].doubleValue()) {
-                    swap(setNumbers, i, i - 1);
-                    needIteration = true;
-                }
-            }
-        }
+        sortDesc(1, setNumbers.length - 1);
     }
 
     public void sortDesc(int firstIndex, int lastIndex) {
@@ -140,50 +131,47 @@ public class MathSetUtil <NumberSet extends Number> {
     }
 
     public void sortDesc(Number value) {
-        boolean needIteration = true;
-        while (needIteration) {
-            needIteration = false;
-            for (int i = 1; i < setNumbers.length; i++) {
-                if (setNumbers[i].doubleValue() == value.doubleValue()) {
-                    sortDesc(i, setNumbers.length);
+        if (setNumbers.length != 0) {
+            boolean needIteration = true;
+            while (needIteration) {
+                needIteration = false;
+                for (int i = 1; i < setNumbers.length; i++) {
+                    if (setNumbers[i].doubleValue() == value.doubleValue()) {
+                        sortDesc(i, setNumbers.length);
+                    }
                 }
             }
         }
     }
 
     public void sortAsc() {
-        boolean needIteration = true;
-        while (needIteration) {
-            needIteration = false;
-            for (int i = 1; i < setNumbers.length; i++) {
-                if (setNumbers[i].doubleValue() < setNumbers[i - 1].doubleValue()) {
-                    swap(setNumbers, i, i - 1);
-                    needIteration = true;
-                }
-            }
-        }
+        sortAsc(1, setNumbers.length - 1);
     }
 
     public void sortAsc(int firstIndex, int lastIndex) {
-        boolean needIteration = true;
-        while (needIteration) {
-            needIteration = false;
-            for (int i = firstIndex; i < lastIndex + 1 && i < setNumbers.length; i++) {
-                if (setNumbers[i].doubleValue() < setNumbers[i - 1].doubleValue()) {
-                    swap(setNumbers, i, i - 1);
-                    needIteration = true;
+        if (setNumbers.length != 0) {
+            boolean needIteration = true;
+            while (needIteration) {
+                needIteration = false;
+                for (int i = firstIndex; i < lastIndex + 1 && i < setNumbers.length; i++) {
+                    if (setNumbers[i].doubleValue() < setNumbers[i - 1].doubleValue()) {
+                        swap(setNumbers, i, i - 1);
+                        needIteration = true;
+                    }
                 }
             }
         }
     }
 
     public void sortAsc(Number value) {
-        boolean needIteration = true;
-        while (needIteration) {
-            needIteration = false;
-            for (int i = 1; i < setNumbers.length; i++) {
-                if (setNumbers[i].doubleValue() == value.doubleValue()) {
-                    sortAsc(i, setNumbers.length);
+        if (setNumbers.length != 0) {
+            boolean needIteration = true;
+            while (needIteration) {
+                needIteration = false;
+                for (int i = 1; i < setNumbers.length; i++) {
+                    if (setNumbers[i].doubleValue() == value.doubleValue()) {
+                        sortAsc(i, setNumbers.length);
+                    }
                 }
             }
         }
@@ -270,7 +258,7 @@ public class MathSetUtil <NumberSet extends Number> {
         for (Number number : numbers) {
             number = null;
         }
-        numbers = new Number[DEFAULT_CAPACITY];
+        numbers = EMPTY_ARRAY_NUMBERS;
     }
 
     private boolean containsNumbers(Number n) {
@@ -288,7 +276,7 @@ public class MathSetUtil <NumberSet extends Number> {
         array[ind2] = temporary;
     }
 
-    private int compareNumber(NumberSet e1, NumberSet e2) {
+    private int compareNumber(Number e1, Number e2) {
         return new BigDecimal(e1.toString()).compareTo(new BigDecimal(e2.toString()));
     }
 
