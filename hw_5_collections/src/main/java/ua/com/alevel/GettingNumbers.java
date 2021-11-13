@@ -62,10 +62,10 @@ public class GettingNumbers {
                     System.out.println("Введены некорректные данные");
                     getNumberForIndex(reader);
                 } else {
-                    System.out.println("Выберите индекс от 0 до "+CreationMathSetObject.listMathSet.get(choice)+":");
+                    System.out.println("Выберите индекс от 0 до " + CreationMathSetObject.listMathSet.get(choice).size() + ":");
                     int index = Integer.parseInt(reader.readLine());
                     System.out.print("Число:");
-                    System.out.println(CreationMathSetObject.listMathSet.get(index).get(index));
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).get(index));
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
             } catch (IOException e) {
@@ -89,9 +89,8 @@ public class GettingNumbers {
                     System.out.println("Введены некорректные данные");
                     getMAxNumberForMathSet(reader);
                 } else {
-                    int choiceGetMAxNumber = Integer.parseInt(reader.readLine());
                     System.out.println("Максимальное число:");
-                    System.out.println(CreationMathSetObject.listMathSet.get(choiceGetMAxNumber).getMax());
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).getMax());
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
             } catch (IOException e) {
@@ -115,9 +114,8 @@ public class GettingNumbers {
                     System.out.println("Введены некорректные данные");
                     getMinNumberForMathSet(reader);
                 } else {
-                    int choiceGetMinNumber = Integer.parseInt(reader.readLine());
                     System.out.println("Минимальное число:");
-                    System.out.println(CreationMathSetObject.listMathSet.get(choiceGetMinNumber).getMin());
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).getMin());
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
             } catch (IOException e) {
@@ -141,9 +139,8 @@ public class GettingNumbers {
                     System.out.println("Введены некорректные данные");
                     getAverageNumberForMathSet(reader);
                 } else {
-                    int choiceGetMinNumber = Integer.parseInt(reader.readLine());
                     System.out.println("Среднее число:");
-                    System.out.println(CreationMathSetObject.listMathSet.get(choiceGetMinNumber).getAverage());
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).getAverage());
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
             } catch (IOException e) {
@@ -167,9 +164,8 @@ public class GettingNumbers {
                     System.out.println("Введены некорректные данные");
                     getMedianeNumberForMathSet(reader);
                 } else {
-                    int choiceGetMinNumber = Integer.parseInt(reader.readLine());
                     System.out.println("Число медианы:");
-                    System.out.println(CreationMathSetObject.listMathSet.get(choiceGetMinNumber).getMedian());
+                    System.out.println(CreationMathSetObject.listMathSet.get(choice).getMedian());
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
             } catch (IOException e) {

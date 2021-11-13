@@ -111,9 +111,13 @@ public class AddingNumbers {
                     MathSetUtil mathSet = new MathSetUtil(CreationMathSetObject.listMathSet.get(choice));
                     System.out.println("== Введите номер 2-го MathSet ==");
                     int secondChoice = Integer.parseInt(reader.readLine());
-                    mathSet.add(CreationMathSetObject.listMathSet.get(secondChoice).toArray());
-                    System.out.println("MathSet успешно создан!");
-                    System.out.println("Номер данного MathSet " + CreationMathSetObject.listMathSet.indexOf(mathSet));
+                    if ( secondChoice< 0 || secondChoice > CreationMathSetObject.listMathSet.size()) {
+                        System.out.println("Введены некорректные данные");
+                    }else {
+                        CreationMathSetObject.listMathSet.get(choice).join(CreationMathSetObject.listMathSet.get(secondChoice));
+                        System.out.println("MathSet успешно обьединен!");
+                        System.out.println("Номер данного MathSet " + CreationMathSetObject.listMathSet.get(choice));
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
