@@ -46,7 +46,7 @@ public class NumbersToArray {
                     showNumbersToArray(reader);
                 } else {
                     CreationMathSetObject.listMathSet.get(choice).toArray();
-                    System.out.println("Успешно!!!");
+                    System.out.println("Преобоазование MathSet toArray выполнено успешно!!!");
                     System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                     EditingMathSet.showMenuEditMathSet(reader);
                 }
@@ -69,18 +69,17 @@ public class NumbersToArray {
                     System.out.println("Введены некорректные данные");
                     showNumbersToArray(reader);
                 } else {
-                    System.out.println("Введите  1-ый индекс");
+                    System.out.println("Введите  1-ый индекс от 0 до "+CreationMathSetObject.listMathSet.get(choice)+":");
                     int index1 = Integer.parseInt(reader.readLine());
-                    System.out.println("Введите  2-ой индекс");
-                    CreationMathSetObject.listMathSet.get(choice).sortAsc(index1);
+                    System.out.println("Введите  2-ой индекс от 0 до " +CreationMathSetObject.listMathSet.get(choice)+":");
                     int index2 = Integer.parseInt(reader.readLine());
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).toArray(index1, index2);
-                        System.out.println("Успешно отсортировано по возростанию!!");
+                        System.out.println("Успешно!!!");
                         System.out.println(CreationMathSetObject.listMathSet.get(choice).toString());
                         EditingMathSet.showMenuEditMathSet(reader);
                     } else {
-                        System.out.println("Ввкдены некорректные данные!");
+                        System.out.println("Введены некорректные данные!");
                     }
                 }
             } catch (IOException e) {

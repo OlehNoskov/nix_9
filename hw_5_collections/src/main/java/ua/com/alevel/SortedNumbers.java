@@ -110,7 +110,8 @@ public class SortedNumbers {
                     System.out.println("Введены некорректные данные");
                     showSortedNumbers(reader);
                 } else {
-                    System.out.println("Введите индекс для сортировки:");
+                    System.out.println("Введите индекс для сортировки от 1 до "
+                            + CreationMathSetObject.listMathSet.get(choice).size() + ":");
                     int index = Integer.parseInt(reader.readLine());
                     if (index > 0 && index < CreationMathSetObject.listMathSet.get(choice).size()) {
                         CreationMathSetObject.listMathSet.get(choice).sortDesc(index);
@@ -140,7 +141,8 @@ public class SortedNumbers {
                     System.out.println("Введены некорректные данные");
                     showSortedNumbers(reader);
                 } else {
-                    System.out.println("Введите индекс для сортировки:");
+                    System.out.println("Введите индекс для сортировки от 1 до "
+                            + CreationMathSetObject.listMathSet.get(choice).size() + ":");
                     int index = Integer.parseInt(reader.readLine());
                     if (index > 0 && index < CreationMathSetObject.listMathSet.get(choice).size()) {
                         CreationMathSetObject.listMathSet.get(choice).sortAsc(index);
@@ -170,10 +172,11 @@ public class SortedNumbers {
                     System.out.println("Введены некорректные данные");
                     showSortedNumbers(reader);
                 } else {
-                    System.out.println("Введите  1-ый индекс для сортировки:");
+                    System.out.println("Введите  1-ый индекс для сортировки от 1 до "
+                            + CreationMathSetObject.listMathSet.get(choice).size() + ":");
                     int index1 = Integer.parseInt(reader.readLine());
-                    System.out.println("Введите  2-ой индекс для сортировки:");
-                    CreationMathSetObject.listMathSet.get(choice).sortAsc(index1);
+                    System.out.println("Введите  2-ой индекс для сортировки от " + index1 + "до "
+                            + CreationMathSetObject.listMathSet.get(choice).size());
                     int index2 = Integer.parseInt(reader.readLine());
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).sortDesc(index1, index2);
@@ -203,10 +206,11 @@ public class SortedNumbers {
                     System.out.println("Введены некорректные данные");
                     showSortedNumbers(reader);
                 } else {
-                    System.out.println("Введите  1-ый индекс для сортировки:");
+                    System.out.println("Введите  1-ый индекс для сортировки от 1 до "
+                            + CreationMathSetObject.listMathSet.get(choice).size() + ":");
                     int index1 = Integer.parseInt(reader.readLine());
-                    System.out.println("Введите  2-ой индекс для сортировки:");
-                    CreationMathSetObject.listMathSet.get(choice).sortAsc(index1);
+                    System.out.println("Введите  2-ой индекс для сортировки от " + index1 + "до "
+                            + CreationMathSetObject.listMathSet.get(choice).size());
                     int index2 = Integer.parseInt(reader.readLine());
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).sortAsc(index1, index2);

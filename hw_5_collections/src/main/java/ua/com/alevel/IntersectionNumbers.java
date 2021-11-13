@@ -45,15 +45,16 @@ public class IntersectionNumbers {
                 if (choice1 > 0 && choice1 < CreationMathSetObject.listMathSet.size()) {
                     System.out.println("Введены некорректные данные");
                     showIntersectionNumbers(reader);
+                } else {
                     System.out.println("Выберите 2-ый MathSet от 0 до " + (CreationMathSetObject.listMathSet.size() - 1));
                     int choice2 = Integer.parseInt(reader.readLine());
                     if (choice2 > 0 && choice2 < CreationMathSetObject.listMathSet.size()) {
                         CreationMathSetObject.listMathSet.get(choice1).
                                 intersection(CreationMathSetObject.listMathSet.get(choice2));
                         System.out.println("Действие выполнено успешно!");
+                    } else {
+                        System.out.println("Введены некорректные данные");
                     }
-                } else {
-                    System.out.println("Введены некорректные данные");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -73,15 +74,16 @@ public class IntersectionNumbers {
                 if (choice1 > 0 && choice1 < CreationMathSetObject.listMathSet.size()) {
                     System.out.println("Введены некорректные данные");
                     showIntersectionNumbers(reader);
+                } else {
                     System.out.println("Выберите 2-ый MathSet от 0 до " + (CreationMathSetObject.listMathSet.size() - 1));
                     int choice2 = Integer.parseInt(reader.readLine());
                     if (choice2 > 0 && choice2 < CreationMathSetObject.listMathSet.size()) {
                         CreationMathSetObject.listMathSet.get(choice1).
                                 intersection(CreationMathSetObject.listMathSet.get(choice2));
                         System.out.println("Действие выполнено успешно!");
+                    } else {
+                        System.out.println("Введены некорректные данные");
                     }
-                } else {
-                    System.out.println("Введены некорректные данные");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
