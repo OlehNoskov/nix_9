@@ -281,7 +281,7 @@ public class MathSetUtil<NumberSet extends Number> {
     }
 
     public int size() {
-        return this.size;
+        return this.setNumbers.length;
     }
 
     @Override

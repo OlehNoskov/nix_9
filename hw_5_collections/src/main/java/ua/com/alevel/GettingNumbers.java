@@ -62,7 +62,7 @@ public class GettingNumbers {
                     System.out.println("Введены некорректные данные");
                     getNumberForIndex(reader);
                 } else {
-                    System.out.println("Выберите индекс от 0 до "+CreationMathSetObject.listMathSet.get(choice).size()+":");
+                    System.out.println("Выберите индекс от 0 до "+CreationMathSetObject.listMathSet.get(choice)+":");
                     int index = Integer.parseInt(reader.readLine());
                     System.out.print("Число:");
                     System.out.println(CreationMathSetObject.listMathSet.get(index).get(index));
