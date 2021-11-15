@@ -123,21 +123,24 @@ public class CreationCalendarFormat {
         try {
             String date = reader.readLine();
             String[] dataCalendar = date.trim().split(" ");
-            String month = dataCalendar[0];
-            String regex = "^(\\d{2}\s[А-Я])([а-я]){2,8}\s\\d{1,4}\s\\d{4}$";
+            String month = dataCalendar[1];
+            String regex = "^(\\d{2}\s[А-Я])([а-я]){2,8}\s\\d{1,4}\s\\d{2}\s\\d{2}$";
 
             if (date.matches(regex)) {
                 if (EnumerationMonths.getMapMonths().containsValue(month)) {
-                    int day = Integer.parseInt(dataCalendar[1]);
+                    int day = Integer.parseInt(dataCalendar[0]);
                     int year = Integer.parseInt(dataCalendar[2]);
+                    int hour = Integer.parseInt(dataCalendar[3]);
+                    int minute = Integer.parseInt(dataCalendar[4]);
+
 
                     if (ExaminationValidInputDataCalendar.calendarIsValid(year, EnumerationMonths.getNumberMonths(month), day)) {
                         fourMyCalendar.setDay(day);
                         fourMyCalendar.setNameMonths(month);
                         fourMyCalendar.setMonthNumber(EnumerationMonths.getNumberMonths(month));
                         fourMyCalendar.setYear(year);
-//                        fourMyCalendar.setHour();
-//                        fourMyCalendar.setMinutes();
+                        fourMyCalendar.setHour(hour);
+                        fourMyCalendar.setMinutes(minute);
                         myCalendarList.add(fourMyCalendar);
                         indexMyCalendar = myCalendarList.indexOf(fourMyCalendar);
                         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
