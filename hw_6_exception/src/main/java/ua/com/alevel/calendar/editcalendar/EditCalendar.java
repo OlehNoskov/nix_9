@@ -3,6 +3,8 @@ package ua.com.alevel.calendar.editcalendar;
 import ua.com.alevel.calendar.MainMenuProgram;
 import ua.com.alevel.calendar.createcalendar.CreationCalendarFormat;
 import ua.com.alevel.calendar.createcalendar.MenuCreationDateFormat;
+import ua.com.alevel.calendar.datevalid.ExaminationValidInputDataCalendar;
+import ua.com.alevel.calendar.mycalendar.MyCalendar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,12 +48,12 @@ public class EditCalendar {
     private static void selectDate(BufferedReader reader) throws IOException, NumberFormatException {
         System.out.println("=== Меню выбора даты ===");
         if (CreationCalendarFormat.myCalendarList.size() != 0) {
-            System.out.println("Выберите дату от 0 до " + CreationCalendarFormat.myCalendarList.size() + ":");
+            System.out.println("Выберите дату от 0 до " + (CreationCalendarFormat.myCalendarList.size() - 1) + ":");
             int choice = Integer.parseInt(reader.readLine());
-            if (choice > 0 && choice < CreationCalendarFormat.myCalendarList.size()) {
-                selectAdditionAndSubtractionDates(reader);
+            if (choice >= 0 && choice < CreationCalendarFormat.myCalendarList.size()) {
+                selectAdditionAndSubtractionDates(reader,CreationCalendarFormat.myCalendarList.get(choice));
             } else {
-                System.out.println("Списсок с данным индексом отсутствует!");
+                System.out.println("Дата с данным индексом отсутствует!");
                 showMenuEditCalendar(reader);
             }
         } else {
@@ -60,11 +62,17 @@ public class EditCalendar {
         }
     }
 
-    private static void selectAdditionAndSubtractionDates(BufferedReader reader) throws IOException {
+    private static void selectAdditionAndSubtractionDates(BufferedReader reader, MyCalendar myCalendar) throws IOException {
+        System.out.println("=== Выберите действие для работы с датой ===");
+        System.out.println("1. Прибавить к дате год, дни, часы, минуты, секунды и миллисекунды.");
+        System.out.println("2. Вычесть из даты год, дни, часы, минуты, секунды и миллисекунды.");
+        System.out.println("0. Выход в Главное меню");
+        System.out.println("Выберите один из предложенных вариантов:");
+        System.out.println("");
         String menu = reader.readLine();
         switch (menu) {
             case "1":
-                additionDates(reader);
+                additionDates(reader,myCalendar);
                 break;
             case "2":
                 subtractionDates(reader);
@@ -78,8 +86,33 @@ public class EditCalendar {
         }
     }
 
-    private static void additionDates(BufferedReader reader) {
+    private static void additionDates(BufferedReader reader, MyCalendar myCalendar) throws IOException, NumberFormatException {
+        System.out.print("Введите сколько добавить лет к текущей дате:");
+        int addYears = Integer.parseInt(reader.readLine());
+        System.out.print("Введите сколько добавить дней к текущей дате:");
+        int addDays = Integer.parseInt(reader.readLine());
 
+        if (ExaminationValidInputDataCalendar.IsValidInputYearAndDay(addYears, addDays)) {
+
+            System.out.print("Введите сколько добавить часов к текущей дате:");
+            int addHours = Integer.parseInt(reader.readLine());
+            System.out.print("Введите сколько добавить минут к текущей дате:");
+            int addMinutes = Integer.parseInt(reader.readLine());
+            System.out.print("Введите сколько добавить секунд к текущей дате:");
+            int addSeconds = Integer.parseInt(reader.readLine());
+            System.out.print("Введите сколько добавить миллисекунд к текущей дате:");
+            int addMilliseconds = Integer.parseInt(reader.readLine());
+
+            if (ExaminationValidInputDataCalendar.IsValidInputTime(addHours, addMinutes, addSeconds, addMilliseconds)) {
+                ConverterDates.convertedDatesWhenAddingDates(reader,myCalendar,addYears,addDays,addHours,addMinutes,addSeconds,addMilliseconds);
+            } else {
+                System.out.println("Введены некорректные значения времени!");
+                showMenuEditCalendar(reader);
+            }
+        } else {
+            System.out.println("Введены некорректные значения даты!");
+            showMenuEditCalendar(reader);
+        }
     }
 
     private static void subtractionDates(BufferedReader reader) {

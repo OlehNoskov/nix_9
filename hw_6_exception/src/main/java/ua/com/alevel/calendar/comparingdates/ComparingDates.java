@@ -1,5 +1,6 @@
-package ua.com.alevel.calendar;
+package ua.com.alevel.calendar.comparingdates;
 
+import ua.com.alevel.calendar.MainMenuProgram;
 import ua.com.alevel.calendar.createcalendar.CreationCalendarFormat;
 import ua.com.alevel.calendar.createcalendar.MenuCreationDateFormat;
 import ua.com.alevel.calendar.mycalendar.MyCalendar;

@@ -1,6 +1,8 @@
 package ua.com.alevel.calendar;
 
+import ua.com.alevel.calendar.comparingdates.ComparingDates;
 import ua.com.alevel.calendar.createcalendar.MenuCreationDateFormat;
+import ua.com.alevel.calendar.editcalendar.EditCalendar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +20,7 @@ public class MainMenuProgram {
                         MenuCreationDateFormat.showMenuCreateCalendar(reader);
                         break;
                     case "2":
-
+                        EditCalendar.showMenuEditCalendar(reader);
                         break;
                     case "3":
                         ComparingDates.showMenuCompareDates(reader);

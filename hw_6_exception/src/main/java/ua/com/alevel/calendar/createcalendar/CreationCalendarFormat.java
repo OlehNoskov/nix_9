@@ -40,17 +40,12 @@ public class CreationCalendarFormat {
                     myCalendarList.add(firstMyCalendar);
                     indexMyCalendar = myCalendarList.indexOf(firstMyCalendar);
                     ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
-                } else {
-                    System.out.println("Некорректно введена дата!");
-                    MainMenuProgram.run();
-                }
-            } else {
-                System.out.println("Некорректно введены значения!");
-                MainMenuProgram.run();
-            }
+                } else
+                    messageIncorrectFormatDate();
+            } else
+                messageIncorrectInputFormatDate();
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Неверный формат ввода!");
-            MainMenuProgram.run();
+            messageIncorrectInputFormatDate();
         }
     }
 
@@ -79,17 +74,12 @@ public class CreationCalendarFormat {
                     myCalendarList.add(secondMyCalendar);
                     indexMyCalendar = myCalendarList.indexOf(secondMyCalendar);
                     ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
-                } else {
-                    System.out.println("Некорректно введена дата!");
-                    MainMenuProgram.run();
-                }
-            } else {
-                System.out.println("Некорректно введены значения!");
-                MainMenuProgram.run();
-            }
+                } else
+                    messageIncorrectFormatDate();
+            } else
+                messageIncorrectInputFormatDate();
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Неверный формат ввода!");
-            MainMenuProgram.run();
+            messageIncorrectInputFormatDate();
         }
     }
 
@@ -115,18 +105,16 @@ public class CreationCalendarFormat {
                         myCalendarList.add(thirdMyCalendar);
                         indexMyCalendar = myCalendarList.indexOf(thirdMyCalendar);
                         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
-                    } else {
-                        System.out.println("Некорректно введена дата!");
-                        MainMenuProgram.run();
-                    }
+                    } else
+                        messageIncorrectFormatDate();
+                }else {
+                    System.out.println("Некорректно введено название месяца!");
+                    MainMenuProgram.run();
                 }
-            } else {
-                System.out.println("Некорректно введены значения!");
-                MainMenuProgram.run();
-            }
+            } else
+                messageIncorrectInputFormatDate();
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Неверный формат ввода!");
-            MainMenuProgram.run();
+            messageIncorrectInputFormatDate();
         }
     }
 
@@ -159,18 +147,15 @@ public class CreationCalendarFormat {
                         myCalendarList.add(fourMyCalendar);
                         indexMyCalendar = myCalendarList.indexOf(fourMyCalendar);
                         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
-                    } else {
-                        System.out.println("Некорректно введена дата!");
-                        MainMenuProgram.run();
-                    }
+                    } else
+                        messageIncorrectFormatDate();
+                } else {
+                    System.out.println("Некорректно введено название месяца!");
+                    MainMenuProgram.run();
                 }
-            } else {
-                System.out.println("Некорректно введены значения!");
-                MainMenuProgram.run();
-            }
+            } else messageIncorrectInputFormatDate();
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Неверный формат ввода!");
-            MainMenuProgram.run();
+            messageIncorrectInputFormatDate();
         }
     }
 
@@ -202,22 +187,29 @@ public class CreationCalendarFormat {
                         myCalendarList.add(fourMyCalendar);
                         indexMyCalendar = myCalendarList.indexOf(fourMyCalendar);
                         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
-                    }else {
-                        System.out.println("Некорректно введена дата!");
-                        MainMenuProgram.run();
-                    }
+                    } else
+                        messageIncorrectFormatDate();
+                } else {
+                    System.out.println("Некорректно введено название месяца!");
+                    MainMenuProgram.run();
                 }
-            } else {
-                System.out.println("Некорректно введены значения!");
-                MainMenuProgram.run();
-            }
+            } else messageIncorrectInputFormatDate();
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Неверный формат ввода!");
-            MainMenuProgram.run();
+            messageIncorrectInputFormatDate();
         }
     }
 
     public static List<MyCalendar> getCalendarList() {
         return myCalendarList;
+    }
+
+    private static void messageIncorrectFormatDate() {
+        System.out.println("Некорректно введена дата!");
+        MainMenuProgram.run();
+    }
+
+    private static void messageIncorrectInputFormatDate() {
+        System.out.println("Некорректный формат ввода!");
+        MainMenuProgram.run();
     }
 }
