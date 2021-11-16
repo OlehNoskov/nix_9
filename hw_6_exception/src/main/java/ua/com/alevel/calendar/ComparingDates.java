@@ -1,5 +1,9 @@
 package ua.com.alevel.calendar;
 
+import ua.com.alevel.calendar.createcalendar.CreationCalendarFormat;
+import ua.com.alevel.calendar.createcalendar.MenuCreationDateFormat;
+import ua.com.alevel.calendar.mycalendar.MyCalendar;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,8 +32,9 @@ public class ComparingDates {
                         System.out.println("Для выхода из программы введите 0");
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Некорректно введены данные!");
+            showMenuCompareDates(reader);
         }
     }
 
@@ -41,32 +46,27 @@ public class ComparingDates {
         System.out.println("Выберите один из предложенных вариантов:");
     }
 
-    private static void showMenuChoiceDates(BufferedReader reader) {
+    private static void showMenuChoiceDates(BufferedReader reader) throws IOException, NumberFormatException {
         System.out.println("=== Меню сравнения даты ===");
         List<MyCalendar> selectedMyCalendarList = new ArrayList<>();
         if (CreationCalendarFormat.myCalendarList.size() != 0) {
             System.out.println("Нажмите 1 для вывода список сравения дат по убыванию:");
             System.out.println("Нажмите 2 для вывода список сравения дат по возростанию:");
-            try {
-                String choiceSortDates = reader.readLine();
-                switch (choiceSortDates) {
-                    case "1":
-                        sortDescDates();
-                        break;
-                    case "2":
-                        sortAscDates();
-                        break;
-                    case "0":
-                        MainMenuProgram.run();
-                        break;
-                    default:
-                        System.out.println("Введите число от 1 до 2 для запуска программы");
-                        System.out.println("Для выхода в Главное Меню введите 0");
 
-                }
-            } catch (IOException | NumberFormatException e) {
-                System.out.println("Некорректно введены данные!");
-                showMenuCompareDates(reader);
+            String choiceSortDates = reader.readLine();
+            switch (choiceSortDates) {
+                case "1":
+                    sortDescDates();
+                    break;
+                case "2":
+                    sortAscDates();
+                    break;
+                case "0":
+                    MainMenuProgram.run();
+                    break;
+                default:
+                    System.out.println("Введите число от 1 до 2 для запуска программы");
+                    System.out.println("Для выхода в Главное Меню введите 0");
             }
         } else {
             System.out.println("На данный момент список MyCalendar пустой!");

@@ -1,4 +1,4 @@
-package ua.com.alevel.calendar;
+package ua.com.alevel.calendar.enumeration;
 
 import java.util.Map;
 import java.util.TreeMap;

@@ -1,4 +1,6 @@
-package ua.com.alevel.calendar;
+package ua.com.alevel.calendar.createcalendar;
+
+import ua.com.alevel.calendar.MainMenuProgram;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,7 +58,7 @@ public class MenuCreationDateFormat {
     }
 
     private static void showSecondCalendarFormat(BufferedReader reader) {
-        System.out.println("Введите данные через пробел в формате 1 4 2021:");
+        System.out.println("Введите данные через пробел в формате 1/4/2021:");
         CreationCalendarFormat.createCalendarSecondFormat(reader);
     }
 

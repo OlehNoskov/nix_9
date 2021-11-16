@@ -1,4 +1,9 @@
-package ua.com.alevel.calendar;
+package ua.com.alevel.calendar.createcalendar;
+
+import ua.com.alevel.calendar.MainMenuProgram;
+import ua.com.alevel.calendar.datevalid.ExaminationValidInputDataCalendar;
+import ua.com.alevel.calendar.enumeration.EnumerationMonths;
+import ua.com.alevel.calendar.mycalendar.MyCalendar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,9 +19,9 @@ public class CreationCalendarFormat {
         MyCalendar firstMyCalendar = new MyCalendar();
         try {
             String date = reader.readLine();
-            String regex = "^\\d{1,2}\s\\d{1,2}\s\\d{1,4}$";
+            String regex = "^\\d{1,2}.\\d{1,2}.\\d{1,4}$";
             if (date.matches(regex)) {
-                String[] setData = date.trim().split(" ");
+                String[] setData = date.trim().split("/");
 
                 int[] data = new int[setData.length];
                 for (int i = 0; i < setData.length; i++) {
@@ -36,11 +41,11 @@ public class CreationCalendarFormat {
                     indexMyCalendar = myCalendarList.indexOf(firstMyCalendar);
                     ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
                 } else {
-                    System.out.println("Некорректно введены значения!" + "\n");
+                    System.out.println("Некорректно введена дата!");
                     MainMenuProgram.run();
                 }
-            }else {
-                System.out.println("Некорректно введены значения!" + "\n");
+            } else {
+                System.out.println("Некорректно введены значения!");
                 MainMenuProgram.run();
             }
         } catch (IOException | NumberFormatException e) {
@@ -53,10 +58,10 @@ public class CreationCalendarFormat {
         MyCalendar secondMyCalendar = new MyCalendar();
         try {
             String date = reader.readLine();
-            String regex = "^\\d{1,2}\s\\d{1,2}\s\\d{1,4}$";
+            String regex = "^\\d{1,2}.\\d{1,2}.\\d{1,4}$";
 
             if (date.matches(regex)) {
-                String[] setData = date.trim().split(" ");
+                String[] setData = date.trim().split("/");
 
                 int[] data = new int[setData.length];
                 for (int i = 0; i < setData.length; i++) {
@@ -74,9 +79,12 @@ public class CreationCalendarFormat {
                     myCalendarList.add(secondMyCalendar);
                     indexMyCalendar = myCalendarList.indexOf(secondMyCalendar);
                     ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
+                } else {
+                    System.out.println("Некорректно введена дата!");
+                    MainMenuProgram.run();
                 }
             } else {
-                System.out.println("Некорректно введены значения!" + "\n");
+                System.out.println("Некорректно введены значения!");
                 MainMenuProgram.run();
             }
         } catch (IOException | NumberFormatException e) {
@@ -98,7 +106,8 @@ public class CreationCalendarFormat {
                     int day = Integer.parseInt(dataCalendar[1]);
                     int year = Integer.parseInt(dataCalendar[2]);
 
-                    if (ExaminationValidInputDataCalendar.calendarIsValid(year, EnumerationMonths.getNumberMonths(month), day)) {
+                    if (ExaminationValidInputDataCalendar.calendarIsValid(year,
+                            EnumerationMonths.getNumberMonths(month), day)) {
                         thirdMyCalendar.setDay(day);
                         thirdMyCalendar.setNameMonths(month);
                         thirdMyCalendar.setMonthNumber(EnumerationMonths.getNumberMonths(month));
@@ -106,10 +115,13 @@ public class CreationCalendarFormat {
                         myCalendarList.add(thirdMyCalendar);
                         indexMyCalendar = myCalendarList.indexOf(thirdMyCalendar);
                         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
+                    } else {
+                        System.out.println("Некорректно введена дата!");
+                        MainMenuProgram.run();
                     }
                 }
             } else {
-                System.out.println("Некорректно введены значения!" + "\n");
+                System.out.println("Некорректно введены значения!");
                 MainMenuProgram.run();
             }
         } catch (IOException | NumberFormatException e) {
@@ -124,17 +136,20 @@ public class CreationCalendarFormat {
             String date = reader.readLine();
             String[] dataCalendar = date.trim().split(" ");
             String month = dataCalendar[1];
-            String regex = "^(\\d{2}\s[А-Я])([а-я]){2,8}\s\\d{1,4}\s\\d{2}\s\\d{2}$";
+            String regex = "^(\\d{2}\s[А-Я])([а-я]){2,8}\s\\d{1,4}\s\\d{2}.\\d{2}$";
 
             if (date.matches(regex)) {
                 if (EnumerationMonths.getMapMonths().containsValue(month)) {
                     int day = Integer.parseInt(dataCalendar[0]);
                     int year = Integer.parseInt(dataCalendar[2]);
-                    int hour = Integer.parseInt(dataCalendar[3]);
-                    int minute = Integer.parseInt(dataCalendar[4]);
+                    String hoursAndMinutes = dataCalendar[3];
+                    String[] hourAndMinute = hoursAndMinutes.split(":");
+                    int hour = Integer.parseInt(hourAndMinute[0]);
+                    int minute = Integer.parseInt(hourAndMinute[1]);
 
-
-                    if (ExaminationValidInputDataCalendar.calendarIsValid(year, EnumerationMonths.getNumberMonths(month), day)) {
+                    if (ExaminationValidInputDataCalendar.calendarIsValid(year,
+                            EnumerationMonths.getNumberMonths(month), day)
+                            && ExaminationValidInputDataCalendar.isTimeValid(hour, minute, 0, 0)) {
                         fourMyCalendar.setDay(day);
                         fourMyCalendar.setNameMonths(month);
                         fourMyCalendar.setMonthNumber(EnumerationMonths.getNumberMonths(month));
@@ -144,10 +159,13 @@ public class CreationCalendarFormat {
                         myCalendarList.add(fourMyCalendar);
                         indexMyCalendar = myCalendarList.indexOf(fourMyCalendar);
                         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
+                    } else {
+                        System.out.println("Некорректно введена дата!");
+                        MainMenuProgram.run();
                     }
                 }
             } else {
-                System.out.println("Некорректно введены значения!" + "\n");
+                System.out.println("Некорректно введены значения!");
                 MainMenuProgram.run();
             }
         } catch (IOException | NumberFormatException e) {
@@ -167,12 +185,13 @@ public class CreationCalendarFormat {
             String[] dataCalendar = date.trim().split(" ");
             String month = dataCalendar[0];
 
-            if (date.matches(regex1) |date.matches(regex2)| date.matches(regex3)| date.matches(regex4)) {
+            if (date.matches(regex1) | date.matches(regex2) | date.matches(regex3) | date.matches(regex4)) {
                 if (EnumerationMonths.getMapMonths().containsValue(month)) {
                     int day = Integer.parseInt(dataCalendar[1]);
                     int year = Integer.parseInt(dataCalendar[2]);
 
-                    if (ExaminationValidInputDataCalendar.calendarIsValid(year, EnumerationMonths.getNumberMonths(month), day)) {
+                    if (ExaminationValidInputDataCalendar.calendarIsValid(year,
+                            EnumerationMonths.getNumberMonths(month), day)) {
                         fourMyCalendar.setDay(day);
                         fourMyCalendar.setNameMonths(month);
                         fourMyCalendar.setMonthNumber(EnumerationMonths.getNumberMonths(month));
@@ -183,10 +202,13 @@ public class CreationCalendarFormat {
                         myCalendarList.add(fourMyCalendar);
                         indexMyCalendar = myCalendarList.indexOf(fourMyCalendar);
                         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
+                    }else {
+                        System.out.println("Некорректно введена дата!");
+                        MainMenuProgram.run();
                     }
                 }
             } else {
-                System.out.println("Некорректно введены значения!" + "\n");
+                System.out.println("Некорректно введены значения!");
                 MainMenuProgram.run();
             }
         } catch (IOException | NumberFormatException e) {
@@ -195,7 +217,7 @@ public class CreationCalendarFormat {
         }
     }
 
-    public static List<MyCalendar> getCalendarList(){
+    public static List<MyCalendar> getCalendarList() {
         return myCalendarList;
     }
 }

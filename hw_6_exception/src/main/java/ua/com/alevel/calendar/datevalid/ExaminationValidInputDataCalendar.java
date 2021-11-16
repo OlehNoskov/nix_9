@@ -1,4 +1,4 @@
-package ua.com.alevel.calendar;
+package ua.com.alevel.calendar.datevalid;
 
 public class ExaminationValidInputDataCalendar {
 

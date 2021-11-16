@@ -1,4 +1,4 @@
-package ua.com.alevel.calendar;
+package ua.com.alevel.calendar.mycalendar;
 
 public class MyCalendar {
     private int year;
@@ -91,7 +91,7 @@ public class MyCalendar {
     @Override
     public String toString() {
         return "Дата: " + day + " " + nameMonths + " " + year + "г. " + hour + ":" +
-                minutes + ":" + seconds + ":" + milliseconds + "\n";
+                minutes + ":" + seconds + ":" + milliseconds;
     }
 }
 //    private static LocalDate create(int year, int month, int dayOfMonth) {

@@ -1,5 +1,7 @@
 package ua.com.alevel.calendar;
 
+import ua.com.alevel.calendar.createcalendar.MenuCreationDateFormat;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,6 +37,7 @@ public class MainMenuProgram {
     }
 
     private static void showMenu() {
+        System.out.println();
         System.out.println("===== Консольное приложение Calendar =====");
         System.out.println("1.Создать обьект класса Calendar");
         System.out.println("2.Редактирование обьекта Calendar");

@@ -1,4 +1,8 @@
-package ua.com.alevel.calendar;
+package ua.com.alevel.calendar.createcalendar;
+
+import ua.com.alevel.calendar.MainMenuProgram;
+import ua.com.alevel.calendar.enumeration.EnumerationMonths;
+import ua.com.alevel.calendar.mycalendar.MyCalendar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,10 +28,8 @@ public class ChoiceOutputDisplayType {
                     case "4":
                         choiceFourFormat(CreationCalendarFormat.myCalendarList.get(CreationCalendarFormat.indexMyCalendar));
                         break;
-
                     default:
                         System.out.println("Введите число от 1 до 4 для выбора формата вывода!");
-
                 }
             }
         } catch (NumberFormatException e) {
@@ -37,27 +39,27 @@ public class ChoiceOutputDisplayType {
 
     private static void choiceFirstFormat(MyCalendar myCalendar) {
         System.out.print("Ваша дата: ");
-        System.out.println(myCalendar.getDay() + "/" + myCalendar.getMonthNumber() + "/" + myCalendar.getYear() + "\n");
+        System.out.println(myCalendar.getDay() + "/" + myCalendar.getMonthNumber() + "/" + myCalendar.getYear());
         MainMenuProgram.run();
     }
 
     private static void choiceSecondFormat(MyCalendar myCalendar) {
         System.out.print("Ваша дата: ");
-        System.out.println(myCalendar.getMonthNumber() + "/" + myCalendar.getDay() + "/" + myCalendar.getYear() + "\n");
+        System.out.println(myCalendar.getMonthNumber() + "/" + myCalendar.getDay() + "/" + myCalendar.getYear());
         MainMenuProgram.run();
     }
 
     private static void choiceThirdFormat(MyCalendar myCalendar) {
         System.out.print("Ваша дата: ");
         System.out.println(EnumerationMonths.getNameMonths(myCalendar.getMonthNumber())
-                + " " + myCalendar.getDay() + " " + myCalendar.getYear() + "\n");
+                + " " + myCalendar.getDay() + " " + myCalendar.getYear());
         MainMenuProgram.run();
     }
 
     private static void choiceFourFormat(MyCalendar myCalendar) {
         System.out.print("Ваша дата: ");
         System.out.println(myCalendar.getDay() + " " + EnumerationMonths.getNameMonths(myCalendar.getMonthNumber())
-                + " " + myCalendar.getYear() + " " + myCalendar.getHour() + ":" + myCalendar.getMinutes() + "\n");
+                + " " + myCalendar.getYear() + " " + myCalendar.getHour() + ":" + myCalendar.getMinutes());
         MainMenuProgram.run();
     }
 }
