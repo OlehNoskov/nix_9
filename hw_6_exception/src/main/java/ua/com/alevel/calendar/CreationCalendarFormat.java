@@ -14,7 +14,7 @@ public class CreationCalendarFormat {
         MyCalendar firstMyCalendar = new MyCalendar();
         try {
             String date = reader.readLine();
-            String regex = "^\\d{2}\s\\d{2}\s\\d{4}$";
+            String regex = "^\\d{1,2}\s\\d{1,2}\s\\d{1,4}$";
             if (date.matches(regex)) {
                 String[] setData = date.trim().split(" ");
 
@@ -53,7 +53,7 @@ public class CreationCalendarFormat {
         MyCalendar secondMyCalendar = new MyCalendar();
         try {
             String date = reader.readLine();
-            String regex = "^\\d{1,2}\s\\d{1,2}\s\\d{4}$";
+            String regex = "^\\d{1,2}\s\\d{1,2}\s\\d{1,4}$";
 
             if (date.matches(regex)) {
                 String[] setData = date.trim().split(" ");
@@ -193,5 +193,9 @@ public class CreationCalendarFormat {
             System.out.println("Неверный формат ввода!");
             MainMenuProgram.run();
         }
+    }
+
+    public static List<MyCalendar> getCalendarList(){
+        return myCalendarList;
     }
 }

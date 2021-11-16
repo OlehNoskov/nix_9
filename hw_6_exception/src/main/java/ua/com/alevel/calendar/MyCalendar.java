@@ -13,7 +13,7 @@ public class MyCalendar {
     public MyCalendar() {
     }
 
-    public MyCalendar(int year, int monthNumber,String nameMonths, int day, int hour, int minutes, int seconds, int milliseconds) {
+    public MyCalendar(int year, int monthNumber, String nameMonths, int day, int hour, int minutes, int seconds, int milliseconds) {
         this.year = year;
         this.monthNumber = monthNumber;
         this.nameMonths = nameMonths;
@@ -23,6 +23,7 @@ public class MyCalendar {
         this.seconds = seconds;
         this.milliseconds = milliseconds;
     }
+
     public int getYear() {
         return year;
     }
@@ -38,6 +39,7 @@ public class MyCalendar {
     public void setMonthNumber(int monthNumber) {
         this.monthNumber = monthNumber;
     }
+
     public String getNameMonths() {
         return nameMonths;
     }
@@ -88,15 +90,8 @@ public class MyCalendar {
 
     @Override
     public String toString() {
-        return "MyCalendar{" +
-                "year=" + year +
-                ", monthNumber=" + monthNumber +
-                ", day=" + day +
-                ", hour=" + hour +
-                ", minutes=" + minutes +
-                ", seconds=" + seconds +
-                ", milliseconds=" + milliseconds +
-                '}';
+        return "Дата: " + day + " " + nameMonths + " " + year + "г. " + hour + ":" +
+                minutes + ":" + seconds + ":" + milliseconds + "\n";
     }
 }
 //    private static LocalDate create(int year, int month, int dayOfMonth) {

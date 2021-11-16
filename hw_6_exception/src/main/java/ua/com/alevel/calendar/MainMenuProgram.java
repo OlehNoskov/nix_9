@@ -19,7 +19,7 @@ public class MainMenuProgram {
 
                         break;
                     case "3":
-
+                        ComparingDates.showMenuCompareDates(reader);
                         break;
                     case "0":
                         System.exit(0);
