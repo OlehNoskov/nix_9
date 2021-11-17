@@ -33,22 +33,6 @@ public class ExaminationValidInputDataCalendar {
         }
     }
 
-    public static boolean IsValidInputYearAndDay(int year, int day) {
-        if ((year < 0 || year > 9999) || (day < 0 || day > 365)) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean IsValidInputTime(int hour, int minutes, int seconds, int milliseconds) {
-        if ((hour < 0 || hour > 24) || (minutes < 0 || minutes > 60) || (seconds < 0 || seconds > 60)
-                || (milliseconds < 0 || milliseconds > 999)) {
-            return false;
-        }
-        return true;
-    }
-
-
     public static boolean isTimeValid(int hour, int minutes, int second, int milliseconds) {
         if (hour >= 0 && hour <= 24) {
             return true;
@@ -56,7 +40,7 @@ public class ExaminationValidInputDataCalendar {
             return true;
         } else if (second >= 0 && second <= 60) {
             return true;
-        } else if (milliseconds >= 0 && milliseconds <= 999) {
+        } else if (milliseconds >= 0 && milliseconds <= 1000) {
             return true;
         }
         return false;

@@ -20,7 +20,7 @@ public class MainMenuProgram {
                         MenuCreationDateFormat.showMenuCreateCalendar(reader);
                         break;
                     case "2":
-                        EditCalendar.showMenuEditCalendar(reader);
+                        EditCalendar.selectAdditionAndSubtractionDates(reader);
                         break;
                     case "3":
                         ComparingDates.showMenuCompareDates(reader);

@@ -18,7 +18,6 @@ public class ConverterDates {
     private static final int secondsPerIsLeapYear = 31_622_400;
 
     public static void convertedDatesWhenAddingDates(BufferedReader reader, MyCalendar myCalendar, int addYear, int addDays, int addHours, int addMinutes, int addSeconds, int addMilliSeconds) throws IOException {
-
         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
     }
 
