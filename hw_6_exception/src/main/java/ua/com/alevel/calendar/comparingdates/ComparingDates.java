@@ -1,8 +1,10 @@
 package ua.com.alevel.calendar.comparingdates;
 
+import org.w3c.dom.ls.LSOutput;
 import ua.com.alevel.calendar.MainMenuProgram;
 import ua.com.alevel.calendar.createcalendar.CreationCalendarFormat;
 import ua.com.alevel.calendar.createcalendar.MenuCreationDateFormat;
+import ua.com.alevel.calendar.differencedates.DifferenceBetweenDates;
 import ua.com.alevel.calendar.mycalendar.MyCalendar;
 
 import java.io.BufferedReader;
@@ -51,8 +53,9 @@ public class ComparingDates {
         System.out.println("=== Меню сравнения даты ===");
         List<MyCalendar> selectedMyCalendarList = new ArrayList<>();
         if (CreationCalendarFormat.myCalendarList.size() != 0) {
-            System.out.println("Нажмите 1 для вывода список сравения дат по убыванию:");
-            System.out.println("Нажмите 2 для вывода список сравения дат по возростанию:");
+            System.out.println("Нажмите 1 для вывода список сравения всех дат по убыванию:");
+            System.out.println("Нажмите 2 для вывода список сравения всех дат по возростанию:");
+            System.out.println("Нажмите 3 для получения разницы между двумя доступными датами:");
 
             String choiceSortDates = reader.readLine();
             switch (choiceSortDates) {
@@ -61,6 +64,9 @@ public class ComparingDates {
                     break;
                 case "2":
                     sortDescDates();
+                    break;
+                case "3":
+                    DifferenceBetweenDates.showMenuDifferenceBetweenDates(reader);
                     break;
                 case "0":
                     MainMenuProgram.run();

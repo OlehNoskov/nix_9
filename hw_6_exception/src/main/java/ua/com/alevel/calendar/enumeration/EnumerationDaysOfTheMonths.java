@@ -1,13 +1,14 @@
 package ua.com.alevel.calendar.enumeration;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class EnumerationDaysOfTheMonths {
 
+    public final static List<Integer> numberOfDaysInMonths = Arrays.asList(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+
     public static TreeMap<Integer, Integer> getMapMonthsOfDays() {
 
-     Map<Integer, Integer> daysOfTheMonths = new TreeMap<>();
+        Map<Integer, Integer> daysOfTheMonths = new TreeMap<>();
 
         daysOfTheMonths.put(1, 31);
         daysOfTheMonths.put(2, 28);

@@ -61,4 +61,13 @@ public class ExaminationValidInputDataCalendar {
         }
         return false;
     }
+
+    public static int getCountLeapYear(int year) {
+        int countLeapYear = 0;
+        for (int i = 0; i <= year; i++) {
+            if (isLeapYear(i))
+                countLeapYear++;
+        }
+        return countLeapYear;
+    }
 }

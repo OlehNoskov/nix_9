@@ -208,7 +208,7 @@ public class CreationCalendarFormat {
         MainMenuProgram.run();
     }
 
-    private static void messageIncorrectInputFormatDate() {
+    public static void messageIncorrectInputFormatDate() {
         System.out.println("Некорректный формат ввода!");
         MainMenuProgram.run();
     }
