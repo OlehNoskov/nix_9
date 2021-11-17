@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 public class EnumerationDaysOfTheMonths {
 
-    public static TreeMap<Integer, String> mapMonthsOfDays() {
+    public static TreeMap<Integer, Integer> getMapMonthsOfDays() {
 
      Map<Integer, Integer> daysOfTheMonths = new TreeMap<>();
 
@@ -22,6 +22,6 @@ public class EnumerationDaysOfTheMonths {
         daysOfTheMonths.put(11, 30);
         daysOfTheMonths.put(12, 31);
 
-        return mapMonthsOfDays();
+        return getMapMonthsOfDays();
     }
 }

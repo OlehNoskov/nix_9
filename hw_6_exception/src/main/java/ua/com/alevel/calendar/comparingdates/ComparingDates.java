@@ -57,10 +57,10 @@ public class ComparingDates {
             String choiceSortDates = reader.readLine();
             switch (choiceSortDates) {
                 case "1":
-                    sortDescDates();
+                    sortAscDates();
                     break;
                 case "2":
-                    sortAscDates();
+                    sortDescDates();
                     break;
                 case "0":
                     MainMenuProgram.run();
