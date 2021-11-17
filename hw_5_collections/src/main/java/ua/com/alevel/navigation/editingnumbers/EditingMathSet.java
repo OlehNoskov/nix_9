@@ -1,4 +1,8 @@
-package ua.com.alevel;
+package ua.com.alevel.navigation.editingnumbers;
+
+import ua.com.alevel.navigation.sortednumbers.SortedNumbers;
+import ua.com.alevel.navigation.creationmathset.MenuCreateMathSet;
+import ua.com.alevel.navigation.gettingnumbers.GettingNumbers;
 
 import java.io.BufferedReader;
 import java.io.IOException;

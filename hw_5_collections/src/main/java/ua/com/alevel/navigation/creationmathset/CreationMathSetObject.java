@@ -1,4 +1,7 @@
-package ua.com.alevel;
+package ua.com.alevel.navigation.creationmathset;
+
+import ua.com.alevel.navigation.editingnumbers.EditingMathSet;
+import ua.com.alevel.MathSetUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -19,4 +19,13 @@ public class ConverterDates {
 
         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
     }
+
+    private static long getSumSecondsDate(MyCalendar myCalendar, int addYear, int addDays, int addHours, int addMinutes, int addSeconds, int addMilliSeconds) {
+
+        
+
+
+        long sumSeconds =0 ;
+        return sumSeconds;
+    }
 }
