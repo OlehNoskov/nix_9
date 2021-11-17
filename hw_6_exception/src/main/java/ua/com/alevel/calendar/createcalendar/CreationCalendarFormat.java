@@ -107,7 +107,7 @@ public class CreationCalendarFormat {
                         ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
                     } else
                         messageIncorrectFormatDate();
-                }else {
+                } else {
                     System.out.println("Некорректно введено название месяца!");
                     MainMenuProgram.run();
                 }
@@ -160,40 +160,93 @@ public class CreationCalendarFormat {
     }
 
     public static void inputDataCalendarRandomFormat(BufferedReader reader) {
-        MyCalendar fourMyCalendar = new MyCalendar();
         try {
-            String regex1 = "^\\d\s\\d{2}\s\\d{4}$";
-            String regex2 = "^\\d\s\\d{2}\s\\d{2}\s\\d{2}\s\\d{2}\s\\d{3}$";
-            String regex3 = "^\s\\d\s\\d{2}\s\\d{2}$";
-            String regex4 = "^\\d{4}\s\\d{2}\s\\d{2}$";
+            MyCalendar fiveMyCalendar = new MyCalendar();
+            String regex1 = "^\\d{1,2}.\\d{1,2}.\\d{1,4}$";
+            String regex2 = "^.\\d{1,2}.\\d{1,4}\s\\d{2}.\\d{2}.\\d{2}.\\d{1,3}$";
+            String regex3 = "^.\\d{1,2}.\s\\d{1,2}$";
+            String regex4 = "^\\d{1,4}\s\\d{2}.\\d{2}$";
             String date = reader.readLine();
-            String[] dataCalendar = date.trim().split(" ");
-            String month = dataCalendar[0];
 
-            if (date.matches(regex1) | date.matches(regex2) | date.matches(regex3) | date.matches(regex4)) {
-                if (EnumerationMonths.getMapMonths().containsValue(month)) {
-                    int day = Integer.parseInt(dataCalendar[1]);
-                    int year = Integer.parseInt(dataCalendar[2]);
+            if (date.matches(regex1)) {
+                String[] dataCalendar = date.trim().split("/");
+                int year = Integer.parseInt(dataCalendar[2]);
+                int numberMonths = Integer.parseInt(dataCalendar[1]);
+                int day = Integer.parseInt(dataCalendar[0]);
+                if (ExaminationValidInputDataCalendar.calendarIsValid(year, numberMonths, day)) {
+                    fiveMyCalendar.setDay(day);
+                    fiveMyCalendar.setMonthNumber(numberMonths);
+                    fiveMyCalendar.setNameMonths(EnumerationMonths.getNameMonths(numberMonths));
+                    fiveMyCalendar.setYear(year);
+                    myCalendarList.add(fiveMyCalendar);
+                    indexMyCalendar = myCalendarList.indexOf(fiveMyCalendar);
+                    ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
+                } else
+                    messageIncorrectFormatDate();
+            }
+            if (date.matches(regex2)) {
+                String[] dataCalendar = date.trim().split(" ");
+                String dates = dataCalendar[0];
+                String[] monthsAndYears = dates.split("/");
 
-                    if (ExaminationValidInputDataCalendar.calendarIsValid(year,
-                            EnumerationMonths.getNumberMonths(month), day)) {
-                        fourMyCalendar.setDay(day);
-                        fourMyCalendar.setNameMonths(month);
-                        fourMyCalendar.setMonthNumber(EnumerationMonths.getNumberMonths(month));
-                        fourMyCalendar.setYear(year);
-//                        fourMyCalendar.setHour();
-//                        fourMyCalendar.setMinutes();
+                if (ExaminationValidInputDataCalendar
+                        .calendarIsValid(Integer.parseInt(monthsAndYears[2]), Integer.parseInt(monthsAndYears[1]), 1)) {
+                    fiveMyCalendar.setDay(1);
+                    fiveMyCalendar.setMonthNumber(Integer.parseInt(monthsAndYears[1]));
+                    fiveMyCalendar.setNameMonths(EnumerationMonths.getNameMonths(Integer.parseInt(monthsAndYears[1])));
+                    fiveMyCalendar.setYear(Integer.parseInt(monthsAndYears[2]));
+                    String time = dataCalendar[1];
+                    String[] times = time.split(":");
+                    if (ExaminationValidInputDataCalendar
+                            .isTimeValid(Integer.parseInt(times[0]), Integer.parseInt(times[1])
+                                    , Integer.parseInt(times[2]), Integer.parseInt(times[3]))) {
 
-                        myCalendarList.add(fourMyCalendar);
-                        indexMyCalendar = myCalendarList.indexOf(fourMyCalendar);
-                        ChoiceOutputDisplayType.showMenuSelectDateFormatOutput(reader);
-                    } else
-                        messageIncorrectFormatDate();
+                        fiveMyCalendar.setHour(Integer.parseInt(times[0]));
+                        fiveMyCalendar.setMinutes(Integer.parseInt(times[1]));
+                        fiveMyCalendar.setSeconds(Integer.parseInt(times[2]));
+                        fiveMyCalendar.setMilliseconds(Integer.parseInt(times[3]));
+                    }
                 } else {
-                    System.out.println("Некорректно введено название месяца!");
-                    MainMenuProgram.run();
+                    messageIncorrectFormatDate();
                 }
-            } else messageIncorrectInputFormatDate();
+            } else
+                messageIncorrectFormatDate();
+
+            if (date.matches(regex3)) {
+                String[] dataCalendar = date.trim().split(" ");
+                String months = dataCalendar[0];
+                String[] monthsAndYears = months.split("/");
+                fiveMyCalendar.setDay(1);
+                fiveMyCalendar.setMonthNumber(Integer.parseInt(monthsAndYears[1]));
+                fiveMyCalendar.setNameMonths(EnumerationMonths.getNameMonths(Integer.parseInt(monthsAndYears[1])));
+                fiveMyCalendar.setYear(0);
+
+                String time = dataCalendar[1];
+                String[] times = time.split(":");
+                fiveMyCalendar.setHour(Integer.parseInt(times[1]));
+            } else
+                messageIncorrectFormatDate();
+
+            if (date.matches(regex4)) {
+                String[] dataCalendar = date.trim().split(" ");
+                String year = dataCalendar[0];
+                if (ExaminationValidInputDataCalendar.calendarIsValid(Integer.parseInt(year), 0, 0)) {
+                    fiveMyCalendar.setMonthNumber(1);
+                    fiveMyCalendar.setNameMonths(EnumerationMonths.getNameMonths(1));
+                    fiveMyCalendar.setYear(Integer.parseInt(year));
+
+                    String time = dataCalendar[1];
+                    String[] times = time.split(":");
+
+                    if (ExaminationValidInputDataCalendar.isTimeValid(Integer.parseInt(times[0]), Integer.parseInt(times[1]), 0, 0))
+                    {
+                        fiveMyCalendar.setHour(Integer.parseInt(times[0]));
+                        fiveMyCalendar.setMinutes(Integer.parseInt(times[1]));
+                    }
+                } else messageIncorrectFormatDate();
+            } else
+                messageIncorrectFormatDate();
+
         } catch (IOException | NumberFormatException e) {
             messageIncorrectInputFormatDate();
         }
