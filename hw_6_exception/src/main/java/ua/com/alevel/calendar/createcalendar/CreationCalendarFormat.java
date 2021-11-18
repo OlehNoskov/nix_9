@@ -89,7 +89,7 @@ public class CreationCalendarFormat {
             String date = reader.readLine();
             String[] dataCalendar = date.trim().split(" ");
             String month = dataCalendar[0];
-            String regex = "^([А-Я])([а-я]){2,8}\s\\d{1,2}\s\\d{1,4}$";
+            String regex = "^([А-Я])[а-я]{2,8}\s\\d{1,2}\s\\d{1,4}$";
 
             if (date.matches(regex)) {
                 if (EnumerationMonths.getMapMonths().containsValue(month)) {
