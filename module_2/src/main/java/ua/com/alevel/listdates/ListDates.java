@@ -1,5 +1,7 @@
 package ua.com.alevel.listdates;
 
+import ua.com.alevel.consolemenu.MenuProgram;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,8 +11,8 @@ import java.util.List;
 
 public class ListDates {
 
-    public static List<String> inputListDates = new ArrayList<>();
-    public static List<String> outputListDates = new ArrayList<>();
+    private static List<String> inputListDates = new ArrayList<>();
+    private static List<String> outputListDates = new ArrayList<>();
 
     private static final String inputDates = "module_2/inputDates.txt";
     private static final String outputDates = "module_2/outputCorrectDates.txt";
@@ -18,7 +20,9 @@ public class ListDates {
     public static void showListInputAndOutputDates() {
         try {
             readingInputDates(inputDates);
-            addingCorrectDates(outputDates);
+            addingCorrectDates();
+            writeCorrectDates(outputDates);
+            MenuProgram.run();
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден!");
         }
@@ -40,7 +44,7 @@ public class ListDates {
         }
     }
 
-    private static void addingCorrectDates(String fileName) {
+    private static void addingCorrectDates() {
         StringBuilder stringBuilder = new StringBuilder();
         String regex1 = "\\d{4}.\\d{2}.\\d{2}";
         String regex2 = "\\d{2}.\\d{2}.\\d{4}";
@@ -73,27 +77,28 @@ public class ListDates {
             outputListDates.add(stringBuilder.toString());
         } else
             System.out.println("Список дат пуст!");
-        writeCorrectDates();
     }
 
-    private static void writeCorrectDates() {
+    private static void writeCorrectDates(String fileName) {
         System.out.println();
         System.out.println("=== Список записанных дат в файл ===");
 
-        try (FileWriter fileWriter = new FileWriter(outputDates)) {
-            if (Files.exists(Paths.get(outputDates))) {
+        try (FileWriter fileWriter = new FileWriter(fileName)) {
+            if (Files.exists(Paths.get(fileName))) {
                 for (String date : outputListDates) {
                     fileWriter.write(date + System.lineSeparator());
                     System.out.println(date);
                 }
             } else {
-                Path newFile = Files.createFile(Paths.get(outputDates));
+                Path newFile = Files.createFile(Paths.get(fileName));
                 for (String date : outputListDates) {
                     fileWriter.write(date + System.lineSeparator());
                     System.out.println(date);
                 }
             }
             fileWriter.flush();
+            inputListDates.clear();
+            outputListDates.clear();
         } catch (IOException e) {
             e.printStackTrace();
         }

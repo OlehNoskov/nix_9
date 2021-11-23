@@ -1,12 +1,14 @@
 package ua.com.alevel.consolemenu;
 
 import ua.com.alevel.listdates.ListDates;
+import ua.com.alevel.nameunique.UniqueName;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class MenuProgram {
+
     public static void run() {
         showMenu();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -18,7 +20,7 @@ public class MenuProgram {
                         ListDates.showListInputAndOutputDates();
                         break;
                     case "2":
-
+                        UniqueName.showFirstUniqueName();
                         break;
                     case "3":
 
