@@ -6,6 +6,10 @@ public class Employee extends BaseEntity {
     private String lastNameEmployee;
     private Integer age;
 
+    public Employee(){
+        super();
+    }
+
     public String getNameEmployee() {
         return nameEmployee;
     }
@@ -28,5 +32,14 @@ public class Employee extends BaseEntity {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "nameEmployee='" + nameEmployee + '\'' +
+                ", lastNameEmployee='" + lastNameEmployee + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

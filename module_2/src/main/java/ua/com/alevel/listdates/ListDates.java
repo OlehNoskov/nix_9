@@ -11,8 +11,8 @@ import java.util.List;
 
 public class ListDates {
 
-    private static List<String> inputListDates = new ArrayList<>();
-    private static List<String> outputListDates = new ArrayList<>();
+    private static final List<String> inputListDates = new ArrayList<>();
+    private static final List<String> outputListDates = new ArrayList<>();
 
     private static final String inputDates = "module_2/inputDates.txt";
     private static final String outputDates = "module_2/outputCorrectDates.txt";

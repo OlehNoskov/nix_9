@@ -1,4 +1,4 @@
 package ua.com.alevel.db.impl;
 
-public class EmployeeListDBImpl {
+public class EmployeeDBImpl {
 }
