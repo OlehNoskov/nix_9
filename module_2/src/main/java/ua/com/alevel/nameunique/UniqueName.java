@@ -6,14 +6,17 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+;
 
 public class UniqueName {
+    private static final String inputListNames = "inputListNames.txt";
+    private static final String outputFirstUniqueName = "firstUniqueNameOutput.txt";
 
-    private static final String inputListNames = "module_2/inputListNames.txt";
-    private static final String outputFirstUniqueName = "module_2/firstUniqueNameOutput.txt";
-
-    private static TreeSet<String> names = new TreeSet<>();
+    private static List<String> listNames = new ArrayList<>();
+    private static List<String> uniqueNames = new ArrayList<>();
 
     public static void showFirstUniqueName() {
         try {
@@ -34,8 +37,16 @@ public class UniqueName {
         try {
             while ((line = bufferedReader.readLine()) != null) {
                 System.out.println(line);
-                names.add(line);
+                listNames.add(line);
             }
+            uniqueNames = listNames.stream()
+                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                    .entrySet()
+                    .stream()
+                    .filter(entry -> entry.getValue() == 1)
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toList());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,12 +58,12 @@ public class UniqueName {
 
         try (FileWriter fileWriter = new FileWriter(fileName)) {
             if (Files.exists(Paths.get(fileName))) {
-                fileWriter.write(names.first());
-                System.out.println(names.first()+"\n");
+                fileWriter.write(uniqueNames.get(0));
+                System.out.println(uniqueNames.get(0)+"\n");
             } else {
                 Path newFile = Files.createFile(Paths.get(fileName));
-                fileWriter.write(names.first());
-                System.out.println(names.first()+"\n");
+                fileWriter.write(uniqueNames.get(0));
+                System.out.println(uniqueNames.get(0)+"\n");
             }
             fileWriter.flush();
         } catch (IOException e) {

@@ -14,8 +14,8 @@ public class ListDates {
     private static final List<String> inputListDates = new ArrayList<>();
     private static final List<String> outputListDates = new ArrayList<>();
 
-    private static final String inputDates = "module_2/inputDates.txt";
-    private static final String outputDates = "module_2/outputCorrectDates.txt";
+    private static final String inputDates = "inputDates.txt";
+    private static final String outputDates = "outputCorrectDates.txt";
 
     public static void showListInputAndOutputDates() {
         try {
@@ -29,7 +29,6 @@ public class ListDates {
     }
 
     private static void readingInputDates(String fileName) throws FileNotFoundException {
-        System.out.println("=== Список прочитанных дат из файла === ");
         File file = new File(fileName);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -37,8 +36,8 @@ public class ListDates {
         try {
             while ((line = bufferedReader.readLine()) != null) {
                 inputListDates.add(line);
-                System.out.println(line);
             }
+            System.out.println("Данные из файла "+inputDates +" успешно прочитаты!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,8 +80,7 @@ public class ListDates {
 
     private static void writeCorrectDates(String fileName) {
         System.out.println();
-        System.out.println("=== Список записанных дат в файл ===");
-
+        System.out.println("Успешно записанные данные:");
         try (FileWriter fileWriter = new FileWriter(fileName)) {
             if (Files.exists(Paths.get(fileName))) {
                 for (String date : outputListDates) {
