@@ -6,25 +6,27 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ShortestWays {
-    private final String PATH_INPUT_FILE = "inputCities.txt";
-    private final String PATH_OUTPUT_FILE = "outputCostPaths.txt";
-    private int maximumCities = 10000;
+    private final String INPUT_FILE = "inputCities.txt";
+    private final String OUTPUT_FILE = "outputCostPaths.txt";
+    private int countCities = 10000;
     private final int INFINITY = 10000000;
+
+    private List<Path> shortestPaths;
     private Town citiesArray[];
     private int relationMatrix[][];
+
     private int countOfVertices;
     private int countOfVertexInTree;
-    private List<Path> shortestPaths;
     private int currentVertex;
     private int startToCurrent;
 
     public void run() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(PATH_INPUT_FILE));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(PATH_OUTPUT_FILE))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(INPUT_FILE));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_FILE))) {
             while (reader.ready()) {
-                maximumCities = Integer.parseInt(reader.readLine());
-                addingTown();
-                for (int i = 0; i < maximumCities; i++) {
+                countCities = Integer.parseInt(reader.readLine());
+                addingAllTown();
+                for (int i = 0; i < countCities; i++) {
                     String nameTown = reader.readLine();
                     addTown(nameTown, i);
                     int countOfNeighbours = Integer.parseInt(reader.readLine());
@@ -32,9 +34,9 @@ public class ShortestWays {
                         String pathToNeighbour = reader.readLine();
                         String[] substrings = pathToNeighbour.split(" ");
                         if (substrings.length != 2) {
-                            throw new RuntimeException("Некорректные данные! " + pathToNeighbour);
+                            throw new RuntimeException("Некорректные данные!");
                         }
-                        addEdge(i, Integer.parseInt(substrings[0]) - 1, Integer.parseInt(substrings[1]));
+                        addRegion(i, Integer.parseInt(substrings[0]) - 1, Integer.parseInt(substrings[1]));
                     }
                 }
                 int countOfWays = Integer.parseInt(reader.readLine());
@@ -63,12 +65,31 @@ public class ShortestWays {
         }
     }
 
-    private void addTown(String name, int index) {
-        citiesArray[countOfVertices++] = new Town(name, index);
+    private void writeToFileCostWays(int startTree, int finalIndex, BufferedWriter writer) {
+        String shortestWay = "";
+        if (shortestPaths.get(finalIndex).getDistance() == INFINITY) {
+            shortestWay = "Путь очень длинный!";
+        } else {
+            String result = shortestPaths.get(finalIndex).getDistance() + " ";
+            shortestWay = shortestWay + result;
+        }
+        try {
+            writer.write(shortestWay);
+            writer.write(System.lineSeparator());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void addEdge(int start, int end, int weight) {
-        relationMatrix[start][end] = weight;
+    private void showingCostWaysToConsole(int startTree, int finalIndex) {
+        System.out.print("Стоимость пути из города " + citiesArray[startTree].getName() + " до города "
+                + citiesArray[finalIndex].getName() + " = ");
+        if (shortestPaths.get(finalIndex).getDistance() == INFINITY) {
+            System.out.println("Очень длинный путь!");
+        } else {
+            String costWay = shortestPaths.get(finalIndex).getDistance() + " ";
+            System.out.println(costWay);
+        }
     }
 
     private void shortestWays(int start, int end, BufferedWriter bufferedWriter) {
@@ -99,18 +120,6 @@ public class ShortestWays {
         writeToFileCostWays(start, end, bufferedWriter);
     }
 
-    private int getMin() {
-        int min = INFINITY;
-        int indexMin = 0;
-        for (int i = 1; i < countOfVertices; i++) {
-            if (!citiesArray[i].isInTree() && shortestPaths.get(i).getDistance() < min) {
-                min = shortestPaths.get(i).getDistance();
-                indexMin = i;
-            }
-        }
-        return indexMin;
-    }
-
     private void updateCostWays() {
         int vertexIndex = 1;
         while (vertexIndex < countOfVertices) {
@@ -131,30 +140,37 @@ public class ShortestWays {
         }
     }
 
-    private void writeToFileCostWays(int startTree, int finalIndex, BufferedWriter writer) {
-        String shortestWay = "";
-        if (shortestPaths.get(finalIndex).getDistance() == INFINITY) {
-            shortestWay = "Путь очень длинный!";
-        } else {
-            String result = shortestPaths.get(finalIndex).getDistance() + " ";
-            shortestWay = shortestWay + result;
+    private int getMin() {
+        int min = INFINITY;
+        int indexMin = 0;
+        for (int i = 1; i < countOfVertices; i++) {
+            if (!citiesArray[i].isInTree() && shortestPaths.get(i).getDistance() < min) {
+                min = shortestPaths.get(i).getDistance();
+                indexMin = i;
+            }
         }
-        try {
-            writer.write(shortestWay);
-            writer.write(System.lineSeparator());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return indexMin;
     }
 
-    private void showingCostWaysToConsole(int startTree, int finalIndex) {
-        System.out.print("Стоимость пути из города "+citiesArray[startTree].getName() + " до города "
-                + citiesArray[finalIndex].getName() + " = ");
-        if (shortestPaths.get(finalIndex).getDistance() == INFINITY) {
-            System.out.println("Очень длинный путь!");
-        } else {
-            String costWay = shortestPaths.get(finalIndex).getDistance()+" ";
-            System.out.println(costWay);
+
+    private void addTown(String nameTown, int index) {
+        citiesArray[countOfVertices++] = new Town(nameTown, index);
+    }
+
+    private void addRegion(int start, int end, int cost) {
+        relationMatrix[start][end] = cost;
+    }
+
+    private void addingAllTown() {
+        citiesArray = new Town[countCities];
+        relationMatrix = new int[countCities][countCities];
+        countOfVertices = 0;
+        countOfVertexInTree = 0;
+        for (int i = 0; i < countCities; i++) {
+            for (int k = 0; k < countCities; k++) {
+                relationMatrix[i][k] = INFINITY;
+                shortestPaths = new ArrayList<>();
+            }
         }
     }
 
@@ -164,21 +180,8 @@ public class ShortestWays {
             citiesArray[i].setInTree(false);
         }
         countOfVertexInTree = 0;
-        for (int i = 0; i < maximumCities; i++) {
-            for (int k = 0; k < maximumCities; k++) {
-                shortestPaths = new ArrayList<>();
-            }
-        }
-    }
-
-    private void addingTown() {
-        citiesArray = new Town[maximumCities];
-        relationMatrix = new int[maximumCities][maximumCities];
-        countOfVertices = 0;
-        countOfVertexInTree = 0;
-        for (int i = 0; i < maximumCities; i++) {
-            for (int k = 0; k < maximumCities; k++) {
-                relationMatrix[i][k] = INFINITY;
+        for (int i = 0; i < countCities; i++) {
+            for (int k = 0; k < countCities; k++) {
                 shortestPaths = new ArrayList<>();
             }
         }
