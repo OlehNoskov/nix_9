@@ -1,4 +1,4 @@
-package ua.com.alevel.graphs;
+package ua.com.alevel.cities;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,11 +8,11 @@ import java.util.List;
 public class ShortestWays {
 
     private final String INPUT_FILE = "inputCities.txt";
-    private final String OUTPUT_FILE = "outputCostPaths.txt";
+    private final String OUTPUT_FILE = "outputMinCostWays.txt";
     private int countCities = 10000;
     private final int INFINITY = 10000000;
 
-    private List<Path> shortestPaths;
+    private List<Way> shortestPaths;
     private Town citiesArray[];
     private int relationMatrix[][];
 
@@ -99,7 +99,7 @@ public class ShortestWays {
 
         for (int i = 0; i < countOfVertices; i++) {
             int tempDist = relationMatrix[start][i];
-            Path cityPath = new Path(tempDist);
+            Way cityPath = new Way(tempDist);
             cityPath.getParentVertices().add(start);
             shortestPaths.add(cityPath);
         }
@@ -112,7 +112,6 @@ public class ShortestWays {
                 currentVertex = indexMin;
                 startToCurrent = shortestPaths.get(indexMin).getDistance();
             }
-
             citiesArray[currentVertex].setInTree(true);
             countOfVertexInTree++;
             updateCostWays();

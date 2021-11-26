@@ -1,6 +1,6 @@
 package ua.com.alevel.consolemenu;
 
-import ua.com.alevel.graphs.ShortestWays;
+import ua.com.alevel.cities.ShortestWays;
 import ua.com.alevel.listdates.ListDates;
 import ua.com.alevel.nameunique.UniqueName;
 

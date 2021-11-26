@@ -11,6 +11,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class UniqueName {
+
     private static final String inputListNames = "inputListNames.txt";
     private static final String outputFirstUniqueName = "firstUniqueNameOutput.txt";
 

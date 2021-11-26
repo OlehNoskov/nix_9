@@ -1,13 +1,13 @@
-package ua.com.alevel.graphs;
+package ua.com.alevel.cities;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Path {
+public class Way {
     private int distance;
     private List<Integer> parentVertices;
 
-    public Path(int distance) {
+    public Way(int distance) {
         this.distance = distance;
         this.parentVertices = new ArrayList<>();
     }

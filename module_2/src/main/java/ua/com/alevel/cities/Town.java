@@ -1,4 +1,4 @@
-package ua.com.alevel.graphs;
+package ua.com.alevel.cities;
 
 public class Town {
     private String name;
