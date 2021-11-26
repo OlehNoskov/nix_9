@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ShortestWays {
+
     private final String INPUT_FILE = "inputCities.txt";
     private final String OUTPUT_FILE = "outputCostPaths.txt";
     private int countCities = 10000;
@@ -82,7 +83,7 @@ public class ShortestWays {
     }
 
     private void showingCostWaysToConsole(int startTree, int finalIndex) {
-        System.out.print("Стоимость пути из города " + citiesArray[startTree].getName() + " до города "
+        System.out.print("Минимальная стоимость пути из города " + citiesArray[startTree].getName() + " до города "
                 + citiesArray[finalIndex].getName() + " = ");
         if (shortestPaths.get(finalIndex).getDistance() == INFINITY) {
             System.out.println("Очень длинный путь!");
