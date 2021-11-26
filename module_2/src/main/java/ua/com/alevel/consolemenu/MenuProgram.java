@@ -1,5 +1,6 @@
 package ua.com.alevel.consolemenu;
 
+import ua.com.alevel.graphs.ShortestWays;
 import ua.com.alevel.listdates.ListDates;
 import ua.com.alevel.nameunique.UniqueName;
 
@@ -23,7 +24,7 @@ public class MenuProgram {
                         UniqueName.showFirstUniqueName();
                         break;
                     case "3":
-
+                        new ShortestWays().run();
                         break;
                     case "0":
                         System.exit(0);

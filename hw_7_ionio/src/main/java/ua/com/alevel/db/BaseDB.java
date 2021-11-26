@@ -2,11 +2,12 @@ package ua.com.alevel.db;
 
 import ua.com.alevel.entity.BaseEntity;
 
+import java.io.IOException;
 import java.util.Collection;
 
 public interface BaseDB<ENTITY extends BaseEntity> {
 
-    void create(ENTITY entity);
+    void create(ENTITY entity) throws IOException;
 
     void update(ENTITY entity);
 

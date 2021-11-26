@@ -1,19 +1,23 @@
 package ua.com.alevel.service.impl;
 
-import ua.com.alevel.dao.DepartmentDao;
 import ua.com.alevel.dao.impl.DepartmentDaoImpl;
 import ua.com.alevel.entity.Department;
 import ua.com.alevel.service.DepartmentService;
 
+import java.io.IOException;
 import java.util.Collection;
 
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private final DepartmentDao departmentDao = new DepartmentDaoImpl();
+    private final DepartmentDaoImpl departmentDao = new DepartmentDaoImpl();
 
     @Override
     public void create(Department entity) {
-        departmentDao.create(entity);
+        try {
+            departmentDao.create(entity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

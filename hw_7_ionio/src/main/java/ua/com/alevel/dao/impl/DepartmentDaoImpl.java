@@ -1,33 +1,38 @@
 package ua.com.alevel.dao.impl;
 
 import ua.com.alevel.dao.DepartmentDao;
+import ua.com.alevel.db.impl.DepartmentDBImpl;
 import ua.com.alevel.entity.Department;
 
+import java.io.IOException;
 import java.util.Collection;
 
 public class DepartmentDaoImpl implements DepartmentDao {
-    @Override
-    public void create(Department entity) {
 
+    private  final DepartmentDBImpl departmentDB = DepartmentDBImpl.getInstance();
+
+    @Override
+    public void create(Department entity) throws IOException {
+        departmentDB.create(entity);
     }
 
     @Override
     public void update(Department entity) {
-
+        departmentDB.update(entity);
     }
 
     @Override
     public void delete(String id) {
-
+        departmentDB.delete(id);
     }
 
     @Override
     public Department findByID(String id) {
-        return null;
+        return departmentDB.findByID(id);
     }
 
     @Override
     public Collection<Department> findAll() {
-        return null;
+        return departmentDB.findAll();
     }
 }

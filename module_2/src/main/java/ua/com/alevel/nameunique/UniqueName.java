@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-;
 
 public class UniqueName {
     private static final String inputListNames = "inputListNames.txt";
@@ -59,11 +58,11 @@ public class UniqueName {
         try (FileWriter fileWriter = new FileWriter(fileName)) {
             if (Files.exists(Paths.get(fileName))) {
                 fileWriter.write(uniqueNames.get(0));
-                System.out.println(uniqueNames.get(0)+"\n");
+                System.out.println(uniqueNames.get(0) + "\n");
             } else {
                 Path newFile = Files.createFile(Paths.get(fileName));
                 fileWriter.write(uniqueNames.get(0));
-                System.out.println(uniqueNames.get(0)+"\n");
+                System.out.println(uniqueNames.get(0) + "\n");
             }
             fileWriter.flush();
         } catch (IOException e) {
