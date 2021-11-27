@@ -9,6 +9,7 @@ public class ShortestWays {
 
     private final String INPUT_FILE = "inputCities.txt";
     private final String OUTPUT_FILE = "outputMinCostWays.txt";
+
     private int countCities = 10000;
     private final int INFINITY = 10000000;
 
@@ -35,7 +36,7 @@ public class ShortestWays {
                         String pathToNeighbour = reader.readLine();
                         String[] substrings = pathToNeighbour.split(" ");
                         if (substrings.length != 2) {
-                            throw new RuntimeException("Некорректные данные!");
+                            throw new RuntimeException("Некорректные входящие данные!");
                         }
                         addRegion(i, Integer.parseInt(substrings[0]) - 1, Integer.parseInt(substrings[1]));
                     }
@@ -62,7 +63,7 @@ public class ShortestWays {
                 writer.flush();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Некорректные данные!");
+            throw new RuntimeException("Некорректные входящие данные!");
         }
     }
 

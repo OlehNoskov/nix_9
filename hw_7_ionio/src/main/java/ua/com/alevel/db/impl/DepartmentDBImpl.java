@@ -44,6 +44,8 @@ public class DepartmentDBImpl implements DepartmentDB {
 
     @Override
     public void update(Department entity) {
+        Department current = findByID(entity.getId());
+        current.setDepartmentName(entity.getDepartmentName());
 
     }
 
@@ -58,12 +60,21 @@ public class DepartmentDBImpl implements DepartmentDB {
     }
 
     @Override
-    public Collection<Department> findAll() {
+    public List<Department> findAll() {
         return null;
     }
 
     private static String generateId() {
         String id = UUID.randomUUID().toString();
         return id;
+    }
+
+    private void writeToCSV(String fileName, Department department) {
+        try {
+            CSVWriter csvWriter = new CSVWriter(new FileWriter(fileName));
+            csvWriter.writeAll(departments);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
