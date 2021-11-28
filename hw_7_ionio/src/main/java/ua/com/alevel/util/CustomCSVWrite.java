@@ -1,19 +1,18 @@
 package ua.com.alevel.util;
 
-import ua.com.alevel.db.impl.DepartmentDBImpl;
-
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.List;
 
 public class CustomCSVWrite {
 
-    public static boolean addHeaderCSVFile(List listEntity) {
+    private static boolean addHeaderCSVFile(List listEntity) {
         if (listEntity.size() == 0) {
             return true;
         } else
@@ -22,9 +21,9 @@ public class CustomCSVWrite {
 
     public CustomCSVWrite(String nameFile) {
         Path pathFile = Paths.get(nameFile);
-        try{
+        try {
             boolean existsFile = Files.exists(pathFile);
-            if(!existsFile){
+            if (!existsFile) {
                 Files.createFile(pathFile);
             }
         } catch (IOException e) {
@@ -32,17 +31,17 @@ public class CustomCSVWrite {
         }
     }
 
-    public void writeToCSVFile(List<String[]> entity) {
+    public static void writeToCSVFile(List<String[]> entity, String fileName) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(
-                new FileWriter(DepartmentDBImpl
-                .getPathFileDepartments()))) {
+                new FileWriter(fileName))) {
+            StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < entity.size(); i++) {
                 for (int b = 0; b < entity.get(i).length; b++) {
                     bufferedWriter.write(entity.get(i)[b]);
                     if (b != entity.get(i).length - 1) {
                         bufferedWriter.write(",");
                     }
-                    if (i != entity.size() - 1) {
+                    if (b == entity.get(i).length - 1) {
                         bufferedWriter.write("\n");
                     }
                 }
