@@ -1,4 +1,4 @@
-package ua.com.alevel.util;
+package ua.com.alevel;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomCSVRead {
-
     public static void readCSVFile(String fileName){
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             List<String[]> listEntity = new ArrayList<>();

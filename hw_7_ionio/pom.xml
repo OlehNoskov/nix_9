@@ -22,9 +22,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>5.5.2</version>
+            <groupId>ua.com.alevel</groupId>
+            <artifactId>custom_csv</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

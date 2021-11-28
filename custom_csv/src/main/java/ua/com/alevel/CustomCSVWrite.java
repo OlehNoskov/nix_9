@@ -1,17 +1,14 @@
-package ua.com.alevel.util;
+package ua.com.alevel;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.util.List;
 
 public class CustomCSVWrite {
-
     private static boolean addHeaderCSVFile(List listEntity) {
         if (listEntity.size() == 0) {
             return true;
