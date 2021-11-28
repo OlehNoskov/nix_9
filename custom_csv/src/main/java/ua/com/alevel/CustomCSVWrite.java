@@ -3,18 +3,14 @@ package ua.com.alevel;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.List;
 
 public class CustomCSVWrite {
-    private static boolean addHeaderCSVFile(List listEntity) {
-        if (listEntity.size() == 0) {
-            return true;
-        } else
-            return false;
-    }
 
     public CustomCSVWrite(String nameFile) {
         Path pathFile = Paths.get(nameFile);
@@ -28,10 +24,8 @@ public class CustomCSVWrite {
         }
     }
 
-    public static void writeToCSVFile(List<String[]> entity, String fileName) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(
-                new FileWriter(fileName))) {
-            StringBuilder stringBuilder = new StringBuilder();
+    public static void writeToCSVFile(List<String[]> entity, String fileName, boolean status) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName, status))) {
             for (int i = 0; i < entity.size(); i++) {
                 for (int b = 0; b < entity.get(i).length; b++) {
                     bufferedWriter.write(entity.get(i)[b]);
@@ -44,7 +38,7 @@ public class CustomCSVWrite {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Ошибка записи в файл!");
+            e.printStackTrace();
         }
     }
 }

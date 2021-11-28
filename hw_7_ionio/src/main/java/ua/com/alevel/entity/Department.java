@@ -18,8 +18,14 @@ public class Department extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Department{" +
-                "departmentName='" + departmentName + '\'' +
-                '}';
+        return "Department: " +
+                "departmentTitle = " + departmentName;
+    }
+
+    public static String[] parserToStringDepartment(Department department){
+        String[] departmentArray = new String[2];
+        departmentArray[0] = department.getId();
+        departmentArray[1] = department.getDepartmentName();
+        return departmentArray;
     }
 }

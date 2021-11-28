@@ -1,30 +1,30 @@
 package ua.com.alevel;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomCSVRead {
-    public static void readCSVFile(String fileName){
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            List<String[]> listEntity = new ArrayList<>();
-            while (bufferedReader.ready()){
+
+    public static List<String[]> readCSVFile(String fileName) {
+        List<String[]> listEntity = new ArrayList<>();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            while (bufferedReader.ready()) {
                 String[] line = bufferedReader.readLine().split(",");
                 listEntity.add(line);
             }
-            for(String[] str: listEntity){
-                for(String str2: str){
-                    System.out.print(str2+" ");
-                }
-                System.out.println();
-            }
+//            for (String[] str : listEntity) {
+//                for (String str2 : str) {
+//                    System.out.print(str2 + " ");
+//                }
+//                System.out.println();
+//            }
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден!");
         } catch (IOException e) {
             System.out.println("Ошибка при чтении файла!");
         }
+        return listEntity;
     }
 }

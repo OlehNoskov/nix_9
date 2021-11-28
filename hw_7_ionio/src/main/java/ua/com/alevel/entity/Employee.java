@@ -42,4 +42,13 @@ public class Employee extends BaseEntity {
                 ", age=" + age +
                 '}';
     }
+
+    public static String[] parserToStringEmployee(Employee employee){
+        String[] employeeArray = new String[4];
+        employeeArray[0] = employee.getId();
+        employeeArray[1] = employee.getNameEmployee();
+        employeeArray[2] = employee.getLastNameEmployee();
+        employeeArray[3] = String.valueOf(employee.getAge());
+        return employeeArray;
+    }
 }
