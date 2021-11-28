@@ -39,7 +39,7 @@ public class BaseControllerImpl implements BaseController {
     private static void showFirstMenu(String position, BufferedReader reader) {
         switch (position) {
             case "1":
-
+                new DepartmentControllerImpl().run();
                 break;
             case "2":
 

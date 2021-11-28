@@ -5,7 +5,7 @@ import ua.com.alevel.db.impl.DepartmentDBImpl;
 import ua.com.alevel.entity.Department;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
 public class DepartmentDaoImpl implements DepartmentDao {
 
@@ -32,7 +32,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     @Override
-    public Collection<Department> findAll() {
+    public List<Department> findAll() {
         return departmentDB.findAll();
     }
 }

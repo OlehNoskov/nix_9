@@ -8,6 +8,7 @@ import ua.com.alevel.service.impl.DepartmentServiceImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.List;
 
 public class DepartmentControllerImpl implements DepartmentController {
@@ -19,7 +20,7 @@ public class DepartmentControllerImpl implements DepartmentController {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String choice;
         try {
-            showMenuProgramAuthor();
+            showMenuProgram();
             while ((choice = reader.readLine()) != null) {
                 crud(choice, reader);
             }
@@ -28,7 +29,7 @@ public class DepartmentControllerImpl implements DepartmentController {
         }
     }
 
-    private void showMenuProgramAuthor() {
+    private void showMenuProgram() {
         System.out.println();
         System.out.println("===== МЕНЮ АВТОРА =====");
         System.out.println("Нажмите 1: Создание нового департамента");
@@ -54,13 +55,13 @@ public class DepartmentControllerImpl implements DepartmentController {
                 findById(reader);
                 break;
             case "5":
-                findAllAuthors();
+                findAllDepartments();
                 break;
             case "0":
                 new BaseControllerImpl().run();
                 break;
         }
-        showMenuProgramAuthor();
+        showMenuProgram();
     }
 
     public Department create(BufferedReader reader) {
@@ -112,11 +113,11 @@ public class DepartmentControllerImpl implements DepartmentController {
                 System.out.println("Id не был введен корректно");
                 return;
             }
-            List<Department> departments = departmentService.findByID(idDepartment);
-            for (Book book : books) {
-                bookService.delete(book.getId());
+            List<Department> departments = (List<Department>) departmentService.findByAll();
+            for (Department department1 : departments) {
+                departmentService.delete(idDepartment);
             }
-            authorService.delete(author.getId());
+            departmentService.delete(department.getId());
         } catch (IOException e) {
             System.out.println("Ошибка " + e.getMessage());
         } catch (NumberFormatException e) {
@@ -125,24 +126,24 @@ public class DepartmentControllerImpl implements DepartmentController {
     }
 
     private void findById(BufferedReader reader) throws IOException {
-        System.out.println("=== Поиск автора ===");
-        System.out.println("Укажите Id автора, которого хотите найти:");
-        Author author;
-        String idAuthor = reader.readLine();
-        author = authorService.findById(idAuthor);
-        if (author == null) {
+        System.out.println("=== Поиск департамента ===");
+        System.out.println("Укажите Id департамента, которое хотите найти:");
+        Department department;
+        String idDepartment = reader.readLine();
+        department = departmentService.findByID(idDepartment);
+        if (department == null) {
             System.out.println("Id не был введен корректно");
             return;
         }
-        System.out.println(author);
+        System.out.println(department);
     }
 
-    private void findAllAuthors() {
-        System.out.println("=== Поиск авторов ===");
-        Author[] authors = authorService.findAllAuthors();
-        if (authors != null && authors.length != 0) {
-            for (Author author : authors) {
-                System.out.println(author);
+    private void findAllDepartments() {
+        System.out.println("=== Поиск департаментов ===");
+        Collection<Department> departments = departmentService.findByAll();
+        if (departments != null && departments.size() != 0) {
+            for (Department department : departments) {
+                System.out.println(department);
             }
         } else {
             System.out.println("Авторов не найдено!");

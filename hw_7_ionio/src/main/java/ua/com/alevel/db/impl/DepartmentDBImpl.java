@@ -6,8 +6,8 @@ import ua.com.alevel.entity.Department;
 
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,25 +28,28 @@ public class DepartmentDBImpl implements DepartmentDB {
         return instance;
     }
 
-    public String getFilePathDepartments() {
+    public static String getPathFileDepartments() {
         return FILE_PATH_DEPARTMENTS;
     }
 
-    public void create(Department department) {
-        department.setId(generateId());
-        departments.add(department);
-        try {
-            CSVWriter csvWriter = new CSVWriter(new FileWriter(FILE_PATH_DEPARTMENTS));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void create(Department department) {
+//        if(departments.size()==0){
+//            addHeaderCSVFile();
+//        }else {
+//            department.setId(generateId());
+//            departments.add(department);
+//            try {
+//                CSVWriter csvWriter = new CSVWriter(new FileWriter(getPathFileDepartments(), true));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     @Override
     public void update(Department entity) {
         Department current = findByID(entity.getId());
         current.setDepartmentName(entity.getDepartmentName());
-
     }
 
     @Override
@@ -56,7 +59,12 @@ public class DepartmentDBImpl implements DepartmentDB {
 
     @Override
     public Department findByID(String id) {
-        return null;
+        for (Department department : departments) {
+            if (department.getId().equals(id)) {
+                return department;
+            }
+        }
+        throw new RuntimeException("Департамента с id = " + id+"не найдено!");
     }
 
     @Override
@@ -69,12 +77,16 @@ public class DepartmentDBImpl implements DepartmentDB {
         return id;
     }
 
-    private void writeToCSV(String fileName, Department department) {
-        try {
-            CSVWriter csvWriter = new CSVWriter(new FileWriter(fileName));
-            csvWriter.writeAll(departments);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//    private void writeToCSV(String fileName, Department department) {
+//        try {
+//            CSVWriter csvWriter = new CSVWriter(new FileWriter(fileName));
+//            csvWriter.writeAll(departments);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    private static void addHeaderCSVFile(){
+        String[] header = {"id","departmentName"};
     }
 }

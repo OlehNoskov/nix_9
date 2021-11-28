@@ -54,7 +54,7 @@ public class UniqueName {
 
     private static void writeFirstUniqueName(String fileName) {
         System.out.println();
-        System.out.println("=== Певрое уникальное имя ===");
+        System.out.println("=== Первое уникальное имя ===");
 
         try (FileWriter fileWriter = new FileWriter(fileName)) {
             if (Files.exists(Paths.get(fileName))) {

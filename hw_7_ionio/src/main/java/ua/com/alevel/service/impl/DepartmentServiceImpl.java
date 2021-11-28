@@ -5,7 +5,7 @@ import ua.com.alevel.entity.Department;
 import ua.com.alevel.service.DepartmentService;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
 public class DepartmentServiceImpl implements DepartmentService {
 
@@ -36,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Collection<Department> findByAll() {
+    public List<Department> findByAll() {
         return departmentDao.findAll();
     }
 }
