@@ -53,9 +53,9 @@ public class DeletedNumbers {
                     System.out.println("Введены некорректные данные");
                     showDeletedNumbers(reader);
                 } else {
-                    System.out.println("Введите  1-ый индекс от 0 до "+CreationMathSetObject.listMathSet.get(choice).size()+":");
+                    System.out.println("Введите  1-ый индекс от 0 до " + CreationMathSetObject.listMathSet.get(choice).size() + ":");
                     int index1 = Integer.parseInt(reader.readLine());
-                    System.out.println("Введите  2-ой индекс от "+index1+" до "+CreationMathSetObject.listMathSet.get(choice).size()+":");
+                    System.out.println("Введите  2-ой индекс от " + index1 + " до " + CreationMathSetObject.listMathSet.get(choice).size() + ":");
                     int index2 = Integer.parseInt(reader.readLine());
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).cut(index1, index2);

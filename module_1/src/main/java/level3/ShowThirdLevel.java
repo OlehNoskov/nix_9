@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 public class ShowThirdLevel {
 
-    public  void showTasksThirdLevel(BufferedReader reader) throws IOException {
+    public void showTasksThirdLevel(BufferedReader reader) throws IOException {
         System.out.println("===== Демонстрация заданий 3-го уровня =====");
         System.out.println("1.Игра жизни.");
         System.out.println("0.Главное меню");

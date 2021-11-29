@@ -28,6 +28,6 @@ public class AuthorDao {
     }
 
     public Book[] findAllBooksAuthor(Author author) {
-       return BookDataBase.getInstance().findAllAuthorBooks(author);
+        return BookDataBase.getInstance().findAllAuthorBooks(author);
     }
 }

@@ -1,6 +1,11 @@
 //package ua.com.alevel.controller.impl;
 //
+//import ua.com.alevel.CustomCSVRead;
+//import ua.com.alevel.controller.BaseController;
+//import ua.com.alevel.controller.DepartmentController;
 //import ua.com.alevel.controller.EmployeeController;
+//import ua.com.alevel.db.impl.DepartmentDBImpl;
+//import ua.com.alevel.db.impl.EmployeeDBImpl;
 //import ua.com.alevel.entity.Employee;
 //import ua.com.alevel.service.DepartmentService;
 //import ua.com.alevel.service.EmployeeService;
@@ -11,10 +16,15 @@
 //import java.io.IOException;
 //import java.io.InputStreamReader;
 //
+//import java.util.ArrayList;
+//import java.util.List;
+//
 //public class EmployeeControllerImpl implements EmployeeController {
 //
-//    EmployeeService employeeService  =new EmployeeServiceImpl();
-//    DepartmentControllerImpl departmentController = new DepartmentControllerImpl();
+//    List<String[]> listEmployee = new ArrayList<>();
+//    List
+//
+//    EmployeeService employeeService = new EmployeeServiceImpl();
 //    DepartmentService departmentService = new DepartmentServiceImpl();
 //
 //    @Override
@@ -30,6 +40,7 @@
 //            System.out.println("Ошибка: = " + e.getMessage());
 //        }
 //    }
+//
 //    private void showMenu() {
 //        System.out.println();
 //        System.out.println("===== МЕНЮ Сотрудника =====");
@@ -68,21 +79,20 @@
 //    }
 //
 //    private void create(BufferedReader reader) {
-//        System.out.println("Введите название новой книги:");
+//        System.out.println("Введите имя нового сотрудника:");
 //        try {
 //            String name = reader.readLine();
 //            if (!name.isEmpty()) {
 //                Employee employee = selectOrCreateDepartment(reader);
 //                if (employee == null) {
-//                    System.out.println("Не удалось создать книгу, автор не указан!");
+//                    System.out.println("Не удалось создать нового сотрудника, департамент не указан!");
 //                    return;
+//                } else {
+//
 //                }
-//                Book book = new Book();
-//                book.setBookTitle(name);
-//                book.setAuthor(author);
-//                bookService.create(book);
+//
 //            } else {
-//                System.out.println("Вы не ввели название книги!");
+//                System.out.println("Вы не указали департамент!");
 //            }
 //        } catch (IOException e) {
 //            System.out.println("Ошибка " + e.getMessage());
@@ -192,30 +202,44 @@
 //        }
 //    }
 //
-//    private Employee selectOrCreateDepartment(BufferedReader reader) {
+//    private String selectOrCreateDepartment(BufferedReader reader) {
 //        System.out.println("Департамент сотрудника:");
 //        System.out.println("1: Выбрать из списка департаментов");
 //        System.out.println("2: Создать новый департамент");
+//        System.out.println("0.Выход в Гдлавное Меню");
 //        String choice;
-//        Employee employee = new Employee();
-//        String id;
+//        String id = "";
 //        try {
 //            do {
 //                choice = reader.readLine();
 //                switch (choice) {
-//                    case "1": {
-//                        System.out.println("Введите Id автора:");
+//                    case "1":
+//                        System.out.println("Введите Id департамента:");
 //                        do {
 //                            id = reader.readLine();
-//                            employee = employeeService.findByID(id);
-//                            if (employee == null && !id.equals("0"))
-//                                System.out.println("Ошибка! Введите правильный Id, или 0 для выхода:");
+//                            if (id != null) {
+//                                if (CustomCSVRead.search(CustomCSVRead
+//                                                .readCSVFile(EmployeeDBImpl
+//                                                        .getFilePathEmployees()), id)
+//                                        .equals(id)) {
+//                                    id = CustomCSVRead.search(CustomCSVRead
+//                                            .readCSVFile(EmployeeDBImpl.getFilePathEmployees()), id);
+//                                }else {
+//                                    System.out.println("Департамента по данному id не найдено!");
+//                                    new BaseControllerImpl().run();
+//                                }
+//                            }else{
+//                                System.out.println("Введены некорректные данные!");
+//                                new BaseControllerImpl().run();
+//                            }
 //                        }
-//                        while (employee == null && !id.equals("0"));
-//                    }
-//                    break;
+//                        while (choice!= null);
+//                        break;
 //                    case "2":
-//                        employee = departmentService.create(reader);
+//                        new DepartmentControllerImpl().run();
+//                        break;
+//                    case "0":
+//                        new BaseControllerImpl().run();
 //                        break;
 //                }
 //            }
@@ -224,6 +248,6 @@
 //        } catch (IOException e) {
 //            System.out.println("Ошибка: = " + e.getMessage());
 //        }
-//        return author;
+//        return id;
 //    }
 //}

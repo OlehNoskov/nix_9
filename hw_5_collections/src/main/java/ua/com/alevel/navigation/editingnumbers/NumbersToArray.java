@@ -21,10 +21,10 @@ public class NumbersToArray {
             while ((choiceMenu = reader.readLine()) != null) {
                 switch (choiceMenu) {
                     case "1":
-                    showMathSetToArray(reader);
+                        showMathSetToArray(reader);
                         break;
                     case "2":
-                    showMathSetToArrayByIndex(reader);
+                        showMathSetToArrayByIndex(reader);
                         break;
                     case "0":
                         MenuCreateMathSet.run();
@@ -39,6 +39,7 @@ public class NumbersToArray {
         }
         System.out.println("Выберите один из предложенных вариантов:");
     }
+
     private static void showMathSetToArray(BufferedReader reader) {
         System.out.println("Выберите MathSet от 0 до " + (CreationMathSetObject.listMathSet.size() - 1));
         if (CreationMathSetObject.listMathSet.size() != 0) {
@@ -72,9 +73,9 @@ public class NumbersToArray {
                     System.out.println("Введены некорректные данные");
                     showNumbersToArray(reader);
                 } else {
-                    System.out.println("Введите  1-ый индекс от 0 до "+CreationMathSetObject.listMathSet.get(choice)+":");
+                    System.out.println("Введите  1-ый индекс от 0 до " + CreationMathSetObject.listMathSet.get(choice) + ":");
                     int index1 = Integer.parseInt(reader.readLine());
-                    System.out.println("Введите  2-ой индекс от 0 до " +CreationMathSetObject.listMathSet.get(choice)+":");
+                    System.out.println("Введите  2-ой индекс от 0 до " + CreationMathSetObject.listMathSet.get(choice) + ":");
                     int index2 = Integer.parseInt(reader.readLine());
                     if (index1 < index2) {
                         CreationMathSetObject.listMathSet.get(choice).toArray(index1, index2);

@@ -238,8 +238,7 @@ public class CreationCalendarFormat {
                     String time = dataCalendar[1];
                     String[] times = time.split(":");
 
-                    if (ExaminationValidInputDataCalendar.isTimeValid(Integer.parseInt(times[0]), Integer.parseInt(times[1]), 0, 0))
-                    {
+                    if (ExaminationValidInputDataCalendar.isTimeValid(Integer.parseInt(times[0]), Integer.parseInt(times[1]), 0, 0)) {
                         fiveMyCalendar.setHour(Integer.parseInt(times[0]));
                         fiveMyCalendar.setMinutes(Integer.parseInt(times[1]));
                     }

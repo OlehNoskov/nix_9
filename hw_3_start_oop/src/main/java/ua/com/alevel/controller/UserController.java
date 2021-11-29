@@ -122,10 +122,9 @@ public class UserController {
             userService.delete(id);
         } catch (NullPointerException e) {
             System.out.println("Пользователь не найден!");
-        } catch (NegativeArraySizeException e){
+        } catch (NegativeArraySizeException e) {
             System.out.println("Список пользователей пуст!");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Возникла ошибка: = " + e.getMessage());
         }
     }

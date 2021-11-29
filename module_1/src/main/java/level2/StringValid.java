@@ -13,9 +13,9 @@ public class StringValid {
         System.out.println("===== Поиск допустимой строки =====");
         System.out.println("Введите строку:");
         if (isValidBrackets(reader.readLine())) {
-            System.out.println("Данная строка успешно прошла проверку!"+"\n");
+            System.out.println("Данная строка успешно прошла проверку!" + "\n");
         } else {
-            System.out.println("Данная строка не допустима!"+"\n");
+            System.out.println("Данная строка не допустима!" + "\n");
         }
         ShowSecondLevel.showTasksSecondLevel(reader);
     }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DepartmentDaoImpl implements DepartmentDao {
 
-    private  final DepartmentDBImpl departmentDB = DepartmentDBImpl.getInstance();
+    private final DepartmentDBImpl departmentDB = DepartmentDBImpl.getInstance();
 
     @Override
     public void create(Department entity) throws IOException {

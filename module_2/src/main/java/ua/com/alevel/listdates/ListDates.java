@@ -37,7 +37,7 @@ public class ListDates {
             while ((line = bufferedReader.readLine()) != null) {
                 inputListDates.add(line);
             }
-            System.out.println("Данные из файла "+inputDates +" успешно прочитаты!");
+            System.out.println("Данные из файла " + inputDates + " успешно прочитаты!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,15 +57,13 @@ public class ListDates {
                         stringBuilder.append(arrayDate[i]);
                     }
                     stringBuilder.append("\n");
-                }
-                else if (date.matches(regex3)) {
+                } else if (date.matches(regex3)) {
                     String[] arrayDate2 = date.trim().split("-");
                     stringBuilder.append(arrayDate2[2]);
                     stringBuilder.append(arrayDate2[0]);
                     stringBuilder.append(arrayDate2[1]);
                     stringBuilder.append("\n");
-                }
-                else if (date.matches(regex2)) {
+                } else if (date.matches(regex2)) {
                     String[] arrayDate1 = date.trim().split("/");
                     for (int i = arrayDate1.length - 1; i >= 0; i--) {
                         stringBuilder.append(arrayDate1[i]);

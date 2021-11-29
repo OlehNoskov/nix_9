@@ -24,7 +24,8 @@ public class BookDao {
     public Book[] findAllBooks() {
         return BookDataBase.getInstance().findAllBooks();
     }
-    public Book[] findAllAuthorBooks(Author author){
+
+    public Book[] findAllAuthorBooks(Author author) {
         return BookDataBase.getInstance().findAllAuthorBooks(author);
     }
 }

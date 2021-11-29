@@ -6,7 +6,7 @@ public class Employee extends BaseEntity {
     private String lastNameEmployee;
     private Integer age;
 
-    public Employee(){
+    public Employee() {
         super();
     }
 
@@ -43,12 +43,22 @@ public class Employee extends BaseEntity {
                 '}';
     }
 
-    public static String[] parserToStringEmployee(Employee employee){
+    public static String[] parserToStringEmployee(Employee employee) {
         String[] employeeArray = new String[4];
         employeeArray[0] = employee.getId();
         employeeArray[1] = employee.getNameEmployee();
         employeeArray[2] = employee.getLastNameEmployee();
         employeeArray[3] = String.valueOf(employee.getAge());
         return employeeArray;
+    }
+
+    public static Employee parserStringToDepartment(String[] string) {
+        Employee employee = new Employee();
+        employee.setId(string[0]);
+        employee.setNameEmployee(string[1]);
+        employee.setLastNameEmployee(string[2]);
+        employee.setAge(Integer.parseInt(string[3]));
+
+        return employee;
     }
 }

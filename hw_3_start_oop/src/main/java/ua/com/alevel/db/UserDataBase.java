@@ -18,7 +18,7 @@ public class UserDataBase {
 
     private void increaseArrayUsers(User user) {
         users = Arrays.copyOf(users, users.length + 1);
-        users[users.length-1] = user;
+        users[users.length - 1] = user;
     }
 
     public static UserDataBase getInstance() {

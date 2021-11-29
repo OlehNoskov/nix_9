@@ -34,9 +34,10 @@ public class BookService {
     public Book findById(String id) {
         try {
             return bookDataBase.findById(id);
-        }catch (RuntimeException runtimeException){
-            LOGGER_ERROR.error("Book not found by Id "+ id);
-        }return bookDataBase.findById(id);
+        } catch (RuntimeException runtimeException) {
+            LOGGER_ERROR.error("Book not found by Id " + id);
+        }
+        return bookDataBase.findById(id);
     }
 
     public Book[] findAllBooks() {

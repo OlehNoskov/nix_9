@@ -27,7 +27,7 @@ public class MenuProgram {
                         new ShowThirdLevel().showTasksThirdLevel(reader);
                         break;
                     case "0":
-                       System.exit(0);
+                        System.exit(0);
                         break;
                     default:
                         System.out.println("Введите число от 1 до 3 для запуска программы");

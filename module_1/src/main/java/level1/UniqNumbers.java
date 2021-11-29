@@ -24,7 +24,7 @@ public class UniqNumbers {
                     uniqNumbers.add(charNumber);
             }
         }
-        System.out.println("Число уникальных символов (чисел): " + uniqNumbers.size()+"\n");
+        System.out.println("Число уникальных символов (чисел): " + uniqNumbers.size() + "\n");
         cleanMap();
         ShowFirstLevel.showTasksFirstLevel(reader);
     }

@@ -21,7 +21,7 @@ public class ChessGame {
             System.out.println("Введите номер строки для установки коня по горизонтали:");
             initialPositionLine = Integer.parseInt(reader.readLine());
             if (initialPositionLine > 8 || initialPositionLine < 0) {
-                System.out.println("Вы вышли за пределы шахматной доски!"+"\n");
+                System.out.println("Вы вышли за пределы шахматной доски!" + "\n");
                 ShowFirstLevel.showTasksFirstLevel(reader);
             }
 
@@ -36,7 +36,7 @@ public class ChessGame {
             movePositionLine = Integer.parseInt(reader.readLine());
 
             if (movePositionLine > 8 || movePositionLine < 0) {
-                System.out.println("Вы вышли за пределы шахматной доски!"+"\n");
+                System.out.println("Вы вышли за пределы шахматной доски!" + "\n");
                 ShowFirstLevel.showTasksFirstLevel(reader);
             }
 
@@ -45,7 +45,7 @@ public class ChessGame {
 
             ShowFirstLevel.showTasksFirstLevel(reader);
         } catch (NumberFormatException e) {
-            System.out.println("Введены некорректные данные!"+"\n");
+            System.out.println("Введены некорректные данные!" + "\n");
             ShowFirstLevel.showTasksFirstLevel(reader);
             System.out.println();
 

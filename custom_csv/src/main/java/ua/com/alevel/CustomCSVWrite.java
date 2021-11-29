@@ -13,6 +13,7 @@ import java.util.List;
 public class CustomCSVWrite {
 
     public CustomCSVWrite(String nameFile) {
+
         Path pathFile = Paths.get(nameFile);
         try {
             boolean existsFile = Files.exists(pathFile);

@@ -35,8 +35,8 @@ public class AuthorService {
     public Author findById(String id) {
         try {
             return authorDao.findById(id);
-        }catch (RuntimeException e){
-            LOGGER_ERROR.error("Author not found by Id "+ id);
+        } catch (RuntimeException e) {
+            LOGGER_ERROR.error("Author not found by Id " + id);
         }
         return authorDao.findById(id);
     }
