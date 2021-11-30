@@ -5,6 +5,7 @@ import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.facade.StudentFacade;
 import ua.com.alevel.service.StudentService;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
+import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 @Service
@@ -37,7 +38,7 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public PageData<RES> findAll(WebRequest request) {
+    public PageData<StudentResponseDto> findAll(WebRequest request) {
         return null;
     }
 }

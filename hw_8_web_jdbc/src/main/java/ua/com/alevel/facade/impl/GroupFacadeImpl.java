@@ -6,6 +6,7 @@ import ua.com.alevel.facade.GroupFacade;
 import ua.com.alevel.service.GroupService;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
 import ua.com.alevel.view.dto.response.GroupResponseDto;
+import ua.com.alevel.view.dto.response.PageData;
 
 @Service
 public class GroupFacadeImpl implements GroupFacade {
@@ -37,7 +38,7 @@ public class GroupFacadeImpl implements GroupFacade {
     }
 
     @Override
-    public PageData<RES> findAll(WebRequest request) {
+    public PageData<GroupResponseDto> findAll(WebRequest request) {
         return null;
     }
 }
