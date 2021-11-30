@@ -6,6 +6,7 @@ import ua.com.alevel.db.DepartmentDB;
 import ua.com.alevel.entity.Department;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -53,12 +54,15 @@ public class DepartmentDBImpl implements DepartmentDB {
                 .search(CustomCSVRead.readCSVFile(DepartmentDBImpl
                         .getPathFileDepartments()), department.getId());
         String idDataBase = departmentBase[0];
+        List<String[]> temp = CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments());
         if (department.getId().equals(idDataBase)) {
-            for (int i = 0; i < CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments()).size(); i++) {
-                for (int b = 0; b < CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments()).get(i).length; b++) {
-                }
-                    if (idDataBase.equals(CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments()).get(i)[0])) {
-                    CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments()).get(i) = null;
+            for (int i = 0; i < temp.size(); i++) {
+                for (int b = 0; b < temp.get(i).length; b++) {
+                    if (idDataBase.equals(temp.get(i)[0])) {
+                        temp.remove(temp.get(i)[b]);
+                    } else {
+                        departments.add(temp.get(i));
+                    }
                 }
             }
         }
