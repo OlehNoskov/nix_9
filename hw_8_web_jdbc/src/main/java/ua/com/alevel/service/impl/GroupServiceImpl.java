@@ -38,6 +38,6 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public DataTableResponse<Group> findAll(DataTableRequest request) {
-        return null;
+        return groupDao.findAll(request);
     }
 }

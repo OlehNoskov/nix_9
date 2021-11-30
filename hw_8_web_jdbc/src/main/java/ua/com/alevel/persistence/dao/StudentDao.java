@@ -1,4 +1,6 @@
 package ua.com.alevel.persistence.dao;
 
-public interface StudentDao extends BaseDao{
+import ua.com.alevel.persistence.entity.Student;
+
+public interface StudentDao extends BaseDao<Student>{
 }

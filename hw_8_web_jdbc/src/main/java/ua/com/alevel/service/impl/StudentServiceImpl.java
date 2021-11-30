@@ -38,6 +38,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest request) {
-        return null;
+        return studentDao.findAll(request);
     }
 }

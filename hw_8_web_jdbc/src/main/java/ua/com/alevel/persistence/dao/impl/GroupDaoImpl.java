@@ -6,6 +6,14 @@ import ua.com.alevel.persistence.dao.GroupDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.BaseEntity;
+import ua.com.alevel.persistence.entity.Group;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class GroupDaoImpl implements GroupDao {
@@ -17,14 +25,15 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public void create(BaseEntity entity) {
+    public void create(Group group) {
 
     }
 
     @Override
-    public void update(BaseEntity entity) {
+    public void update(Group group) {
 
     }
+
 
     @Override
     public void delete(Long id) {
@@ -37,17 +46,51 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public BaseEntity findById(Long id) {
+    public Group findById(Long id) {
         return null;
     }
 
     @Override
     public DataTableResponse findAll(DataTableRequest request) {
-        return null;
+
+        List<Group> groups = new ArrayList<>();
+        Map<Object, Object> otherParamMap = new HashMap<>();
+
+        int limit = (request.getCurrentPage() - 1) * request.getPageSize();
+
+        String sql = "select id, namegroup count(*) as bookCount from group join student_group ab on student.id = ab.group_id group by group_id order by " +
+                request.getSort() + " " +
+                request.getOrder() + " limit " +
+                limit + "," +
+                request.getPageSize();
+
+        System.out.println("sql = " + sql);
+
+        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(sql)) {
+            while (resultSet.next()) {
+                AuthorResultSet authorResultSet = convertResultSetToAuthor(resultSet);
+                authors.add(authorResultSet.getAuthor());
+                otherParamMap.put(authorResultSet.getAuthor().getId(), authorResultSet.getBookCount());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        DataTableResponse<Author> tableResponse = new DataTableResponse<>();
+        tableResponse.setItems(authors);
+        tableResponse.setOtherParamMap(otherParamMap);
+        return tableResponse;
     }
 
     @Override
     public long count() {
+        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery("select count(*) as count from authors")) {
+            while (resultSet.next()) {
+                return resultSet.getLong("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 }
