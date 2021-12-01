@@ -79,7 +79,7 @@ public class ShortestWays {
             writer.write(shortestWay);
             writer.write(System.lineSeparator());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Ошибка записи в файл!");;
         }
     }
 
