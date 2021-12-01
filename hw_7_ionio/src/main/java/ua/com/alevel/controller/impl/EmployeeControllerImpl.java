@@ -1,12 +1,9 @@
 package ua.com.alevel.controller.impl;
 
-import ua.com.alevel.CustomCSVRead;
-
+import ua.com.alevel.CustomCSVWrite;
 import ua.com.alevel.controller.EmployeeController;
 
-import ua.com.alevel.db.impl.EmployeeDBImpl;
-
-import ua.com.alevel.entity.Department;
+import ua.com.alevel.db.impl.DepartmentDBImpl;
 import ua.com.alevel.entity.Employee;
 
 import ua.com.alevel.service.DepartmentService;
@@ -17,11 +14,16 @@ import ua.com.alevel.service.impl.EmployeeServiceImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class EmployeeControllerImpl implements EmployeeController {
 
     EmployeeService employeeService = new EmployeeServiceImpl();
+    DepartmentService departmentService = new DepartmentServiceImpl();
+    private static List<String[]> idDepAndEmp =new ArrayList<>();
+
 //    DepartmentService departmentService = new DepartmentServiceImpl();
 
     @Override
@@ -81,23 +83,34 @@ public class EmployeeControllerImpl implements EmployeeController {
         try {
             String name = reader.readLine();
             if (!name.isEmpty()) {
-//                Employee employee = selectOrCreateDepartment(reader);
-//                if (employee == null) {
-//                    System.out.println("Не удалось создать нового сотрудника, департамент не указан!");
-//                    return;
-//                } else {
-//
-//                }
+                if (employee == null) {
+                    System.out.println("Не удалось создать нового сотрудника, департамент не указан!");
+                    return;
+                } else {
+
+                }
                 employee.setNameEmployee(name);
                 System.out.println("Введите фамилию нового сотрудника:");
                 String lastname = reader.readLine();
                 employee.setLastNameEmployee(lastname);
                 System.out.println("Введите возраст нового сотрудника:");
                 String age = reader.readLine();
-                if(Integer.parseInt(age)>0) {
+                if (Integer.parseInt(age) > 0) {
                     employee.setAge(Integer.parseInt(age));
-                    employeeService.create(employee);
-                }else
+                    System.out.println("Выберите департамент для работы сотрудника:");
+                    String idDepartment = reader.readLine();
+                    if (departmentService.findByID(idDepartment).getId().equals(idDepartment)) {
+                        String[] idDep_Emp = new String[2];
+                        idDep_Emp[0] = departmentService.findByID(idDepartment).getId();
+                        idDep_Emp[1] = employee.getId();
+                        idDepAndEmp.add(idDep_Emp);
+                        CustomCSVWrite.writeToCSVFile(idDepAndEmp, DepartmentDBImpl.FILE_PATH_EMPLOYEES_FOR_DEPARTMENT,true);
+                        employeeService.create(employee);
+                    }else {
+                        System.out.println("Департамент с id "+idDepartment+" не найдено!");
+                    }
+
+                } else
                     System.out.println("Некорректно введен возраст!");
 
             } else {
@@ -120,7 +133,7 @@ public class EmployeeControllerImpl implements EmployeeController {
             }
             System.out.println("Введите новое имя сотрудника:");
             String name = reader.readLine();
-            if(name!= null) {
+            if (name != null) {
                 System.out.println("Введите новую фамилию сотрудника:");
                 String lastname = reader.readLine();
                 System.out.println("Введите возраст сотрудника:");
@@ -130,8 +143,7 @@ public class EmployeeControllerImpl implements EmployeeController {
                 employee.setNameEmployee(name);
                 employee.setAge(Integer.parseInt(age));
                 employeeService.update(employee);
-            }
-             else {
+            } else {
                 System.out.println("Вы не ввели новое имя!");
             }
         } catch (IOException e) {
@@ -149,7 +161,7 @@ public class EmployeeControllerImpl implements EmployeeController {
                 if (employee == null) {
                     System.out.println("Некорректный ID");
                     return;
-                }else {
+                } else {
                     employeeService.delete(idEmployee);
                 }
             } else {
@@ -179,7 +191,7 @@ public class EmployeeControllerImpl implements EmployeeController {
     }
 
     private void findAllBooks() {
-        System.out.println("=== Поиск сотрудников ===");
+        System.out.println("=== Поиск всех сотрудников ===");
         employeeService.findByAll();
     }
 
@@ -208,11 +220,12 @@ public class EmployeeControllerImpl implements EmployeeController {
 //        }
 //    }
 
-//    private Department selectOrCreateDepartment(BufferedReader reader) {
+//    private static String selectOrCreateDepartment(BufferedReader reader) {
 //        System.out.println("Департамент сотрудника:");
 //        System.out.println("1: Выбрать из списка департаментов");
 //        System.out.println("2: Создать новый департамент");
 //        System.out.println("0.Выход в Главное Меню");
+//        String idDep = "";
 //        String choice;
 //        String id = "";
 //        try {
@@ -224,25 +237,23 @@ public class EmployeeControllerImpl implements EmployeeController {
 //                        do {
 //                            id = reader.readLine();
 //                            if (id != null) {
-//                                if (CustomCSVRead.search(CustomCSVRead
-//                                                .readCSVFile(EmployeeDBImpl
-//                                                        .getFilePathEmployees()), id)
-//                                        .equals(id)) {
-//                                    id = CustomCSVRead.search(CustomCSVRead
-//                                            .readCSVFile(EmployeeDBImpl.getFilePathEmployees()), id);
-//                                }else {
+//                                if (id.equals(DepartmentDBImpl.idDepartment(id))) {
+//                                    idDep = id;
+//                                } else {
 //                                    System.out.println("Департамента по данному id не найдено!");
 //                                    new BaseControllerImpl().run();
 //                                }
-//                            }else{
+//                            } else {
 //                                System.out.println("Введены некорректные данные!");
 //                                new BaseControllerImpl().run();
+//
 //                            }
 //                        }
-//                        while (choice!= null);
+//                        while (choice != null);
 //                        break;
 //                    case "2":
 //                        new DepartmentControllerImpl().run();
+//                        idDep = DepartmentDBImpl.getIdDepartment();
 //                        break;
 //                    case "0":
 //                        new BaseControllerImpl().run();
@@ -254,6 +265,6 @@ public class EmployeeControllerImpl implements EmployeeController {
 //        } catch (IOException e) {
 //            System.out.println("Ошибка: = " + e.getMessage());
 //        }
-//        return id;
+//        return idDep;
 //    }
 }

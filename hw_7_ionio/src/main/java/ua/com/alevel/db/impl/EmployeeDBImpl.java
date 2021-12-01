@@ -51,6 +51,7 @@ public class EmployeeDBImpl implements EmployeeDB {
         updateEmployee.setLastNameEmployee(employee.getLastNameEmployee());
         updateEmployee.setAge(employee.getAge());
 
+        String id = "";
         List<String[]> temp = CustomCSVRead.readCSVFile(EmployeeDBImpl.getFilePathEmployees());
         for (int i = 0; i < temp.size(); i++) {
             for (int b = 1; b < temp.get(i).length; b++) {
@@ -59,14 +60,19 @@ public class EmployeeDBImpl implements EmployeeDB {
                     temp.get(i)[2] = employee.getLastNameEmployee();
                     temp.get(i)[3] = employee.getAge() + "";
                     employees.add(temp.get(i));
+                    id = temp.get(i)[0];
                 } else {
                     employees.add(temp.get(i));
                 }
             }
         }
-        CustomCSVWrite.writeToCSVFile(employees, EmployeeDBImpl.getFilePathEmployees(), false);
-        System.out.println("Данные успешно обновлены!");
-        employees.clear();
+        if (id.equals(employee.getId())) {
+            CustomCSVWrite.writeToCSVFile(employees, EmployeeDBImpl.getFilePathEmployees(), false);
+            System.out.println("Данные успешно обновлены!");
+            employees.clear();
+        } else {
+            System.out.println("Сотрудника с данным id не найдено!");
+        }
     }
 
     @Override
@@ -91,7 +97,7 @@ public class EmployeeDBImpl implements EmployeeDB {
 
     @Override
     public Employee findByID(String id) {
-
+        String idEmployee = "";
         List<String[]> employeesList = CustomCSVRead.readCSVFile(getFilePathEmployees());
         Employee employee = new Employee();
         for (String[] str : employeesList) {
@@ -100,10 +106,16 @@ public class EmployeeDBImpl implements EmployeeDB {
                 employee.setNameEmployee(str[1]);
                 employee.setLastNameEmployee(str[2]);
                 employee.setAge(Integer.parseInt(str[3]));
+                idEmployee = str[0];
                 return employee;
             }
         }
-        return employee;
+        if (idEmployee.equals(id)) {
+            return employee;
+        } else {
+            System.out.println("Сотрудник по данному id не найден!");
+            return null;
+        }
     }
 
     @Override
@@ -120,6 +132,10 @@ public class EmployeeDBImpl implements EmployeeDB {
         }
         return employeesList;
     }
+
+//    public List<Employee> findAllEmployeesForDepartments(String idDepartment){
+//
+//    }
 
     private static String generateId() {
         String id = UUID.randomUUID().toString();

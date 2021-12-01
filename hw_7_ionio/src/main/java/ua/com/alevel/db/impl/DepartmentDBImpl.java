@@ -2,22 +2,22 @@ package ua.com.alevel.db.impl;
 
 import ua.com.alevel.CustomCSVRead;
 import ua.com.alevel.CustomCSVWrite;
-import ua.com.alevel.controller.BaseController;
-import ua.com.alevel.controller.impl.BaseControllerImpl;
+
 import ua.com.alevel.db.DepartmentDB;
 import ua.com.alevel.entity.Department;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 public class DepartmentDBImpl implements DepartmentDB {
 
     private static final String FILE_PATH_DEPARTMENTS = "departments.csv";
+    public static final String FILE_PATH_EMPLOYEES_FOR_DEPARTMENT = "dep_emp.csv";
     private static List<String[]> departments;
     private static DepartmentDBImpl instance;
     public static String[] header = {"id", "title_department"};
+    private static String idDepartment;
 
     public DepartmentDBImpl() {
         departments = new ArrayList<>();
@@ -38,34 +38,45 @@ public class DepartmentDBImpl implements DepartmentDB {
         return header;
     }
 
+    public static String getIdDepartment() {
+        return idDepartment;
+    }
+
     public void create(Department department) {
         department.setId(generateId());
         departments.add(Department.parserToStringDepartment(department));
         CustomCSVWrite.writeToCSVFile(departments, DepartmentDBImpl.getPathFileDepartments(), true);
-        System.out.println("Департамент "+department.getDepartmentName()+" успешно создан!");
+        System.out.println("Департамент " + department.getDepartmentName() + " успешно создан!");
         departments.clear();
+        idDepartment = department.getId();
     }
 
     @Override
     public void update(Department department) {
         Department updateDepartment = findByID(department.getId());
         updateDepartment.setDepartmentName(department.getDepartmentName());
+        String id = "";
 
         List<String[]> temp = CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments());
 
-            for (int i = 0; i < temp.size(); i++) {
-                for (int b = 1; b < temp.get(i).length; b++) {
-                    if (temp.get(i)[0].equals(department.getId())) {
-                        temp.get(i)[1] = department.getDepartmentName();
-                        departments.add(temp.get(i));
-                    } else {
-                        departments.add(temp.get(i));
-                    }
+        for (int i = 0; i < temp.size(); i++) {
+            for (int b = 1; b < temp.get(i).length; b++) {
+                if (temp.get(i)[0].equals(department.getId())) {
+                    temp.get(i)[1] = department.getDepartmentName();
+                    departments.add(temp.get(i));
+                } else {
+                    departments.add(temp.get(i));
                 }
             }
-        CustomCSVWrite.writeToCSVFile(departments, DepartmentDBImpl.getPathFileDepartments(), false);
-        System.out.println("Данные успешно обновлены!");
-        departments.clear();
+        }
+
+        if (id.equals(department.getId())) {
+            CustomCSVWrite.writeToCSVFile(departments, DepartmentDBImpl.getPathFileDepartments(), false);
+            System.out.println("Данные успешно обновлены!");
+            departments.clear();
+        } else {
+            System.out.println("Департамент с данным id не найдено!");
+        }
     }
 
     @Override
@@ -77,18 +88,20 @@ public class DepartmentDBImpl implements DepartmentDB {
             for (int i = 0; i < str.length; i++) {
                 if (id.equals(str[0])) {
                     removeDepartment.add(str);
-//                    System.out.println("Департамент "+str[1]+" был успешно удален!");
                 }
             }
         }
-        System.out.println("Департамент "+ removeDepartment.get(0)[1] +" был успешно удален!");
-        departmentList.removeAll(removeDepartment);
-        CustomCSVWrite.writeToCSVFile(departmentList, getPathFileDepartments(), false);
+        if (!removeDepartment.isEmpty()) {
+            System.out.println("Департамент " + removeDepartment.get(0)[1] + " был успешно удален!");
+            departmentList.removeAll(removeDepartment);
+            CustomCSVWrite.writeToCSVFile(departmentList, getPathFileDepartments(), false);
+        } else
+            System.out.println("Департамент с данным id не найден!");
     }
 
     @Override
     public Department findByID(String id) {
-
+        String idEmployee = "";
         List<String[]> departmentList = CustomCSVRead.readCSVFile(getPathFileDepartments());
         Department department = new Department();
         for (String[] str : departmentList) {
@@ -98,7 +111,12 @@ public class DepartmentDBImpl implements DepartmentDB {
                 return department;
             }
         }
-        return department;
+        if (idEmployee.equals(id)) {
+            return department;
+        } else {
+            System.out.println("Департамент по данному id не найден!");
+            return null;
+        }
     }
 
     @Override
@@ -110,10 +128,9 @@ public class DepartmentDBImpl implements DepartmentDB {
         for (int i = 1; i < listCsvFile.size(); i++) {
             departmentList.add(Department.parserStringToDepartment(listCsvFile.get(i)));
         }
-            for(int i=0; i<departmentList.size(); i++){
-                System.out.println(departmentList.get(i).toString());
-            }
-
+        for (int i = 0; i < departmentList.size(); i++) {
+            System.out.println(departmentList.get(i).toString());
+        }
         return departmentList;
     }
 
@@ -121,12 +138,4 @@ public class DepartmentDBImpl implements DepartmentDB {
         String id = UUID.randomUUID().toString();
         return id;
     }
-
-//    private static String[] addHeaderCSVFile() {
-//        return header;
-//    }
-//
-//    public static List<String[]> getDepartments() {
-//        return departments;
-//    }
 }
