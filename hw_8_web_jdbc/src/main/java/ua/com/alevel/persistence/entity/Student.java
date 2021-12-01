@@ -3,7 +3,7 @@ package ua.com.alevel.persistence.entity;
 public class Student extends BaseEntity {
     private String firstname;
     private String lastname;
-    private int age;
+    private Integer age;
 
     public Student() {
         super();

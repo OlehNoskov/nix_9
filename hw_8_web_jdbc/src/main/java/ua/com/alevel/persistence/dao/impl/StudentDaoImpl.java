@@ -29,7 +29,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void create(Student student) {
-        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(CREATE_STUDENT_QUERY)) {
+        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(CREATE_STUDENT_QUERY)) {
             preparedStatement.setString(1, student.getFirstname());
             preparedStatement.setString(2, student.getLastname());
             preparedStatement.setInt(3, student.getAge());
@@ -63,7 +63,7 @@ public class StudentDaoImpl implements StudentDao {
     public DataTableResponse findAll(DataTableRequest request) {
 
         List<Student> students = new ArrayList<>();
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(CREATE_STUDENT_QUERY)) {
+        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY)) {
             while (resultSet.next()) {
                 students.add(initStudentByResultSet(resultSet));
             }

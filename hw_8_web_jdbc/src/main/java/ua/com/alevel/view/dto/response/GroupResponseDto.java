@@ -10,9 +10,9 @@ public class GroupResponseDto extends DtoResponse{
     }
     public GroupResponseDto(Group group) {
         setId(group.getId());
-        setCreated(group.getCreated());
-        setUpdated(group.getUpdated());
-        setVisible(group.getVisible());
+//        setCreated(group.getCreated());
+//        setUpdated(group.getUpdated());
+//        setVisible(group.getVisible());
         this.nameGroup = group.getNameGroup();
     }
 

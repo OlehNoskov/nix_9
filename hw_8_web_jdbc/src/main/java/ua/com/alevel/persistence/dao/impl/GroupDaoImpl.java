@@ -5,11 +5,11 @@ import ua.com.alevel.config.JpaConfig;
 import ua.com.alevel.persistence.dao.GroupDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
-import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.entity.Group;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,14 +51,14 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public DataTableResponse findAll(DataTableRequest request) {
+    public DataTableResponse<Group> findAll(DataTableRequest request) {
 
         List<Group> groups = new ArrayList<>();
         Map<Object, Object> otherParamMap = new HashMap<>();
 
         int limit = (request.getCurrentPage() - 1) * request.getPageSize();
 
-        String sql = "select id, namegroup count(*) as bookCount from group join student_group ab on student.id = ab.group_id group by group_id order by " +
+        String sql = "select id, namegroup, count(*) as studentCount from group join student_group ab on student.id = ab.student_id group by student_id order by " +
                 request.getSort() + " " +
                 request.getOrder() + " limit " +
                 limit + "," +
@@ -68,23 +68,23 @@ public class GroupDaoImpl implements GroupDao {
 
         try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(sql)) {
             while (resultSet.next()) {
-                AuthorResultSet authorResultSet = convertResultSetToAuthor(resultSet);
-                authors.add(authorResultSet.getAuthor());
-                otherParamMap.put(authorResultSet.getAuthor().getId(), authorResultSet.getBookCount());
+                GroupResultSet groupResultSet = convertResultSetToGroup(resultSet);
+                groups.add(groupResultSet.getGroup());
+                otherParamMap.put(groupResultSet.getGroup().getId(), groupResultSet.getStudentCount());
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        DataTableResponse<Author> tableResponse = new DataTableResponse<>();
-        tableResponse.setItems(authors);
+        DataTableResponse<Group> tableResponse = new DataTableResponse<>();
+        tableResponse.setItems(groups);
         tableResponse.setOtherParamMap(otherParamMap);
         return tableResponse;
     }
 
     @Override
     public long count() {
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery("select count(*) as count from authors")) {
+        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery("select count(*) as count from group")) {
             while (resultSet.next()) {
                 return resultSet.getLong("count");
             }
@@ -92,5 +92,39 @@ public class GroupDaoImpl implements GroupDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    private GroupResultSet convertResultSetToGroup(ResultSet resultSet) throws SQLException {
+        Long id = resultSet.getLong("id");
+        Timestamp created = resultSet.getTimestamp("created");
+        Timestamp updated = resultSet.getTimestamp("updated");
+        Boolean visible = resultSet.getBoolean("visible");
+        String firstName = resultSet.getString("namegroup");
+//        String lastName = resultSet.getString("last_name");
+        int studentCount = resultSet.getInt("studentCount");
+
+        Group group = new Group();
+        group.setId(group.getId());
+        group.setNameGroup(group.getNameGroup());
+
+        return new GroupResultSet(group, studentCount);
+    }
+
+    private static class GroupResultSet{
+        private final Group group;
+        private final int studentCount;
+
+        public GroupResultSet(Group group, int studentCount) {
+            this.group = group;
+            this.studentCount = studentCount;
+        }
+
+        public Group getGroup() {
+            return group;
+        }
+
+        public int getStudentCount() {
+            return studentCount;
+        }
     }
 }

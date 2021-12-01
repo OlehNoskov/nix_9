@@ -12,9 +12,9 @@ public class StudentResponseDto extends DtoResponse{
     }
     public StudentResponseDto(Student student) {
         setId(student.getId());
-        setCreated(student.getCreated());
-        setUpdated(student.getUpdated());
-        setVisible(student.getVisible());
+//        setCreated(student.getCreated());
+//        setUpdated(student.getUpdated());
+//        setVisible(student.getVisible());
         this.name = student.getFirstname();
         this.lastname = student.getLastname();
         this.age = student.getAge();
