@@ -79,11 +79,14 @@ public class EmployeeDBImpl implements EmployeeDB {
     public void delete(String id) {
         List<String[]> removeEmployees = new ArrayList<>();
         List<String[]> employeesList = new ArrayList<>(CustomCSVRead.readCSVFile(getFilePathEmployees()));
+        String idEmployee;
 
         for (String[] str : employeesList) {
             for (int i = 0; i < str.length; i++) {
                 if (id.equals(str[0])) {
                     removeEmployees.add(str);
+                    idEmployee = str[0];
+                    deleteFromJoinTable(idEmployee);
                 }
             }
         }
@@ -133,12 +136,23 @@ public class EmployeeDBImpl implements EmployeeDB {
         return employeesList;
     }
 
-//    public List<Employee> findAllEmployeesForDepartments(String idDepartment){
-//
-//    }
-
     private static String generateId() {
         String id = UUID.randomUUID().toString();
         return id;
+    }
+
+    private void deleteFromJoinTable(String id) {
+        List<String[]> removeEmployeeFromDepartment = new ArrayList<>();
+        List<String[]> employeeIdList = new ArrayList<>(CustomCSVRead
+                .readCSVFile(DepartmentDBImpl.FILE_PATH_EMPLOYEES_FOR_DEPARTMENT));
+        for (String[] str : employeeIdList) {
+            for (int i = 0; i < str.length; i++) {
+                if (id.equals(str[1])) {
+                    removeEmployeeFromDepartment.add(str);
+                }
+            }
+        }
+        employeeIdList.removeAll(removeEmployeeFromDepartment);
+        CustomCSVWrite.writeToCSVFile(employeeIdList, DepartmentDBImpl.FILE_PATH_EMPLOYEES_FOR_DEPARTMENT, false);
     }
 }

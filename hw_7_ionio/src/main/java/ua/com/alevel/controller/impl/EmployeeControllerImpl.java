@@ -22,9 +22,8 @@ public class EmployeeControllerImpl implements EmployeeController {
 
     EmployeeService employeeService = new EmployeeServiceImpl();
     DepartmentService departmentService = new DepartmentServiceImpl();
-    private static List<String[]> idDepAndEmp =new ArrayList<>();
-
-//    DepartmentService departmentService = new DepartmentServiceImpl();
+    String[] headerDep_Emp_Table  = {"ID DEPARTMENT", "ID EMPLOYEE"};
+    private static List<String[]> idDepAndEmp = new ArrayList<>();
 
     @Override
     public void run() {
@@ -67,57 +66,47 @@ public class EmployeeControllerImpl implements EmployeeController {
                 findById(reader);
                 break;
             case "5":
-                findAllBooks();
-                break;
-            case "6":
-//                findAllAuthorBooks(reader);
+                findAllEmployee();
                 break;
         }
         showMenu();
     }
 
     private void create(BufferedReader reader) {
-        Employee employee = new Employee();
         System.out.println("=== Создание сотрудника ===");
-        System.out.println("Введите имя нового сотрудника:");
         try {
+            System.out.println("Введите имя нового сотрудника:");
             String name = reader.readLine();
-            if (!name.isEmpty()) {
-                if (employee == null) {
-                    System.out.println("Не удалось создать нового сотрудника, департамент не указан!");
-                    return;
-                } else {
-
-                }
-                employee.setNameEmployee(name);
-                System.out.println("Введите фамилию нового сотрудника:");
-                String lastname = reader.readLine();
-                employee.setLastNameEmployee(lastname);
-                System.out.println("Введите возраст нового сотрудника:");
-                String age = reader.readLine();
-                if (Integer.parseInt(age) > 0) {
-                    employee.setAge(Integer.parseInt(age));
-                    System.out.println("Выберите департамент для работы сотрудника:");
-                    String idDepartment = reader.readLine();
-                    if (departmentService.findByID(idDepartment).getId().equals(idDepartment)) {
-                        String[] idDep_Emp = new String[2];
-                        idDep_Emp[0] = departmentService.findByID(idDepartment).getId();
-                        idDep_Emp[1] = employee.getId();
-                        idDepAndEmp.add(idDep_Emp);
-                        CustomCSVWrite.writeToCSVFile(idDepAndEmp, DepartmentDBImpl.FILE_PATH_EMPLOYEES_FOR_DEPARTMENT,true);
-                        employeeService.create(employee);
-                    }else {
-                        System.out.println("Департамент с id "+idDepartment+" не найдено!");
-                    }
-
-                } else
-                    System.out.println("Некорректно введен возраст!");
-
-            } else {
-                System.out.println("Вы не указали департамент!");
+            System.out.println("Введите фамилию нового сотрудника:");
+            String lastname = reader.readLine();
+            System.out.println("Введите возраст нового сотрудника:");
+            String ageEmployee = reader.readLine();
+            try {
+                int age = Integer.parseInt(ageEmployee);
+            } catch (Exception e) {
+                System.out.println("Некорректный возраст!");
+                return;
             }
+            System.out.println("Выберите департамент для работы сотрудника:");
+            String idDepartment = reader.readLine();
+            Employee employee = new Employee();
+            String idDep = departmentService.findByID(idDepartment).getId();
+            if (idDepartment == null) {
+                System.out.println("Error!!!");
+                return;
+            }
+            employee.setNameEmployee(name);
+            employee.setLastNameEmployee(lastname);
+            employee.setAge(Integer.parseInt(ageEmployee));
+            employeeService.create(employee);
+
+            String[] idDep_Emp = new String[2];
+            idDep_Emp[0] = departmentService.findByID(idDepartment).getId();
+            idDep_Emp[1] = employee.getId();
+            idDepAndEmp.add(idDep_Emp);
+            CustomCSVWrite.writeToCSVFile(idDepAndEmp, DepartmentDBImpl.FILE_PATH_EMPLOYEES_FOR_DEPARTMENT,true);
         } catch (IOException e) {
-            System.out.println("Ошибка " + e.getMessage());
+            System.out.println("problem: = " + e.getMessage());
         }
     }
 
@@ -190,81 +179,8 @@ public class EmployeeControllerImpl implements EmployeeController {
         }
     }
 
-    private void findAllBooks() {
+    private void findAllEmployee() {
         System.out.println("=== Поиск всех сотрудников ===");
         employeeService.findByAll();
     }
-
-//    private void findAllEmployeesOfDepartment(BufferedReader reader) {
-//        Department department;
-//        try {
-//            System.out.println("Введите Id департамента:");
-//            do {
-//                String id = reader.readLine();
-//                department = departmentService.findByID(id);
-//                if (department == null)
-//                    System.out.println("Ошибка! Укажите правильный Id!");
-//            }
-//            while (department == null);
-//
-//            Book[] books = authorService.findAllAuthorBooks(author);
-//            System.out.println("=== Список книг автора " + author.getName() + " " + author.getLastName() + " ===");
-//            if (books != null && books.length != 0) {
-//                for (Book book : books) {
-//                }
-//            } else {
-//                System.out.println("Книг не найдено!");
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Ошибка: = " + e.getMessage());
-//        }
-//    }
-
-//    private static String selectOrCreateDepartment(BufferedReader reader) {
-//        System.out.println("Департамент сотрудника:");
-//        System.out.println("1: Выбрать из списка департаментов");
-//        System.out.println("2: Создать новый департамент");
-//        System.out.println("0.Выход в Главное Меню");
-//        String idDep = "";
-//        String choice;
-//        String id = "";
-//        try {
-//            do {
-//                choice = reader.readLine();
-//                switch (choice) {
-//                    case "1":
-//                        System.out.println("Введите Id департамента:");
-//                        do {
-//                            id = reader.readLine();
-//                            if (id != null) {
-//                                if (id.equals(DepartmentDBImpl.idDepartment(id))) {
-//                                    idDep = id;
-//                                } else {
-//                                    System.out.println("Департамента по данному id не найдено!");
-//                                    new BaseControllerImpl().run();
-//                                }
-//                            } else {
-//                                System.out.println("Введены некорректные данные!");
-//                                new BaseControllerImpl().run();
-//
-//                            }
-//                        }
-//                        while (choice != null);
-//                        break;
-//                    case "2":
-//                        new DepartmentControllerImpl().run();
-//                        idDep = DepartmentDBImpl.getIdDepartment();
-//                        break;
-//                    case "0":
-//                        new BaseControllerImpl().run();
-//                        break;
-//                }
-//            }
-//            while (!choice.equals("1") && !choice.equals("2"));
-//
-//        } catch (IOException e) {
-//            System.out.println("Ошибка: = " + e.getMessage());
-//        }
-//        return idDep;
-//    }
 }

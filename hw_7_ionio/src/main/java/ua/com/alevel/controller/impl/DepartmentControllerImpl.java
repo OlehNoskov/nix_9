@@ -57,6 +57,9 @@ public class DepartmentControllerImpl implements DepartmentController {
             case "5":
                 findAllDepartments();
                 break;
+                case "6":
+                findAllEmployeesFromDepartments();
+                break;
             case "0":
                 new BaseControllerImpl().run();
                 break;
@@ -114,12 +117,6 @@ public class DepartmentControllerImpl implements DepartmentController {
                 return;
             } else
                 departmentService.delete(idDepartment);
-
-//            List<Department> departments = (List<Department>) departmentService.findByAll();
-//            for (Department department1 : departments) {
-//                departmentService.delete(idDepartment);
-//            }
-//            departmentService.delete(department.getId());
         } catch (IOException e) {
             System.out.println("Ошибка " + e.getMessage());
         } catch (NumberFormatException e) {
@@ -143,14 +140,9 @@ public class DepartmentControllerImpl implements DepartmentController {
     private void findAllDepartments() {
         System.out.println("=== Поиск департаментов ===");
         departmentService.findByAll();
-//        List<Department> departments = (List<Department>) departmentService.findByAll();
-//        if (departments != null && departments.size() != 0) {
-//            for (Department department : departments) {
-//                System.out.println(department);
-//            }
-//        } else {
-//            System.out.println("Департаментов не найдено!");
-//        }
-//    }
+    }
+
+    private void findAllEmployeesFromDepartments(){
+
     }
 }
