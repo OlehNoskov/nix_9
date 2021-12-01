@@ -36,11 +36,7 @@ public class Employee extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "nameEmployee='" + nameEmployee + '\'' +
-                ", lastNameEmployee='" + lastNameEmployee + '\'' +
-                ", age=" + age +
-                '}';
+        return "Employee: " +  nameEmployee +" " +lastNameEmployee +" " +age +" лет.";
     }
 
     public static String[] parserToStringEmployee(Employee employee) {
@@ -52,7 +48,7 @@ public class Employee extends BaseEntity {
         return employeeArray;
     }
 
-    public static Employee parserStringToDepartment(String[] string) {
+    public static Employee parserStringToEmployee(String[] string) {
         Employee employee = new Employee();
         employee.setId(string[0]);
         employee.setNameEmployee(string[1]);

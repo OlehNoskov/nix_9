@@ -42,7 +42,7 @@ public class BaseControllerImpl implements BaseController {
                 new DepartmentControllerImpl().run();
                 break;
             case "2":
-
+                new EmployeeControllerImpl().run();
                 break;
         }
         menuNavigation();

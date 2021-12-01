@@ -10,8 +10,6 @@ import ua.com.alevel.service.impl.DepartmentServiceImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Collection;
-import java.util.List;
 
 public class DepartmentControllerImpl implements DepartmentController {
 
@@ -114,12 +112,14 @@ public class DepartmentControllerImpl implements DepartmentController {
             if (department == null) {
                 System.out.println("Id не был введен корректно");
                 return;
-            }
-            List<Department> departments = (List<Department>) departmentService.findByAll();
-            for (Department department1 : departments) {
+            } else
                 departmentService.delete(idDepartment);
-            }
-            departmentService.delete(department.getId());
+
+//            List<Department> departments = (List<Department>) departmentService.findByAll();
+//            for (Department department1 : departments) {
+//                departmentService.delete(idDepartment);
+//            }
+//            departmentService.delete(department.getId());
         } catch (IOException e) {
             System.out.println("Ошибка " + e.getMessage());
         } catch (NumberFormatException e) {
@@ -142,13 +142,15 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     private void findAllDepartments() {
         System.out.println("=== Поиск департаментов ===");
-        List<Department> departments = (List<Department>) departmentService.findByAll();
-        if (departments != null && departments.size() != 0) {
-            for (Department department : departments) {
-                System.out.println(department);
-            }
-        } else {
-            System.out.println("Департаментов не найдено!");
-        }
+        departmentService.findByAll();
+//        List<Department> departments = (List<Department>) departmentService.findByAll();
+//        if (departments != null && departments.size() != 0) {
+//            for (Department department : departments) {
+//                System.out.println(department);
+//            }
+//        } else {
+//            System.out.println("Департаментов не найдено!");
+//        }
+//    }
     }
 }
