@@ -35,4 +35,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public List<Department> findAll() {
         return departmentDB.findAll();
     }
+
+    public static void findAllEmployeeFromDepartment(String idDepartment){
+        DepartmentDBImpl.findAllEmployeeFromDepartment(idDepartment);
+    }
 }

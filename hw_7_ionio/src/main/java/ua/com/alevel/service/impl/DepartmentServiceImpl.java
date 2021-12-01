@@ -39,4 +39,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> findByAll() {
         return departmentDao.findAll();
     }
+
+    public static void findAllEmployeeFromDepartment(String idDepartment){
+         DepartmentDaoImpl.findAllEmployeeFromDepartment(idDepartment);
+    }
 }

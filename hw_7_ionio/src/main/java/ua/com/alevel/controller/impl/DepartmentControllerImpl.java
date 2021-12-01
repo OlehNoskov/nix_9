@@ -37,6 +37,7 @@ public class DepartmentControllerImpl implements DepartmentController {
         System.out.println("Нажмите 3: Удаления департамента");
         System.out.println("Нажмите 4: Поиска департамента по Id");
         System.out.println("Нажмите 5: Поиск списка всех департаментов");
+        System.out.println("Нажмите 6: Поиск списка всех сотрудников по департаменту");
         System.out.println("Нажмите 0: Выход в Главное Меню");
     }
 
@@ -58,7 +59,7 @@ public class DepartmentControllerImpl implements DepartmentController {
                 findAllDepartments();
                 break;
                 case "6":
-                findAllEmployeesFromDepartments();
+                findAllEmployeesFromDepartments(reader);
                 break;
             case "0":
                 new BaseControllerImpl().run();
@@ -142,7 +143,14 @@ public class DepartmentControllerImpl implements DepartmentController {
         departmentService.findByAll();
     }
 
-    private void findAllEmployeesFromDepartments(){
-
+    private void findAllEmployeesFromDepartments(BufferedReader reader){
+        System.out.println("=== Поиск сотрудников департамента ===");
+        System.out.println("Укажите Id департамента, для поиска всех сотрудников:");
+        try {
+            String idDepartment = reader.readLine();
+            DepartmentServiceImpl.findAllEmployeeFromDepartment(idDepartment);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

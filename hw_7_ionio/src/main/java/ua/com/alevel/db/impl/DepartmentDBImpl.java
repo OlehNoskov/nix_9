@@ -4,7 +4,11 @@ import ua.com.alevel.CustomCSVRead;
 import ua.com.alevel.CustomCSVWrite;
 
 import ua.com.alevel.db.DepartmentDB;
+import ua.com.alevel.db.EmployeeDB;
 import ua.com.alevel.entity.Department;
+import ua.com.alevel.entity.Employee;
+import ua.com.alevel.service.EmployeeService;
+import ua.com.alevel.service.impl.EmployeeServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +40,6 @@ public class DepartmentDBImpl implements DepartmentDB {
 
     public static String[] getHeaderCSVFile() {
         return header;
-    }
-
-    public static String getIdDepartment() {
-        return idDepartment;
     }
 
     public void create(Department department) {
@@ -137,5 +137,33 @@ public class DepartmentDBImpl implements DepartmentDB {
     private static String generateId() {
         String id = UUID.randomUUID().toString();
         return id;
+    }
+
+    public static void findAllEmployeeFromDepartment(String idDepartment) {
+        List<Employee> employees = new ArrayList<>();
+        String idDep = "";
+
+        List<String[]> departmentList = CustomCSVRead.readCSVFile(getPathFileDepartments());
+        for (String[] str : departmentList) {
+            if ((str[0]).equals(idDepartment)) {
+                idDep = idDepartment;
+                break;
+            }
+        }
+
+        List<String[]> listIdEmployeeAndDepartment = CustomCSVRead.readCSVFile(FILE_PATH_EMPLOYEES_FOR_DEPARTMENT);
+        List<String> listIdEmployee = new ArrayList<>();
+        for (String[] str : listIdEmployeeAndDepartment) {
+            if ((str[0]).equals(idDepartment)) {
+                listIdEmployee.add(str[1]);
+            }
+        }
+        EmployeeService employeeService = new EmployeeServiceImpl();
+        for (String ids : listIdEmployee) {
+            employees.add(employeeService.findByID(ids));
+        }
+        for (Employee employee : employees) {
+                System.out.println(employee.toString());
+        }
     }
 }

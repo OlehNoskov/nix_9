@@ -22,7 +22,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 
     EmployeeService employeeService = new EmployeeServiceImpl();
     DepartmentService departmentService = new DepartmentServiceImpl();
-    String[] headerDep_Emp_Table  = {"ID DEPARTMENT", "ID EMPLOYEE"};
+    String[] headerDep_Emp_Table = {"ID DEPARTMENT", "ID EMPLOYEE"};
     private static List<String[]> idDepAndEmp = new ArrayList<>();
 
     @Override
@@ -92,7 +92,7 @@ public class EmployeeControllerImpl implements EmployeeController {
             Employee employee = new Employee();
             String idDep = departmentService.findByID(idDepartment).getId();
             if (idDepartment == null) {
-                System.out.println("Error!!!");
+                System.out.println("Некорректный id!");
                 return;
             }
             employee.setNameEmployee(name);
@@ -104,9 +104,9 @@ public class EmployeeControllerImpl implements EmployeeController {
             idDep_Emp[0] = departmentService.findByID(idDepartment).getId();
             idDep_Emp[1] = employee.getId();
             idDepAndEmp.add(idDep_Emp);
-            CustomCSVWrite.writeToCSVFile(idDepAndEmp, DepartmentDBImpl.FILE_PATH_EMPLOYEES_FOR_DEPARTMENT,true);
+            CustomCSVWrite.writeToCSVFile(idDepAndEmp, DepartmentDBImpl.FILE_PATH_EMPLOYEES_FOR_DEPARTMENT, true);
         } catch (IOException e) {
-            System.out.println("problem: = " + e.getMessage());
+            System.out.println("Что то пошло не так: " + e.getMessage());
         }
     }
 

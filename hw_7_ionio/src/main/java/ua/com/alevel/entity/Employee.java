@@ -36,7 +36,7 @@ public class Employee extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Employee: " +  nameEmployee +" " +lastNameEmployee +" " +age +" лет.";
+        return "Employee: " + nameEmployee + " " + lastNameEmployee + " " + age + " лет.";
     }
 
     public static String[] parserToStringEmployee(Employee employee) {

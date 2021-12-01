@@ -13,7 +13,7 @@ public interface BaseDB<ENTITY extends BaseEntity> {
 
     void delete(String id);
 
-    ENTITY findByID(String id);
+     ENTITY  findByID(String id);
 
     Collection<ENTITY> findAll();
 }

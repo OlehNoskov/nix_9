@@ -40,7 +40,8 @@ public class EmployeeDBImpl implements EmployeeDB {
         employee.setId(generateId());
         employees.add(Employee.parserToStringEmployee(employee));
         CustomCSVWrite.writeToCSVFile(employees, EmployeeDBImpl.getFilePathEmployees(), true);
-        System.out.println("Сотрудник " + employee.getNameEmployee() + " " + employee.getLastNameEmployee() + " успешно создан!");
+        System.out.println("Сотрудник " + employee.getNameEmployee() + " "
+                + employee.getLastNameEmployee() + " успешно создан!");
         employees.clear();
     }
 
