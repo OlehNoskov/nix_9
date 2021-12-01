@@ -33,7 +33,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     private void showMenuProgram() {
         System.out.println();
-        System.out.println("===== МЕНЮ АВТОРА =====");
+        System.out.println("===== МЕНЮ Департамента =====");
         System.out.println("Нажмите 1: Создание нового департамента");
         System.out.println("Нажмите 2: Изменение название департамента");
         System.out.println("Нажмите 3: Удаления департамента");
@@ -101,12 +101,6 @@ public class DepartmentControllerImpl implements DepartmentController {
             String name = reader.readLine();
             department.setDepartmentName(name);
             departmentService.update(department);
-//
-//            dataDepartments.add(DepartmentDBImpl.getHeaderCSVFile());
-//            dataDepartments.add(Department.parserToStringDepartment(department));
-//            dataDepartments.addAll(CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments()));
-//
-//            CustomCSVWrite.writeToCSVFile(dataDepartments,DepartmentDBImpl.getPathFileDepartments(), false);
         }
     }
 
@@ -148,7 +142,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     private void findAllDepartments() {
         System.out.println("=== Поиск департаментов ===");
-        Collection<Department> departments = departmentService.findByAll();
+        List<Department> departments = (List<Department>) departmentService.findByAll();
         if (departments != null && departments.size() != 0) {
             for (Department department : departments) {
                 System.out.println(department);

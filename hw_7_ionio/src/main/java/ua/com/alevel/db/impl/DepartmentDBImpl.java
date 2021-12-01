@@ -38,7 +38,6 @@ public class DepartmentDBImpl implements DepartmentDB {
 
     public void create(Department department) {
         department.setId(generateId());
-
         departments.add(Department.parserToStringDepartment(department));
         CustomCSVWrite.writeToCSVFile(departments, DepartmentDBImpl.getPathFileDepartments(), true);
         departments.clear();
@@ -49,42 +48,40 @@ public class DepartmentDBImpl implements DepartmentDB {
         Department updateDepartment = findByID(department.getId());
         updateDepartment.setDepartmentName(department.getDepartmentName());
 
-        departments.add(Department.parserToStringDepartment(updateDepartment));
-        String[] departmentBase = CustomCSVRead
-                .search(CustomCSVRead.readCSVFile(DepartmentDBImpl
-                        .getPathFileDepartments()), department.getId());
-        String idDataBase = departmentBase[0];
         List<String[]> temp = CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments());
-        if (department.getId().equals(idDataBase)) {
+
             for (int i = 0; i < temp.size(); i++) {
-                for (int b = 0; b < temp.get(i).length; b++) {
-                    if (idDataBase.equals(temp.get(i)[0])) {
-                        temp.remove(temp.get(i)[b]);
+                for (int b = 1; b < temp.get(i).length; b++) {
+                    if (temp.get(i)[0].equals(department.getId())) {
+                        temp.get(i)[1] = department.getDepartmentName();
+                        departments.add(temp.get(i));
                     } else {
                         departments.add(temp.get(i));
                     }
                 }
             }
-        }
-//        departments.addAll(CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments()));
         CustomCSVWrite.writeToCSVFile(departments, DepartmentDBImpl.getPathFileDepartments(), false);
     }
 
     @Override
     public void delete(String id) {
-        List<String[]> departmentList = CustomCSVRead.readCSVFile(getPathFileDepartments());
+        List<String[]> departmentList = new ArrayList<>();
+
+        for(String[] strings: CustomCSVRead.readCSVFile(getPathFileDepartments())){
+            departmentList.add(strings);
+        }
 
         for (String[] str : departmentList) {
             for (int i = 0; i < str.length; i++) {
                 if (id.equals(str[0])) {
-                    str = null;
+                    System.out.println("Департамент "+str[1]+"был успешно удален!");
+                    departmentList.remove(str);
                     CustomCSVWrite.writeToCSVFile(departmentList, getPathFileDepartments(), false);
-                } else {
-                    System.out.println("Департамент не найдено!");
+
                 }
             }
         }
-        throw new RuntimeException("Департамента с id = " + id + "не найдено!");
+        throw new RuntimeException("Департамента с id = " + id + " не найдено!");
     }
 
     @Override
@@ -108,10 +105,13 @@ public class DepartmentDBImpl implements DepartmentDB {
         List<String[]> listCsvFile = CustomCSVRead.readCSVFile(getPathFileDepartments());
         List<Department> departmentList = new ArrayList<>();
 
-        for (String[] str : listCsvFile) {
-            departmentList.add(Department.parserStringToDepartment(str));
-            return departmentList;
+        for (int i = 1; i < listCsvFile.size(); i++) {
+            departmentList.add(Department.parserStringToDepartment(listCsvFile.get(i)));
         }
+            for(int i=0; i<departmentList.size(); i++){
+                System.out.println(departmentList.get(i).toString());
+            }
+
         return departmentList;
     }
 
