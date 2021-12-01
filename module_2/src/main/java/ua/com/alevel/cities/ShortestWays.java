@@ -106,8 +106,8 @@ public class ShortestWays {
         }
         while (countOfVertexInTree < countOfVertices) {
             int indexMin = getMin();
-            int minDist = shortestPaths.get(indexMin).getDistance();
-            if (minDist == INFINITY) {
+            int minDistance = shortestPaths.get(indexMin).getDistance();
+            if (minDistance == INFINITY) {
                 break;
             } else {
                 currentVertex = indexMin;
