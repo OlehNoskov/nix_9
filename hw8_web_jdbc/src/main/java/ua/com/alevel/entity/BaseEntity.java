@@ -22,9 +22,9 @@ public abstract class BaseEntity {
     }
 
 //    @PreUpdate
-//    public void preUpdate() {
-//        this.updated = new Date();
-//    }
+    public void preUpdate() {
+        this.updated = new Date();
+    }
 
     public Long getId() {
         return id;
@@ -49,5 +49,4 @@ public abstract class BaseEntity {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
-
 }

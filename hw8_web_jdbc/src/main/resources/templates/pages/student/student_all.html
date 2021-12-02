@@ -8,9 +8,7 @@
   <title>Employees</title>
 </head>
 <body>
-
 <div layout:fragment="content">
-
   <div class="row">
     <div class="col-12">
       <div class="card mb-2 mt-2">
@@ -32,20 +30,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="employee,iter : ${employees}">
+            <tr th:each="student,iter : ${students}">
               <td th:text="${iter.count}"></td>
-              <td th:text="${employee.getFirstName()}"></td>
-              <td th:text="${employee.getLastName()}"></td>
-              <td th:text="${employee.getAge()}"></td>
+              <td th:text="${student.getFirstname()}"></td>
+              <td th:text="${student.getLastname()}"></td>
+              <td th:text="${student.getAge()}"></td>
               <td>
-                <a th:href="@{'/departments/details/' + ${employee.getDepartment().getId()}}" type="button" class="btn btn-link" th:text="${employee.getDepartment().getId()}">details</a>
+                <a th:href="@{'/students/details/' + ${student.getGroup().getId()}}" type="button" class="btn btn-link" th:text="${student.getGroup().getId()}">details</a>
               </td>
-              <td th:text="${#calendars.format(employee.getCreated(),'dd MMMM yyyy')}"></td>
+              <td th:text="${#calendars.format(student.getCreated(),'dd MMMM yyyy')}"></td>
               <td>
-                <a th:href="@{'/employees/details/' + ${employee.getId()}}" type="button" class="btn btn-primary">details</a>
+                <a th:href="@{'/students/details/' + ${student.getId()}}" type="button" class="btn btn-primary">details</a>
               </td>
               <td>
-                <a th:href="@{'/employees/delete/' + ${employee.getId()}}" type="button" class="btn btn-danger">delete</a>
+                <a th:href="@{'/students/delete/' + ${student.getId()}}" type="button" class="btn btn-danger">delete</a>
               </td>
             </tr>
             </tbody>

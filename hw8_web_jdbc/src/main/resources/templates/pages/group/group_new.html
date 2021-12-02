@@ -8,9 +8,7 @@
   <title>New Group</title>
 </head>
 <body>
-
 <div layout:fragment="content">
-
   <div class="row">
     <div class="col-12">
       <div class="card mt-2">
@@ -18,14 +16,14 @@
           <h4>New Group</h4>
         </div>
         <div class="card-body">
-          <form action="#" th:action="@{/groups/new}" th:object="${group}" method="post">
+          <form action="#" th:action="@{/groups}" th:object="${group}" method="post">
             <div class="form-group">
               <label for="name">name</label>
               <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter name" th:field="*{name}">
             </div>
             <div class="form-group">
               <label for="type">Example select</label>
-              <select class="form-control" id="type" th:field="*{types}">
+              <select class="form-control" id="type" th:field="*{groupType}">
                 <option th:each="type : ${types}"
                         th:value="${type}"
                         th:text="${type}">
@@ -38,8 +36,6 @@
       </div>
     </div>
   </div>
-
 </div>
-
 </body>
 </html>
