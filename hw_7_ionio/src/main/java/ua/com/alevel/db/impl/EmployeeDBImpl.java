@@ -124,7 +124,6 @@ public class EmployeeDBImpl implements EmployeeDB {
 
     @Override
     public List<Employee> findAll() {
-
         List<String[]> listCsvFile = CustomCSVRead.readCSVFile(getFilePathEmployees());
         List<Employee> employeesList = new ArrayList<>();
 

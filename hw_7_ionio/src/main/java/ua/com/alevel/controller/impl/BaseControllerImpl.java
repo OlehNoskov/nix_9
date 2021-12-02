@@ -23,7 +23,7 @@ public class BaseControllerImpl implements BaseController {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("problem: = " + e.getMessage());
+                System.out.println("Что то пошло не так: = " + e.getMessage());
             }
         } catch (IOException e) {
             System.out.println("Ошибка " + e.getMessage());

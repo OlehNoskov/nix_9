@@ -4,9 +4,10 @@ import ua.com.alevel.CustomCSVRead;
 import ua.com.alevel.CustomCSVWrite;
 
 import ua.com.alevel.db.DepartmentDB;
-import ua.com.alevel.db.EmployeeDB;
+
 import ua.com.alevel.entity.Department;
 import ua.com.alevel.entity.Employee;
+
 import ua.com.alevel.service.EmployeeService;
 import ua.com.alevel.service.impl.EmployeeServiceImpl;
 
@@ -56,7 +57,6 @@ public class DepartmentDBImpl implements DepartmentDB {
         Department updateDepartment = findByID(department.getId());
         updateDepartment.setDepartmentName(department.getDepartmentName());
         String id = "";
-
         List<String[]> temp = CustomCSVRead.readCSVFile(DepartmentDBImpl.getPathFileDepartments());
 
         for (int i = 0; i < temp.size(); i++) {
@@ -69,7 +69,6 @@ public class DepartmentDBImpl implements DepartmentDB {
                 }
             }
         }
-
         if (id.equals(department.getId())) {
             CustomCSVWrite.writeToCSVFile(departments, DepartmentDBImpl.getPathFileDepartments(), false);
             System.out.println("Данные успешно обновлены!");
@@ -154,7 +153,7 @@ public class DepartmentDBImpl implements DepartmentDB {
         List<String[]> listIdEmployeeAndDepartment = CustomCSVRead.readCSVFile(FILE_PATH_EMPLOYEES_FOR_DEPARTMENT);
         List<String> listIdEmployee = new ArrayList<>();
         for (String[] str : listIdEmployeeAndDepartment) {
-            if ((str[0]).equals(idDepartment)) {
+            if ((str[0]).equals(idDep)) {
                 listIdEmployee.add(str[1]);
             }
         }

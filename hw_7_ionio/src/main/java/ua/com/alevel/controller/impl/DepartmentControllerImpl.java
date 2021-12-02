@@ -35,8 +35,8 @@ public class DepartmentControllerImpl implements DepartmentController {
         System.out.println("Нажмите 1: Создание нового департамента");
         System.out.println("Нажмите 2: Изменение название департамента");
         System.out.println("Нажмите 3: Удаления департамента");
-        System.out.println("Нажмите 4: Поиска департамента по Id");
-        System.out.println("Нажмите 5: Поиск списка всех департаментов");
+        System.out.println("Нажмите 4: Поиск департамента по Id");
+        System.out.println("Нажмите 5: Поиск всех департаментов");
         System.out.println("Нажмите 6: Поиск списка всех сотрудников по департаменту");
         System.out.println("Нажмите 0: Выход в Главное Меню");
     }

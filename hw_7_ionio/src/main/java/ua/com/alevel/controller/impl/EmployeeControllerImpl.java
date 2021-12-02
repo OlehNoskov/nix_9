@@ -47,7 +47,6 @@ public class EmployeeControllerImpl implements EmployeeController {
         System.out.println("Нажмите 3: Удаление сотрудника");
         System.out.println("Нажмите 4: Поиска сотрудника по Id");
         System.out.println("Нажмите 5: Поиск всех сотрудников");
-        System.out.println("Нажмите 6: Поиск сотрудника по указанному департаменту");
         System.out.println("Нажмите 0: Выхода в Главное Меню");
     }
 
@@ -90,7 +89,6 @@ public class EmployeeControllerImpl implements EmployeeController {
             System.out.println("Выберите департамент для работы сотрудника:");
             String idDepartment = reader.readLine();
             Employee employee = new Employee();
-            String idDep = departmentService.findByID(idDepartment).getId();
             if (idDepartment == null) {
                 System.out.println("Некорректный id!");
                 return;
