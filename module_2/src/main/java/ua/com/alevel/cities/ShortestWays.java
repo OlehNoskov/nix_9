@@ -73,13 +73,13 @@ public class ShortestWays {
             shortestWay = "Путь очень длинный!";
         } else {
             String result = shortestPaths.get(finalIndex).getDistance() + " ";
-            shortestWay = shortestWay + result;
+            shortestWay += result;
         }
         try {
             writer.write(shortestWay);
             writer.write(System.lineSeparator());
         } catch (IOException e) {
-            System.out.println("Ошибка записи в файл!");;
+            System.out.println("Ошибка записи в файл!");
         }
     }
 
@@ -105,7 +105,7 @@ public class ShortestWays {
             shortestPaths.add(cityPath);
         }
         while (countOfVertexInTree < countOfVertices) {
-            int indexMin = getMin();
+            int indexMin = getMinCostWay();
             int minDistance = shortestPaths.get(indexMin).getDistance();
             if (minDistance == INFINITY) {
                 break;
@@ -141,7 +141,7 @@ public class ShortestWays {
         }
     }
 
-    private int getMin() {
+    private int getMinCostWay() {
         int min = INFINITY;
         int indexMin = 0;
         for (int i = 1; i < countOfVertices; i++) {
