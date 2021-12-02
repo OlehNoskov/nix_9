@@ -21,32 +21,32 @@
           <table class="table table-hover">
             <tr>
               <th>id</th>
-              <td th:text="${department.getId()}"></td>
+              <td th:text="${group.getId()}"></td>
             </tr>
             <tr>
               <th>type</th>
-              <td th:text="${department.getDepartmentType()}"></td>
+              <td th:text="${group.getGroupType()}"></td>
             </tr>
             <tr>
               <th>name</th>
-              <td th:text="${department.getName()}"></td>
+              <td th:text="${group.getName()}"></td>
             </tr>
             <tr>
               <th>created</th>
-              <td th:text="${#calendars.format(department.getCreated(),'dd MMMM yyyy')}"></td>
+              <td th:text="${#calendars.format(group.getCreated(),'dd MMMM yyyy')}"></td>
             </tr>
             <tr>
               <th>updated</th>
-              <td th:text="${#calendars.format(department.getUpdated(),'dd MMMM yyyy')}"></td>
+              <td th:text="${#calendars.format(group.getUpdated(),'dd MMMM yyyy')}"></td>
             </tr>
           </table>
           <hr>
           <div>
-            <a th:href="@{'/employees/new/' + ${department.getId()}}" type="button" class="btn btn-primary">Add new employee</a>
+            <a th:href="@{'/employees/new/' + ${group.getId()}}" type="button" class="btn btn-primary">Add new student</a>
           </div>
           <hr>
           <div>
-            <a th:href="@{'/employees/departments/' + ${department.getId()}}" type="button" class="btn btn-primary">Show all employee</a>
+            <a th:href="@{'/employees/departments/' + ${group.getId()}}" type="button" class="btn btn-primary">Show all student</a>
           </div>
         </div>
       </div>
