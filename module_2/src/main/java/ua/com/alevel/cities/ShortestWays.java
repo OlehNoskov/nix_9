@@ -14,8 +14,8 @@ public class ShortestWays {
     private final int INFINITY = 10000000;
 
     private List<Way> shortestPaths;
-    private Town citiesArray[];
-    private int relationMatrix[][];
+    private Town[] citiesArray;
+    private int[][] relationMatrix;
 
     private int countOfVertices;
     private int countOfVertexInTree;
