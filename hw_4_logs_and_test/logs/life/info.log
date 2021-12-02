@@ -4,3 +4,9 @@
 00:22:05.963 [main] INFO  info - Author finish created
 00:22:05.978 [main] WARN  info - Author start deleted
 00:22:05.978 [main] WARN  info - Author finish deleted
+16:40:50.392 [main] INFO  info - Author start created
+16:40:50.441 [main] INFO  info - Author finish created
+16:40:50.445 [main] INFO  info - Author start created
+16:40:50.445 [main] INFO  info - Author finish created
+16:40:50.448 [main] WARN  info - Author start deleted
+16:40:50.448 [main] WARN  info - Author finish deleted

@@ -1,22 +1,22 @@
 package ua.com.alevel.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+//import javax.persistence.Column;
+//import javax.persistence.Entity;
+//import javax.persistence.ManyToOne;
+//import javax.persistence.Table;
 
-@Entity
-@Table(name = "students")
+//@Entity
+//@Table(name = "students")
 public class Student extends BaseEntity{
-    @Column(name = "first_name")//Создание колонки в базе данных.По умолчанию название поля.
+//    @Column(name = "first_name")//Создание колонки в базе данных.По умолчанию название поля.
     private String firstname;
-
-    @Column(name = "last_name")
+//
+//    @Column(name = "last_name")
     private String lastname;
 
     private Integer age;
 
-    @ManyToOne//Это не обьект
+//    @ManyToOne//Это не обьект
     private Group group;
 
     public Student() {

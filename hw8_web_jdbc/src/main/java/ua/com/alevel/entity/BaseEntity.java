@@ -1,19 +1,19 @@
 package ua.com.alevel.entity;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.util.Date;
 
-@MappedSuperclass
+//@MappedSuperclass
 public abstract class BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
 
     public BaseEntity() {
@@ -21,10 +21,10 @@ public abstract class BaseEntity {
         this.updated = new Date();
     }
 
-    @PreUpdate
-    public void preUpdate() {
-        this.updated = new Date();
-    }
+//    @PreUpdate
+//    public void preUpdate() {
+//        this.updated = new Date();
+//    }
 
     public Long getId() {
         return id;
