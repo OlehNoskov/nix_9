@@ -22,7 +22,7 @@ public class MySqlJpaConfig implements JpaConfig {
 
     @Override
     public void connect() {
-        System.out.println("jpaPropertyConfig = " + jpaPropertyConfig);
+        //Соединение с базой данных (данные берет из файла application.properties)
         try {
             Class.forName(jpaPropertyConfig.getDriverClassName());
             connection = DriverManager.getConnection(

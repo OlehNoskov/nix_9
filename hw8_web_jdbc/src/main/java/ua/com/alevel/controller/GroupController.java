@@ -11,7 +11,7 @@ import ua.com.alevel.type.GroupType;
 import java.util.List;
 
 @Controller
-@RequestMapping("/departments")
+@RequestMapping("/groups")
 public class GroupController {
     private final GroupFacade groupFacade;
 
@@ -21,35 +21,35 @@ public class GroupController {
 
 
     @PostMapping("/new")
-    public String createNewGroup(@ModelAttribute("department") GroupRequestDto groupRequestDto) {
+    public String createNewGroup(@ModelAttribute("group") GroupRequestDto groupRequestDto) {
         groupFacade.create(groupRequestDto);
-        return "redirect:/departments";
+        return "redirect:/groups";
     }
 
     @GetMapping
     public String findAll(Model model) {
         List<GroupResponseDto> groups = groupFacade.findAll();
-        model.addAttribute("departments", groups);
-        return "pages/department/department_all";
+        model.addAttribute("groups", groups);
+        return "pages/group/group_all";
     }
 
     @GetMapping("/new")
     public String redirectToNewGroupPage(Model model) {
-        model.addAttribute("department", new GroupRequestDto());
+        model.addAttribute("group", new GroupRequestDto());
         model.addAttribute("types", GroupType.values());
-        return "pages/department/department_new";
+        return "pages/group/group_new";
     }
 
 
     @GetMapping("/details/{id}")
     public String findById(@PathVariable Long id, Model model) {
-        model.addAttribute("department", groupFacade.findById(id));
-        return "pages/department/department_details";
+        model.addAttribute("group", groupFacade.findById(id));
+        return "pages/group/group_details";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) {
         groupFacade.delete(id);
-        return "redirect:/departments";
+        return "redirect:/groups";
     }
 }

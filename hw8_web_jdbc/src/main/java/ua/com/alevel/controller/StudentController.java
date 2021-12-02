@@ -23,7 +23,7 @@ public class StudentController {
     public String findAllStudentsByGroupId(Model model, @PathVariable Long id) {
         List<StudentResponseDto> students = studentFacade.findAllByGroupId(id);
         model.addAttribute("employees", students);
-        return "pages/employee/employees_all";
+        return "pages/student/student_all";
     }
 
     @GetMapping("/new/{departmentId}")
@@ -33,7 +33,7 @@ public class StudentController {
         studentRequestDto.setGroupId(groupId);
         model.addAttribute("employee", studentRequestDto);
         model.addAttribute("departmentId", groupId);
-        return "pages/employee/employees_new";
+        return "pages/student/student_new";
     }
 
     @PostMapping("/new")
@@ -45,7 +45,7 @@ public class StudentController {
     @GetMapping("/details/{id}")
     public String findById(@PathVariable Long id, Model model) {
         model.addAttribute("employee", studentFacade.findById(id));
-        return "pages/employee/employees_details";
+        return "pages/student/student_details";
     }
 
     @GetMapping("/delete/{id}")
@@ -58,6 +58,6 @@ public class StudentController {
     public String findAll(Model model) {
         List<StudentResponseDto> students = studentFacade.findAll();
         model.addAttribute("employees", students);
-        return "pages/employee/employees_all";
+        return "pages/student/student_all";
     }
 }

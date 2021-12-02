@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ua.com.alevel.dao.StudentDao;
 import ua.com.alevel.entity.Student;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -35,7 +36,8 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public List<Student> findAll() {
-        return null;
+
+        return Collections.emptyList();
     }
 
     @Override
@@ -45,6 +47,6 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public List<Student> findAllByGroupId(Long groupId) {
-        return null;
+        return Collections.emptyList();
     }
 }

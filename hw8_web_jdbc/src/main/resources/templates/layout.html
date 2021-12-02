@@ -4,17 +4,17 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Главная страница</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="/css/app.css" rel="stylesheet">
+  <link href="../static/css/app.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
   <nav class="navbar navbar-dark bg-dark">
-    <a class="nav-item nav-link" th:href="@{/departments}">Departments</a>
-    <a class="nav-item nav-link" th:href="@{/departments/new}">Create new department</a>
-    <a class="nav-item nav-link" th:href="@{/employees}">Employees</a>
+    <a class="nav-item nav-link" th:href="@{/groups}">Groups</a>
+    <a class="nav-item nav-link" th:href="@{/groups/new}">Create new group</a>
+    <a class="nav-item nav-link" th:href="@{/employees}">Students</a>
   </nav>
   <section layout:fragment="content"></section>
 </div>

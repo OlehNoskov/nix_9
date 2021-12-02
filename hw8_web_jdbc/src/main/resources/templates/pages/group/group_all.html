@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
     <meta charset="utf-8">
-    <title>Departments</title>
+    <title>Groups</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card mb-2 mt-2">
                 <div class="card-header">
-                    All Departments
+                    All Groups
                 </div>
                 <div class="card-body">
                     <table class="table table-sm table-hover">
@@ -30,13 +30,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="department,iter : ${departments}">
+                        <tr th:each="department,iter : ${groups}">
                             <td th:text="${iter.count}"></td>
-                            <td th:text="${department.getName()}"></td>
+                            <td th:text="${group.getNameGroup()}"></td>
                             <td th:text="${department.getDepartmentType().name()}"></td>
                             <td th:text="${#calendars.format(department.getCreated(),'dd MMMM yyyy')}"></td>
                             <td>
-                                <a th:href="@{'/departments/details/' + ${department.getId()}}" type="button" class="btn btn-primary">details</a>
+                                <a th:href="@{'/departments/details/' + ${group.getId()}}" type="button" class="btn btn-primary">details</a>
                             </td>
                             <td>
                                 <a th:href="@{'/departments/delete/' + ${department.getId()}}" type="button" class="btn btn-danger">delete</a>

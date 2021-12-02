@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Главная страница</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,8 +13,9 @@
 <body>
 <div class="container">
   <nav class="navbar navbar-dark bg-dark justify-content-center">
-    <a class="nav-item nav-link" th:href="@{/students}">Students</a>
     <a class="nav-item nav-link" th:href="@{/groups}">Groups</a>
+    <a class="nav-item nav-link" th:href="@{/groups/new}"> Create new groups</a>
+    <a class="nav-item nav-link" th:href="@{/students}">Students</a>
   </nav>
 
   <div class="row mt-2" th:if="${showMessage}">
