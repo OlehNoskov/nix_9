@@ -53,22 +53,40 @@ public class ListDates {
             for (String date : inputListDates) {
                 if (date.matches(regex1)) {
                     String[] arrayDate = date.trim().split("/");
-                    for (int i = 0; i < arrayDate.length; i++) {
-                        stringBuilder.append(arrayDate[i]);
+                    if (DateValid.calendarIsValid(Integer.parseInt(arrayDate[0]),
+                            Integer.parseInt(arrayDate[1]),
+                            Integer.parseInt(arrayDate[2]))) {
+                        for (int i = 0; i < arrayDate.length; i++) {
+                            stringBuilder.append(arrayDate[i]);
+                        }
+                        stringBuilder.append("\n");
                     }
-                    stringBuilder.append("\n");
                 } else if (date.matches(regex3)) {
                     String[] arrayDate2 = date.trim().split("-");
-                    stringBuilder.append(arrayDate2[2]);
-                    stringBuilder.append(arrayDate2[0]);
-                    stringBuilder.append(arrayDate2[1]);
-                    stringBuilder.append("\n");
+                    String year = arrayDate2[2];
+                    String month = arrayDate2[0];
+                    String day = arrayDate2[1];
+                    if (DateValid.calendarIsValid(Integer.parseInt(year),
+                            Integer.parseInt(month),
+                            Integer.parseInt(day))) {
+                        stringBuilder.append(year);
+                        stringBuilder.append(month);
+                        stringBuilder.append(day);
+                        stringBuilder.append("\n");
+                    }
                 } else if (date.matches(regex2)) {
                     String[] arrayDate1 = date.trim().split("/");
-                    for (int i = arrayDate1.length - 1; i >= 0; i--) {
-                        stringBuilder.append(arrayDate1[i]);
+                    String year = arrayDate1[2];
+                    String month = arrayDate1[1];
+                    String day = arrayDate1[0];
+                    if (DateValid.calendarIsValid(Integer.parseInt(year),
+                            Integer.parseInt(month),
+                            Integer.parseInt(day))) {
+                        for (int i = arrayDate1.length - 1; i >= 0; i--) {
+                            stringBuilder.append(arrayDate1[i]);
+                        }
+                        stringBuilder.append("\n");
                     }
-                    stringBuilder.append("\n");
                 }
             }
             outputListDates.add(stringBuilder.toString());
