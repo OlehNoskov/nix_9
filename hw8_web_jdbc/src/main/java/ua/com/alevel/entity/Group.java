@@ -2,18 +2,11 @@ package ua.com.alevel.entity;
 
 import ua.com.alevel.type.GroupType;
 
-//import javax.persistence.*;
+public class Group extends BaseEntity {
 
-//@Entity
-//@Table(name = "groups")
-public class Group extends BaseEntity{
-
-//    @Enumerated(EnumType.STRING)//Хранение значений enum в качестве строки(по умолчания как число(ORDINAL))
-//    @Column(name = "group_type", nullable = false, updatable = false)
     private GroupType groupType;
 
-//    @Column(nullable = false, unique = true)//unique-в базе мы не может хранить одинаковые имена групп.
-    private String nameGroup;
+    private String name;
 
     public Group() {
         super();
@@ -28,10 +21,10 @@ public class Group extends BaseEntity{
     }
 
     public String getNameGroup() {
-        return nameGroup;
+        return name;
     }
 
-    public void setNameGroup(String nameGroup) {
-        this.nameGroup = nameGroup;
+    public void setNameGroup(String name) {
+        this.name = name;
     }
 }

@@ -11,7 +11,6 @@ import ua.com.alevel.config.jpa.JpaPropertyConfig;
 
 @SpringBootApplication
 @EnableConfigurationProperties(JpaPropertyConfig.class)
-
 public class WebJdbcApplication {
     private final JpaConfig jpaConfig;
 

@@ -1,28 +1,16 @@
 package ua.com.alevel.entity;
 
-//import javax.persistence.*;
 import java.util.Date;
 
-//@MappedSuperclass
 public abstract class BaseEntity {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-//    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-
-//    @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
+    private Boolean visible;
 
     public BaseEntity() {
         this.created = new Date();
-        this.updated = new Date();
-    }
-
-//    @PreUpdate
-    public void preUpdate() {
         this.updated = new Date();
     }
 
@@ -48,5 +36,13 @@ public abstract class BaseEntity {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
     }
 }
