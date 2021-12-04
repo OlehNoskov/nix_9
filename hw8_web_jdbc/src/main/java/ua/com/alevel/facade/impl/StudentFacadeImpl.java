@@ -1,13 +1,20 @@
 package ua.com.alevel.facade.impl;
 
 import org.springframework.stereotype.Service;
-import ua.com.alevel.dto.student.StudentRequestDto;
-import ua.com.alevel.dto.student.StudentResponseDto;
-import ua.com.alevel.entity.Group;
-import ua.com.alevel.entity.Student;
+
+import org.springframework.web.context.request.WebRequest;
+
+import ua.com.alevel.persistence.datatable.DataTableRequest;
+import ua.com.alevel.persistence.datatable.DataTableResponse;
+import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.facade.StudentFacade;
-import ua.com.alevel.service.GroupService;
 import ua.com.alevel.service.StudentService;
+import ua.com.alevel.util.WebRequestUtil;
+import ua.com.alevel.view.dto.request.PageAndSizeData;
+import ua.com.alevel.view.dto.request.SortData;
+import ua.com.alevel.view.dto.request.StudentRequestDto;
+import ua.com.alevel.view.dto.response.PageData;
+import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,22 +22,18 @@ import java.util.stream.Collectors;
 @Service
 public class StudentFacadeImpl implements StudentFacade {
 
-    private final GroupService groupService;
     private final StudentService studentService;
 
-    public StudentFacadeImpl(GroupService groupService, StudentService studentService) {
-        this.groupService = groupService;
+    public StudentFacadeImpl(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @Override
     public void create(StudentRequestDto studentRequestDto) {
-        Group group = groupService.findById(studentRequestDto.getGroupId());
         Student student = new Student();
         student.setFirstname(studentRequestDto.getFirstname());
         student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
-        student.setGroup(group);
         studentService.create(student);
     }
 
@@ -54,18 +57,22 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public List<StudentResponseDto> findAll() {
-        return convertToDtoByEntity(studentService.findAll());
-    }
+    public PageData<StudentResponseDto> findAll(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
 
-    @Override
-    public List<StudentResponseDto> findAllByGroupId(Long groupId) {
-        return convertToDtoByEntity(studentService.findAllByGroupId(groupId));
-    }
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setOrder(sortData.getOrder());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setCurrentPage(pageAndSizeData.getPage());
+        dataTableRequest.setPageSize(dataTableRequest.getPageSize());
 
-    private List<StudentResponseDto> convertToDtoByEntity(List<Student> students) {
-        return students.stream()
-                .map(StudentResponseDto::new)
-                .collect(Collectors.toList());
+        DataTableResponse<Student> all = studentService.findAll(dataTableRequest);
+
+        PageData<StudentResponseDto> pageData = new PageData<>();
+        List<StudentResponseDto> items = all.getItems().stream().map(StudentResponseDto::new).collect(Collectors.toList());
+        pageData.setItems(items);
+
+        return pageData;
     }
 }

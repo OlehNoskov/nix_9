@@ -3,7 +3,7 @@ package ua.com.alevel.db.impl;
 import ua.com.alevel.CustomCSVRead;
 import ua.com.alevel.CustomCSVWrite;
 import ua.com.alevel.db.EmployeeDB;
-import ua.com.alevel.entity.Employee;
+import ua.com.alevel.persistence.entity.Employee;
 
 import java.util.ArrayList;
 import java.util.List;

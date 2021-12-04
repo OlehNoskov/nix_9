@@ -5,8 +5,8 @@ import ua.com.alevel.CustomCSVWrite;
 
 import ua.com.alevel.db.DepartmentDB;
 
-import ua.com.alevel.entity.Department;
-import ua.com.alevel.entity.Employee;
+import ua.com.alevel.persistence.entity.Department;
+import ua.com.alevel.persistence.entity.Employee;
 
 import ua.com.alevel.service.EmployeeService;
 import ua.com.alevel.service.impl.EmployeeServiceImpl;

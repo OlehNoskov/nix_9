@@ -1,6 +1,6 @@
 package ua.com.alevel.db;
 
-import ua.com.alevel.entity.Employee;
+import ua.com.alevel.persistence.entity.Employee;
 
 public interface EmployeeDB extends BaseDB<Employee> {
 }

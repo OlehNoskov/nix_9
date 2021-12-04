@@ -3,7 +3,7 @@ package ua.com.alevel.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.com.alevel.db.BookDataBase;
-import ua.com.alevel.entity.Book;
+import ua.com.alevel.persistence.entity.Book;
 
 public class BookService {
 

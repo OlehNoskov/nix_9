@@ -1,6 +1,6 @@
 package ua.com.alevel;
 
-import ua.com.alevel.controller.BaseController;
+import ua.com.alevel.view.controller.BaseController;
 
 import java.io.IOException;
 

@@ -1,7 +1,7 @@
 package ua.com.alevel.service.impl;
 
-import ua.com.alevel.dao.impl.DepartmentDaoImpl;
-import ua.com.alevel.entity.Department;
+import ua.com.alevel.persistence.dao.impl.DepartmentDaoImpl;
+import ua.com.alevel.persistence.entity.Department;
 import ua.com.alevel.service.DepartmentService;
 
 import java.io.IOException;

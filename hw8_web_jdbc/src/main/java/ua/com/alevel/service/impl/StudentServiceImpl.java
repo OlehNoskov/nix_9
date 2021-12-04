@@ -2,11 +2,11 @@ package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import ua.com.alevel.dao.StudentDao;
-import ua.com.alevel.entity.Student;
+import ua.com.alevel.persistence.dao.StudentDao;
+import ua.com.alevel.persistence.datatable.DataTableRequest;
+import ua.com.alevel.persistence.datatable.DataTableResponse;
+import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.StudentService;
-
-import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -38,12 +38,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> findAll() {
-        return studentDao.findAll();
-    }
-
-    @Override
-    public List<Student> findAllByGroupId(Long groupId) {
-        return studentDao.findAllByGroupId(groupId);
+    public DataTableResponse<Student> findAll(DataTableRequest request) {
+        return studentDao.findAll(request);
     }
 }

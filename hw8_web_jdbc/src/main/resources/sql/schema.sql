@@ -9,8 +9,8 @@ create table course
     created    datetime(6) null,
     updated    datetime(6) null,
     visible    bit null,
-    name varchar(255) not null,
-    group_type  varchar(255) not null
+    name varchar(255) not null
+#     group_type  varchar(255) not null
 );
 
 create table students

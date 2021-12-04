@@ -1,6 +1,6 @@
 package ua.com.alevel.db;
 
-import ua.com.alevel.entity.BaseEntity;
+import ua.com.alevel.persistence.entity.BaseEntity;
 
 import java.io.IOException;
 import java.util.Collection;

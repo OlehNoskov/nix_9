@@ -1,6 +1,6 @@
 package ua.com.alevel;
 
-import ua.com.alevel.controller.UserController;
+import ua.com.alevel.view.controller.UserController;
 
 public class StartOOPMain {
     public static void main(String[] args) {

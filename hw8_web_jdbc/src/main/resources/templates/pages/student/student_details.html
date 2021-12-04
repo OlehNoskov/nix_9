@@ -1,66 +1,95 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
-<head>
-  <meta charset="utf-8">
-  <title>Details Employee</title>
-</head>
-<body>
 
-<div layout:fragment="content">
 
-  <div class="row">
-    <div class="col-12">
-      <div class="card mb-2 mt-2">
-        <div class="card-header">
-          Details Employee
-        </div>
-        <div class="card-body">
-          <table class="table table-hover">
-            <tr>
-              <th>id</th>
-              <td th:text="${student.getId()}"></td>
-            </tr>
-            <tr>
-              <th>first name</th>
-              <td th:text="${student.getFirstname()}"></td>
-            </tr>
-            <tr>
-              <th>last name</th>
-              <td th:text="${student.getLastname()}"></td>
-            </tr>
-            <tr>
-              <th>age</th>
-              <td th:text="${student.getAge()}"></td>
-            </tr>
-            <tr>
-              <th>created</th>
-              <td th:text="${#calendars.format(student.getCreated(),'dd MMMM yyyy')}"></td>
-            </tr>
-            <tr>
-              <th>updated</th>
-              <td th:text="${#calendars.format(student.getUpdated(),'dd MMMM yyyy')}"></td>
-            </tr>
-            <tr>
-              <th>department id</th>
-              <td>
-                <a th:href="@{'/groups/details/' + ${student.getGroup().getId()}}" type="button" class="btn btn-link" th:text="${student.getGroup().getId()}">details</a>
-              </td>
-            </tr>
-            <tr>
-              <th>department type</th>
-              <td th:text="${student.getGroup().getGroupType()}"></td>
-            </tr>
-          </table>
-          <hr>
-        </div>
-      </div>
-    </div>
-  </div>
 
-</div>
 
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout}">-->
+<!--<head>-->
+<!--  <meta charset="utf-8">-->
+<!--  <title>Details Employee</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div layout:fragment="content">-->
+
+<!--  <div class="row">-->
+<!--    <div class="col-12">-->
+<!--      <div class="card mb-2 mt-2">-->
+<!--        <div class="card-header">-->
+<!--          Details Employee-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--          <table class="table table-hover">-->
+<!--            <tr>-->
+<!--              <th>id</th>-->
+<!--              <td th:text="${student.getId()}"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <th>first name</th>-->
+<!--              <td th:text="${student.getFirstname()}"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <th>last name</th>-->
+<!--              <td th:text="${student.getLastname()}"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <th>age</th>-->
+<!--              <td th:text="${student.getAge()}"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <th>created</th>-->
+<!--              <td th:text="${#calendars.format(student.getCreated(),'dd MMMM yyyy')}"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <th>updated</th>-->
+<!--              <td th:text="${#calendars.format(student.getUpdated(),'dd MMMM yyyy')}"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <th>department id</th>-->
+<!--              <td>-->
+<!--                <a th:href="@{'/groups/details/' + ${student.getGroup().getId()}}" type="button" class="btn btn-link" th:text="${student.getGroup().getId()}">details</a>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <th>department type</th>-->
+<!--              <td th:text="${student.getGroup().getGroupType()}"></td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--          <hr>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->

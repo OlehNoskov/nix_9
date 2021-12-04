@@ -1,6 +1,6 @@
 package ua.com.alevel;
 
-import ua.com.alevel.controller.impl.BaseControllerImpl;
+import ua.com.alevel.view.controller.impl.BaseControllerImpl;
 
 public class Main {
 

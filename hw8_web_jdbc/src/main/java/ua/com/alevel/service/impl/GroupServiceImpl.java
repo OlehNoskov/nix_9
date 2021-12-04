@@ -2,21 +2,20 @@ package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import ua.com.alevel.dao.GroupDao;
-import ua.com.alevel.dao.StudentDao;
-import ua.com.alevel.entity.Group;
-import ua.com.alevel.service.GroupService;
+import ua.com.alevel.persistence.dao.GroupDao;
+import ua.com.alevel.persistence.datatable.DataTableRequest;
+import ua.com.alevel.persistence.datatable.DataTableResponse;
+import ua.com.alevel.persistence.entity.Group;
 
-import java.util.List;
+import ua.com.alevel.service.GroupService;
 
 @Service
 public class GroupServiceImpl implements GroupService {
-    private final GroupDao groupDao;
-    private final StudentDao studentDao;
 
-    public GroupServiceImpl(GroupDao groupDao, StudentDao studentDao) {
+    private final GroupDao groupDao;
+
+    public GroupServiceImpl(GroupDao groupDao) {
         this.groupDao = groupDao;
-        this.studentDao = studentDao;
     }
 
     @Override
@@ -31,10 +30,10 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void delete(Long id) {
-        if(groupDao.existById(id)){
-            studentDao.deleteAllByGroupId(id);
-            groupDao.delete(id);
-        }
+//        if(groupDao.existById(id)){
+//            studentDao.deleteAllByGroupId(id);
+//            groupDao.delete(id);
+//        }
     }
 
     @Override
@@ -43,7 +42,10 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<Group> findAll() {
-        return groupDao.findAll();
+    public DataTableResponse<Group> findAll(DataTableRequest request) {
+        DataTableResponse<Group> dataTableResponse = groupDao.findAll(request);
+        long count = groupDao.count();
+        dataTableResponse.setItemsSize(count);
+        return dataTableResponse;
     }
 }

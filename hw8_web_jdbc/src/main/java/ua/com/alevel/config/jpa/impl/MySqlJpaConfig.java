@@ -11,6 +11,7 @@ import java.sql.Statement;
 
 @Service
 public class MySqlJpaConfig implements JpaConfig {
+
     private final JpaPropertyConfig jpaPropertyConfig;
 
     private Connection connection;

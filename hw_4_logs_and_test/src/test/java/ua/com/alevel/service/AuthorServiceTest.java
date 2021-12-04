@@ -3,7 +3,7 @@ package ua.com.alevel.service;
 import org.junit.Test;
 import org.junit.jupiter.api.*;
 
-import ua.com.alevel.entity.Author;
+import ua.com.alevel.persistence.entity.Author;
 
 import java.util.Arrays;
 

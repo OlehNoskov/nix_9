@@ -1,8 +1,8 @@
 package ua.com.alevel.service.impl;
 
-import ua.com.alevel.dao.EmployeeDao;
-import ua.com.alevel.dao.impl.EmployeeDaoImpl;
-import ua.com.alevel.entity.Employee;
+import ua.com.alevel.persistence.dao.EmployeeDao;
+import ua.com.alevel.persistence.dao.impl.EmployeeDaoImpl;
+import ua.com.alevel.persistence.entity.Employee;
 import ua.com.alevel.service.EmployeeService;
 
 import java.io.IOException;
