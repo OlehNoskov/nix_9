@@ -2,25 +2,24 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/data_table}">
+      layout:decorate="~{/templates/fragments/data_table}">
 <head>
     <meta charset="utf-8">
-    <title>authors</title>
+    <title>Groups</title>
 </head>
 <body>
 
 <div layout:fragment="data_table_content">
 
-    <tr th:each="author,iter : ${pageData.getItems()}">
+    <tr th:each="group,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
-        <td th:text="${author.getFirstName()}"></td>
-        <td th:text="${author.getLastName()}"></td>
-        <td th:text="${author.getBookCount()}"></td>
+        <td th:text="${group.getName()}"></td>
+        <td th:text="${group.getStudentCount()}"></td>
         <td>
-            <a th:href="@{'/authors/details/' + ${author.getId()}}" type="button" class="btn btn-primary">details</a>
+            <a th:href="@{'/authors/details/' + ${group.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
         <td>
-            <a th:href="@{'/authors/delete/' + ${author.getId()}}" type="button" class="btn btn-danger">delete</a>
+            <a th:href="@{'/authors/delete/' + ${group.getId()}}" type="button" class="btn btn-danger">delete</a>
         </td>
     </tr>
 

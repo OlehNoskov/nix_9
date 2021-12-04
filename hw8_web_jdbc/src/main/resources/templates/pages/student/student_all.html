@@ -23,20 +23,19 @@
               <th>first name</th>
               <th>last name</th>
               <th>age</th>
-              <th>group id</th>
               <th>created</th>
               <th>details</th>
               <th>delete</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="student,iter : ${students}">
+            <tr th:each="student,iter : ${pageData.getItems()}">
               <td th:text="${iter.count}"></td>
               <td th:text="${student.getFirstname()}"></td>
               <td th:text="${student.getLastname()}"></td>
               <td th:text="${student.getAge()}"></td>
               <td>
-                <a th:href="@{'/students/details/' + ${student.getGroup().getId()}}" type="button" class="btn btn-link" th:text="${student.getGroup().getId()}">details</a>
+<!--                <a th:href="@{'/students/details/' + ${student}}" type="button" class="btn btn-link" th:text="${student}">details</a>-->
               </td>
               <td th:text="${#calendars.format(student.getCreated(),'dd MMMM yyyy')}"></td>
               <td>

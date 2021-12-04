@@ -29,22 +29,26 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public void create(GroupRequestDto groupRequestDto) {
-
+        Group group = new Group();
+        group.setNameGroup(groupRequestDto.getName());
+        groupService.create(group);
     }
 
     @Override
     public void update(GroupRequestDto groupRequestDto, Long id) {
-
+        Group group = groupService.findById(id);
+        group.setNameGroup(group.getNameGroup());
+        groupService.update(group);
     }
 
     @Override
     public void delete(Long id) {
-
+        groupService.delete(id);
     }
 
     @Override
     public GroupResponseDto findById(Long id) {
-        return null;
+        return new GroupResponseDto(groupService.findById(id));
     }
 
     @Override
@@ -77,38 +81,3 @@ public class GroupFacadeImpl implements GroupFacade {
         return pageData;
     }
 }
-//
-//    @Override
-//    public void create(GroupRequestDto groupRequestDto) {
-//        Group group = new Group();
-//        group.setGroupType(groupRequestDto.getGroupType());
-//        group.setNameGroup(groupRequestDto.getName());
-//        groupService.create(group);
-//    }
-//
-//    @Override
-//    public void update(GroupRequestDto groupRequestDto, Long id) {
-//        Group group = groupService.findById(id);
-//        group.setGroupType(groupRequestDto.getGroupType());
-//        group.setNameGroup(groupRequestDto.getName());
-//        groupService.update(group);
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//    groupService.delete(id);
-//    }
-//
-//    @Override
-//    public GroupResponseDto findById(Long id) {
-//        Group group = groupService.findById(id);
-//        return new GroupResponseDto(group);
-//    }
-//
-//    @Override
-//    public List<GroupResponseDto> findAll() {
-//        return groupService.findAll()
-//                .stream()
-//                .map(GroupResponseDto::new)
-//                .collect(Collectors.toList());
-//    }
