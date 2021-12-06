@@ -3,6 +3,7 @@ package ua.com.alevel.service.impl;
 import org.springframework.stereotype.Service;
 
 import ua.com.alevel.persistence.dao.GroupDao;
+import ua.com.alevel.persistence.dao.StudentDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
@@ -13,9 +14,11 @@ import ua.com.alevel.service.GroupService;
 public class GroupServiceImpl implements GroupService {
 
     private final GroupDao groupDao;
+//    private  final StudentDao studentDao;
 
     public GroupServiceImpl(GroupDao groupDao) {
         this.groupDao = groupDao;
+//        this.studentDao = studentDao;
     }
 
     @Override
@@ -31,7 +34,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void delete(Long id) {
 //        if(groupDao.existById(id)){
-//            studentDao.deleteAllByGroupId(id);
+//            studentDao.delete(id);
 //            groupDao.delete(id);
 //        }
     }

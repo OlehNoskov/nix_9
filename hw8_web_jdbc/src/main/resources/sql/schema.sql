@@ -10,6 +10,7 @@ create table course
     updated    datetime(6) null,
     visible    bit null,
     name varchar(255) not null
+
 );
 
 create table students
