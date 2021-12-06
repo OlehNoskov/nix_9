@@ -7,7 +7,7 @@ import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
-import ua.com.alevel.type.GroupType;
+//import ua.com.alevel.type.GroupType;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +37,7 @@ public class StudentDaoImpl implements StudentDao {
             preparedStatement.setString(3, student.getFirstname());
             preparedStatement.setString(4, student.getLastname());
             preparedStatement.setInt(5, student.getAge());
-            preparedStatement.setLong(6, student.getGroup().getId());
+//            preparedStatement.setLong(6, student.getGroup().getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("problem: = " + e.getMessage());
@@ -102,40 +102,40 @@ public class StudentDaoImpl implements StudentDao {
         return 0;
     }
 
-    @Override
-    public List<Student> findAll() {
-        List<Student> students = new ArrayList<>();
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY)) {
-            while (resultSet.next()) {
-                students.add(initStudentByResultSet(resultSet));
-            }
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
-        return students;
-    }
+//    @Override
+//    public List<Student> findAll() {
+//        List<Student> students = new ArrayList<>();
+//        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY)) {
+//            while (resultSet.next()) {
+//                students.add(initStudentByResultSet(resultSet));
+//            }
+//        } catch (SQLException e) {
+//            System.out.println("problem: = " + e.getMessage());
+//        }
+//        return students;
+//    }
 
-    @Override
-    public void deleteAllByGroupId(Long groupId) {
-        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(DELETE_STUDENTS_BY_GROUP_ID_QUERY + groupId)) {
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
-    }
+//    @Override
+//    public void deleteAllByGroupId(Long groupId) {
+//        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(DELETE_STUDENTS_BY_GROUP_ID_QUERY + groupId)) {
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            System.out.println("problem: = " + e.getMessage());
+//        }
+//    }
 
-    @Override
-    public List<Student> findAllByGroupId(Long groupId) {
-        List<Student> students = new ArrayList<>();
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_BY_GROUP_ID_QUERY + groupId)) {
-            while (resultSet.next()) {
-                students.add(initStudentByResultSet(resultSet));
-            }
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
-        return students;
-    }
+//    @Override
+//    public List<Student> findAllByGroupId(Long groupId) {
+//        List<Student> students = new ArrayList<>();
+//        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_BY_GROUP_ID_QUERY + groupId)) {
+//            while (resultSet.next()) {
+//                students.add(initStudentByResultSet(resultSet));
+//            }
+//        } catch (SQLException e) {
+//            System.out.println("problem: = " + e.getMessage());
+//        }
+//        return students;
+//    }
 
     private Student initStudentByResultSet(ResultSet resultSet) throws SQLException {
         Student student = new Student();
@@ -161,11 +161,11 @@ public class StudentDaoImpl implements StudentDao {
 
         group.setId(groupId);
         group.setNameGroup(name);
-        group.setGroupType(GroupType.valueOf(groupType));
+//        group.setGroupType(GroupType.valueOf(groupType));
         group.setCreated(new Date(groupCreated.getTime()));
         group.setUpdated(new Date(groupUpdated.getTime()));
 
-        student.setGroup(group);
+//        student.setGroup(group);
         return student;
     }
 }

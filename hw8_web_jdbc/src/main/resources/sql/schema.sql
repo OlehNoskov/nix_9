@@ -1,6 +1,6 @@
-drop table course if exists;
-drop table students if exists;
-drop table course_student if exists;
+DROP TABLE course IF EXISTS course;
+DROP TABLE students IF EXISTS students;
+DROP TABLE course_student IF EXISTS course_student;
 
 create table course
 (
@@ -10,7 +10,6 @@ create table course
     updated    datetime(6) null,
     visible    bit null,
     name varchar(255) not null
-#     group_type  varchar(255) not null
 );
 
 create table students
