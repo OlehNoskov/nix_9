@@ -13,7 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static ua.com.alevel.persistence.dao.query.JpaQueryUtil.*;
 
@@ -21,6 +23,8 @@ import static ua.com.alevel.persistence.dao.query.JpaQueryUtil.*;
 public class StudentDaoImpl implements StudentDao {
 
     private final JpaConfig jpaConfig;
+
+    private static final String FIND_ALL_STUDENTS_QUERY = "select * from students";
 
     public StudentDaoImpl(JpaConfig jpaConfig) {
         this.jpaConfig = jpaConfig;
@@ -79,7 +83,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student findById(Long id) {
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_STUDENT_BY_ID_QUERY + id)) {
+        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY + id)) {
             while (resultSet.next()) {
                 return initStudentByResultSet(resultSet);
             }
@@ -91,7 +95,17 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest request) {
-        return null;
+        List<Student> students = new ArrayList<>();
+        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY)) {
+            while (resultSet.next()) {
+                students.add(initStudentByResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            System.out.println("problem: = " + e.getMessage());
+        }
+        DataTableResponse<Student> dataTableResponse = new DataTableResponse<>();
+        dataTableResponse.setItems(students);
+        return dataTableResponse;
     }
 
     @Override
@@ -119,7 +133,7 @@ public class StudentDaoImpl implements StudentDao {
         Timestamp groupCreated = resultSet.getTimestamp("group.created");
         Timestamp groupUpdated = resultSet.getTimestamp("group.updated");
         String name = resultSet.getString("name");
-        String groupType = resultSet.getString("group_type");
+//        String groupType = resultSet.getString("group_type");
 
         group.setId(groupId);
         group.setNameGroup(name);

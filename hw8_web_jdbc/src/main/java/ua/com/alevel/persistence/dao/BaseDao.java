@@ -13,6 +13,5 @@ public interface BaseDao <ENTITY extends BaseEntity> {
     boolean existById(Long id);
     ENTITY findById(Long id);
     DataTableResponse<ENTITY> findAll(DataTableRequest request);
-    List<ENTITY> findAll();
     long count();
 }
