@@ -4,20 +4,20 @@ import ua.com.alevel.type.GroupType;
 
 public class Group extends BaseEntity {
 
-    private GroupType groupType;
+//    private GroupType groupType;
     private String name;
 
     public Group() {
         super();
     }
 
-    public GroupType getGroupType() {
-        return groupType;
-    }
-
-    public void setGroupType(GroupType groupType) {
-        this.groupType = groupType;
-    }
+//    public GroupType getGroupType() {
+//        return groupType;
+//    }
+//
+//    public void setGroupType(GroupType groupType) {
+//        this.groupType = groupType;
+//    }
 
     public String getNameGroup() {
         return name;

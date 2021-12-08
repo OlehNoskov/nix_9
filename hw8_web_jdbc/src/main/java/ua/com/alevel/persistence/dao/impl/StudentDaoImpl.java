@@ -7,16 +7,13 @@ import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
-//import ua.com.alevel.type.GroupType;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import static ua.com.alevel.persistence.dao.query.JpaQueryUtil.*;
 
@@ -101,41 +98,6 @@ public class StudentDaoImpl implements StudentDao {
     public long count() {
         return 0;
     }
-
-//    @Override
-//    public List<Student> findAll() {
-//        List<Student> students = new ArrayList<>();
-//        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY)) {
-//            while (resultSet.next()) {
-//                students.add(initStudentByResultSet(resultSet));
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("problem: = " + e.getMessage());
-//        }
-//        return students;
-//    }
-
-//    @Override
-//    public void deleteAllByGroupId(Long groupId) {
-//        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(DELETE_STUDENTS_BY_GROUP_ID_QUERY + groupId)) {
-//            preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//            System.out.println("problem: = " + e.getMessage());
-//        }
-//    }
-
-//    @Override
-//    public List<Student> findAllByGroupId(Long groupId) {
-//        List<Student> students = new ArrayList<>();
-//        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_BY_GROUP_ID_QUERY + groupId)) {
-//            while (resultSet.next()) {
-//                students.add(initStudentByResultSet(resultSet));
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("problem: = " + e.getMessage());
-//        }
-//        return students;
-//    }
 
     private Student initStudentByResultSet(ResultSet resultSet) throws SQLException {
         Student student = new Student();

@@ -3,10 +3,12 @@ package ua.com.alevel.persistence.dao.impl;
 import org.springframework.stereotype.Service;
 import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.GroupDao;
+import ua.com.alevel.persistence.dao.query.JpaQueryUtil;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static ua.com.alevel.persistence.dao.query.JpaQueryUtil.*;
 
 @Service
 public class GroupDaoImpl implements GroupDao {
@@ -25,18 +29,49 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public void create(Group entity) {
-
+    public void create(Group group) {
+        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(CREATE_GROUP_QUERY)) {
+            preparedStatement.setTimestamp(1, new Timestamp(group.getCreated().getTime()));
+            preparedStatement.setTimestamp(2, new Timestamp(group.getUpdated().getTime()));
+            preparedStatement.setBoolean(3, group.getVisible());
+            preparedStatement.setString(4, group.getNameGroup());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println("e = " + e.getMessage());
+        }
     }
 
     @Override
-    public void update(Group entity) {
-
+    public void update(Group group) {
+        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(UPDATE_BY_ID_QUERY)) {
+            preparedStatement.setTimestamp(1, new Timestamp(group.getUpdated().getTime()));
+            preparedStatement.setString(2, group.getNameGroup());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("e = " + e.getMessage());
+        }
     }
 
     @Override
     public void delete(Long id) {
+        try {
+            PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(DELETE_GROUP_BY_ID_QUERY + id);
+            PreparedStatement preparedStatement2 = jpaConfig.getConnection().prepareStatement(FIND_ALL_STUDENTS_BY_GROUP_ID_QUERY + id);
+            preparedStatement2.executeUpdate();
+            preparedStatement.executeUpdate();
 
+            ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_PERSON_WITH_COUNTRY_COUNT_QUERY);
+            while (resultSet.next()) {
+                int count = resultSet.getInt("countryCount");
+                if (count == 0) {
+                    long personId = resultSet.getLong("id");
+                    PreparedStatement preparedStatement3 = jpaConfig.getConnection().prepareStatement(DO_PERSON_NOT_VISIBLE_QUERY + personId);
+                    preparedStatement3.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("e = " + e.getMessage());
+        }
     }
 
     @Override
@@ -46,32 +81,33 @@ public class GroupDaoImpl implements GroupDao {
 
     @Override
     public Group findById(Long id) {
-        return null;
+        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_GROUP_BY_ID_QUERY + id)) {
+            while (resultSet.next()) {
+                return initGroupByResultSet(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Group();
     }
 
     @Override
     public DataTableResponse<Group> findAll(DataTableRequest request) {
-        List<Group> groups = new ArrayList<>();
+        List<Group> companies = new ArrayList<>();
         Map<Object, Object> otherParamMap = new HashMap<>();
-
-        int limit = (request.getCurrentPage() - 1) * request.getPageSize();
-
-        String sql = "select id, created, updated, visible, name, count(*) as studentCount from course join course_student ab on course.id = ab.student_id group by course_id order by " +
-                request.getSort() + " " +
-                request.getOrder() + " limit " +
-                limit + "," +
-                request.getPageSize();
-
-        System.out.println("sql = " + sql);
-
-        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(sql)) {
+        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(JpaQueryUtil.getQueryCompanyFindAll(request))) {
             while (resultSet.next()) {
-                GroupResultSet groupResultSet = convertResultSetToGroup(resultSet);
-                groups.add(groupResultSet.getGroup());
-                otherParamMap.put(groupResultSet.getGroup().getId(), groupResultSet.getStudentCount());
+                Company company = initCompanyByResultSet(resultSet);
+                companies.add(company);
+                otherParamMap.put(company.getId(), resultSet.getLong("counterparties"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("problem: = " + e.getMessage());
+        }
+        ResponseDataTable<Company> responseDataTable = new ResponseDataTable<>();
+        responseDataTable.setItems(companies);
+        responseDataTable.setOtherParamMap(otherParamMap);
+        return responseDataTable;
         }
 
         DataTableResponse<Group> tableResponse = new DataTableResponse<>();
@@ -85,7 +121,7 @@ public class GroupDaoImpl implements GroupDao {
         return 0;
     }
 
-    private GroupResultSet convertResultSetToGroup(ResultSet resultSet) throws SQLException {
+    private Group initGroupByResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("id");
         Timestamp created = resultSet.getTimestamp("created");
         Timestamp updated = resultSet.getTimestamp("updated");
@@ -100,26 +136,17 @@ public class GroupDaoImpl implements GroupDao {
         group.setVisible(visible);
         group.setNameGroup(name);
 
-        return new GroupResultSet(group, studentCount);
+        return group;
     }
 
-    private static class GroupResultSet {
-
-        private final Group group;
-        private final int studentCount;
-
-
-        private GroupResultSet(Group group, int studentCount) {
-            this.group = group;
-            this.studentCount = studentCount;
-        }
-
-        public Group getGroup() {
-            return group;
-        }
-
-        public int getStudentCount() {
-            return studentCount;
-        }
-    }
+//    private record GroupResultSet(Group group, int studentCount) {
+//
+//        public Group getGroup() {
+//            return group;
+//        }
+//
+//        public int getStudentCount() {
+//            return studentCount;
+//        }
+//    }
 }
