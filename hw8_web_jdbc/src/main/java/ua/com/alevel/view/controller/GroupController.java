@@ -6,10 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import ua.com.alevel.facade.GroupFacade;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
 import ua.com.alevel.view.dto.response.GroupResponseDto;
@@ -23,7 +23,7 @@ import static ua.com.alevel.util.WebRequestUtil.*;
 
 @Controller
 @RequestMapping("/groups")
-public class GroupController {
+public class GroupController extends AbstractController {
     private final GroupFacade groupFacade;
 
     public GroupController(GroupFacade groupFacade) {
@@ -34,8 +34,7 @@ public class GroupController {
     public String findAll(Model model, WebRequest webRequest) {
         AbstractController.HeaderName[] columnNames = new AbstractController.HeaderName[]{
                 new AbstractController.HeaderName("#", null, null),
-                new AbstractController.HeaderName("first name", "firstName", "first_name"),
-                new AbstractController.HeaderName("last name", "lastName", "last_name"),
+                new AbstractController.HeaderName("name", "name", "name"),
                 new AbstractController.HeaderName("student count", "studentCount", "studentCount"),
                 new AbstractController.HeaderName("details", null, null),
                 new AbstractController.HeaderName("delete", null, null)
