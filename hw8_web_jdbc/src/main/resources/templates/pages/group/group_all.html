@@ -18,10 +18,10 @@
             <a th:href="@{'/counterparties/all/group/' + ${group.getId()}}" type="button" class="btn btn-link" th:text="${group.getStudentCount()}">"details"</a>
         </td>
         <td>
-            <a th:href="@{'/groups/details/' + ${company.getId()}}" type="button" class="btn btn-primary">details</a>
+            <a th:href="@{'/groups/details/' + ${group.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
         <td>
-            <a th:href="@{'/groups/delete/' + ${company.getId()}}" type="button" class="btn btn-danger">delete</a>
+            <a th:href="@{'/groups/delete/' + ${group.getId()}}" type="button" class="btn btn-danger">delete</a>
         </td>
     </tr>
 

@@ -1,36 +1,37 @@
+-- CREATE SCHEMA `mydbtest`;
+
 DROP TABLE course IF EXISTS course;
 DROP TABLE students IF EXISTS students;
 DROP TABLE course_student IF EXISTS course_student;
 
-create table course
+CREATE TABLE course
 (
-    id         bigint auto_increment
-        primary key,
-    created    datetime(6) null,
-    updated    datetime(6) null,
-    visible    bit null,
-    name varchar(255) not null
+    id      BIGINT AUTO_INCREMENT
+            PRIMARY KEY,
+    created DATETIME(6)  NULL,
+    updated DATETIME(6)  NULL,
+    visible BIT          null,
+    name    VARCHAR(255) NOT NULL
 
 );
 
 create table students
 (
-    id               bigint auto_increment
-        primary key,
-    created          datetime(6)  null,
-    updated          datetime(6)  null,
-    visible          bit          null,
-    first_name        varchar(255) not null,
-    last_name         text         null,
-    age              int          not null
-
+    id         BIGINT AUTO_INCREMENT
+               PRIMARY KEY,
+    created    DATETIME(6)  NULL,
+    updated    DATETIME(6)  NULL,
+    visible    BIT          null,
+    first_name VARCHAR(255) NOT NULL,
+    last_name  TEXT         null,
+    age        INT          NOT NULL
 );
 
 create table course_student
 (
-    course_id bigint not null,
-    student_id   bigint not null,
-    primary key (course_id, student_id),
-    foreign key (course_id) references course (id),
-    foreign key (course_id) references students (id)
+    course_id  BIGINT NOT NULL,
+    student_id BIGINT NOT NULL,
+    PRIMARY key (course_id, student_id),
+    FOREIGN KEY (course_id) REFERENCES course (id) ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE
 );

@@ -25,17 +25,17 @@
                         </div>
                         <div class="form-group">
                             <label for="type">Select agreement type</label>
-                            <select class="form-control" id="type" th:field="*{agreementType}">
-                                <option th:each="type : ${agreementTypes}"
-                                        th:value="${type}"
-                                        th:text="${type}">
-                                </option>
-                            </select>
+<!--                            <select class="form-control" id="type" th:field="*{agreementType}">-->
+<!--                                <option th:each="type : ${agreementTypes}"-->
+<!--                                        th:value="${type}"-->
+<!--                                        th:text="${type}">-->
+<!--                                </option>-->
+<!--                            </select>-->
                         </div>
                         <div class="form-group">
                             <label for="companyId">Select company</label>
                             <select class="form-control" id="companyId" th:field="*{groupId}">
-                                <option th:each="group : ${groups}"
+                                <option th:each="group : ${group}"
                                         th:value="${group.getId}"
                                         th:text="${group.getName}">
                                 </option>

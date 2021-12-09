@@ -9,26 +9,27 @@ insert into course values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'C
 insert into course values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Transport');
 insert into course values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Economics');
 
-insert into course values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Noskov',28);
-insert into course values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Funtusov',30);
-insert into course values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Irina', 'Cventuh',20);
-insert into course values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Pavel', 'Noskov',18);
-insert into course values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Igor', 'Babakin',18);
-insert into course values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Olegs', 'Noskov',18);
-insert into course values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Natasha', 'Legusha',22);
-insert into course values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Olga', 'Zvereva',23);
-insert into course values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Unicum',21);
-insert into course values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Omar', 'Eps',29);
-insert into course values (11, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Maltsev',30);
-insert into course values (12, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Ilona', 'Prihodko',27);
-insert into course values (13, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Katia', 'Sherbina',24);
-insert into course values (14, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Irina', 'Rastvorceva',20);
-insert into course values (15, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Kyi',19);
-insert into course values (16, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Nikolay', 'Shevchenko',21);
-insert into course values (17, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Kysil',23);
-insert into course values (18, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Iegor', 'Funtusov',24);
-insert into course values (19, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Family',22);
-insert into course values (20, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Noskov',20);
+
+insert into students values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Noskov',28);
+insert into students values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Funtusov',30);
+insert into students values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Irina', 'Cventuh',20);
+insert into students values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Pavel', 'Noskov',18);
+insert into students values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Igor', 'Babakin',18);
+insert into students values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Olegs', 'Noskov',18);
+insert into students values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Natasha', 'Legusha',22);
+insert into students values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Olga', 'Zvereva',23);
+insert into students values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Unicum',21);
+insert into students values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Omar', 'Eps',29);
+insert into students values (11, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Maltsev',30);
+insert into students values (12, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Ilona', 'Prihodko',27);
+insert into students values (13, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Katia', 'Sherbina',24);
+insert into students values (14, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Irina', 'Rastvorceva',20);
+insert into students values (15, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Kyi',19);
+insert into students values (16, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Nikolay', 'Shevchenko',21);
+insert into students values (17, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Kysil',23);
+insert into students values (18, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Iegor', 'Funtusov',24);
+insert into students values (19, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Family',22);
+insert into students values (20, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Noskov',20);
 
 
 insert into course_student values (1, 1);
