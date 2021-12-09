@@ -1,4 +1,4 @@
--- CREATE SCHEMA `mydbtest`;
+CREATE SCHEMA `mydbtest`;
 
 DROP TABLE course IF EXISTS course;
 DROP TABLE students IF EXISTS students;

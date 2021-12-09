@@ -56,10 +56,7 @@ public class GroupDaoImpl implements GroupDao {
     public void delete(Long id) {
         try {
             PreparedStatement preparedStatementGroup = jpaConfig.getConnection().prepareStatement(DELETE_GROUP_BY_ID_QUERY + id);
-            PreparedStatement preparedStatementStudents = jpaConfig.getConnection().prepareStatement(FIND_ALL_STUDENTS_BY_GROUP_ID_QUERY + id);
-            preparedStatementStudents.executeUpdate();
             preparedStatementGroup.executeUpdate();
-
         } catch (SQLException e) {
             System.out.println("e = " + e.getMessage());
         }
@@ -67,7 +64,16 @@ public class GroupDaoImpl implements GroupDao {
 
     @Override
     public boolean existById(Long id) {
-        return false;
+        long count = 0;
+        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(EXIST_GROUP_BY_ID_QUERY + id)) {
+            while (resultSet.next()) {
+                count = resultSet.getLong("COUNT(*)");
+                System.out.println("count = " + count);
+            }
+        } catch (SQLException e) {
+            System.out.println("problem: = " + e.getMessage());
+        }
+        return count == 1;
     }
 
     @Override
@@ -89,7 +95,7 @@ public class GroupDaoImpl implements GroupDao {
 
         int limit = (request.getCurrentPage() - 1) * request.getPageSize();
 
-        String sql = "select id, created, updated, visible, name, count(*) as studentCount from groups join course_student cs on course.id = cs.course_id group by course_id order by " +
+        String sql = "select id, created, updated, visible, name, count(*) as studentCount from course join course_student cs on course.id = cs.course_id group by course_id order by " +
                 request.getSort() + " " +
                 request.getOrder() + " limit " +
                 limit + "," +

@@ -6,6 +6,8 @@ public class Student extends BaseEntity {
     private String lastname;
     private Integer age;
 
+    private Group group;
+
     public Student() {
         super();
     }
@@ -32,5 +34,13 @@ public class Student extends BaseEntity {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

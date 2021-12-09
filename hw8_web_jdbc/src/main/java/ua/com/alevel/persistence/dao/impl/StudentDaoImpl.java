@@ -24,7 +24,7 @@ public class StudentDaoImpl implements StudentDao {
 
     private final JpaConfig jpaConfig;
 
-    private static final String FIND_ALL_STUDENTS_QUERY = "select * from students";
+//    private static final String FIND_ALL_STUDENTS_QUERY = "select * from students";
 
     public StudentDaoImpl(JpaConfig jpaConfig) {
         this.jpaConfig = jpaConfig;
@@ -38,7 +38,6 @@ public class StudentDaoImpl implements StudentDao {
             preparedStatement.setString(3, student.getFirstname());
             preparedStatement.setString(4, student.getLastname());
             preparedStatement.setInt(5, student.getAge());
-//            preparedStatement.setLong(6, student.getGroup().getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("problem: = " + e.getMessage());
@@ -83,7 +82,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student findById(Long id) {
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY + id)) {
+        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_STUDENT_BY_ID_QUERY + id)) {
             while (resultSet.next()) {
                 return initStudentByResultSet(resultSet);
             }
@@ -116,9 +115,9 @@ public class StudentDaoImpl implements StudentDao {
     private Student initStudentByResultSet(ResultSet resultSet) throws SQLException {
         Student student = new Student();
         Group group = new Group();
-        long studentId = resultSet.getLong("stud.id");
-        Timestamp studentCreated = resultSet.getTimestamp("stud.created");
-        Timestamp studentUpdated = resultSet.getTimestamp("stud.updated");
+        long studentId = resultSet.getLong("id");
+        Timestamp studentCreated = resultSet.getTimestamp("created");
+        Timestamp studentUpdated = resultSet.getTimestamp("updated");
         String firstName = resultSet.getString("first_name");
         String lastName = resultSet.getString("last_name");
         int age = resultSet.getInt("age");
@@ -133,15 +132,12 @@ public class StudentDaoImpl implements StudentDao {
         Timestamp groupCreated = resultSet.getTimestamp("group.created");
         Timestamp groupUpdated = resultSet.getTimestamp("group.updated");
         String name = resultSet.getString("name");
-//        String groupType = resultSet.getString("group_type");
 
         group.setId(groupId);
         group.setNameGroup(name);
-//        group.setGroupType(GroupType.valueOf(groupType));
         group.setCreated(new Date(groupCreated.getTime()));
         group.setUpdated(new Date(groupUpdated.getTime()));
 
-//        student.setGroup(group);
         return student;
     }
 }
