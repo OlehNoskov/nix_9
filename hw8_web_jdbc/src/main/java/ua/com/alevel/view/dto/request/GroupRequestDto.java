@@ -1,6 +1,7 @@
 package ua.com.alevel.view.dto.request;
 
 public class GroupRequestDto extends RequestDto{
+
     private String name;
 
     public String getName() {

@@ -2,6 +2,7 @@ package ua.com.alevel.view.controller;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -23,7 +24,7 @@ import static ua.com.alevel.util.WebRequestUtil.*;
 
 @Controller
 @RequestMapping("/groups")
-public class GroupController extends AbstractController {
+public class  GroupController extends AbstractController {
     private final GroupFacade groupFacade;
 
     public GroupController(GroupFacade groupFacade) {
@@ -32,19 +33,19 @@ public class GroupController extends AbstractController {
 
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
-        AbstractController.HeaderName[] columnNames = new AbstractController.HeaderName[]{
-                new AbstractController.HeaderName("#", null, null),
-                new AbstractController.HeaderName("name", "name", "name"),
-                new AbstractController.HeaderName("student count", "studentCount", "studentCount"),
-                new AbstractController.HeaderName("details", null, null),
-                new AbstractController.HeaderName("delete", null, null)
+        HeaderName[] columnNames = new HeaderName[]{
+                new HeaderName("#", null, null),
+                new HeaderName("name", "name", "name"),
+                new HeaderName("student count", "studentCount", "studentCount"),
+                new HeaderName("details", null, null),
+                new HeaderName("delete", null, null)
         };
         PageData<GroupResponseDto> response = groupFacade.findAll(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<AbstractController.HeaderData> headerDataList = new ArrayList<>();
+        List<HeaderData> headerDataList = new ArrayList<>();
 
-        for (AbstractController.HeaderName headerName : columnNames) {
-            AbstractController.HeaderData data = new AbstractController.HeaderData();
+        for (HeaderName headerName : columnNames) {
+            HeaderData data = new HeaderData();
             data.setHeaderName(headerName.getColumnName());
             if (StringUtils.isBlank(headerName.getTableName())) {
                 data.setSortable(false);
@@ -77,7 +78,6 @@ public class GroupController extends AbstractController {
         return new ModelAndView("redirect:/groups", model);
     }
 
-
     @GetMapping("/new")
     public String redirectToNewGroupPage(Model model) {
         model.addAttribute("group", new GroupRequestDto());
@@ -90,18 +90,18 @@ public class GroupController extends AbstractController {
         return "redirect:/groups";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateCompany(@PathVariable Long id, @ModelAttribute("group") GroupRequestDto groupRequestDto) {
-        groupFacade.update(groupRequestDto, id);
-        return "redirect:/groups";
-    }
-
-    @GetMapping("/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
-        GroupResponseDto groupResponseDto = groupFacade.findById(id);
-        model.addAttribute("group", groupResponseDto);
-        return "pages/group/group_update";
-    }
+//    @PostMapping("/update/{id}")
+//    public String updateCompany(@PathVariable Long id, @ModelAttribute("group") GroupRequestDto groupRequestDto) {
+//        groupFacade.update(groupRequestDto, id);
+//        return "redirect:/groups";
+//    }
+//
+//    @GetMapping("/update/{id}")
+//    public String update(@PathVariable Long id, Model model) {
+//        GroupResponseDto groupResponseDto = groupFacade.findById(id);
+//        model.addAttribute("group", groupResponseDto);
+//        return "pages/group/group_update";
+//    }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Long id, Model model) {

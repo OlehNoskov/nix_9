@@ -10,6 +10,4 @@ public interface BaseService <ENTITY extends BaseEntity> {
     void delete(Long id);
     ENTITY findById(Long id);
     DataTableResponse<ENTITY> findAll(DataTableRequest request);
-
-//    List<ENTITY> findAll();
 }

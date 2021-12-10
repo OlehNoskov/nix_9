@@ -24,15 +24,13 @@ public class StudentDaoImpl implements StudentDao {
 
     private final JpaConfig jpaConfig;
 
-//    private static final String FIND_ALL_STUDENTS_QUERY = "select * from students";
-
     public StudentDaoImpl(JpaConfig jpaConfig) {
         this.jpaConfig = jpaConfig;
     }
 
     @Override
     public void create(Student student) {
-        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(CREATE_STUDENT_QUERY)) {
+        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(CREATE_STUDENT_QUERY)) {
             preparedStatement.setTimestamp(1, new Timestamp(student.getCreated().getTime()));
             preparedStatement.setTimestamp(2, new Timestamp(student.getUpdated().getTime()));
             preparedStatement.setString(3, student.getFirstname());
@@ -46,56 +44,57 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void update(Student student) {
-        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(UPDATE_STUDENT_BY_ID_QUERY + student.getId())) {
-            preparedStatement.setString(1, student.getFirstname());
-            preparedStatement.setString(2, student.getLastname());
-            preparedStatement.setInt(3, student.getAge());
-            preparedStatement.setTimestamp(4, new Timestamp(new Date().getTime()));
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
+//        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(UPDATE_STUDENT_BY_ID_QUERY + student.getId())) {
+//            preparedStatement.setString(1, student.getFirstname());
+//            preparedStatement.setString(2, student.getLastname());
+//            preparedStatement.setInt(3, student.getAge());
+//            preparedStatement.setTimestamp(4, new Timestamp(new Date().getTime()));
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            System.out.println("problem: = " + e.getMessage());
+//        }
     }
 
     @Override
     public void delete(Long id) {
-        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(DELETE_STUDENT_BY_ID_QUERY + id)) {
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
+//        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(DELETE_STUDENT_BY_ID_QUERY + id)) {
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            System.out.println("problem: = " + e.getMessage());
+//        }
     }
 
     @Override
     public boolean existById(Long id) {
-        long count = 0;
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(EXIST_STUDENT_BY_ID_QUERY + id)) {
-            while (resultSet.next()) {
-                count = resultSet.getLong("COUNT(*)");
-                System.out.println("count = " + count);
-            }
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
-        return count == 1;
+//        long count = 0;
+//        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(EXIST_STUDENT_BY_ID_QUERY + id)) {
+//            while (resultSet.next()) {
+//                count = resultSet.getLong("COUNT(*)");
+//                System.out.println("count = " + count);
+//            }
+//        } catch (SQLException e) {
+//            System.out.println("problem: = " + e.getMessage());
+//        }
+//        return count == 1;
+        return false;
     }
 
     @Override
     public Student findById(Long id) {
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_STUDENT_BY_ID_QUERY + id)) {
-            while (resultSet.next()) {
-                return initStudentByResultSet(resultSet);
-            }
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
+//        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_STUDENT_BY_ID_QUERY + id)) {
+//            while (resultSet.next()) {
+//                return initStudentByResultSet(resultSet);
+//            }
+//        } catch (SQLException e) {
+//            System.out.println("problem: = " + e.getMessage());
+//        }
         return null;
     }
 
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest request) {
         List<Student> students = new ArrayList<>();
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY)) {
+        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY)) {
             while (resultSet.next()) {
                 students.add(initStudentByResultSet(resultSet));
             }
@@ -113,31 +112,55 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     private Student initStudentByResultSet(ResultSet resultSet) throws SQLException {
-        Student student = new Student();
-        Group group = new Group();
-        long studentId = resultSet.getLong("id");
-        Timestamp studentCreated = resultSet.getTimestamp("created");
-        Timestamp studentUpdated = resultSet.getTimestamp("updated");
+
+        long id = resultSet.getLong("id");
+        Timestamp created = resultSet.getTimestamp("created");
+        Timestamp updated = resultSet.getTimestamp("updated");
+        Boolean visible = resultSet.getBoolean("visible");
         String firstName = resultSet.getString("first_name");
         String lastName = resultSet.getString("last_name");
-        int age = resultSet.getInt("age");
-        student.setId(studentId);;
+        Integer age = resultSet.getInt("age");
+
+        Student student = new Student();
+        student.setId(id);
+        student.setCreated(created);
+        student.setUpdated(updated);
+        student.setVisible(visible);
         student.setFirstname(firstName);
         student.setLastname(lastName);
         student.setAge(age);
-        student.setCreated(new Date(studentCreated.getTime()));
-        student.setUpdated(new Date(studentUpdated.getTime()));
-
-        long groupId = resultSet.getLong("group.id");
-        Timestamp groupCreated = resultSet.getTimestamp("group.created");
-        Timestamp groupUpdated = resultSet.getTimestamp("group.updated");
-        String name = resultSet.getString("name");
-
-        group.setId(groupId);
-        group.setNameGroup(name);
-        group.setCreated(new Date(groupCreated.getTime()));
-        group.setUpdated(new Date(groupUpdated.getTime()));
 
         return student;
     }
 }
+
+
+//    private Student initStudentByResultSet(ResultSet resultSet) throws SQLException {
+//        Student student = new Student();
+//        Group group = new Group();
+//
+//        long studentId = resultSet.getLong("id");
+//        Timestamp studentCreated = resultSet.getTimestamp("created");
+//        Timestamp studentUpdated = resultSet.getTimestamp("updated");
+//        String firstName = resultSet.getString("first_name");
+//        String lastName = resultSet.getString("last_name");
+//        int age = resultSet.getInt("age");
+//        student.setId(studentId);;
+//        student.setFirstname(firstName);
+//        student.setLastname(lastName);
+//        student.setAge(age);
+//        student.setCreated(new Date(studentCreated.getTime()));
+//        student.setUpdated(new Date(studentUpdated.getTime()));
+//
+//        long groupId = resultSet.getLong("group.id");
+//        Timestamp groupCreated = resultSet.getTimestamp("group.created");
+//        Timestamp groupUpdated = resultSet.getTimestamp("group.updated");
+//        String name = resultSet.getString("name");
+//
+//        group.setId(groupId);
+//        group.setNameGroup(name);
+//        group.setCreated(new Date(groupCreated.getTime()));
+//        group.setUpdated(new Date(groupUpdated.getTime()));
+//
+//        return student;
+//    }

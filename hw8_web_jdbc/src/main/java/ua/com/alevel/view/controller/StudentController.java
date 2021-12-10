@@ -35,20 +35,20 @@ public class StudentController {
         return "pages/student/student_new";
     }
 
-    @PostMapping("/create")
-    public String createNewStudent(@ModelAttribute("student") StudentRequestDto studentRequestDto) {
-        studentFacade.create(studentRequestDto);
-        return "redirect:/students";
-    }
+//    @PostMapping("/create")
+//    public String createNewStudent(@ModelAttribute("student") StudentRequestDto studentRequestDto) {
+//        studentFacade.create(studentRequestDto);
+//        return "redirect:/students";
+//    }
 
     @GetMapping("/delete/{id}")
-    public String deleteById(@PathVariable Long id) {
+    public String delete(@PathVariable Long id) {
         studentFacade.delete(id);
         return "redirect:/students";
     }
 
     @GetMapping("/details/{id}")
-    public String findById(@PathVariable Long id, Model model) {
+    public String details(@PathVariable Long id, Model model) {
         StudentResponseDto studentResponseDto = studentFacade.findById(id);
         model.addAttribute("student", studentResponseDto);
         return "pages/student/student_details";
