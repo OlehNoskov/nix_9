@@ -24,7 +24,7 @@ import static ua.com.alevel.util.WebRequestUtil.*;
 
 @Controller
 @RequestMapping("/groups")
-public class  GroupController extends AbstractController {
+public class GroupController extends AbstractController {
     private final GroupFacade groupFacade;
 
     public GroupController(GroupFacade groupFacade) {

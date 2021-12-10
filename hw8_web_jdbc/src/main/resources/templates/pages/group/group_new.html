@@ -10,6 +10,7 @@
 <body>
 
 <div layout:fragment="content">
+
   <div class="row">
     <div class="col-12">
       <div class="card mt-2">
@@ -20,7 +21,7 @@
           <form action="#" th:action="@{/groups/new}" th:object="${group}" method="post">
             <div class="form-group">
               <label for="name">Name group</label>
-              <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter title group" th:field="*{name}">
+              <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Введите название группы" th:field="*{name}">
             </div>
             <button type="submit" class="btn btn-outline-primary">Submit</button>
           </form>
