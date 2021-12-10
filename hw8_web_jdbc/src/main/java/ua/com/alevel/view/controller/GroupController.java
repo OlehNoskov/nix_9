@@ -90,18 +90,18 @@ public class  GroupController extends AbstractController {
         return "redirect:/groups";
     }
 
-//    @PostMapping("/update/{id}")
-//    public String updateCompany(@PathVariable Long id, @ModelAttribute("group") GroupRequestDto groupRequestDto) {
-//        groupFacade.update(groupRequestDto, id);
-//        return "redirect:/groups";
-//    }
-//
-//    @GetMapping("/update/{id}")
-//    public String update(@PathVariable Long id, Model model) {
-//        GroupResponseDto groupResponseDto = groupFacade.findById(id);
-//        model.addAttribute("group", groupResponseDto);
-//        return "pages/group/group_update";
-//    }
+    @PostMapping("/update/{id}")
+    public String updateCompany(@PathVariable Long id, @ModelAttribute("group") GroupRequestDto groupRequestDto) {
+        groupFacade.update(groupRequestDto, id);
+        return "redirect:/groups";
+    }
+
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable Long id, Model model) {
+        GroupResponseDto groupResponseDto = groupFacade.findById(id);
+        model.addAttribute("group", groupResponseDto);
+        return "pages/group/group_update";
+    }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Long id, Model model) {

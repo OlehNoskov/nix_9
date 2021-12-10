@@ -29,27 +29,28 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public void create(GroupRequestDto groupRequestDto) {
-//        Group group = new Group();
-//        group.setNameGroup(groupRequestDto.getName());
-//        groupService.create(group);
+        Group group = new Group();
+        group.setNameGroup(groupRequestDto.getName());
+        groupService.create(group);
     }
 
     @Override
     public void update(GroupRequestDto groupRequestDto, Long id) {
-//        Group group = groupService.findById(id);
-//        group.setNameGroup(group.getNameGroup());
-//        groupService.update(group);
+        Group group = groupService.findById(id);
+        group.setNameGroup(group.getNameGroup());
+        groupService.update(group);
     }
 
     @Override
     public void delete(Long id) {
-//        groupService.delete(id);
+        groupService.delete(id);
     }
 
     @Override
     public GroupResponseDto findById(Long id) {
 //        return new GroupResponseDto(groupService.findById(id));
-        return null;
+        Group group = groupService.findById(id);
+        return new GroupResponseDto(group);
     }
 
     @Override

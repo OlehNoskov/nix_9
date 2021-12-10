@@ -20,19 +20,19 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void create(Group group) {
-//        groupDao.create(group);
+        groupDao.create(group);
     }
 
     @Override
     public void update(Group group) {
-//        groupDao.update(group);
+        groupDao.update(group);
     }
 
     @Override
     public void delete(Long id) {
-//        if(groupDao.existById(id)){
-//            groupDao.delete(id);
-//        }
+        if(groupDao.existById(id)){
+            groupDao.delete(id);
+        }
     }
 
     @Override

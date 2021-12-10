@@ -15,9 +15,6 @@
         <td th:text="${iter.count}"></td>
         <td th:text="${group.getName()}"></td>
         <td th:text="${group.getStudentCount()}"></td>
-<!--        <td >-->
-<!--            <a th:href="@{'/counterparties/all/group/' + ${group.getId()}}" type="button" class="btn btn-link" th:text="${group.getStudentCount()}">"details"</a>-->
-<!--        </td>-->
         <td>
             <a th:href="@{'/groups/details/' + ${group.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
@@ -29,40 +26,4 @@
 </div>
 
 </body>
-</html>
-
-
-
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      layout:decorate="~{/templates/fragments/data_table}">-->
-<!--<head>-->
-<!--    <meta charset="utf-8">-->
-<!--    <title>Groups</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<div layout:fragment="data_table_content">-->
-
-<!--    <tr th:each="group,iter : ${pageData.getItems()}">-->
-<!--        <td th:text="${iter.count}"></td>-->
-<!--        <td th:text="${group.getName()}"></td>-->
-<!--        <td th:text="${group.getStudentCount()}"></td>-->
-<!--        <td>-->
-<!--            <a th:href="@{'/groups/details/' + ${group.getId()}}" type="button" class="btn btn-primary">details</a>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--            <a th:href="@{'/groups/delete/' + ${group.getId()}}" type="button" class="btn btn-danger">delete</a>-->
-<!--        </td>-->
-<!--    </tr>-->
-
-<!--</div>-->
-
-<!--</body>-->
 </html>

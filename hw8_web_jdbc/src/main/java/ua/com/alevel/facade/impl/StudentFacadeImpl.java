@@ -39,22 +39,21 @@ public class StudentFacadeImpl implements StudentFacade {
 
     @Override
     public void update(StudentRequestDto studentRequestDto, Long id) {
-//    Student student = studentService.findById(id);
-//    student.setFirstname(studentRequestDto.getFirstname());
-//    student.setLastname(studentRequestDto.getLastname());
-//    student.setAge(studentRequestDto.getAge());
-//    studentService.update(student);
+    Student student = studentService.findById(id);
+    student.setFirstname(studentRequestDto.getFirstname());
+    student.setLastname(studentRequestDto.getLastname());
+    student.setAge(studentRequestDto.getAge());
+    studentService.update(student);
     }
 
     @Override
     public void delete(Long id) {
-//    studentService.delete(id);
+    studentService.delete(id);
     }
 
     @Override
     public StudentResponseDto findById(Long id) {
-//        return new StudentResponseDto(studentService.findById(id));
-        return null;
+        return new StudentResponseDto(studentService.findById(id));
     }
 
     @Override

@@ -35,11 +35,11 @@ public class StudentController {
         return "pages/student/student_new";
     }
 
-//    @PostMapping("/create")
-//    public String createNewStudent(@ModelAttribute("student") StudentRequestDto studentRequestDto) {
-//        studentFacade.create(studentRequestDto);
-//        return "redirect:/students";
-//    }
+    @PostMapping("/create")
+    public String createNewStudent(@ModelAttribute("student") StudentRequestDto studentRequestDto) {
+        studentFacade.create(studentRequestDto);
+        return "redirect:/students";
+    }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
