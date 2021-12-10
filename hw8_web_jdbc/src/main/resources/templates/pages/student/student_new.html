@@ -19,7 +19,6 @@
                 </div>
                 <div class="card-body">
                     <form action="#" th:action="@{/students/new}" th:object="${student}" method="post">
-                        <input type="hidden" th:field="*{studentId}" th:value="${studentId}" th:attr="name='studentId'">
                         <div class="form-group">
                             <label for="firstName">First name</label>
                             <input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Введите имя" th:field="*{firstname}">
