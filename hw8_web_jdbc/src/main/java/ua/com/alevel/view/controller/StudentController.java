@@ -25,7 +25,6 @@ public class StudentController {
     @GetMapping
     public String findAll(Model model, WebRequest request) {
         PageData<StudentResponseDto> response = studentFacade.findAll(request);
-        System.out.println("response = " + response);
         model.addAttribute("pageData", response);
         return "pages/student/student_all";
     }

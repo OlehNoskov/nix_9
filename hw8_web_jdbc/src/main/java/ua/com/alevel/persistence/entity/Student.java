@@ -5,7 +5,6 @@ public class Student extends BaseEntity {
     private String firstname;
     private String lastname;
     private Integer age;
-
     private Group group;
 
     public Student() {
