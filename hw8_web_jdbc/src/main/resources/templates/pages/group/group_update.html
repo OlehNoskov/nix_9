@@ -21,10 +21,10 @@
                     <form action="#" th:action="@{'/groups/update/' + ${group.getId()}}" th:object="${group}" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name">Group name</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter company name" th:field="*{name}">
+                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Введите новое название группы" th:field="*{name}">
                         </div>
                         <div class="form-group">
-                            <label for="type">Select agreement type</label>
+<!--                            <label for="type">Select agreement type</label>-->
 <!--                            <select class="form-control" id="type" th:field="*{agreementType}">-->
 <!--                                <option th:each="type : ${agreementTypes}"-->
 <!--                                        th:value="${type}"-->
@@ -32,24 +32,24 @@
 <!--                                </option>-->
 <!--                            </select>-->
                         </div>
-                        <div class="form-group">
-                            <label for="companyId">Select company</label>
-                            <select class="form-control" id="companyId" th:field="*{groupId}">
-                                <option th:each="group : ${group}"
-                                        th:value="${group.getId}"
-                                        th:text="${group.getName}">
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="counterpartyId">Select counterparty</label>
-                            <select class="form-control" id="counterpartyId" th:field="*{counterpartyId}">
-                                <option th:each="counterparty : ${counterparties}"
-                                        th:value="${counterparty.getId()}"
-                                        th:text="${counterparty.getName()}">
-                                </option>
-                            </select>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="companyId">Select company</label>-->
+<!--                            <select class="form-control" id="companyId" th:field="*{groupId}">-->
+<!--                                <option th:each="group : ${group}"-->
+<!--                                        th:value="${group.getId}"-->
+<!--                                        th:text="${group.getName}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="counterpartyId">Select counterparty</label>-->
+<!--                            <select class="form-control" id="counterpartyId" th:field="*{counterpartyId}">-->
+<!--                                <option th:each="counterparty : ${counterparties}"-->
+<!--                                        th:value="${counterparty.getId()}"-->
+<!--                                        th:text="${counterparty.getName()}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </div>-->
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

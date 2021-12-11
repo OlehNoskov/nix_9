@@ -38,6 +38,7 @@ public class GroupController extends AbstractController {
                 new HeaderName("name", "name", "name"),
                 new HeaderName("student count", "studentCount", "studentCount"),
                 new HeaderName("details", null, null),
+                new HeaderName("edit", "edit", "edit"),
                 new HeaderName("delete", null, null)
         };
         PageData<GroupResponseDto> response = groupFacade.findAll(webRequest);

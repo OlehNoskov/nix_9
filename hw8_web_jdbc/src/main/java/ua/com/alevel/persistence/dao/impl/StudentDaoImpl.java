@@ -70,7 +70,6 @@ public class StudentDaoImpl implements StudentDao {
         try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(EXIST_STUDENT_BY_ID_QUERY + id)) {
             while (resultSet.next()) {
                 count = resultSet.getLong("COUNT(*)");
-                System.out.println("count = " + count);
             }
         } catch (SQLException e) {
             System.out.println("problem: = " + e.getMessage());

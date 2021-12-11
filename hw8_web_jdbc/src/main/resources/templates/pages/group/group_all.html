@@ -19,6 +19,10 @@
             <a th:href="@{'/groups/details/' + ${group.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
         <td>
+            <a th:href="@{'/groups/update/' + ${group.getId()}}" type="button"
+               class="btn btn-primary">edit</a>
+        </td>
+        <td>
             <a th:href="@{'/groups/delete/' + ${group.getId()}}" type="button" class="btn btn-danger">delete</a>
         </td>
     </tr>
