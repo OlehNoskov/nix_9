@@ -32,12 +32,13 @@ public class StudentDaoImpl implements StudentDao {
         try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(CREATE_STUDENT_QUERY)) {
             preparedStatement.setTimestamp(1, new Timestamp(student.getCreated().getTime()));
             preparedStatement.setTimestamp(2, new Timestamp(student.getUpdated().getTime()));
-            preparedStatement.setString(3, student.getFirstname());
-            preparedStatement.setString(4, student.getLastname());
-            preparedStatement.setInt(5, student.getAge());
+            preparedStatement.setBoolean(3,new Boolean(student.getVisible()));
+            preparedStatement.setString(4, student.getFirstname());
+            preparedStatement.setString(5, student.getLastname());
+            preparedStatement.setInt(6, student.getAge());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
+            System.out.println("problem new: = " + e.getMessage());
         }
     }
 
