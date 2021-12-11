@@ -37,7 +37,7 @@ public class GroupFacadeImpl implements GroupFacade {
     @Override
     public void update(GroupRequestDto groupRequestDto, Long id) {
         Group group = groupService.findById(id);
-        group.setNameGroup(group.getNameGroup());
+        group.setNameGroup(groupRequestDto.getName());
         groupService.update(group);
     }
 

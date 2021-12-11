@@ -4,7 +4,7 @@ public class JpaQueryUtil {
     private JpaQueryUtil() { }
 
     public static final String CREATE_GROUP_QUERY = "INSERT INTO course VALUES(default,?,?,?,?)";
-    public static final String UPDATE_BY_ID_QUERY = "UPDATE course SET name = ?, updated = ? WHERE id = ";
+    public static final String UPDATE_GROUP_BY_ID_QUERY = "UPDATE course SET name = ?, updated = ? WHERE id = ";
     public static final String DELETE_GROUP_BY_ID_QUERY = "DELETE FROM course WHERE id = ";
     public static final String EXIST_GROUP_BY_ID_QUERY = "SELECT COUNT(*) FROM course WHERE id = ";
     public static final String FIND_ALL_GROUPS_QUERY = "SELECT * FROM course";

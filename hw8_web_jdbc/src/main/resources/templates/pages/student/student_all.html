@@ -41,6 +41,9 @@
                                 <a th:href="@{'/students/details/' + ${student.getId()}}" type="button" class="btn btn-primary">details</a>
                             </td>
                             <td>
+                                <a th:href="@{'/students/update/' + ${student.getId()}}" type="button" class="btn btn-primary">edit</a>
+                            </td>
+                            <td>
                                 <a th:href="@{'/students/delete/' + ${student.getId()}}" type="button" class="btn btn-danger">delete</a>
                             </td>
                         </tr>

@@ -5,7 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import ua.com.alevel.view.dto.request.GroupRequestDto;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
+import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
 import ua.com.alevel.facade.StudentFacade;
@@ -38,6 +40,19 @@ public class StudentController {
     public String createNewStudent(@ModelAttribute("student") StudentRequestDto studentRequestDto) {
         studentFacade.create(studentRequestDto);
         return "redirect:/students";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateCompany(@PathVariable Long id, @ModelAttribute("student") StudentRequestDto studentRequestDto) {
+        studentFacade.update(studentRequestDto, id);
+        return "redirect:/students";
+    }
+
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable Long id, Model model) {
+        StudentResponseDto studentResponseDto = studentFacade.findById(id);
+        model.addAttribute("student", studentResponseDto);
+        return "pages/student/student_update";
     }
 
     @GetMapping("/delete/{id}")

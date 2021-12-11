@@ -3,9 +3,11 @@ package ua.com.alevel.persistence.dao.impl;
 import org.springframework.stereotype.Service;
 import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.GroupDao;
+import ua.com.alevel.persistence.dao.query.JpaQueryUtil;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
+import ua.com.alevel.persistence.entity.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,9 +42,9 @@ public class GroupDaoImpl implements GroupDao {
 
     @Override
     public void update(Group group) {
-        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(UPDATE_BY_ID_QUERY + group.getId())) {
+        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(UPDATE_GROUP_BY_ID_QUERY + group.getId())) {
             preparedStatement.setString(1, group.getNameGroup());
-            preparedStatement.setTimestamp(2, new Timestamp(group.getUpdated().getTime()));
+            preparedStatement.setTimestamp(2, new Timestamp(new Date().getTime()));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("e = " + e.getMessage());
@@ -81,7 +83,7 @@ public class GroupDaoImpl implements GroupDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return new Group();
     }
 
     @Override
