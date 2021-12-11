@@ -9,7 +9,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ua.com.alevel.facade.GroupFacade;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
@@ -33,36 +32,11 @@ public class GroupController extends AbstractController {
 
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
-        HeaderName[] columnNames = new HeaderName[]{
-                new HeaderName("#", null, null),
-                new HeaderName("name", "name", "name"),
-                new HeaderName("student count", "studentCount", "studentCount"),
-                new HeaderName("details", null, null),
-                new HeaderName("edit", "edit", "edit"),
-                new HeaderName("delete", null, null)
-        };
+        HeaderName[] columnTitles = getColumnTitles();
         PageData<GroupResponseDto> response = groupFacade.findAll(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<HeaderData> headerDataList = new ArrayList<>();
+        List<HeaderData> headerDataList = getHeaderDataList(columnTitles,response);
 
-        for (HeaderName headerName : columnNames) {
-            HeaderData data = new HeaderData();
-            data.setHeaderName(headerName.getColumnName());
-            if (StringUtils.isBlank(headerName.getTableName())) {
-                data.setSortable(false);
-            } else {
-                data.setSortable(true);
-                data.setSort(headerName.getDbName());
-                if (response.getSort().equals(headerName.getTableName())) {
-                    data.setActive(true);
-                    data.setOrder(response.getOrder());
-                } else {
-                    data.setActive(false);
-                    data.setOrder(DEFAULT_ORDER_PARAM_VALUE);
-                }
-            }
-            headerDataList.add(data);
-        }
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/groups/all");
         model.addAttribute("pageData", response);
@@ -85,8 +59,8 @@ public class GroupController extends AbstractController {
         return "pages/group/group_new";
     }
 
-    @PostMapping("/create")
-    public String createNewGroup(RedirectAttributes attributes, @ModelAttribute("group") GroupRequestDto dto) {
+    @PostMapping("/new")
+    public String createNewGroup(@ModelAttribute("group") GroupRequestDto dto) {
         groupFacade.create(dto);
         return "redirect:/groups";
     }
@@ -115,5 +89,40 @@ public class GroupController extends AbstractController {
     public String delete(@PathVariable Long id) {
         groupFacade.delete(id);
         return "redirect:/groups";
+    }
+
+    private HeaderName[] getColumnTitles(){
+        return new HeaderName[]{
+                new HeaderName("#", null, null),
+                new HeaderName("name", "name", "name"),
+                new HeaderName("student count", "studentCount", "studentCount"),
+                new HeaderName("details", null, null),
+                new HeaderName("edit", "edit", "edit"),
+                new HeaderName("delete", null, null)
+        };
+    }
+
+    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response){
+        List<HeaderData> headerDataList = new ArrayList<>();
+
+        for (HeaderName headerName : columnTitles) {
+            HeaderData data = new HeaderData();
+            data.setHeaderName(headerName.getColumnName());
+            if (StringUtils.isBlank(headerName.getTableName())) {
+                data.setSortable(false);
+            } else {
+                data.setSortable(true);
+                data.setSort(headerName.getDbName());
+                if (response.getSort().equals(headerName.getTableName())) {
+                    data.setActive(true);
+                    data.setOrder(response.getOrder());
+                } else {
+                    data.setActive(false);
+                    data.setOrder(DEFAULT_ORDER_PARAM_VALUE);
+                }
+            }
+            headerDataList.add(data);
+        }
+        return headerDataList;
     }
 }

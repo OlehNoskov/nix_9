@@ -5,7 +5,6 @@ import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.StudentDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
-import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 
 import java.sql.PreparedStatement;
@@ -106,6 +105,13 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public long count() {
+        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery("select count(*) as count from students")) {
+            while (resultSet.next()) {
+                return resultSet.getLong("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 

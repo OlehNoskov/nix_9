@@ -48,7 +48,6 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public GroupResponseDto findById(Long id) {
-//        return new GroupResponseDto(groupService.findById(id));
         Group group = groupService.findById(id);
         return new GroupResponseDto(group);
     }
@@ -80,7 +79,6 @@ public class GroupFacadeImpl implements GroupFacade {
         pageData.setItemsSize(all.getItemsSize());
         pageData.initPaginationState(pageData.getCurrentPage());
 
-        System.out.println("pageData = " + pageData);
         return pageData;
     }
 }

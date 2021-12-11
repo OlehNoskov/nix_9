@@ -30,6 +30,7 @@ insert into students values (17, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true,
 insert into students values (18, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Iegor', 'Funtusov',24);
 insert into students values (19, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Family',22);
 insert into students values (20, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Noskov',20);
+insert into students values (21, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Test', 'Test',20);
 
 
 insert into course_student values (1, 1);

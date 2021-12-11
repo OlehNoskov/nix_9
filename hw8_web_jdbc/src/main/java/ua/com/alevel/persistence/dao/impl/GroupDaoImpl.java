@@ -81,7 +81,7 @@ public class GroupDaoImpl implements GroupDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new Group();
+        return null;
     }
 
     @Override
@@ -91,7 +91,8 @@ public class GroupDaoImpl implements GroupDao {
 
         int limit = (request.getCurrentPage() - 1) * request.getPageSize();
 
-        String sql = "select id, created, updated, visible, name, count(*) as studentCount from course join course_student cs on course.id = cs.course_id group by course_id order by " +
+        String sql = "select id, created, updated, visible, name, count(*) as studentCount " +
+                "from course join course_student cs on course.id = cs.course_id group by course_id order by " +
                 request.getSort() + " " +
                 request.getOrder() + " limit " +
                 limit + "," +

@@ -30,9 +30,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void delete(Long id) {
-        if(groupDao.existById(id)){
-            groupDao.delete(id);
-        }
+        groupDao.delete(id);
     }
 
     @Override
