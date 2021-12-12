@@ -66,7 +66,7 @@ public class GroupController extends AbstractController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateCompany(@PathVariable Long id, @ModelAttribute("group") GroupRequestDto groupRequestDto) {
+    public String updateGroup(@PathVariable Long id, @ModelAttribute("group") GroupRequestDto groupRequestDto) {
         groupFacade.update(groupRequestDto, id);
         return "redirect:/groups";
     }

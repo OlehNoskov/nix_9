@@ -10,7 +10,6 @@
 <body>
 
 <div layout:fragment="content">
-<!--<div layout:fragment="data_table_content">-->
     <div class="row">
         <div class="col-12">
             <div class="card mb-2 mt-2">
@@ -27,6 +26,7 @@
                             <th>Age</th>
                             <th>created</th>
                             <th>details</th>
+                            <th>edit</th>
                             <th>delete</th>
                         </tr>
                         </thead>
@@ -38,7 +38,7 @@
                             <td th:text="${student.getAge()}"></td>
                             <td th:text="${#calendars.format(student.getCreated(),'dd MMMM yyyy')}"></td>
 <!--                            <td>-->
-<!--                                <a th:href="@{'/groups/details/' + ${groups.get.getId()}}" type="button" class="btn btn-link" th:text="${employee.getDepartment().getId()}">details</a>-->
+<!--                                <a th:href="@{'/groups/details/' + ${groups.get.getId()}}" type="button" class="btn btn-link" th:text="${student.getGroup().getId()}">details</a>-->
 <!--                            </td>-->
                             <td>
                                 <a th:href="@{'/students/details/' + ${student.getId()}}" type="button" class="btn btn-primary">details</a>
