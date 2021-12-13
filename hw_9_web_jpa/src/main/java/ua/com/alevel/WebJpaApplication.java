@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Hw9WebJpaApplication {
+public class WebJpaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Hw9WebJpaApplication.class, args);
+        SpringApplication.run(WebJpaApplication.class, args);
     }
-
 }
