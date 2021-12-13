@@ -4,7 +4,7 @@ import ua.com.alevel.persistence.type.GroupType;
 
 import java.util.List;
 
-public class GroupRequestDto {
+public class GroupRequestDto extends RequestDto {
     private GroupType groupType;
     private String name;
     private List<Long> studentsIds;
