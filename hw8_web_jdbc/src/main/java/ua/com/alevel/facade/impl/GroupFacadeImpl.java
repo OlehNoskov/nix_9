@@ -77,7 +77,7 @@ public class GroupFacadeImpl implements GroupFacade {
         pageData.setOrder(sortData.getOrder());
         pageData.setSort(sortData.getSort());
         pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
+//        pageData.initPaginationState(pageData.getCurrentPage());
 
         return pageData;
     }

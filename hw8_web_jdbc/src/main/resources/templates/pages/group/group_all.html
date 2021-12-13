@@ -15,6 +15,7 @@
         <td th:text="${iter.count}"></td>
         <td th:text="${group.getName()}"></td>
         <td th:text="${group.getStudentCount()}"></td>
+<!--        <a th:href="@{'/student/student_all/' + ${group.getStudentCount()}}" type="button" class="btn btn-primary"></a>-->
         <td>
             <a th:href="@{'/groups/details/' + ${group.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>

@@ -116,7 +116,7 @@ public class StudentDaoImpl implements StudentDao {
         return 0;
     }
 
-    private Student initStudentByResultSet(ResultSet resultSet) throws SQLException {
+    public Student initStudentByResultSet(ResultSet resultSet) throws SQLException {
 
         long id = resultSet.getLong("id");
         Timestamp created = resultSet.getTimestamp("created");

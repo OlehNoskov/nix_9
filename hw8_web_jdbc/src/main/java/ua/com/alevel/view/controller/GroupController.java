@@ -42,8 +42,8 @@ public class GroupController extends AbstractController {
         model.addAttribute("pageData", response);
         model.addAttribute("cardHeader", "All Groups");
         return "pages/group/group_all";
-    }
 
+}
     @PostMapping("/all")
     public ModelAndView findAllRedirect(WebRequest request, ModelMap model) {
         Map<String, String[]> parameterMap = request.getParameterMap();
