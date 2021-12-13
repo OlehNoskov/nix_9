@@ -1,4 +1,4 @@
-package ua.com.alevel.datatable;
+package ua.com.alevel.persistence.datatable;
 
 import java.util.HashMap;
 import java.util.Map;

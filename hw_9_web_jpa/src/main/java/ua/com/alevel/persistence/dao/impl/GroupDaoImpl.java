@@ -1,8 +1,8 @@
 package ua.com.alevel.persistence.dao.impl;
 
 import org.springframework.stereotype.Repository;
-import ua.com.alevel.datatable.DataTableRequest;
-import ua.com.alevel.datatable.DataTableResponse;
+import ua.com.alevel.persistence.datatable.DataTableRequest;
+import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.dao.GroupDao;
 import ua.com.alevel.persistence.entity.Group;
 
