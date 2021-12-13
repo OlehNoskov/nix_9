@@ -15,6 +15,7 @@ public class Group extends BaseEntity {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //не обязательно писать fetch = FetchType.LAZY, так как он default.
     @JoinTable(
             name = "course2_students2",
             joinColumns = @JoinColumn(name = "course_id"),

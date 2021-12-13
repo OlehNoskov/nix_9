@@ -60,6 +60,7 @@ public class HibernateConfig {
     private static final String BATCH_SIZE = "hibernate.jdbc.batch_size";
     private static final String FETCH_SIZE = "hibernate.jdbc.fetch_size";
     private static final String ENTITY_MANAGER_PACKAGES_TO_SCAN = "ua.com.alevel.persistence.entity";
+                                    //Уточняем где находятся ENTITY классы, так будет быстрее работать.
 
     @Bean
     public DataSource dataSource() {
