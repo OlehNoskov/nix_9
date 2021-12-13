@@ -1,13 +1,13 @@
-insert into course values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Culture','ART');
-insert into course values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sport','SPORT');
-insert into course values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Building','ART');
-insert into course values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Art','ART');
-insert into course values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Math','ECONOMICS');
-insert into course values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'History','HISTORY');
-insert into course values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Biology','SPORT');
-insert into course values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Chemistry','CHEMISTRY');
-insert into course values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Transport','ART');
-insert into course values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Economics','ECONOMICS');
+insert into course values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Culture');
+insert into course values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sport');
+insert into course values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Building');
+insert into course values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Art');
+insert into course values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Math');
+insert into course values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'History');
+insert into course values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Biology');
+insert into course values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Chemistry');
+insert into course values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Transport');
+insert into course values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Economics');
 
 
 insert into students values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Noskov',28);
