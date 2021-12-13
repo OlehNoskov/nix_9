@@ -86,6 +86,7 @@ public class HibernateConfig {
         return sessionFactoryBean;
     }
 
+    //Описание тракзакций, как ему работать
     @Bean
     public HibernateTransactionManager transactionManager() {
         HibernateTransactionManager manager = new HibernateTransactionManager();
