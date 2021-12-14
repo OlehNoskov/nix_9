@@ -64,6 +64,7 @@ public class GroupFacadeImpl implements GroupFacade {
         dataTableRequest.setCurrentPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
+
         Map<String, String[]> parameterMap = request.getParameterMap();
         if (MapUtils.isNotEmpty(parameterMap)) {
             System.out.println("parameterMap = " + parameterMap);

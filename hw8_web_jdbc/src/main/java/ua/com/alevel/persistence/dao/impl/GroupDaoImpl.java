@@ -63,7 +63,7 @@ public class GroupDaoImpl implements GroupDao {
     @Override
     public boolean existById(Long id) {
         long count = 0;
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(EXIST_GROUP_BY_ID_QUERY + id)) {
+        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(EXIST_GROUP_BY_ID_QUERY + id)) {
             while (resultSet.next()) {
                 count = resultSet.getLong("COUNT(*)");
             }
@@ -85,7 +85,7 @@ public class GroupDaoImpl implements GroupDao {
         return new Group();
     }
 
-    @Override
+        @Override
     public DataTableResponse<Group> findAll(DataTableRequest request) {
         List<Group> groups = new ArrayList<>();
         Map<Object, Object> otherParamMap = new HashMap<>();
@@ -114,6 +114,35 @@ public class GroupDaoImpl implements GroupDao {
         tableResponse.setOtherParamMap(otherParamMap);
         return tableResponse;
     }
+//    @Override
+//    public DataTableResponse<Group> findAll(DataTableRequest request) {
+//        List<Group> groups = new ArrayList<>();
+//        Map<Object, Object> otherParamMap = new HashMap<>();
+//
+//        int limit = (request.getCurrentPage() - 1) * request.getPageSize();
+//
+//        String sql = "SELECT * FROM course count(*) as studentCount " +
+//                "from course left join course_student as cs on course.id = cs.course_id " +
+//                "group by course_id order by " +
+//                request.getSort() + " " +
+//                request.getOrder() + " limit " +
+//                limit + "," +
+//                request.getPageSize();
+//
+//        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(sql)) {
+//            while (resultSet.next()) {
+//                GroupResultSet groupResultSet = convertResultSetToGroup(resultSet);
+//                groups.add(groupResultSet.getGroup());
+//                otherParamMap.put(groupResultSet.getGroup().getId(), groupResultSet.getStudentCount());
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        DataTableResponse<Group> tableResponse = new DataTableResponse<>();
+//        tableResponse.setItems(groups);
+//        tableResponse.setOtherParamMap(otherParamMap);
+//        return tableResponse;
+//    }
 
     @Override
     public long count() {
