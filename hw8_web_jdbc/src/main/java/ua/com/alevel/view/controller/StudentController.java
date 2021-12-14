@@ -49,11 +49,17 @@ public class StudentController extends AbstractController {
         return findAllRedirect(request, model, "students");
     }
 
-    @GetMapping("/new")
+        @GetMapping("/new")
     public String redirectToNewStudentPage(Model model) {
         model.addAttribute("student", new StudentRequestDto());
         return "pages/student/student_new";
     }
+
+//    @GetMapping("/new{id}")
+//    public String redirectToNewStudentPage(@PathVariable Long id, Model model) {
+//        model.addAttribute("student", new StudentRequestDto());
+//        return "pages/student/student_new";
+//    }
 
     @PostMapping("/new")
     public String createNewStudent(@ModelAttribute("student") StudentRequestDto studentRequestDto) {
