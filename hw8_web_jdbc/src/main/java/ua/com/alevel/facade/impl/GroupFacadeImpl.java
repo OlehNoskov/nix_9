@@ -1,5 +1,6 @@
 package ua.com.alevel.facade.impl;
 
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
@@ -16,6 +17,7 @@ import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,6 +64,10 @@ public class GroupFacadeImpl implements GroupFacade {
         dataTableRequest.setCurrentPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if (MapUtils.isNotEmpty(parameterMap)) {
+            System.out.println("parameterMap = " + parameterMap);
+        }
 
         DataTableResponse<Group> all = groupService.findAll(dataTableRequest);
         List<GroupResponseDto> list = all.getItems().

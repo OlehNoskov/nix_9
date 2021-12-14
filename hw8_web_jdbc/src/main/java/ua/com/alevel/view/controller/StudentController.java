@@ -1,25 +1,33 @@
 package ua.com.alevel.view.controller;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import org.springframework.web.servlet.ModelAndView;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
-import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
 import ua.com.alevel.facade.StudentFacade;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static ua.com.alevel.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
-
 @Controller
 @RequestMapping("/students")
-public class StudentController {
+public class StudentController extends AbstractController {
+
+    private HeaderName[] getColumnTitles() {
+        return new HeaderName[]{
+                new HeaderName("#", null, null),
+                new HeaderName("first name", "firstname", "first_name"),
+                new HeaderName("last name", "lastname", "first_name"),
+                new HeaderName("age", "age", "age"),
+                new HeaderName("created", "created", "created"),
+                new HeaderName("details", null, null),
+                new HeaderName("edit", null, null),
+                new HeaderName("delete", null, null)
+        };
+    }
 
     private final StudentFacade studentFacade;
 
@@ -30,8 +38,15 @@ public class StudentController {
     @GetMapping
     public String findAll(Model model, WebRequest request) {
         PageData<StudentResponseDto> response = studentFacade.findAll(request);
-        model.addAttribute("pageData", response);
+        initDataTable(response, getColumnTitles(), model);
+        model.addAttribute("createUrl", "/students/all");
+        model.addAttribute("cardHeader", "All Students");
         return "pages/student/student_all";
+    }
+
+    @PostMapping("/all")
+    public ModelAndView findAllRedirect(WebRequest request, ModelMap model) {
+        return findAllRedirect(request, model, "students");
     }
 
     @GetMapping("/new")

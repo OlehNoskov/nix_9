@@ -1,5 +1,6 @@
 package ua.com.alevel.facade.impl;
 
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.context.request.WebRequest;
@@ -17,6 +18,7 @@ import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,11 +69,26 @@ public class StudentFacadeImpl implements StudentFacade {
         dataTableRequest.setCurrentPage(pageAndSizeData.getPage());
         dataTableRequest.setPageSize(dataTableRequest.getPageSize());
 
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if (MapUtils.isNotEmpty(parameterMap)) {
+            System.out.println("parameterMap = " + parameterMap);
+            String[] params = request.getParameterMap().get("groupId");
+            if (params != null) {
+                Long groupId = Long.parseLong(params[0]);
+                System.out.println("groupId = " + groupId);
+                dataTableRequest.getQueryMap().put("groupId", groupId);
+            }
+        }
+
         DataTableResponse<Student> all = studentService.findAll(dataTableRequest);
 
         PageData<StudentResponseDto> pageData = new PageData<>();
         List<StudentResponseDto> items = all.getItems().stream().map(StudentResponseDto::new).collect(Collectors.toList());
         pageData.setItems(items);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
 
         return pageData;
     }

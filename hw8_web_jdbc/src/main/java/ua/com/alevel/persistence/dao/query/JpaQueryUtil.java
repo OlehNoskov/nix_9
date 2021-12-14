@@ -17,5 +17,5 @@ public class JpaQueryUtil {
     public static final String EXIST_STUDENT_BY_ID_QUERY = "SELECT COUNT(*) FROM students WHERE id = ";
     public static final String FIND_STUDENT_BY_ID_QUERY = "SELECT * FROM students WHERE id = ";
     public static final String FIND_ALL_STUDENTS_QUERY = "SELECT * FROM students";
-    public static final String FIND_ALL_STUDENTS_BY_GROUP_ID_QUERY = "SELECT * FROM students AS s JOIN course_student AS cs ON s.id = cs.student_id WHERE s.id =";
+    public static final String FIND_ALL_STUDENTS_BY_GROUP_ID_QUERY = "SELECT * FROM students AS s JOIN course_student AS cs ON s.id = cs.student_id WHERE cs.course_id = ";
 }

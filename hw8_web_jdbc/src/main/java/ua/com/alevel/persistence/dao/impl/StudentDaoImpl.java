@@ -32,7 +32,7 @@ public class StudentDaoImpl implements StudentDao {
         try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(CREATE_STUDENT_QUERY)) {
             preparedStatement.setTimestamp(1, new Timestamp(student.getCreated().getTime()));
             preparedStatement.setTimestamp(2, new Timestamp(student.getUpdated().getTime()));
-            preparedStatement.setBoolean(3,new Boolean(student.getVisible()));
+            preparedStatement.setBoolean(3, new Boolean(student.getVisible()));
             preparedStatement.setString(4, student.getFirstname());
             preparedStatement.setString(5, student.getLastname());
             preparedStatement.setInt(6, student.getAge());
@@ -44,7 +44,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void update(Student student) {
-        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(UPDATE_STUDENT_BY_ID_QUERY + student.getId())) {
+        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(UPDATE_STUDENT_BY_ID_QUERY + student.getId())) {
             preparedStatement.setString(1, student.getFirstname());
             preparedStatement.setString(2, student.getLastname());
             preparedStatement.setInt(3, student.getAge());
@@ -57,7 +57,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void delete(Long id) {
-        try(PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(DELETE_STUDENT_BY_ID_QUERY + id)) {
+        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(DELETE_STUDENT_BY_ID_QUERY + id)) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("problem: = " + e.getMessage());
@@ -67,7 +67,7 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public boolean existById(Long id) {
         long count = 0;
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(EXIST_STUDENT_BY_ID_QUERY + id)) {
+        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(EXIST_STUDENT_BY_ID_QUERY + id)) {
             while (resultSet.next()) {
                 count = resultSet.getLong("COUNT(*)");
             }
@@ -79,7 +79,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student findById(Long id) {
-        try(ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_STUDENT_BY_ID_QUERY + id)) {
+        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_STUDENT_BY_ID_QUERY + id)) {
             while (resultSet.next()) {
                 return initStudentByResultSet(resultSet);
             }
@@ -92,7 +92,13 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest request) {
         List<Student> students = new ArrayList<>();
-        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY)) {
+        Long groupId = null;
+        if (request.getQueryMap().get("groupId") != null) {
+            groupId = (Long) request.getQueryMap().get("groupId");
+        }
+        try (ResultSet resultSet = groupId == null ?
+                jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_QUERY) :
+                jpaConfig.getStatement().executeQuery(FIND_ALL_STUDENTS_BY_GROUP_ID_QUERY + groupId)) {
             while (resultSet.next()) {
                 students.add(initStudentByResultSet(resultSet));
             }

@@ -24,6 +24,7 @@ import static ua.com.alevel.util.WebRequestUtil.*;
 @Controller
 @RequestMapping("/groups")
 public class GroupController extends AbstractController {
+
     private final GroupFacade groupFacade;
 
     public GroupController(GroupFacade groupFacade) {
@@ -35,7 +36,7 @@ public class GroupController extends AbstractController {
         HeaderName[] columnTitles = getColumnTitles();
         PageData<GroupResponseDto> response = groupFacade.findAll(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<HeaderData> headerDataList = getHeaderDataList(columnTitles,response);
+        List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/groups/all");
@@ -43,7 +44,8 @@ public class GroupController extends AbstractController {
         model.addAttribute("cardHeader", "All Groups");
         return "pages/group/group_all";
 
-}
+    }
+
     @PostMapping("/all")
     public ModelAndView findAllRedirect(WebRequest request, ModelMap model) {
         Map<String, String[]> parameterMap = request.getParameterMap();
@@ -91,7 +93,7 @@ public class GroupController extends AbstractController {
         return "redirect:/groups";
     }
 
-    private HeaderName[] getColumnTitles(){
+    private HeaderName[] getColumnTitles() {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("name", "name", "name"),
@@ -102,7 +104,7 @@ public class GroupController extends AbstractController {
         };
     }
 
-    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response){
+    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();
 
         for (HeaderName headerName : columnTitles) {

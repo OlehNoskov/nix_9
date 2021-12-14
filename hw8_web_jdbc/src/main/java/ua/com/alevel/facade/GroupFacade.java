@@ -5,6 +5,4 @@ import ua.com.alevel.view.dto.response.GroupResponseDto;
 
 import java.util.List;
 
-public interface GroupFacade extends BaseFacade<GroupRequestDto, GroupResponseDto>{
-//    List<String> findAllGroupsNames();
-}
+public interface GroupFacade extends BaseFacade<GroupRequestDto, GroupResponseDto> { }

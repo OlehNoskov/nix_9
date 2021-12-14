@@ -1,5 +1,7 @@
 CREATE SCHEMA `mydbtest`;
 
+CREATE SCHEMA mydbtest IF NOT EXIST DEFAULT CHARACTER SET utf8 ;
+
 DROP TABLE course IF EXISTS course;
 DROP TABLE students IF EXISTS students;
 DROP TABLE course_student IF EXISTS course_student;
