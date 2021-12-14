@@ -1,13 +1,12 @@
 package ua.com.alevel.persistence.dao.impl;
 
 import org.springframework.stereotype.Service;
+
 import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.GroupDao;
-import ua.com.alevel.persistence.dao.query.JpaQueryUtil;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
-import ua.com.alevel.persistence.entity.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,7 +93,8 @@ public class GroupDaoImpl implements GroupDao {
         int limit = (request.getCurrentPage() - 1) * request.getPageSize();
 
         String sql = "select id, created, updated, visible, name, count(*) as studentCount " +
-                "from course join course_student cs on course.id = cs.course_id group by course_id order by " +
+                "from course left join course_student as cs on course.id = cs.course_id " +
+                "group by course_id order by " +
                 request.getSort() + " " +
                 request.getOrder() + " limit " +
                 limit + "," +

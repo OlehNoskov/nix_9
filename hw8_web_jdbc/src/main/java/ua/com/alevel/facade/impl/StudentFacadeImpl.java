@@ -71,7 +71,6 @@ public class StudentFacadeImpl implements StudentFacade {
 
         Map<String, String[]> parameterMap = request.getParameterMap();
         if (MapUtils.isNotEmpty(parameterMap)) {
-            System.out.println("parameterMap = " + parameterMap);
             String[] params = request.getParameterMap().get("groupId");
             if (params != null) {
                 Long groupId = Long.parseLong(params[0]);

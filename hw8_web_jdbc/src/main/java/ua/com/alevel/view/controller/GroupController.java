@@ -25,6 +25,17 @@ import static ua.com.alevel.util.WebRequestUtil.*;
 @RequestMapping("/groups")
 public class GroupController extends AbstractController {
 
+    private HeaderName[] getColumnTitles() {
+        return new HeaderName[]{
+                new HeaderName("#", null, null),
+                new HeaderName("name", "name", "name"),
+                new HeaderName("student count", "studentCount", "studentCount"),
+                new HeaderName("details", null, null),
+                new HeaderName("edit", null, null),
+                new HeaderName("delete", null, null)
+        };
+    }
+
     private final GroupFacade groupFacade;
 
     public GroupController(GroupFacade groupFacade) {
@@ -91,17 +102,6 @@ public class GroupController extends AbstractController {
     public String delete(@PathVariable Long id) {
         groupFacade.delete(id);
         return "redirect:/groups";
-    }
-
-    private HeaderName[] getColumnTitles() {
-        return new HeaderName[]{
-                new HeaderName("#", null, null),
-                new HeaderName("name", "name", "name"),
-                new HeaderName("student count", "studentCount", "studentCount"),
-                new HeaderName("details", null, null),
-                new HeaderName("edit", "edit", "edit"),
-                new HeaderName("delete", null, null)
-        };
     }
 
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response) {
