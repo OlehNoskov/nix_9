@@ -19,9 +19,8 @@ import ua.com.alevel.view.dto.response.GroupFullResponseDto;
 import ua.com.alevel.view.dto.response.GroupSimpleResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,7 +48,7 @@ public class GroupFacadeImpl implements GroupFacade {
         group.setGroupType(groupRequestDto.getGroupType());
         group.setName(groupRequestDto.getName());
         if (CollectionUtils.isNotEmpty(groupRequestDto.getStudentsIds())) {
-            Set<Student> students = new HashSet<>();
+            List<Student> students = new ArrayList<>();
             for (Long studentsId : groupRequestDto.getStudentsIds()) {
                 students.add(studentservice.findById(studentsId));
             }

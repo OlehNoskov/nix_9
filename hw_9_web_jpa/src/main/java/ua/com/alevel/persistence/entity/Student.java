@@ -1,6 +1,9 @@
 package ua.com.alevel.persistence.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -18,10 +21,11 @@ public class Student extends BaseEntity {
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //не обязательно писать fetch = FetchType.LAZY, так как он default.
-    private Set<Group> groups;
+    private List<Group> groups;
 
     public Student() {
         super();
+        this.groups = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -48,11 +52,24 @@ public class Student extends BaseEntity {
         this.age = age;
     }
 
-    public Set<Group> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(Set<Group> groups) {
+    public void setGroups(List<Group> groups) {
         this.groups = groups;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(age, student.age) && Objects.equals(groups, student.groups);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, age, groups);
     }
 }

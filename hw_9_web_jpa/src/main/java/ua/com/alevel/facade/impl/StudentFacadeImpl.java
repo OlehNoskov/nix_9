@@ -19,6 +19,7 @@ import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentFullResponseDto;
 import ua.com.alevel.view.dto.response.StudentSimpleResponseDto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class StudentFacadeImpl implements StudentFacade {
         student.setFirstName(studentRequestDto.getFirstName());
         student.setLastName(studentRequestDto.getLastName());
         student.setAge(studentRequestDto.getAge());
-        Set<Group> groups = new HashSet<>();
+        List<Group> groups = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
             for (Long groupsId : studentRequestDto.getGroupsIds()) {
                 groups.add(groupService.findById(groupsId));
@@ -57,7 +58,7 @@ public class StudentFacadeImpl implements StudentFacade {
         student.setFirstName(studentRequestDto.getFirstName());
         student.setLastName(studentRequestDto.getLastName());
         student.setAge(studentRequestDto.getAge());
-        Set<Group> groups = new HashSet<>();
+        List<Group> groups = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
             for (Long groupsId : studentRequestDto.getGroupsIds()) {
                 groups.add(groupService.findById(groupsId));
