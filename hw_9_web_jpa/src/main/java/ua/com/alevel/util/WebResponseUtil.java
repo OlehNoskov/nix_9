@@ -16,7 +16,7 @@ public class WebResponseUtil {
         pageData.setOrder(tableResponse.getOrder());
         pageData.setSort(tableResponse.getSort());
         pageData.setItemsSize(tableResponse.getItemsSize());
-        pageData.initPaginationState();
+        pageData.initPaginationState(tableResponse.getCurrentPage());
         return pageData;
     }
 }

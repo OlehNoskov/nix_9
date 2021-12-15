@@ -2,6 +2,7 @@ package ua.com.alevel.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.WebRequest;
+
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 
 import java.util.Objects;

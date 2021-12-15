@@ -1,6 +1,8 @@
 package ua.com.alevel.facade.impl;
 
 import org.apache.commons.collections4.CollectionUtils;
+
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
 import ua.com.alevel.facade.GroupFacade;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class GroupFacadeImpl implements GroupFacade {
 
     private final GroupService groupService;
@@ -68,12 +71,12 @@ public class GroupFacadeImpl implements GroupFacade {
     public PageData<GroupSimpleResponseDto> findAll(WebRequest request) {
         DataTableRequest dataTableRequest = WebRequestUtil.generateDataTableRequest(request);
         DataTableResponse<Group> tableResponse = groupService.findAll(dataTableRequest);
-        List<GroupSimpleResponseDto> departments = tableResponse.getItems()
+        List<GroupSimpleResponseDto> groups = tableResponse.getItems()
                 .stream()
                 .map(GroupSimpleResponseDto::new)
                 .collect(Collectors.toList());
         PageData<GroupSimpleResponseDto> pageData = (PageData<GroupSimpleResponseDto>) WebResponseUtil.initPageData(tableResponse);
-        pageData.setItems(departments);
+        pageData.setItems(groups);
         return pageData;
     }
 }

@@ -41,6 +41,7 @@ public class GroupDaoImpl implements GroupDao {
         if (isSuccessful == 0) {
             throw new OptimisticLockException("group modified concurrently");
         }
+        entityManager.flush();
     }
 
     @Override

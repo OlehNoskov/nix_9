@@ -1,6 +1,7 @@
 package ua.com.alevel.persistence.dao.impl;
 
 import org.springframework.stereotype.Repository;
+
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.dao.StudentDao;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Repository
