@@ -4,7 +4,8 @@ import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 
 import java.util.List;
+import java.util.Set;
 
 public interface StudentService extends BaseService<Student>{
-    List<Group> getGroups(Long id);
+    Set<Group> getGroups(Long id);
 }

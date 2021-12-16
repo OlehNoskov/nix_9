@@ -1,5 +1,6 @@
 package ua.com.alevel.service.impl;
 
+import org.springframework.stereotype.Service;
 import ua.com.alevel.exception.EntityNotFoundException;
 import ua.com.alevel.persistence.dao.StudentDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
@@ -8,8 +9,9 @@ import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.StudentService;
 
-import java.util.List;
+import java.util.Set;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
     private final StudentDao studentDao;
@@ -56,7 +58,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Group> getGroups(Long id) {
+    public Set<Group> getGroups(Long id) {
         return studentDao.getGroups(id);
     }
 }

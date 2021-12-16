@@ -18,8 +18,9 @@ import ua.com.alevel.view.dto.request.SortData;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
 import ua.com.alevel.view.dto.response.*;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,7 +40,7 @@ public class StudentFacadeImpl implements StudentFacade {
         student.setFirstName(studentRequestDto.getFirstName());
         student.setLastName(studentRequestDto.getLastName());
         student.setAge(studentRequestDto.getAge());
-        List<Group> groups = new ArrayList<>();
+        Set<Group> groups = new HashSet<>();
         if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
             for (Long groupsId : studentRequestDto.getGroupsIds()) {
                 groups.add(groupService.findById(groupsId));
@@ -55,7 +56,7 @@ public class StudentFacadeImpl implements StudentFacade {
         student.setFirstName(studentRequestDto.getFirstName());
         student.setLastName(studentRequestDto.getLastName());
         student.setAge(studentRequestDto.getAge());
-        List<Group> groups = new ArrayList<>();
+        Set<Group> groups = new HashSet<>();
         if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
             for (Long groupsId : studentRequestDto.getGroupsIds()) {
                 groups.add(groupService.findById(groupsId));
@@ -105,9 +106,9 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public List<GroupResponseDto> getGroups(Long id) {
-        List<Group> groups = studentService.getGroups(id);
-        List<GroupResponseDto> list = new ArrayList<>();
+    public Set<GroupResponseDto> getGroups(Long id) {
+        Set<Group> groups = studentService.getGroups(id);
+        Set<GroupResponseDto> list = new HashSet<>();
         for (Group group : groups) {
             GroupResponseDto groupResponseDto = new GroupResponseDto(group);
             list.add(groupResponseDto);

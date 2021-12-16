@@ -3,10 +3,10 @@ package ua.com.alevel.persistence.dao;
 import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 
-import java.util.List;
+import java.util.Set;
 
 public interface GroupDao extends BaseDao<Group>{
-    List<Student> getStudents(Long id);
+    Set<Student> getStudents(Long id);
 
     void addStudent(Long groupId, Long studentId);
 
