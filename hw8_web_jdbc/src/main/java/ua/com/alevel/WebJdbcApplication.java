@@ -1,12 +1,12 @@
-package ua.com.alevel;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
-
-import ua.com.alevel.config.jpa.JpaConfig;
-
+//package ua.com.alevel;
+//
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.boot.context.event.ApplicationReadyEvent;
+//import org.springframework.context.event.EventListener;
+//
+//import ua.com.alevel.config.jpa.JpaConfig;
+//
 //@SpringBootApplication
 //public class WebJdbcApplication {
 //

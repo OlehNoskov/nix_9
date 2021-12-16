@@ -13,16 +13,13 @@ import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.GroupService;
 import ua.com.alevel.service.StudentService;
 import ua.com.alevel.util.WebRequestUtil;
-import ua.com.alevel.util.WebResponseUtil;
+import ua.com.alevel.view.dto.request.PageAndSizeData;
+import ua.com.alevel.view.dto.request.SortData;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
-import ua.com.alevel.view.dto.response.PageData;
-import ua.com.alevel.view.dto.response.StudentFullResponseDto;
-import ua.com.alevel.view.dto.response.StudentSimpleResponseDto;
+import ua.com.alevel.view.dto.response.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,20 +71,47 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public StudentFullResponseDto findById(long id) {
-        return new StudentFullResponseDto(studentService.findById(id));
+    public StudentResponseDto findById(long id) {
+        return new StudentResponseDto(studentService.findById(id));
     }
 
     @Override
-    public PageData<StudentSimpleResponseDto> findAll(WebRequest request) {
-        DataTableRequest dataTableRequest = WebRequestUtil.generateDataTableRequest(request);
-        DataTableResponse<Student> tableResponse = studentService.findAll(dataTableRequest);
-        List<StudentSimpleResponseDto> students = tableResponse.getItems()
-                .stream()
-                .map(StudentSimpleResponseDto::new)
-                .collect(Collectors.toList());
-        PageData<StudentSimpleResponseDto> pageData = (PageData<StudentSimpleResponseDto>) WebResponseUtil.initPageData(tableResponse);
-        pageData.setItems(students);
+    public PageData<StudentResponseDto> findAll(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<Student> all = studentService.findAll(dataTableRequest);
+
+        List<StudentResponseDto> list = all.getItems().
+                stream().
+                map(StudentResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<StudentResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+
         return pageData;
+    }
+
+    @Override
+    public List<GroupResponseDto> getGroups(Long id) {
+        List<Group> groups = studentService.getGroups(id);
+        List<GroupResponseDto> list = new ArrayList<>();
+        for (Group group : groups) {
+            GroupResponseDto groupResponseDto = new GroupResponseDto(group);
+            list.add(groupResponseDto);
+        }
+        return list;
     }
 }

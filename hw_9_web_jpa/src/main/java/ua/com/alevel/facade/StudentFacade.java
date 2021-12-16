@@ -1,8 +1,11 @@
 package ua.com.alevel.facade;
 
 import ua.com.alevel.view.dto.request.StudentRequestDto;
-import ua.com.alevel.view.dto.response.StudentFullResponseDto;
-import ua.com.alevel.view.dto.response.StudentSimpleResponseDto;
+import ua.com.alevel.view.dto.response.GroupResponseDto;
+import ua.com.alevel.view.dto.response.StudentResponseDto;
 
-public interface StudentFacade extends BaseFacade<StudentRequestDto, StudentSimpleResponseDto, StudentFullResponseDto> {
+import java.util.List;
+
+public interface StudentFacade extends BaseFacade<StudentRequestDto, StudentResponseDto> {
+    List<GroupResponseDto> getGroups(Long id);
 }

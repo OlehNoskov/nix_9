@@ -10,7 +10,6 @@ import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 
 import javax.persistence.OptimisticLockException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -32,17 +31,17 @@ public class GroupDaoImpl implements GroupDao {
 
     @Override
     public void create(Group entity) {
-        this.sessionFactory.getCurrentSession().persist(entity);
+        sessionFactory.getCurrentSession().persist(entity);
     }
 
     @Override
     public void update(Group entity) {
-        this.sessionFactory.getCurrentSession().merge(entity);
+        sessionFactory.getCurrentSession().merge(entity);
     }
 
     @Override
     public void delete(Long id) {
-        int isSuccessful = this.sessionFactory.getCurrentSession().createQuery("delete from Group g where g.id = :id")
+        int isSuccessful = sessionFactory.getCurrentSession().createQuery("delete from Group g where g.id = :id")
                 .setParameter("id", id)
                 .executeUpdate();
         if (isSuccessful == 0) {
@@ -52,19 +51,22 @@ public class GroupDaoImpl implements GroupDao {
 
     @Override
     public boolean existById(Long id) {
-        Query query = this.sessionFactory.getCurrentSession().createQuery("select count(g.id) from Group g where g.id = :id")
+        Query query = sessionFactory.getCurrentSession().createQuery("select count(g.id) from Group g where g.id = :id")
                 .setParameter("id", id);
         return (Long) query.getSingleResult() == 1;
     }
 
     @Override
     public Group findById(Long id) {
-        return this.sessionFactory.getCurrentSession().find(Group.class, id);
+        return sessionFactory.getCurrentSession().find(Group.class, id);
     }
 
     @Override
     public DataTableResponse<Group> findAll(DataTableRequest request) {
-        CriteriaBuilder criteriaBuilder = this.sessionFactory.getCurrentSession().getCriteriaBuilder();
+        int page = (request.getPage() - 1) * request.getSize();
+        int size = page + request.getSize();
+
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
         CriteriaQuery<Group> criteriaQuery = criteriaBuilder.createQuery(Group.class);
         Root<Group> from = criteriaQuery.from(Group.class);
         if (request.getOrder().equals("desc")) {
@@ -72,11 +74,8 @@ public class GroupDaoImpl implements GroupDao {
         } else {
             criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
         }
-
-        int page = (request.getPage() - 1) * request.getSize();
-        int size = page + request.getSize();
-
-        List<Group> items = this.sessionFactory.getCurrentSession().createQuery(criteriaQuery)
+        List<Group> items = sessionFactory.getCurrentSession()
+                .createQuery(criteriaQuery)
                 .setFirstResult(page)
                 .setMaxResults(size)
                 .getResultList();
@@ -93,22 +92,27 @@ public class GroupDaoImpl implements GroupDao {
 
     @Override
     public long count() {
-        Query query = this.sessionFactory.getCurrentSession().createQuery("select count(g.id) from Group g");
+        Query query = sessionFactory.getCurrentSession().createQuery("select count(g.id) from Group g");
         return (Long) query.getSingleResult();
     }
 
     @Override
     public List<Student> getStudents(Long id) {
-        return null;
+        return sessionFactory.getCurrentSession().find(Group.class, id).getStudents();
     }
 
     @Override
     public void addStudent(Long groupId, Long studentId) {
+        Group group = sessionFactory.getCurrentSession().find(Group.class, groupId);
+        Student student = sessionFactory.getCurrentSession().find(Student.class, studentId);
+        group.addStudent(student);
 
     }
 
     @Override
     public void removeStudent(Long groupId, Long studentId) {
-
+        Group group = sessionFactory.getCurrentSession().find(Group.class, groupId);
+        Student student = sessionFactory.getCurrentSession().find(Student.class, studentId);
+        group.removeStudent(student);
     }
 }

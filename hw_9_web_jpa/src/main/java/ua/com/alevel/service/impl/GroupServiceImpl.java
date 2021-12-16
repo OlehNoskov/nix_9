@@ -5,7 +5,10 @@ import ua.com.alevel.persistence.dao.GroupDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
+import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.GroupService;
+
+import java.util.List;
 
 public class GroupServiceImpl implements GroupService {
 
@@ -46,6 +49,24 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public DataTableResponse<Group> findAll(DataTableRequest request) {
-        return groupDao.findAll(request);
+        DataTableResponse<Group> dataTableResponse = groupDao.findAll(request);
+        long count = groupDao.count();
+        dataTableResponse.setItemsSize(count);
+        return dataTableResponse;
+    }
+
+    @Override
+    public List<Student> getStudents(Long id) {
+        return groupDao.getStudents(id);
+    }
+
+    @Override
+    public void addStudent(Long groupId, Long studentId) {
+        groupDao.addStudent(groupId, studentId);
+    }
+
+    @Override
+    public void removeStudent(Long groupId, Long studentId) {
+        groupDao.removeStudent(groupId, studentId);
     }
 }

@@ -1,7 +1,5 @@
 package ua.com.alevel.persistence.entity;
 
-import ua.com.alevel.persistence.type.GroupType;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +8,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "course")
 public class Group extends BaseEntity {
-    @Enumerated(EnumType.STRING)
-    @Column(name = "group_type")
-    private GroupType groupType;
-
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -27,14 +21,6 @@ public class Group extends BaseEntity {
     public Group() {
         super();
         students = new ArrayList<>();
-    }
-
-    public GroupType getGroupType() {
-        return groupType;
-    }
-
-    public void setGroupType(GroupType groupType) {
-        this.groupType = groupType;
     }
 
     public String getName() {
@@ -67,11 +53,11 @@ public class Group extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Group group = (Group) o;
-        return groupType == group.groupType && Objects.equals(name, group.name) && Objects.equals(students, group.students);
+        return Objects.equals(name, group.name) && Objects.equals(students, group.students);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupType, name, students);
+        return Objects.hash(name, students);
     }
 }

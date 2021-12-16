@@ -4,8 +4,11 @@ import ua.com.alevel.exception.EntityNotFoundException;
 import ua.com.alevel.persistence.dao.StudentDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
+import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.StudentService;
+
+import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
 
@@ -46,6 +49,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest request) {
-        return studentDao.findAll(request);
+        DataTableResponse<Student> dataTableResponse = studentDao.findAll(request);
+        long count = studentDao.count();
+        dataTableResponse.setItemsSize(count);
+        return dataTableResponse;
+    }
+
+    @Override
+    public List<Group> getGroups(Long id) {
+        return studentDao.getGroups(id);
     }
 }

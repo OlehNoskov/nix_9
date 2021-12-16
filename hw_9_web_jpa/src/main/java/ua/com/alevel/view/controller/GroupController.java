@@ -2,16 +2,18 @@ package ua.com.alevel.view.controller;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+
 import ua.com.alevel.facade.GroupFacade;
+import ua.com.alevel.facade.StudentFacade;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
-import ua.com.alevel.view.dto.response.GroupFullResponseDto;
-import ua.com.alevel.view.dto.response.GroupSimpleResponseDto;
+import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
 
 import java.util.ArrayList;
@@ -24,6 +26,14 @@ import static ua.com.alevel.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 @RequestMapping("/groups")
 public class GroupController extends AbstractController {
 
+    private final GroupFacade groupFacade;
+    private final StudentFacade studentFacade;
+
+    public GroupController(GroupFacade groupFacade, StudentFacade studentFacade) {
+        this.groupFacade = groupFacade;
+        this.studentFacade = studentFacade;
+    }
+
     private HeaderName[] getColumnTitles() {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
@@ -35,25 +45,49 @@ public class GroupController extends AbstractController {
         };
     }
 
-    private final GroupFacade groupFacade;
-
-    public GroupController(GroupFacade groupFacade) {
-        this.groupFacade = groupFacade;
-    }
-
+    //    @GetMapping
+//    public String findAll(Model model, WebRequest webRequest) {
+//        HeaderName[] columnTitles = getColumnTitles();
+//        PageData<GroupResponseDto> response = groupFacade.findAll(webRequest);
+//        response.initPaginationState(response.getCurrentPage());
+//        List<HeaderData> headerDataList = new ArrayList<>();
+//        model.addAttribute("headerDataList", headerDataList);
+//        model.addAttribute("createUrl", "/groups/all");
+//        model.addAttribute("pageData", response);
+//        model.addAttribute("cardHeader", "All Groups");
+//        return "pages/group/group_all";
+//
+//    }
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData<GroupSimpleResponseDto> response = groupFacade.findAll(webRequest);
+        PageData<GroupResponseDto> response = groupFacade.findAll(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
+        List<HeaderData> headerDataList = new ArrayList<>();
+        for (HeaderName headerName : columnTitles) {
+            HeaderData data = new HeaderData();
+            data.setHeaderName(headerName.getColumnName());
+            if (StringUtils.isBlank(headerName.getTableName())) {
+                data.setSortable(false);
+            } else {
+                data.setSortable(true);
+                data.setSort(headerName.getDbName());
+                if (response.getSort().equals(headerName.getTableName())) {
+                    data.setActive(true);
+                    data.setOrder(response.getOrder());
+                } else {
+                    data.setActive(false);
+                    data.setOrder(DEFAULT_ORDER_PARAM_VALUE);
+                }
+            }
+            headerDataList.add(data);
+        }
 
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/groups/all");
         model.addAttribute("pageData", response);
         model.addAttribute("cardHeader", "All Groups");
         return "pages/group/group_all";
-
     }
 
     @PostMapping("/all")
@@ -85,14 +119,14 @@ public class GroupController extends AbstractController {
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
-        GroupFullResponseDto groupResponseDto = groupFacade.findById(id);
+        GroupResponseDto groupResponseDto = groupFacade.findById(id);
         model.addAttribute("group", groupResponseDto);
         return "pages/group/group_update";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Long id, Model model) {
-        GroupFullResponseDto groupResponseDto = groupFacade.findById(id);
+        GroupResponseDto groupResponseDto = groupFacade.findById(id);
         model.addAttribute("group", groupResponseDto);
         return "pages/group/group_details";
     }
@@ -103,7 +137,7 @@ public class GroupController extends AbstractController {
         return "redirect:/groups";
     }
 
-    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupSimpleResponseDto> response) {
+    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();
 
         for (HeaderName headerName : columnTitles) {

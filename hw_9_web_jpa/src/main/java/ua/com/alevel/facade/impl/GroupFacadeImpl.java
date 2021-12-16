@@ -13,11 +13,12 @@ import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.GroupService;
 import ua.com.alevel.service.StudentService;
 import ua.com.alevel.util.WebRequestUtil;
-import ua.com.alevel.util.WebResponseUtil;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
-import ua.com.alevel.view.dto.response.GroupFullResponseDto;
-import ua.com.alevel.view.dto.response.GroupSimpleResponseDto;
+import ua.com.alevel.view.dto.request.PageAndSizeData;
+import ua.com.alevel.view.dto.request.SortData;
+import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
+import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,6 @@ public class GroupFacadeImpl implements GroupFacade {
     @Override
     public void create(GroupRequestDto groupRequestDto) {
         Group group = new Group();
-        group.setGroupType(groupRequestDto.getGroupType());
         group.setName(groupRequestDto.getName());
         groupService.create(group);
     }
@@ -45,7 +45,6 @@ public class GroupFacadeImpl implements GroupFacade {
     @Override
     public void update(GroupRequestDto groupRequestDto, long id) {
         Group group = groupService.findById(id);
-        group.setGroupType(groupRequestDto.getGroupType());
         group.setName(groupRequestDto.getName());
         if (CollectionUtils.isNotEmpty(groupRequestDto.getStudentsIds())) {
             List<Student> students = new ArrayList<>();
@@ -62,20 +61,58 @@ public class GroupFacadeImpl implements GroupFacade {
     }
 
     @Override
-    public GroupFullResponseDto findById(long id) {
-        return new GroupFullResponseDto(groupService.findById(id));
+    public GroupResponseDto findById(long id) {
+        return new GroupResponseDto(groupService.findById(id));
     }
 
     @Override
-    public PageData<GroupSimpleResponseDto> findAll(WebRequest request) {
-        DataTableRequest dataTableRequest = WebRequestUtil.generateDataTableRequest(request);
-        DataTableResponse<Group> tableResponse = groupService.findAll(dataTableRequest);
-        List<GroupSimpleResponseDto> groups = tableResponse.getItems()
-                .stream()
-                .map(GroupSimpleResponseDto::new)
-                .collect(Collectors.toList());
-        PageData<GroupSimpleResponseDto> pageData = (PageData<GroupSimpleResponseDto>) WebResponseUtil.initPageData(tableResponse);
-        pageData.setItems(groups);
+    public PageData<GroupResponseDto> findAll(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<Group> all = groupService.findAll(dataTableRequest);
+
+        List<GroupResponseDto> list = all.getItems().
+                stream().
+                map(GroupResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<GroupResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+
         return pageData;
+    }
+
+    @Override
+    public List<StudentResponseDto> getStudents(Long id) {
+        List<Student> students = groupService.getStudents(id);
+        List<StudentResponseDto> list = new ArrayList<>();
+        for (Student student : students) {
+            StudentResponseDto studentResponseDto = new StudentResponseDto(student);
+            list.add(studentResponseDto);
+        }
+        return list;
+    }
+
+    @Override
+    public void addStudent(Long groupId, Long studentId) {
+        groupService.addStudent(groupId,studentId);
+    }
+
+    @Override
+    public void removeStudent(Long groupId, Long studentId) {
+     groupService.removeStudent(groupId,studentId);
     }
 }

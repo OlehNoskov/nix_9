@@ -6,15 +6,21 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+
 import ua.com.alevel.facade.StudentFacade;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
 import ua.com.alevel.view.dto.response.PageData;
-import ua.com.alevel.view.dto.response.StudentFullResponseDto;
-import ua.com.alevel.view.dto.response.StudentSimpleResponseDto;
+import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 @Controller
 @RequestMapping("/students")
 public class StudentController extends AbstractController {
+
+    private final StudentFacade studentFacade;
+
+    public StudentController(StudentFacade studentFacade) {
+        this.studentFacade = studentFacade;
+    }
 
     private HeaderName[] getColumnTitles() {
         return new HeaderName[]{
@@ -29,15 +35,9 @@ public class StudentController extends AbstractController {
         };
     }
 
-    private final StudentFacade studentFacade;
-
-    public StudentController(StudentFacade studentFacade) {
-        this.studentFacade = studentFacade;
-    }
-
     @GetMapping
     public String findAll(Model model, WebRequest request) {
-        PageData<StudentSimpleResponseDto> response = studentFacade.findAll(request);
+        PageData<StudentResponseDto> response = studentFacade.findAll(request);
         initDataTable(response, getColumnTitles(), model);
         model.addAttribute("createUrl", "/students/all");
         model.addAttribute("cardHeader", "All Students");
@@ -69,7 +69,7 @@ public class StudentController extends AbstractController {
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
-        StudentFullResponseDto studentResponseDto = studentFacade.findById(id);
+        StudentResponseDto studentResponseDto = studentFacade.findById(id);
         model.addAttribute("student", studentResponseDto);
         return "pages/student/student_update";
     }
@@ -82,7 +82,7 @@ public class StudentController extends AbstractController {
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Long id, Model model) {
-        StudentFullResponseDto studentResponseDto = studentFacade.findById(id);
+        StudentResponseDto studentResponseDto = studentFacade.findById(id);
         model.addAttribute("student", studentResponseDto);
         return "pages/student/student_details";
     }
