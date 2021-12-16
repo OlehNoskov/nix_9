@@ -57,18 +57,18 @@ public class GroupServiceImpl implements GroupService {
         return dataTableResponse;
     }
 
-    @Override
-    public Set<Student> getStudents(Long id) {
-        return groupDao.getStudents(id);
-    }
-
-    @Override
-    public void addStudent(Long groupId, Long studentId) {
-        groupDao.addStudent(groupId, studentId);
-    }
-
-    @Override
-    public void removeStudent(Long groupId, Long studentId) {
-        groupDao.removeStudent(groupId, studentId);
-    }
+//    @Override
+//    public Set<Student> getStudents(Long id) {
+//        return groupDao.getStudents(id);
+//    }
+//
+//    @Override
+//    public void addStudent(Long groupId, Long studentId) {
+//        groupDao.addStudent(groupId, studentId);
+//    }
+//
+//    @Override
+//    public void removeStudent(Long groupId, Long studentId) {
+//        groupDao.removeStudent(groupId, studentId);
+//    }
 }

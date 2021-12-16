@@ -2,6 +2,7 @@ package ua.com.alevel.facade.impl;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
@@ -20,6 +21,7 @@ import ua.com.alevel.view.dto.response.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -80,11 +82,23 @@ public class StudentFacadeImpl implements StudentFacade {
     public PageData<StudentResponseDto> findAll(WebRequest request) {
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
+
         DataTableRequest dataTableRequest = new DataTableRequest();
         dataTableRequest.setSize(pageAndSizeData.getSize());
         dataTableRequest.setPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
+
+        Map<String, String[]> parameterMap = request.getParameterMap();
+
+        if (MapUtils.isNotEmpty(parameterMap)) {
+            String[] params = request.getParameterMap().get("groupId");
+            if (params != null) {
+                Long groupId = Long.parseLong(params[0]);
+                System.out.println("groupId = " + groupId);
+                dataTableRequest.getQueryMap().put("groupId", groupId);
+            }
+        }
 
         DataTableResponse<Student> all = studentService.findAll(dataTableRequest);
 

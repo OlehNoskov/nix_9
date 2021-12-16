@@ -9,6 +9,7 @@ public class DataTableRequest {
     private String order;
     private String sort;
     private Map<String, String[]> requestParamMap;
+    private Map<String, Object> queryMap;
 
     public DataTableRequest() {
         this.requestParamMap = new HashMap<>();
@@ -52,5 +53,13 @@ public class DataTableRequest {
 
     public void setRequestParamMap(Map<String, String[]> requestParamMap) {
         this.requestParamMap = requestParamMap;
+    }
+
+    public Map<String, Object> getQueryMap() {
+        return queryMap;
+    }
+
+    public void setQueryMap(Map<String, Object> queryMap) {
+        this.queryMap = queryMap;
     }
 }

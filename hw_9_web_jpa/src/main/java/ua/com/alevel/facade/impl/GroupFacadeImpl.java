@@ -101,25 +101,25 @@ public class GroupFacadeImpl implements GroupFacade {
 
         return pageData;
     }
-
-    @Override
-    public Set<StudentResponseDto> getStudents(Long id) {
-        Set<Student> students = groupService.getStudents(id);
-        Set<StudentResponseDto> list = new HashSet<>();
-        for (Student student : students) {
-            StudentResponseDto studentResponseDto = new StudentResponseDto(student);
-            list.add(studentResponseDto);
-        }
-        return list;
-    }
-
-    @Override
-    public void addStudent(Long groupId, Long studentId) {
-        groupService.addStudent(groupId, studentId);
-    }
-
-    @Override
-    public void removeStudent(Long groupId, Long studentId) {
-        groupService.removeStudent(groupId, studentId);
-    }
+//
+//    @Override
+//    public Set<StudentResponseDto> getStudents(Long id) {
+//        Set<Student> students = groupService.getStudents(id);
+//        Set<StudentResponseDto> list = new HashSet<>();
+//        for (Student student : students) {
+//            StudentResponseDto studentResponseDto = new StudentResponseDto(student);
+//            list.add(studentResponseDto);
+//        }
+//        return list;
+//    }
+//
+//    @Override
+//    public void addStudent(Long groupId, Long studentId) {
+//        groupService.addStudent(groupId, studentId);
+//    }
+//
+//    @Override
+//    public void removeStudent(Long groupId, Long studentId) {
+//        groupService.removeStudent(groupId, studentId);
+//    }
 }

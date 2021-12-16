@@ -8,9 +8,9 @@ import java.util.Set;
 
 public interface GroupFacade extends BaseFacade<GroupRequestDto, GroupResponseDto>{
 
-    Set<StudentResponseDto> getStudents(Long id);
-
-    void addStudent(Long groupId, Long studentId);
-
-    void removeStudent(Long groupId, Long studentId);
+//    Set<StudentResponseDto> getStudents(Long id);
+//
+//    void addStudent(Long groupId, Long studentId);
+//
+//    void removeStudent(Long groupId, Long studentId);
 }

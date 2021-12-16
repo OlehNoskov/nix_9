@@ -5,6 +5,8 @@ import ua.com.alevel.persistence.entity.Student;
 
 import java.util.Set;
 
-public interface StudentDao extends BaseDao<Student>{
+public interface StudentDao extends BaseDao<Student> {
     Set<Group> getGroups(Long id);
+
+    int studentCount(Long id);
 }

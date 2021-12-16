@@ -9,6 +9,7 @@ import java.util.Map;
 public class DataTableResponse <E extends BaseEntity>{
     private int currentPage;
     private int pageSize;
+    private int size;
     private long itemsSize;
     private String sort;
     private String order;
@@ -77,5 +78,13 @@ public class DataTableResponse <E extends BaseEntity>{
 
     public void setOrder(String order) {
         this.order = order;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }

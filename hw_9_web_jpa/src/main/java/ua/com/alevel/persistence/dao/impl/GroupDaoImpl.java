@@ -64,6 +64,7 @@ public class GroupDaoImpl implements GroupDao {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Group> criteriaQuery = criteriaBuilder.createQuery(Group.class);
         Root<Group> from = criteriaQuery.from(Group.class);
+
         if (request.getOrder().equals("desc")) {
             criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
         } else {
@@ -91,23 +92,23 @@ public class GroupDaoImpl implements GroupDao {
         return (Long) query.getSingleResult();
     }
 
-    @Override
-    public Set<Student> getStudents(Long id) {
-        return entityManager.find(Group.class, id).getStudents();
-    }
-
-    @Override
-    public void addStudent(Long groupId, Long studentId) {
-        Group group = entityManager.find(Group.class, groupId);
-        Student student = entityManager.find(Student.class, studentId);
-        group.addStudent(student);
-
-    }
-
-    @Override
-    public void removeStudent(Long groupId, Long studentId) {
-        Group group = entityManager.find(Group.class, groupId);
-        Student student = entityManager.find(Student.class, studentId);
-        group.removeStudent(student);
-    }
+//    @Override
+//    public Set<Student> getStudents(Long id) {
+//        return entityManager.find(Group.class, id).getStudents();
+//    }
+//
+//    @Override
+//    public void addStudent(Long groupId, Long studentId) {
+//        Group group = entityManager.find(Group.class, groupId);
+//        Student student = entityManager.find(Student.class, studentId);
+//        group.addStudent(student);
+//
+//    }
+//
+//    @Override
+//    public void removeStudent(Long groupId, Long studentId) {
+//        Group group = entityManager.find(Group.class, groupId);
+//        Student student = entityManager.find(Student.class, studentId);
+//        group.removeStudent(student);
+//    }
 }

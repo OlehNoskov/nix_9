@@ -14,10 +14,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Repository
@@ -97,5 +100,10 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public Set<Group> getGroups(Long id) {
         return entityManager.find(Student.class, id).getGroups();
+    }
+
+    @Override
+    public int studentCount(Long id) {
+        return findById(id).getGroups().size();
     }
 }
