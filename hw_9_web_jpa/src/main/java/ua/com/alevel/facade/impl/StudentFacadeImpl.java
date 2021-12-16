@@ -115,7 +115,6 @@ public class StudentFacadeImpl implements StudentFacade {
         pageData.setSort(sortData.getSort());
         pageData.setItemsSize(all.getItemsSize());
         pageData.initPaginationState(pageData.getCurrentPage());
-
         return pageData;
     }
 }
