@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import ua.com.alevel.facade.GroupFacade;
+import ua.com.alevel.facade.StudentFacade;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
 import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
@@ -26,9 +27,11 @@ import static ua.com.alevel.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 public class GroupController extends AbstractController {
 
     private final GroupFacade groupFacade;
+    private final StudentFacade studentFacade;
 
-    public GroupController(GroupFacade groupFacade) {
+    public GroupController(GroupFacade groupFacade, StudentFacade studentFacade) {
         this.groupFacade = groupFacade;
+        this.studentFacade = studentFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -103,7 +106,6 @@ public class GroupController extends AbstractController {
         groupFacade.delete(id);
         return "redirect:/groups";
     }
-
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();
 

@@ -118,15 +118,4 @@ public class StudentFacadeImpl implements StudentFacade {
 
         return pageData;
     }
-
-    @Override
-    public Set<GroupResponseDto> getGroups(Long id) {
-        Set<Group> groups = studentService.getGroups(id);
-        Set<GroupResponseDto> list = new HashSet<>();
-        for (Group group : groups) {
-            GroupResponseDto groupResponseDto = new GroupResponseDto(group);
-            list.add(groupResponseDto);
-        }
-        return list;
-    }
 }

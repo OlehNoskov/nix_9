@@ -17,7 +17,9 @@ import javax.persistence.criteria.Root;
 
 import javax.transaction.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Repository
@@ -56,32 +58,82 @@ public class GroupDaoImpl implements GroupDao {
         return entityManager.find(Group.class, id);
     }
 
+//    @Override
+//    public DataTableResponse<Group> findAll(DataTableRequest request) {
+//        int page = (request.getPage() - 1) * request.getSize();
+//        int size = page + request.getSize();
+//
+//        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<Group> criteriaQuery = criteriaBuilder.createQuery(Group.class);
+//        Root<Group> from = criteriaQuery.from(Group.class);
+//
+//        if (request.getOrder().equals("desc")) {
+//            criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
+//        } else {
+//            criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
+//        }
+//        List<Group> items = entityManager
+//                .createQuery(criteriaQuery)
+//                .setFirstResult(page)
+//                .setMaxResults(size)
+//                .getResultList();
+//
+//        DataTableResponse<Group> response = new DataTableResponse<>();
+//        response.setSort(request.getSort());
+//        response.setOrder(request.getOrder());
+//        response.setCurrentPage(request.getPage());
+//        response.setPageSize(request.getSize());
+//        response.setItems(items);
+//
+//        return response;
+//    }
+
     @Override
     public DataTableResponse<Group> findAll(DataTableRequest request) {
-        int page = (request.getPage() - 1) * request.getSize();
-        int size = page + request.getSize();
-
+        List<Group> items;
+        Map<Object, Object> otherParamMap = new HashMap<>();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Group> criteriaQuery = criteriaBuilder.createQuery(Group.class);
         Root<Group> from = criteriaQuery.from(Group.class);
+        int page = (request.getPage() - 1) * request.getSize();
+        int size = page + request.getSize();
 
-        if (request.getOrder().equals("desc")) {
-            criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
+        if (request.getSort().equals("studentCount")) {
+            Query query;
+            if (request.getOrder().equals("desc")) {
+                query = entityManager.createQuery("select g from Group g where g.visible = true order by g.students.size desc")
+                        .setFirstResult(page)
+                        .setMaxResults(size);
+            } else {
+                query = entityManager.createQuery("select g from Group g where g.visible = true order by g.students.size asc")
+                        .setFirstResult(page)
+                        .setMaxResults(size);
+            }
+            items = query.getResultList();
         } else {
-            criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
+            if (request.getOrder().equals("desc")) {
+                criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
+            } else {
+                criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
+            }
+
+            items = entityManager.createQuery(criteriaQuery)
+                    .setFirstResult(page)
+                    .setMaxResults(size)
+                    .getResultList();
         }
-        List<Group> items = entityManager
-                .createQuery(criteriaQuery)
-                .setFirstResult(page)
-                .setMaxResults(size)
-                .getResultList();
+
+        for (int i = 0; i < items.size(); i++) {
+            otherParamMap.put(items.get(i).getId(), (items.get(i).getId()));
+        }
 
         DataTableResponse<Group> response = new DataTableResponse<>();
         response.setSort(request.getSort());
         response.setOrder(request.getOrder());
         response.setCurrentPage(request.getPage());
-        response.setPageSize(request.getSize());
+        response.setSize(request.getSize());
         response.setItems(items);
+        response.setOtherParamMap(otherParamMap);
 
         return response;
     }
@@ -91,24 +143,4 @@ public class GroupDaoImpl implements GroupDao {
         Query query = entityManager.createQuery("select count(g.id) from Group g");
         return (Long) query.getSingleResult();
     }
-
-//    @Override
-//    public Set<Student> getStudents(Long id) {
-//        return entityManager.find(Group.class, id).getStudents();
-//    }
-//
-//    @Override
-//    public void addStudent(Long groupId, Long studentId) {
-//        Group group = entityManager.find(Group.class, groupId);
-//        Student student = entityManager.find(Student.class, studentId);
-//        group.addStudent(student);
-//
-//    }
-//
-//    @Override
-//    public void removeStudent(Long groupId, Long studentId) {
-//        Group group = entityManager.find(Group.class, groupId);
-//        Student student = entityManager.find(Student.class, studentId);
-//        group.removeStudent(student);
-//    }
 }

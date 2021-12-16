@@ -2,7 +2,7 @@ package ua.com.alevel.persistence.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Set;;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses")

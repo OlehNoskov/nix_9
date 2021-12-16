@@ -96,14 +96,4 @@ public class StudentDaoImpl implements StudentDao {
         Query query = entityManager.createQuery("select count(s.id) from Student s");
         return (Long) query.getSingleResult();
     }
-
-    @Override
-    public Set<Group> getGroups(Long id) {
-        return entityManager.find(Student.class, id).getGroups();
-    }
-
-    @Override
-    public int studentCount(Long id) {
-        return findById(id).getGroups().size();
-    }
 }

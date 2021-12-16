@@ -19,7 +19,6 @@ import ua.com.alevel.view.dto.request.PageAndSizeData;
 import ua.com.alevel.view.dto.request.SortData;
 import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
-import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 import java.util.HashSet;
 import java.util.List;
@@ -88,7 +87,7 @@ public class GroupFacadeImpl implements GroupFacade {
         List<GroupResponseDto> list = all.getItems().
                 stream().
                 map(GroupResponseDto::new).
-                peek(dto -> dto.setStudentCount((Integer) all.getOtherParamMap().get(dto.getId()))).
+                peek(dto -> dto.setStudentCount((Long) all.getOtherParamMap().get(dto.getId()))).
                 collect(Collectors.toList());
 
         PageData<GroupResponseDto> pageData = new PageData<>();
@@ -101,25 +100,4 @@ public class GroupFacadeImpl implements GroupFacade {
 
         return pageData;
     }
-//
-//    @Override
-//    public Set<StudentResponseDto> getStudents(Long id) {
-//        Set<Student> students = groupService.getStudents(id);
-//        Set<StudentResponseDto> list = new HashSet<>();
-//        for (Student student : students) {
-//            StudentResponseDto studentResponseDto = new StudentResponseDto(student);
-//            list.add(studentResponseDto);
-//        }
-//        return list;
-//    }
-//
-//    @Override
-//    public void addStudent(Long groupId, Long studentId) {
-//        groupService.addStudent(groupId, studentId);
-//    }
-//
-//    @Override
-//    public void removeStudent(Long groupId, Long studentId) {
-//        groupService.removeStudent(groupId, studentId);
-//    }
 }

@@ -1,6 +1,7 @@
 package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
+
 import ua.com.alevel.exception.EntityNotFoundException;
 import ua.com.alevel.persistence.dao.GroupDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
@@ -56,19 +57,4 @@ public class GroupServiceImpl implements GroupService {
         dataTableResponse.setItemsSize(count);
         return dataTableResponse;
     }
-
-//    @Override
-//    public Set<Student> getStudents(Long id) {
-//        return groupDao.getStudents(id);
-//    }
-//
-//    @Override
-//    public void addStudent(Long groupId, Long studentId) {
-//        groupDao.addStudent(groupId, studentId);
-//    }
-//
-//    @Override
-//    public void removeStudent(Long groupId, Long studentId) {
-//        groupDao.removeStudent(groupId, studentId);
-//    }
 }
