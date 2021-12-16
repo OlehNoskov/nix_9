@@ -37,8 +37,8 @@ public class StudentFacadeImpl implements StudentFacade {
     @Override
     public void create(StudentRequestDto studentRequestDto) {
         Student student = new Student();
-        student.setFirstName(studentRequestDto.getFirstName());
-        student.setLastName(studentRequestDto.getLastName());
+        student.setFirstname(studentRequestDto.getFirstname());
+        student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
         Set<Group> groups = new HashSet<>();
         if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
@@ -53,8 +53,8 @@ public class StudentFacadeImpl implements StudentFacade {
     @Override
     public void update(StudentRequestDto studentRequestDto, long id) {
         Student student = studentService.findById(id);
-        student.setFirstName(studentRequestDto.getFirstName());
-        student.setLastName(studentRequestDto.getLastName());
+        student.setFirstname(studentRequestDto.getFirstname());
+        student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
         Set<Group> groups = new HashSet<>();
         if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {

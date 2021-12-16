@@ -14,8 +14,8 @@
 
     <tr th:each="student,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
-        <td th:text="${student.getFirstName}"></td>
-        <td th:text="${student.getLastName}"></td>
+        <td th:text="${student.getFirstname}"></td>
+        <td th:text="${student.getLastname}"></td>
         <td th:text="${student.getAge()}"></td>
         <td th:text="${#calendars.format(student.getCreated(),'dd MMMM yyyy')}"></td>
         <td>

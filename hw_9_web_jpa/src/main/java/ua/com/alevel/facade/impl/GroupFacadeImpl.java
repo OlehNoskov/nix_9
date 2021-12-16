@@ -2,6 +2,7 @@ package ua.com.alevel.facade.impl;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
@@ -22,6 +23,7 @@ import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -77,11 +79,16 @@ public class GroupFacadeImpl implements GroupFacade {
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
 
-        DataTableResponse<Group> all = groupService.findAll(dataTableRequest);
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if (MapUtils.isNotEmpty(parameterMap)) {
+            System.out.println("parameterMap = " + parameterMap);
+        }
 
+        DataTableResponse<Group> all = groupService.findAll(dataTableRequest);
         List<GroupResponseDto> list = all.getItems().
                 stream().
                 map(GroupResponseDto::new).
+                peek(dto -> dto.setStudentCount((Integer) all.getOtherParamMap().get(dto.getId()))).
                 collect(Collectors.toList());
 
         PageData<GroupResponseDto> pageData = new PageData<>();
@@ -91,7 +98,6 @@ public class GroupFacadeImpl implements GroupFacade {
         pageData.setOrder(sortData.getOrder());
         pageData.setSort(sortData.getSort());
         pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
 
         return pageData;
     }
@@ -109,11 +115,11 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public void addStudent(Long groupId, Long studentId) {
-        groupService.addStudent(groupId,studentId);
+        groupService.addStudent(groupId, studentId);
     }
 
     @Override
     public void removeStudent(Long groupId, Long studentId) {
-     groupService.removeStudent(groupId,studentId);
+        groupService.removeStudent(groupId, studentId);
     }
 }

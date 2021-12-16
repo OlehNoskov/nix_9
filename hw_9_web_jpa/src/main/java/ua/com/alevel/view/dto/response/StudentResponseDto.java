@@ -16,7 +16,7 @@ public class StudentResponseDto extends ResponseDto{
         setUpdated(student.getUpdated());
         setVisible(student.getVisible());
         this.firstname = student.getFirstName();
-        this.lastname = student.getLastName();
+        this.lastname = student.getLastname();
         this.age = student.getAge();
     }
 

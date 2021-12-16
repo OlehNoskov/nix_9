@@ -11,7 +11,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import ua.com.alevel.facade.GroupFacade;
-import ua.com.alevel.facade.StudentFacade;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
 import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
@@ -27,11 +26,9 @@ import static ua.com.alevel.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 public class GroupController extends AbstractController {
 
     private final GroupFacade groupFacade;
-    private final StudentFacade studentFacade;
 
-    public GroupController(GroupFacade groupFacade, StudentFacade studentFacade) {
+    public GroupController(GroupFacade groupFacade) {
         this.groupFacade = groupFacade;
-        this.studentFacade = studentFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -45,49 +42,19 @@ public class GroupController extends AbstractController {
         };
     }
 
-    //    @GetMapping
-//    public String findAll(Model model, WebRequest webRequest) {
-//        HeaderName[] columnTitles = getColumnTitles();
-//        PageData<GroupResponseDto> response = groupFacade.findAll(webRequest);
-//        response.initPaginationState(response.getCurrentPage());
-//        List<HeaderData> headerDataList = new ArrayList<>();
-//        model.addAttribute("headerDataList", headerDataList);
-//        model.addAttribute("createUrl", "/groups/all");
-//        model.addAttribute("pageData", response);
-//        model.addAttribute("cardHeader", "All Groups");
-//        return "pages/group/group_all";
-//
-//    }
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
         PageData<GroupResponseDto> response = groupFacade.findAll(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<HeaderData> headerDataList = new ArrayList<>();
-        for (HeaderName headerName : columnTitles) {
-            HeaderData data = new HeaderData();
-            data.setHeaderName(headerName.getColumnName());
-            if (StringUtils.isBlank(headerName.getTableName())) {
-                data.setSortable(false);
-            } else {
-                data.setSortable(true);
-                data.setSort(headerName.getDbName());
-                if (response.getSort().equals(headerName.getTableName())) {
-                    data.setActive(true);
-                    data.setOrder(response.getOrder());
-                } else {
-                    data.setActive(false);
-                    data.setOrder(DEFAULT_ORDER_PARAM_VALUE);
-                }
-            }
-            headerDataList.add(data);
-        }
+        List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/groups/all");
         model.addAttribute("pageData", response);
         model.addAttribute("cardHeader", "All Groups");
         return "pages/group/group_all";
+
     }
 
     @PostMapping("/all")
