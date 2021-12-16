@@ -81,13 +81,18 @@ public class StudentFacadeImpl implements StudentFacade {
 
         DataTableResponse<Student> all = studentService.findAll(dataTableRequest);
 
+        List<StudentResponseDto> items = all.getItems()
+                .stream().map(StudentResponseDto::new)
+                .collect(Collectors.toList());
+
         PageData<StudentResponseDto> pageData = new PageData<>();
-        List<StudentResponseDto> items = all.getItems().stream().map(StudentResponseDto::new).collect(Collectors.toList());
         pageData.setItems(items);
         pageData.setCurrentPage(pageAndSizeData.getPage());
         pageData.setPageSize(pageAndSizeData.getSize());
         pageData.setOrder(sortData.getOrder());
         pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
 
         return pageData;
     }

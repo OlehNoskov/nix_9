@@ -34,7 +34,7 @@ public class PageData<REQ extends ResponseDto> {
 
     public void initPaginationState(int currentPage) {
         if (pageSize < itemsSize) {
-            this.totalPageSize = (int) itemsSize / pageSize; // TODO fix this
+            this.totalPageSize = (int) itemsSize / pageSize;
             this.showFirst = this.currentPage != 1;
             this.showPrevious = this.currentPage - 1 != 0;
             this.showLast = this.currentPage - 1 != totalPageSize;
