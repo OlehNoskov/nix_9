@@ -7,10 +7,7 @@ import ua.com.alevel.persistence.dao.GroupDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
-import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.GroupService;
-
-import java.util.Set;
 
 @Service
 public class GroupServiceImpl implements GroupService {

@@ -13,9 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static ua.com.alevel.persistence.dao.query.JpaQueryUtil.*;
 
@@ -103,6 +101,7 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest request) {
         List<Student> students = new ArrayList<>();
+        Map<Object, Object> otherParamMap = new HashMap<>();
         Long groupId = null;
         if (request.getQueryMap().get("groupId") != null) {
             groupId = (Long) request.getQueryMap().get("groupId");
@@ -116,8 +115,14 @@ public class StudentDaoImpl implements StudentDao {
         } catch (SQLException e) {
             System.out.println("problem: = " + e.getMessage());
         }
+
         DataTableResponse<Student> dataTableResponse = new DataTableResponse<>();
+        dataTableResponse.setSort(request.getSort());
+        dataTableResponse.setOrder(request.getOrder());
+        dataTableResponse.setCurrentPage(request.getPageSize());
         dataTableResponse.setItems(students);
+        dataTableResponse.setOtherParamMap(otherParamMap);
+
         return dataTableResponse;
     }
 

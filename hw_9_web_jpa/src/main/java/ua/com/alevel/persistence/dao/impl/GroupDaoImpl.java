@@ -6,7 +6,6 @@ import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.dao.GroupDao;
 import ua.com.alevel.persistence.entity.Group;
-import ua.com.alevel.persistence.entity.Student;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +19,6 @@ import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Repository
 @Transactional
@@ -37,6 +35,7 @@ public class GroupDaoImpl implements GroupDao {
     @Override
     public void update(Group entity) {
         entityManager.merge(entity);
+        System.out.println("!!!!");
     }
 
     @Override

@@ -14,14 +14,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+
 import javax.transaction.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Repository
 @Transactional
@@ -61,35 +60,69 @@ public class StudentDaoImpl implements StudentDao {
     public Student findById(Long id) {
         return entityManager.find(Student.class, id);
     }
+//
+//    @Override
+//    public DataTableResponse<Student> findAll(DataTableRequest request) {
+//        int page = (request.getPage() - 1) * request.getSize();
+//        int size = page + request.getSize();
+//
+//        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+//        Root<Student> from = criteriaQuery.from(Student.class);
+//        if (request.getOrder().equals("desc")) {
+//            criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
+//        } else {
+//            criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
+//        }
+//        List<Student> items = entityManager
+//                .createQuery(criteriaQuery)
+//                .setFirstResult(page)
+//                .setMaxResults(size)
+//                .getResultList();
+//
+//        DataTableResponse<Student> response = new DataTableResponse<>();
+//        response.setSort(request.getSort());
+//        response.setOrder(request.getOrder());
+//        response.setCurrentPage(request.getPage());
+//        response.setPageSize(request.getSize());
+//        response.setItems(items);
+//
+//        return response;
+//    }
 
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest request) {
         int page = (request.getPage() - 1) * request.getSize();
         int size = page + request.getSize();
 
+        List<Student> items;
+        Map<Object, Object> otherParamMap = new HashMap<>();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
         Root<Student> from = criteriaQuery.from(Student.class);
-        if (request.getOrder().equals("desc")) {
-            criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
-        } else {
-            criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
-        }
-        List<Student> items = entityManager
-                .createQuery(criteriaQuery)
-                .setFirstResult(page)
-                .setMaxResults(size)
-                .getResultList();
+
+            if (request.getOrder().equals("desc")) {
+                criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
+            } else {
+                criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
+            }
+
+            items = entityManager.createQuery(criteriaQuery)
+                    .setFirstResult(page)
+                    .setMaxResults(size)
+                    .getResultList();
 
         DataTableResponse<Student> response = new DataTableResponse<>();
         response.setSort(request.getSort());
         response.setOrder(request.getOrder());
         response.setCurrentPage(request.getPage());
-        response.setPageSize(request.getSize());
+        response.setSize(request.getSize());
         response.setItems(items);
+        response.setOtherParamMap(otherParamMap);
 
         return response;
     }
+
 
     @Override
     public long count() {
