@@ -86,4 +86,9 @@ public class GroupFacadeImpl implements GroupFacade {
 
         return pageData;
     }
+
+    @Override
+    public Map<Long, String> findStudentByGroupId(Long id) {
+        return groupService.findStudentByGroupId(id);
+    }
 }

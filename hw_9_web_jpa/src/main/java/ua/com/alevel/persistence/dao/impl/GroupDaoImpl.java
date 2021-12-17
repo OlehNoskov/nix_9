@@ -6,6 +6,7 @@ import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.dao.GroupDao;
 import ua.com.alevel.persistence.entity.Group;
+import ua.com.alevel.persistence.entity.Student;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -111,5 +112,15 @@ public class GroupDaoImpl implements GroupDao {
     public long count() {
         Query query = entityManager.createQuery("select count(g.id) from Group g");
         return (Long) query.getSingleResult();
+    }
+
+    @Override
+    public Map<Long, String> findStudentByGroupId(Long id) {
+        List<Student> studentList = findById(id).getStudents().stream().toList();
+        Map<Long, String> students = new HashMap<>();
+        for (int i = 0; i < studentList.size(); i++) {
+            students.put(studentList.get(i).getId(), studentList.get(i).getFirstName() + studentList.get(i).getLastname()+ studentList.get(i).getAge());
+        }
+        return students;
     }
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.dao.StudentDao;
-import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 
 import javax.persistence.EntityManager;
@@ -60,35 +59,6 @@ public class StudentDaoImpl implements StudentDao {
     public Student findById(Long id) {
         return entityManager.find(Student.class, id);
     }
-//
-//    @Override
-//    public DataTableResponse<Student> findAll(DataTableRequest request) {
-//        int page = (request.getPage() - 1) * request.getSize();
-//        int size = page + request.getSize();
-//
-//        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-//        CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
-//        Root<Student> from = criteriaQuery.from(Student.class);
-//        if (request.getOrder().equals("desc")) {
-//            criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
-//        } else {
-//            criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
-//        }
-//        List<Student> items = entityManager
-//                .createQuery(criteriaQuery)
-//                .setFirstResult(page)
-//                .setMaxResults(size)
-//                .getResultList();
-//
-//        DataTableResponse<Student> response = new DataTableResponse<>();
-//        response.setSort(request.getSort());
-//        response.setOrder(request.getOrder());
-//        response.setCurrentPage(request.getPage());
-//        response.setPageSize(request.getSize());
-//        response.setItems(items);
-//
-//        return response;
-//    }
 
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest request) {

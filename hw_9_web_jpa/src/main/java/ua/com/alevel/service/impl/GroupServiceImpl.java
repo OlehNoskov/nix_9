@@ -9,6 +9,8 @@ import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.service.GroupService;
 
+import java.util.Map;
+
 @Service
 public class GroupServiceImpl implements GroupService {
 
@@ -53,5 +55,10 @@ public class GroupServiceImpl implements GroupService {
         long count = groupDao.count();
         dataTableResponse.setItemsSize(count);
         return dataTableResponse;
+    }
+
+    @Override
+    public Map<Long, String> findStudentByGroupId(Long id) {
+        return groupDao.findStudentByGroupId(id);
     }
 }
