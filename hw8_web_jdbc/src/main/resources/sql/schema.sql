@@ -1,15 +1,15 @@
-CREATE SCHEMA `mydbtest`;
+DROP  SCHEMA IF EXISTS mydbtest;
 
-CREATE SCHEMA mydbtest IF NOT EXIST DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA mydbtest DEFAULT CHARACTER SET utf8 ;
 
-DROP TABLE course IF EXISTS course;
-DROP TABLE students IF EXISTS students;
-DROP TABLE course_student IF EXISTS course_student;
+DROP TABLE mydbtest.course;
+DROP TABLE mydbtest.students;
+DROP TABLE course_student;
 
-CREATE TABLE course
+CREATE TABLE mydbtest.course
 (
     id      BIGINT AUTO_INCREMENT
-            PRIMARY KEY,
+        PRIMARY KEY,
     created DATETIME(6)  NULL,
     updated DATETIME(6)  NULL,
     visible BIT          null,
@@ -17,10 +17,10 @@ CREATE TABLE course
 
 );
 
-create table students
+create table mydbtest.students
 (
     id         BIGINT AUTO_INCREMENT
-               PRIMARY KEY,
+        PRIMARY KEY,
     created    DATETIME(6)  NULL,
     updated    DATETIME(6)  NULL,
     visible    BIT          null,
@@ -29,7 +29,7 @@ create table students
     age        INT          NOT NULL
 );
 
-create table course_student
+create table mydbtest.course_student
 (
     course_id  BIGINT NOT NULL,
     student_id BIGINT NOT NULL,
