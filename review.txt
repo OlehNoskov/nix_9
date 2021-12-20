@@ -29,6 +29,6 @@ hw_8 = 7
 старт апки - иду на http://localhost:8080/groups и получаю
 java.sql.SQLSyntaxErrorException: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mydbtest.course.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
 
-hw_8 = 8
+hw_8 = 9
 вот неплохо уже - оч не плохо - но почему ты юзаешь text на инпут елементе для возраста???
 попробуй в возрасте вбить не число, а что-то другое)
