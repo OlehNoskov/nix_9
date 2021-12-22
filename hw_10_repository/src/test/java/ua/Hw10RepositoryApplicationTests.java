@@ -9,5 +9,4 @@ class Hw10RepositoryApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

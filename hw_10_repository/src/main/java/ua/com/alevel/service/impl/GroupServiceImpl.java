@@ -1,10 +1,14 @@
+package ua.com.alevel.service.impl;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
+
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
+import ua.com.alevel.persistence.repository.GroupRepository;
 import ua.com.alevel.service.GroupService;
 
 import javax.transaction.Transactional;
@@ -55,34 +59,18 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Group> findByEmployees(Set<Long> students) {
+    public List<Group> findByStudents(Set<Long> students) {
         return groupRepository.(students);
     }
 
     @Override
-    public Set<Long> findByEmployeesIds(Set<Long> students) {
-        return groupRepository.findByEmployeesIds(students);
-    }
-
-    @Override
-    public List<Group> findByStudents(Set<Long> students) {
-        return null;
-    }
-
-    @Override
     public Set<Group> findByStudentsIds(Set<Long> students) {
-        return null;
+        return groupRepository.findByStudentsIds(students);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Set<Department> findByVisibleTrue() {
-        return departmentRepository.findByVisibleTrue();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Set<DepEmp> findCountByJSAndJava() {
-        return departmentRepository.findCountByJSAndJava();
+    public Set<Group> findByVisibleTrue() {
+        return groupRepository.findByVisibleTrue();
     }
 }

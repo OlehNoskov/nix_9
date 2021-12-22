@@ -5,7 +5,6 @@ import org.springframework.data.jpa.domain.Specification;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.specification.AbstractSpecification;
-import ua.com.alevel.util.SpecificationUtil;
 
 import javax.persistence.criteria.Predicate;
 import java.util.List;

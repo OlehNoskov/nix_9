@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu');
 html,body {
-    background: url('https://img2.akspic.ru/originals/4/1/7/4/14714-tuman-fon-dymka-tekstura-atmosfera-1920x1080.jpg') no-repeat center center fixed;
+    /*background: url('https://img2.akspic.ru/originals/4/1/7/4/14714-tuman-fon-dymka-tekstura-atmosfera-1920x1080.jpg') no-repeat center center fixed;*/
     background-size: cover;
     height: 100%;
     font-family: 'Ubuntu', sans-serif;
