@@ -3,8 +3,8 @@ package ua.com.alevel.service.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
-
 import org.springframework.transaction.annotation.Transactional;
+
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
@@ -59,20 +59,20 @@ public class GroupServiceImpl implements GroupService {
         return repositoryHelper.findAll(groupRepository, dataTableRequest, Group.class);
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<Student> findByStudents(Long id) {
-        return groupRepository.(students);
-    }
-
-    @Override
-    public Set<Group> findByStudentsIds(Set<Long> students) {
-        return groupRepository.findByStudentsIds(students);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Set<Group> findByVisibleTrue() {
-        return groupRepository.findByVisibleTrue();
-    }
+//    @Override
+//    @Transactional(readOnly = true)
+//    public List<Student> findByStudents(Long id) {
+//        return groupRepository.(students);
+//    }
+//
+//    @Override
+//    public Set<Group> findByStudentsIds(Set<Long> students) {
+//        return groupRepository.findByStudentsIds(students);
+//    }
+//
+//    @Override
+//    @Transactional(readOnly = true)
+//    public Set<Group> findByVisibleTrue() {
+//        return groupRepository.findByVisibleTrue();
+//    }
 }

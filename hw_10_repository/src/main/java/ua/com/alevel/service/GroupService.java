@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface GroupService extends BaseService<Group>{
 
-    List<Student> findByStudents(Long id);
-    Set<Group> findByStudentsIds(Set<Long> students);
-    Set<Group> findByVisibleTrue();
+//    List<Student> findByStudents(Long id);
+//    Set<Group> findByStudentsIds(Set<Long> students);
+//    Set<Group> findByVisibleTrue();
 }
