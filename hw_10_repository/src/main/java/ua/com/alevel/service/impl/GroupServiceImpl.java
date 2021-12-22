@@ -4,14 +4,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
+import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.persistence.repository.GroupRepository;
 import ua.com.alevel.service.GroupService;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -59,7 +61,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Group> findByStudents(Set<Long> students) {
+    public List<Student> findByStudents(Long id) {
         return groupRepository.(students);
     }
 

@@ -2,6 +2,7 @@ package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 
@@ -10,7 +11,6 @@ import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.persistence.repository.StudentRepository;
 import ua.com.alevel.service.StudentService;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
