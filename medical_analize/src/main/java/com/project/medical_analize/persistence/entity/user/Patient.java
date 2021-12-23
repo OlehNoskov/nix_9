@@ -1,27 +1,26 @@
-package com.project.medical_analize.persistence.entity.patient;
+package com.project.medical_analize.persistence.entity.user;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.project.medical_analize.persistence.entity.BaseEntity;
-import com.project.medical_analize.persistence.entity.doctor.Doctor;
 import com.project.medical_analize.persistence.entity.order.Order;
 import com.project.medical_analize.persistence.sex.Sex;
+import com.project.medical_analize.persistence.type.RoleType;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "patients")
-public class Patient extends BaseEntity {
+@DiscriminatorValue("PATIENT")
+public class Patient extends User {
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
 
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "birth_day")
-//    private Date birthDay;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "birth_day")
+    private Date birthDay;
 
     @Enumerated(EnumType.STRING)
     private Sex sex;
@@ -30,7 +29,6 @@ public class Patient extends BaseEntity {
     private Integer phone;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Set<Order> orders;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patients")
@@ -39,8 +37,9 @@ public class Patient extends BaseEntity {
 
     public Patient() {
         super();
-        orders = new HashSet<>();       //???
-        doctors = new HashSet<>();      //???
+        setRoleType(RoleType.ROLE_PATIENT);
+        orders = new HashSet<>();
+        doctors = new HashSet<>();
     }
 
     public String getFirstName() {
@@ -89,5 +88,13 @@ public class Patient extends BaseEntity {
 
     public void setDoctors(Set<Doctor> doctors) {
         this.doctors = doctors;
+    }
+
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 }

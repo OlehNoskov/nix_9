@@ -1,8 +1,9 @@
 package com.project.medical_analize.persistence.entity.order;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.project.medical_analize.persistence.entity.BaseEntity;
-import com.project.medical_analize.persistence.entity.patient.Patient;
+import com.project.medical_analize.persistence.entity.user.Patient;
 
 import javax.persistence.*;
 

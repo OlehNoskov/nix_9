@@ -2,6 +2,7 @@ package com.project.medical_analize.persistence.repository.user;
 
 import com.project.medical_analize.persistence.entity.user.User;
 import com.project.medical_analize.persistence.repository.BaseRepository;
+
 import org.springframework.stereotype.Repository;
 
 @Repository

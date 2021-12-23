@@ -1,21 +1,25 @@
-package com.project.medical_analize.persistence.entity.doctor;
+package com.project.medical_analize.persistence.entity.user;
 
-import com.project.medical_analize.persistence.entity.BaseEntity;
-import com.project.medical_analize.persistence.entity.patient.Patient;
 import com.project.medical_analize.persistence.sex.Sex;
+import com.project.medical_analize.persistence.type.RoleType;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "doctors")
-public class Doctor extends BaseEntity {
+@DiscriminatorValue("DOCTOR")
+public class Doctor extends User {
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "birth_day")
+    private Date birthDay;
 
     @Enumerated(EnumType.STRING)
     private Sex sex;
@@ -29,6 +33,7 @@ public class Doctor extends BaseEntity {
 
     public Doctor() {
         super();
+        setRoleType(RoleType.ROLE_DOCTOR);
         patients = new HashSet<>();
     }
 
@@ -62,5 +67,13 @@ public class Doctor extends BaseEntity {
 
     public void setPatients(Set<Patient> patients) {
         this.patients = patients;
+    }
+
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 }

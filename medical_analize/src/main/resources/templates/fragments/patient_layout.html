@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{layout}">
+      layout:decorate="~{auth_layout}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -96,6 +96,8 @@
 </html>
 
 
+
+
 <!--<!DOCTYPE html>-->
 <!--<html lang="en"-->
 <!--      xmlns="http://www.w3.org/1999/xhtml"-->
@@ -105,14 +107,14 @@
 <!--<head>-->
 <!--    <meta charset="UTF-8">-->
 <!--    <title>Title</title>-->
-<!--    <link href="/css/patient_layout.css" rel="stylesheet">-->
+<!--    <link href="/static/css/patient_layout.css" rel="stylesheet">-->
 <!--</head>-->
 <!--<body>-->
 <!--<div layout:fragment="content">-->
-<!--    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">-->
-
-<!--        <a class="navbar-brand" th:href="@{/patient}">Dashboard</a>-->
-
+<!--    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #ebebeb;">-->
+<!--        <a class="navbar-brand" th:href="@{/patient}">-->
+<!--            <img src="https://cdn4.iconfinder.com/data/icons/office-and-business-conceptual-flat/169/23-512.png" width="40" height="40" alt="logo">-->
+<!--        </a>-->
 <!--        <ul class="navbar-nav">-->
 <!--            <li class="nav-item">-->
 <!--                <a class="nav-link navbar-brand" th:href="@{/patient/analyzes/all/temp}">Loaded analyzes</a>-->
@@ -121,7 +123,7 @@
 <!--                <a class="nav-link dropdown-toggle" href="#" id="analyzes" data-toggle="dropdown">-->
 <!--                    Analyzes-->
 <!--                </a>-->
-<!--                <div class="dropdown-menu">-->
+<!--                <div class="dropdown-menu" style="background-color: #ebebeb;">-->
 <!--                    <a class="dropdown-item" th:href="@{/patient/analyzes/new}">new analyze</a>-->
 <!--                    <a class="dropdown-item" th:href="@{/patient/analyzes/all/success}">all success analyzes</a>-->
 <!--                    <a class="dropdown-item" th:href="@{/patient/analyzes/all/review}">all review analyzes</a>-->
@@ -131,7 +133,7 @@
 <!--                <a class="nav-link dropdown-toggle" href="#" id="feedback" data-toggle="dropdown">-->
 <!--                    Feedback-->
 <!--                </a>-->
-<!--                <div class="dropdown-menu">-->
+<!--                <div class="dropdown-menu" style="background-color: #ebebeb;">-->
 <!--                    <a class="dropdown-item" th:href="@{/patient/feedback/new}">new feedback</a>-->
 <!--                    <a class="dropdown-item" th:href="@{/patient/feedback/}">all my feedback</a>-->
 <!--                </div>-->

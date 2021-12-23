@@ -4,6 +4,7 @@ import com.project.medical_analize.facade.RegistrationFacade;
 import com.project.medical_analize.persistence.entity.user.Personal;
 import com.project.medical_analize.service.PersonalCrudService;
 import com.project.medical_analize.web.dto.request.register.AuthDto;
+
 import org.springframework.stereotype.Service;
 
 @Service
