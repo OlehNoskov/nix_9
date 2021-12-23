@@ -1,7 +1,7 @@
 package com.project.medical_analize.persistence.entity.user;
 
 import com.project.medical_analize.persistence.entity.BaseEntity;
-import com.project.medical_analize.persistence.type.RoleType;
+import com.project.medical_analize.persistence.repository.type.RoleType;
 
 import javax.persistence.*;
 

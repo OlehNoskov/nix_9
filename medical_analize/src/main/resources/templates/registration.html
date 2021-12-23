@@ -7,6 +7,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <style>
+        body {
+            color: #2ebaee;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -47,6 +52,14 @@
                                             <input type="email" th:field="*{email}" id="email" class="form-control form-control-lg" required />
                                             <label class="form-label" for="email">Email</label>
                                             <span class="has-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="role">Role</label>
+                                            <select th:field="*{role}" id="role">
+                                                <option value="DOCTOR">Doctor</option>
+                                                <option value="PATIENT">Patient</option>
+                                            </select>
                                         </div>
 
                                         <div class="form-outline mb-4">

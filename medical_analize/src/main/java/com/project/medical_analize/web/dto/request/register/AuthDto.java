@@ -2,9 +2,18 @@ package com.project.medical_analize.web.dto.request.register;
 
 public class AuthDto {
 
+    private String role;
     private String email;
     private String password;
     private String passwordConfirm;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getEmail() {
         return email;

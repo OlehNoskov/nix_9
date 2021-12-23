@@ -4,9 +4,13 @@ import com.project.medical_analize.exception.EntityExistException;
 import com.project.medical_analize.persistence.crud.CrudRepositoryHelper;
 import com.project.medical_analize.persistence.datatable.DataTableRequest;
 import com.project.medical_analize.persistence.datatable.DataTableResponse;
-import com.project.medical_analize.persistence.entity.user.Personal;
-import com.project.medical_analize.persistence.repository.user.PersonalRepository;
+import com.project.medical_analize.persistence.entity.user.Doctor;
+import com.project.medical_analize.persistence.entity.user.Patient;
+import com.project.medical_analize.persistence.entity.user.User;
+import com.project.medical_analize.persistence.repository.user.DoctorRepository;
+import com.project.medical_analize.persistence.repository.user.PatientRepository;
 import com.project.medical_analize.service.PersonalCrudService;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -19,29 +23,48 @@ import java.util.Optional;
 public class PersonalCrudServiceImpl implements PersonalCrudService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final PersonalRepository personalRepository;
-    private final CrudRepositoryHelper<Personal, PersonalRepository> crudRepositoryHelper;
+    private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
+    private final CrudRepositoryHelper<Doctor, DoctorRepository> crudRepositoryHelperDoctor;
+    private final CrudRepositoryHelper<Patient, PatientRepository> crudRepositoryHelperPatient;
 
     public PersonalCrudServiceImpl(
             BCryptPasswordEncoder bCryptPasswordEncoder,
-            PersonalRepository personalRepository, CrudRepositoryHelper<Personal, PersonalRepository> crudRepositoryHelper) {
+            DoctorRepository doctorRepository,
+            PatientRepository patientRepository,
+            CrudRepositoryHelper<Doctor, DoctorRepository> crudRepositoryHelperDoctor,
+            CrudRepositoryHelper<Patient, PatientRepository> crudRepositoryHelperPatient) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.personalRepository = personalRepository;
-        this.crudRepositoryHelper = crudRepositoryHelper;
+        this.doctorRepository = doctorRepository;
+        this.patientRepository = patientRepository;
+        this.crudRepositoryHelperDoctor = crudRepositoryHelperDoctor;
+        this.crudRepositoryHelperPatient = crudRepositoryHelperPatient;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
-    public void create(Personal personal) {
-        if (personalRepository.existsByEmail(personal.getEmail())) {
-            throw new EntityExistException("this personal is exist");
+    public void create(User personal) {
+        if (personal instanceof Doctor) {
+            if (doctorRepository.existsByEmail(personal.getEmail())) {
+                throw new EntityExistException("this doctor is exist");
+            }
+            Doctor doctor = (Doctor) personal;
+            doctor.setPassword(bCryptPasswordEncoder.encode(personal.getPassword()));
+            crudRepositoryHelperDoctor.create(doctorRepository, doctor);
         }
-        personal.setPassword(bCryptPasswordEncoder.encode(personal.getPassword()));
-        crudRepositoryHelper.create(personalRepository, personal);
+
+        if (personal instanceof Patient) {
+            if (patientRepository.existsByEmail(personal.getEmail())) {
+                throw new EntityExistException("this doctor is exist");
+            }
+            Patient patient = (Patient) personal;
+            patient.setPassword(bCryptPasswordEncoder.encode(personal.getPassword()));
+            crudRepositoryHelperPatient.create(patientRepository, patient);
+        }
     }
 
     @Override
-    public void update(Personal entity) {
+    public void update(User entity) {
 
     }
 
@@ -51,12 +74,12 @@ public class PersonalCrudServiceImpl implements PersonalCrudService {
     }
 
     @Override
-    public Optional<Personal> findById(Long id) {
+    public Optional<User> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public DataTableResponse<Personal> findAll(DataTableRequest request) {
+    public DataTableResponse<User> findAll(DataTableRequest request) {
         return null;
     }
 }

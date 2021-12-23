@@ -1,7 +1,8 @@
 package com.project.medical_analize.facade.impl;
 
 import com.project.medical_analize.facade.RegistrationFacade;
-import com.project.medical_analize.persistence.entity.user.Personal;
+import com.project.medical_analize.persistence.entity.user.Doctor;
+import com.project.medical_analize.persistence.entity.user.Patient;
 import com.project.medical_analize.service.PersonalCrudService;
 import com.project.medical_analize.web.dto.request.register.AuthDto;
 
@@ -18,9 +19,49 @@ public class RegistrationFacadeImpl implements RegistrationFacade {
 
     @Override
     public void registration(AuthDto dto) {
-        Personal personal = new Personal();
-            personal.setEmail(dto.getEmail());
-            personal.setPassword(dto.getPassword());
-            personalService.create(personal);
+        switch (dto.getRole()) {
+            case "DOCTOR" : {
+                Doctor doctor = new Doctor();
+                doctor.setPassword(dto.getPassword());
+                doctor.setEmail(dto.getEmail());
+                personalService.create(doctor);
+            } break;
+            case "PATIENT" : {
+                Patient patient = new Patient();
+                patient.setPassword(dto.getPassword());
+                patient.setEmail(dto.getEmail());
+                personalService.create(patient);
+            }
+        }
     }
 }
+
+
+
+
+//package com.project.medical_analize.facade.impl;
+//
+//        import com.project.medical_analize.facade.RegistrationFacade;
+//        import com.project.medical_analize.persistence.entity.user.Personal;
+//        import com.project.medical_analize.service.PersonalCrudService;
+//        import com.project.medical_analize.web.dto.request.register.AuthDto;
+//
+//        import org.springframework.stereotype.Service;
+//
+//@Service
+//public class RegistrationFacadeImpl implements RegistrationFacade {
+//
+//    private final PersonalCrudService personalService;
+//
+//    public RegistrationFacadeImpl(PersonalCrudService personalService) {
+//        this.personalService = personalService;
+//    }
+//
+//    @Override
+//    public void registration(AuthDto dto) {
+//        Personal personal = new Personal();
+//        personal.setEmail(dto.getEmail());
+//        personal.setPassword(dto.getPassword());
+//        personalService.create(personal);
+//    }
+//}

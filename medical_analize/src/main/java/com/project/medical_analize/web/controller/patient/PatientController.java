@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/patient")
+@RequestMapping("/patients")
 public class PatientController {
 
-    @GetMapping
+    @GetMapping("/dashboard")
     public String dashboard(Model model) {
         return "pages/patient/dashboard";
     }

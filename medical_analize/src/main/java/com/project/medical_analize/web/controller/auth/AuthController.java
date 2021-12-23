@@ -3,10 +3,11 @@ package com.project.medical_analize.web.controller.auth;
 import com.project.medical_analize.config.security.SecurityService;
 import com.project.medical_analize.facade.AuthValidatorFacade;
 import com.project.medical_analize.facade.RegistrationFacade;
-import com.project.medical_analize.persistence.type.RoleType;
+import com.project.medical_analize.persistence.repository.type.RoleType;
 import com.project.medical_analize.util.SecurityUtil;
 import com.project.medical_analize.web.controller.AbstractController;
 import com.project.medical_analize.web.dto.request.register.AuthDto;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,8 +49,11 @@ public class AuthController extends AbstractController {
             if (SecurityUtil.hasRole(RoleType.ROLE_ADMIN.name())) {
                 return "redirect:/admin/dashboard";
             }
-            if (SecurityUtil.hasRole(RoleType.ROLE_PERSONAL.name())) {
-                return "redirect:/personal/dashboard";
+            if (SecurityUtil.hasRole(RoleType.ROLE_DOCTOR.name())) {
+                return "redirect:/doctors/dashboard";
+            }
+            if (SecurityUtil.hasRole(RoleType.ROLE_PATIENT.name())) {
+                return "redirect:/patients/dashboard";
             }
         }
         if (error != null) {
@@ -87,8 +91,11 @@ public class AuthController extends AbstractController {
         if (SecurityUtil.hasRole(RoleType.ROLE_ADMIN.name())) {
             return "redirect:/admin/dashboard";
         }
-        if (SecurityUtil.hasRole(RoleType.ROLE_PERSONAL.name())) {
-            return "redirect:/personal/dashboard";
+        if (SecurityUtil.hasRole(RoleType.ROLE_DOCTOR.name())) {
+            return "redirect:/doctors/dashboard";
+        }
+        if (SecurityUtil.hasRole(RoleType.ROLE_PATIENT.name())) {
+            return "redirect:/patients/dashboard";
         }
         return "redirect:/login";
     }

@@ -27,10 +27,10 @@
                 </nav>
             </div>
 
-            <div sec:authorize="hasRole('ROLE_PERSONAL')">
+            <div sec:authorize="hasRole('ROLE_PATIENT')">
                 <nav class="navbar navbar-dark bg-dark">
-                    <a class="nav-item nav-link" th:href="@{/personal/dashboard}">Dashboard</a>
-                    <a class="nav-item nav-link" th:href="@{/personal/patients}">Patients</a>
+                    <a class="nav-item nav-link" th:href="@{/patients/dashboard}">Dashboard</a>
+                    <a class="nav-item nav-link" th:href="@{/patients/profile}">Profile</a>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
