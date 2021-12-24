@@ -3,6 +3,7 @@ package com.project.medical_analize.facade.impl;
 import com.project.medical_analize.config.security.SecurityService;
 import com.project.medical_analize.facade.AuthValidatorFacade;
 import com.project.medical_analize.web.dto.request.register.AuthDto;
+
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

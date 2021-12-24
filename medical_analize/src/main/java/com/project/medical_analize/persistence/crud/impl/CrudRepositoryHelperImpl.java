@@ -5,6 +5,7 @@ import com.project.medical_analize.persistence.datatable.DataTableRequest;
 import com.project.medical_analize.persistence.datatable.DataTableResponse;
 import com.project.medical_analize.persistence.entity.BaseEntity;
 import com.project.medical_analize.persistence.repository.BaseRepository;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
