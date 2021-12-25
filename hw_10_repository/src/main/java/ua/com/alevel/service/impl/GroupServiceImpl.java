@@ -9,12 +9,10 @@ import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
-import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.persistence.repository.GroupRepository;
 import ua.com.alevel.service.GroupService;
 
-
-import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -36,43 +34,31 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+//    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void update(Group entity) {
         repositoryHelper.update(groupRepository, entity);
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+//    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void delete(Long id) {
         repositoryHelper.delete(groupRepository, id);
     }
 
     @Override
-    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true)
     public Optional<Group> findById(Long id) {
         return repositoryHelper.findById(groupRepository, id);
     }
 
     @Override
-    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true)
     public DataTableResponse<Group> findAll(DataTableRequest dataTableRequest) {
         return repositoryHelper.findAll(groupRepository, dataTableRequest, Group.class);
     }
 
-//    @Override
-//    @Transactional(readOnly = true)
-//    public List<Student> findByStudents(Long id) {
-//        return groupRepository.(students);
-//    }
-//
-//    @Override
-//    public Set<Group> findByStudentsIds(Set<Long> students) {
-//        return groupRepository.findByStudentsIds(students);
-//    }
-//
-//    @Override
-//    @Transactional(readOnly = true)
-//    public Set<Group> findByVisibleTrue() {
-//        return groupRepository.findByVisibleTrue();
-//    }
+    @Override
+    public Set<Group> findStudentByGroupId(Long id) {
+        return Collections.emptySet();
+    }
 }

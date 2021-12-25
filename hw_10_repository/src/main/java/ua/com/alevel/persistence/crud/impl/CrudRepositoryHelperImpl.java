@@ -8,13 +8,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.repository.AbstractRepository;
 import ua.com.alevel.persistence.specification.AbstractSpecification;
-import ua.com.alevel.persistence.specification.impl.AbstractSpecificationImpl;
 
 import java.util.Optional;
 
@@ -24,28 +25,33 @@ public class CrudRepositoryHelperImpl <
         R extends AbstractRepository<E>>
         implements CrudRepositoryHelper<E, R> {
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void create(R repository, E entity) {
         repository.save(entity);
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void update(R repository, E entity) {
         checkExist(repository, entity.getId());
         repository.save(entity);
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void delete(R repository, Long id) {
         checkExist(repository, id);
         repository.deleteById(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<E> findById(R repository, Long id) {
         return repository.findById(id);
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public DataTableResponse<E> findAll(R repository, DataTableRequest dataTableRequest, Class<E> entityClass) {
         int page = dataTableRequest.getPage() - 1;
         int size = dataTableRequest.getSize();
@@ -56,29 +62,29 @@ public class CrudRepositoryHelperImpl <
                 ? Sort.by(sortParam).descending()
                 : Sort.by(sortParam).ascending();
 
-        Specification<E> specification = null;
-        if (MapUtils.isNotEmpty(dataTableRequest.getRequestParamMap())) {
-            AbstractSpecification<E> eAbstractSpecification = new AbstractSpecificationImpl<>();
-            specification = eAbstractSpecification.generateCriteriaPredicate(dataTableRequest, entityClass);
-        }
-
-        PageRequest request = PageRequest.of(page, size, sort);
-
-        Page<E> pageEntity;
-        if (specification == null) {
-            pageEntity = repository.findAll(request);
-        } else {
-            pageEntity = repository.findAll(specification, request);
-        }
+//        Specification<E> specification = null;
+//        if (MapUtils.isNotEmpty(dataTableRequest.getRequestParamMap())) {
+//            AbstractSpecification<E> eAbstractSpecification = new AbstractSpecificationImpl<>();
+//            specification = eAbstractSpecification.generateCriteriaPredicate(dataTableRequest, entityClass);
+//        }
+//
+//        PageRequest request = PageRequest.of(page, size, sort);
+//
+//        Page<E> pageEntity;
+//        if (specification == null) {
+//            pageEntity = repository.findAll(request);
+//        } else {
+//            pageEntity = repository.findAll(specification, request);
+//        }
 
         DataTableResponse<E> dataTableResponse = new DataTableResponse<>();
         dataTableResponse.setSort(sortParam);
         dataTableResponse.setOrder(orderParam);
         dataTableResponse.setPageSize(size);
         dataTableResponse.setCurrentPage(page);
-        dataTableResponse.setItemsSize(pageEntity.getTotalElements());
-        dataTableResponse.setSize(pageEntity.getTotalPages());
-        dataTableResponse.setItems(pageEntity.getContent());
+//        dataTableResponse.setItemsSize(pageEntity.getTotalElements());
+//        dataTableResponse.setSize(pageEntity.getTotalPages());
+//        dataTableResponse.setItems(pageEntity.getContent());
 
         return dataTableResponse;
     }

@@ -40,7 +40,11 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public void update(GroupRequestDto groupRequestDto, long id) {
-        Group group = groupService.findById(id);
+        Group group = new Group();
+//        Group group = groupService.findById(id);
+//        group.setName(groupRequestDto.getName());
+//        groupService.update(group);
+        group.setId(id);
         group.setName(groupRequestDto.getName());
         groupService.update(group);
     }
@@ -52,7 +56,7 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public GroupResponseDto findById(long id) {
-        return new GroupResponseDto(groupService.findById(id));
+        return new GroupResponseDto((Group) groupService.findById(id).get());
     }
 
     @Override
@@ -89,7 +93,11 @@ public class GroupFacadeImpl implements GroupFacade {
         return pageData;
     }
 
-//
+    @Override
+    public Map<Long, String> findStudentByGroupId(Long id) {
+        return null;
+    }
+
 //    @Override
 //    public Map<Long, String> findStudentByGroupId(Long id) {
 //        return groupService.findStudentByGroupId(id);
