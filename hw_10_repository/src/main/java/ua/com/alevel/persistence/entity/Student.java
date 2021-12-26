@@ -57,18 +57,4 @@ public class Student extends BaseEntity {
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Student student = (Student) o;
-        return Objects.equals(firstname, student.firstname) && Objects.equals(lastname, student.lastname) && Objects.equals(age, student.age) && Objects.equals(groups, student.groups);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), firstname, lastname, age, groups);
-    }
 }

@@ -4,18 +4,15 @@ import org.apache.commons.collections4.MapUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.repository.AbstractRepository;
-import ua.com.alevel.persistence.specification.AbstractSpecification;
 
 import java.util.Optional;
 
@@ -52,7 +49,7 @@ public class CrudRepositoryHelperImpl <
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ)
-    public DataTableResponse<E> findAll(R repository, DataTableRequest dataTableRequest, Class<E> entityClass) {
+    public DataTableResponse<E> findAll(R repository, DataTableRequest dataTableRequest) {
         int page = dataTableRequest.getPage() - 1;
         int size = dataTableRequest.getSize();
         String sortParam = dataTableRequest.getSort();
@@ -62,29 +59,22 @@ public class CrudRepositoryHelperImpl <
                 ? Sort.by(sortParam).descending()
                 : Sort.by(sortParam).ascending();
 
-//        Specification<E> specification = null;
-//        if (MapUtils.isNotEmpty(dataTableRequest.getRequestParamMap())) {
-//            AbstractSpecification<E> eAbstractSpecification = new AbstractSpecificationImpl<>();
-//            specification = eAbstractSpecification.generateCriteriaPredicate(dataTableRequest, entityClass);
-//        }
-//
-//        PageRequest request = PageRequest.of(page, size, sort);
-//
-//        Page<E> pageEntity;
-//        if (specification == null) {
-//            pageEntity = repository.findAll(request);
-//        } else {
-//            pageEntity = repository.findAll(specification, request);
-//        }
+        if (MapUtils.isNotEmpty(dataTableRequest.getRequestParamMap())) {
+            System.out.println("dataTableRequest = " + dataTableRequest.getRequestParamMap());
+        }
+
+        PageRequest request = PageRequest.of(page, size, sort);
+
+        Page<E> pageEntity = repository.findAll(request);
 
         DataTableResponse<E> dataTableResponse = new DataTableResponse<>();
         dataTableResponse.setSort(sortParam);
         dataTableResponse.setOrder(orderParam);
         dataTableResponse.setPageSize(size);
         dataTableResponse.setCurrentPage(page);
-//        dataTableResponse.setItemsSize(pageEntity.getTotalElements());
-//        dataTableResponse.setSize(pageEntity.getTotalPages());
-//        dataTableResponse.setItems(pageEntity.getContent());
+        dataTableResponse.setItemsSize(pageEntity.getTotalElements());
+        dataTableResponse.setSize(pageEntity.getTotalPages());
+        dataTableResponse.setItems(pageEntity.getContent());
 
         return dataTableResponse;
     }

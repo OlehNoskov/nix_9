@@ -55,6 +55,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
 //    @Transactional(readOnly = true)
     public DataTableResponse<Student> findAll(DataTableRequest dataTableRequest) {
-        return repositoryHelper.findAll(studentRepository, dataTableRequest, Student.class);
+        return repositoryHelper.findAll(studentRepository, dataTableRequest);
     }
 }

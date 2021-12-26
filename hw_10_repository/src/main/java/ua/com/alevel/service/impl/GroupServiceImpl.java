@@ -54,7 +54,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
 //    @Transactional(readOnly = true)
     public DataTableResponse<Group> findAll(DataTableRequest dataTableRequest) {
-        return repositoryHelper.findAll(groupRepository, dataTableRequest, Group.class);
+        return repositoryHelper.findAll(groupRepository, dataTableRequest);
     }
 
     @Override
