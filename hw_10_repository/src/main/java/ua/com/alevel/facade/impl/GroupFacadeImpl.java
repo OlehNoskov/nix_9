@@ -67,20 +67,15 @@ public class GroupFacadeImpl implements GroupFacade {
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
 
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        if (MapUtils.isNotEmpty(parameterMap)) {
-            System.out.println("parameterMap = " + parameterMap);
-        }
-
         DataTableResponse<Group> all = groupService.findAll(dataTableRequest);
-        List<GroupResponseDto> list = all.getItems().
+        List<GroupResponseDto> groups = all.getItems().
                 stream().
                 map(GroupResponseDto::new).
-                peek(dto -> dto.setStudentCount((Long) all.getOtherParamMap().get(dto.getId()))).
+                peek(dto -> dto.setStudentCount((Integer) all.getOtherParamMap().get(dto.getId()))).
                 collect(Collectors.toList());
 
         PageData<GroupResponseDto> pageData = new PageData<>();
-        pageData.setItems(list);
+        pageData.setItems(groups);
         pageData.setCurrentPage(pageAndSizeData.getPage());
         pageData.setPageSize(pageAndSizeData.getSize());
         pageData.setOrder(sortData.getOrder());
@@ -92,11 +87,6 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public Map<Long, String> findStudentByGroupId(Long id) {
-        return null;
+        return findStudentByGroupId(id);
     }
-
-//    @Override
-//    public Map<Long, String> findStudentByGroupId(Long id) {
-//        return groupService.findStudentByGroupId(id);
-//    }
 }

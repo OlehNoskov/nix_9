@@ -4,7 +4,7 @@ import ua.com.alevel.persistence.entity.Group;
 
 public class GroupResponseDto extends ResponseDto{
     private String name;
-    private Long studentCount;
+    private Integer studentCount;
 
     public GroupResponseDto() { }
 
@@ -24,19 +24,11 @@ public class GroupResponseDto extends ResponseDto{
         this.name = name;
     }
 
-    public Long getStudentCount() {
+    public Integer getStudentCount() {
         return studentCount;
     }
 
-    public void setStudentCount(Long studentCount) {
+    public void setStudentCount(Integer studentCount) {
         this.studentCount = studentCount;
-    }
-
-    @Override
-    public String toString() {
-        return "GroupResponseDto{" +
-                "name='" + name + '\'' +
-                ", studentCount=" + studentCount +
-                '}';
     }
 }
