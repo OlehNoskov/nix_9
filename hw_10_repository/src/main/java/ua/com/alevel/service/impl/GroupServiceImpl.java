@@ -1,20 +1,19 @@
 package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
+import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.persistence.repository.GroupRepository;
 import ua.com.alevel.service.GroupService;
 
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class GroupServiceImpl implements GroupService {
@@ -52,8 +51,16 @@ public class GroupServiceImpl implements GroupService {
         return repositoryHelper.findAll(groupRepository, dataTableRequest);
     }
 
+
     @Override
-    public Set<Group> findStudentByGroupId(Long id) {
-        return Collections.emptySet();
+    public Map<Long, String> findStudentsByGroupId(Long id) {
+        Map<Long, String> map = new HashMap<>();
+        List<Student> students = groupRepository.findStudentsByGroupId(id);
+        for (int i = 0; i < students.size(); i++) {
+            map.put(students.get(i).getId(), students.get(i).getFirstName() + " "
+                    + students.get(i).getLastname()
+                    + " "+students.get(i).getAge());
+        }
+        return map;
     }
 }

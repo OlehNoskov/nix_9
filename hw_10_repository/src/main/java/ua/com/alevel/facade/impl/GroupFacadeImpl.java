@@ -1,7 +1,5 @@
 package ua.com.alevel.facade.impl;
 
-import org.apache.commons.collections4.MapUtils;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
@@ -86,7 +84,7 @@ public class GroupFacadeImpl implements GroupFacade {
     }
 
     @Override
-    public Map<Long, String> findStudentByGroupId(Long id) {
-        return findStudentByGroupId(id);
+    public Map<Long, String> findStudentsByGroupId(Long id) {
+        return groupService.findStudentsByGroupId(id);
     }
 }
