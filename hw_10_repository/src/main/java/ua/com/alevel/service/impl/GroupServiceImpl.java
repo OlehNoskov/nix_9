@@ -28,31 +28,26 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.NEVER)
     public void create(Group entity) {
         repositoryHelper.create(groupRepository, entity);
     }
 
     @Override
-//    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void update(Group entity) {
         repositoryHelper.update(groupRepository, entity);
     }
 
     @Override
-//    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void delete(Long id) {
         repositoryHelper.delete(groupRepository, id);
     }
 
     @Override
-//    @Transactional(readOnly = true)
     public Optional<Group> findById(Long id) {
         return repositoryHelper.findById(groupRepository, id);
     }
 
     @Override
-//    @Transactional(readOnly = true)
     public DataTableResponse<Group> findAll(DataTableRequest dataTableRequest) {
         return repositoryHelper.findAll(groupRepository, dataTableRequest);
     }

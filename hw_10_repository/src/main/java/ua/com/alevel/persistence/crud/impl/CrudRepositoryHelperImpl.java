@@ -13,6 +13,8 @@ import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.repository.AbstractRepository;
+import ua.com.alevel.persistence.repository.GroupRepository;
+import ua.com.alevel.persistence.repository.StudentRepository;
 
 import java.util.Optional;
 
@@ -21,6 +23,15 @@ public class CrudRepositoryHelperImpl <
         E extends BaseEntity,
         R extends AbstractRepository<E>>
         implements CrudRepositoryHelper<E, R> {
+
+    private final GroupRepository groupRepository;
+    private final StudentRepository studentRepository;
+
+    public CrudRepositoryHelperImpl(GroupRepository groupRepository, StudentRepository studentRepository) {
+        this.groupRepository = groupRepository;
+        this.studentRepository = studentRepository;
+    }
+
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void create(R repository, E entity) {

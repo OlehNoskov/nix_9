@@ -18,7 +18,6 @@ public class Group extends BaseEntity {
             name = "course_student",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id"))
-
     private Set<Student> students;
 
     public Group() {

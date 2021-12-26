@@ -2,8 +2,10 @@ package ua.com.alevel.facade.impl;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
+
 import ua.com.alevel.facade.StudentFacade;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
@@ -31,10 +33,12 @@ public class StudentFacadeImpl implements StudentFacade {
     private final StudentService studentService;
     private final GroupService groupService;
 
+
     public StudentFacadeImpl(StudentService studentService, GroupService groupService) {
         this.studentService = studentService;
         this.groupService = groupService;
     }
+
 
     @Override
     public void create(StudentRequestDto studentRequestDto) {
@@ -55,7 +59,7 @@ public class StudentFacadeImpl implements StudentFacade {
     @Override
     public void update(StudentRequestDto studentRequestDto, long id) {
         Student student = new Student();
-//        Student student = studentService.findById(id);
+        student.setId(id);
         student.setFirstname(studentRequestDto.getFirstname());
         student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
@@ -76,8 +80,7 @@ public class StudentFacadeImpl implements StudentFacade {
 
     @Override
     public StudentResponseDto findById(long id) {
-//        return new StudentResponseDto((Student) studentService.findById(id));
-        return null;
+        return new StudentResponseDto((Student) studentService.findById(id).get());
     }
 
     @Override

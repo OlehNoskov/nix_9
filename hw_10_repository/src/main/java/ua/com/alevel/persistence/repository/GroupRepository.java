@@ -8,7 +8,6 @@ import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface GroupRepository extends AbstractRepository<Group> {
