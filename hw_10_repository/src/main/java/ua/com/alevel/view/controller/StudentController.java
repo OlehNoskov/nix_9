@@ -7,19 +7,24 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import ua.com.alevel.facade.GroupFacade;
 import ua.com.alevel.facade.StudentFacade;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
 import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
+
+import java.util.Set;
 
 @Controller
 @RequestMapping("/students")
 public class StudentController extends AbstractController {
 
     private final StudentFacade studentFacade;
+    private final GroupFacade groupFacade;
 
-    public StudentController(StudentFacade studentFacade) {
+    public StudentController(StudentFacade studentFacade, GroupFacade groupFacade) {
         this.studentFacade = studentFacade;
+        this.groupFacade = groupFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -85,5 +90,14 @@ public class StudentController extends AbstractController {
         StudentResponseDto studentResponseDto = studentFacade.findById(id);
         model.addAttribute("student", studentResponseDto);
         return "pages/student/student_details";
+    }
+
+    @GetMapping("/group/{studentId}/{groupId}")
+    public String addStudent (@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+        groupFacade.addStudent(groupId, studentId);
+        Set<StudentResponseDto> students = groupFacade.getStudents(groupId);
+        model.addAttribute("group", groupFacade.findById(groupId));
+        model.addAttribute("students", students);
+        return "pages/group/group_details";
     }
 }

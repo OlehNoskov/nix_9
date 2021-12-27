@@ -16,6 +16,7 @@ import ua.com.alevel.util.WebRequestUtil;
 import ua.com.alevel.view.dto.request.PageAndSizeData;
 import ua.com.alevel.view.dto.request.SortData;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
+import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
 
@@ -113,20 +114,13 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public void addRelation(StudentRequestDto dto) {
-        List<Long> groupId = dto.getGroupsIds();
-        Long studentId = dto.getStudentId();
-        for(Long id: groupId){
-            studentService.addRelation(id, studentId);
+    public Set<GroupResponseDto> getGroups(Long studentId) {
+        Set<Group> groups = studentService.getGroups(studentId);
+        Set<GroupResponseDto> list = new HashSet<>();
+        for (Group group : groups) {
+            GroupResponseDto groupResponseDto = new GroupResponseDto(group);
+            list.add(groupResponseDto);
         }
-    }
-
-    @Override
-    public void removeRelation(StudentRequestDto dto) {
-        List<Long> groupId = dto.getGroupsIds();
-        Long studentId = dto.getStudentId();
-        for(Long id: groupId){
-            studentService.removeRelation(id, studentId);
-        }
+        return list;
     }
 }

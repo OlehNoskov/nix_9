@@ -6,11 +6,13 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
+import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.persistence.repository.StudentRepository;
 import ua.com.alevel.service.StudentService;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -51,24 +53,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void addRelation(Long groupId, Long studentId) {
-        repositoryHelper.addRelation(groupId, studentId);
-        Student student = studentRepository.findById(studentId).get();
-
-        if (student.getGroups().size() != 0) {
-            student.setVisible(true);
-            update(student);
-        }
-    }
-
-    @Override
-    public void removeRelation(Long groupId, Long studentId) {
-        repositoryHelper.removeRelation(groupId, studentId);
-        Student student = studentRepository.findById(studentId).get();
-
-        if (student.getGroups().size() == 0) {
-            student.setVisible(false);
-            update(student);
-        }
+    public Set<Group> getGroups(Long studentId) {
+        return repositoryHelper.findById(studentRepository, studentId).get().getGroups();
     }
 }

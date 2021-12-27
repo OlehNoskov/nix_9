@@ -2,7 +2,6 @@ package ua.com.alevel.persistence.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -49,19 +48,5 @@ public class Group extends BaseEntity {
     public void removeStudent(Student student){
         students.remove(student);
         student.getGroups().remove(this);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Group group = (Group) o;
-        return Objects.equals(name, group.name) && Objects.equals(students, group.students);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), name, students);
     }
 }

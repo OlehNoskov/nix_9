@@ -1,10 +1,11 @@
 package ua.com.alevel.service;
 
+import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
+
+import java.util.Set;
 
 public interface StudentService extends BaseService<Student>{
 
-    void addRelation(Long groupId, Long studentId);
-
-    void removeRelation(Long groupId, Long studentId);
+    Set<Group> getGroups(Long studentId);
 }

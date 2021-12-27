@@ -7,26 +7,30 @@ import ua.com.alevel.facade.GroupFacade;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
+import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.GroupService;
+import ua.com.alevel.service.StudentService;
 import ua.com.alevel.util.WebRequestUtil;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
 import ua.com.alevel.view.dto.request.PageAndSizeData;
 import ua.com.alevel.view.dto.request.SortData;
 import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
+import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class GroupFacadeImpl implements GroupFacade {
 
     private final GroupService groupService;
+    private final StudentService studentService;
 
-    public GroupFacadeImpl(GroupService groupService) {
+    public GroupFacadeImpl(GroupService groupService, StudentService studentService) {
         this.groupService = groupService;
+        this.studentService = studentService;
     }
 
     @Override
@@ -81,6 +85,33 @@ public class GroupFacadeImpl implements GroupFacade {
         pageData.setItemsSize(all.getItemsSize());
 
         return pageData;
+    }
+
+    @Override
+    public void addStudent(Long groupId, Long studentId) {
+        Group group = groupService.findById(groupId).get();
+        Student student =studentService.findById(studentId).get();
+        group.addStudent(student);
+        groupService.update(group);
+    }
+
+    @Override
+    public void removeStudent(Long groupId, Long studentId) {
+        Group group = groupService.findById(groupId).get();
+        Student student =studentService.findById(studentId).get();
+        group.removeStudent(student);
+        groupService.update(group);
+    }
+
+    @Override
+    public Set<StudentResponseDto> getStudents(Long groupId) {
+        Set<Student> students = groupService.findById(groupId).get().getStudents();
+        Set<StudentResponseDto> list = new HashSet<>();
+        for (Student student : students) {
+            StudentResponseDto studentResponseDto = new StudentResponseDto(student);
+            list.add(studentResponseDto);
+        }
+        return list;
     }
 
     @Override

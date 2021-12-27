@@ -19,6 +19,7 @@ import ua.com.alevel.view.dto.response.PageData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static ua.com.alevel.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 
@@ -106,6 +107,25 @@ public class GroupController extends AbstractController {
         groupFacade.delete(id);
         return "redirect:/groups";
     }
+
+    @GetMapping("/group/{groupId}/{studentId}")
+    public String addStudent(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+        groupFacade.addStudent(groupId, studentId);
+        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
+        model.addAttribute("student", studentFacade.findById(studentId));
+        model.addAttribute("groups", groups);
+        return "pages/student/student_details";
+    }
+
+    @GetMapping("/delete/group/{studentId}/{groupId}")
+    public String deleteStudentFromGroup(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+        groupFacade.removeStudent(groupId, studentId);
+        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
+        model.addAttribute("student", studentFacade.findById(studentId));
+        model.addAttribute("groups", groups);
+        return "pages/student/student_details";
+    }
+
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();
 
