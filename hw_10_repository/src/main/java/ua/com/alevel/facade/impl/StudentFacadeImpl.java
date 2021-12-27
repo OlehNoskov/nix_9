@@ -1,6 +1,5 @@
 package ua.com.alevel.facade.impl;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
 import org.springframework.stereotype.Service;
@@ -47,11 +46,6 @@ public class StudentFacadeImpl implements StudentFacade {
         student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
         Set<Group> groups = new HashSet<>();
-//        if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
-//            for (Long groupsId : studentRequestDto.getGroupsIds()) {
-//                groups.add(groupService.findById(groupsId));
-//            }
-//        }
         student.setGroups(groups);
         studentService.create(student);
     }
@@ -63,13 +57,13 @@ public class StudentFacadeImpl implements StudentFacade {
         student.setFirstname(studentRequestDto.getFirstname());
         student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
-        Set<Group> groups = new HashSet<>();
-        if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
-            for (Long groupsId : studentRequestDto.getGroupsIds()) {
-                groups.add((Group) groupService.findById(groupsId).get());
-            }
-        }
-        student.setGroups(groups);
+//        Set<Group> groups = new HashSet<>();
+//        if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
+//            for (Long groupsId : studentRequestDto.getGroupsIds()) {
+//                groups.add((Group) groupService.findById(groupsId).get());
+//            }
+//        }
+//        student.setGroups(groups);
         studentService.update(student);
     }
 
@@ -98,11 +92,6 @@ public class StudentFacadeImpl implements StudentFacade {
 
         if (MapUtils.isNotEmpty(parameterMap)) {
             String[] params = request.getParameterMap().get("groupId");
-//            if (params != null) {
-//                Long groupId = Long.parseLong(params[0]);
-//                System.out.println("groupId = " + groupId);
-//                dataTableRequest.getQueryMap().put("groupId", groupId);
-//            }
         }
 
         DataTableResponse<Student> all = studentService.findAll(dataTableRequest);
@@ -121,5 +110,23 @@ public class StudentFacadeImpl implements StudentFacade {
         pageData.setItemsSize(all.getItemsSize());
         pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
+    }
+
+    @Override
+    public void addRelation(StudentRequestDto dto) {
+        List<Long> groupId = dto.getGroupsIds();
+        Long studentId = dto.getStudentId();
+        for(Long id: groupId){
+            studentService.addRelation(id, studentId);
+        }
+    }
+
+    @Override
+    public void removeRelation(StudentRequestDto dto) {
+        List<Long> groupId = dto.getGroupsIds();
+        Long studentId = dto.getStudentId();
+        for(Long id: groupId){
+            studentService.removeRelation(id, studentId);
+        }
     }
 }

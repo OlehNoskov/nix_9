@@ -4,6 +4,7 @@ import java.util.List;
 
 public class StudentRequestDto extends RequestDto{
 
+    private Long studentId;
     private String firstname;
     private String lastname;
     private int age;
@@ -39,5 +40,9 @@ public class StudentRequestDto extends RequestDto{
 
     public void setGroupsIds(List<Long> groupsIds) {
         this.groupsIds = groupsIds;
+    }
+
+    public Long getStudentId() {
+        return studentId;
     }
 }

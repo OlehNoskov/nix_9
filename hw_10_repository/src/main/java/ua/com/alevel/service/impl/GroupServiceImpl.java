@@ -56,10 +56,10 @@ public class GroupServiceImpl implements GroupService {
     public Map<Long, String> findStudentsByGroupId(Long id) {
         Map<Long, String> map = new HashMap<>();
         List<Student> students = groupRepository.findStudentsByGroupId(id);
-        for (int i = 0; i < students.size(); i++) {
-            map.put(students.get(i).getId(), students.get(i).getFirstName() + " "
-                    + students.get(i).getLastname()
-                    + " "+students.get(i).getAge());
+        for (Student student : students) {
+            map.put(student.getId(), student.getFirstName() + " "
+                    + student.getLastname()
+                    + " " + student.getAge());
         }
         return map;
     }

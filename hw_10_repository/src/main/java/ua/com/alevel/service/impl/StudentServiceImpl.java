@@ -1,7 +1,6 @@
 package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
@@ -49,5 +48,27 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public DataTableResponse<Student> findAll(DataTableRequest dataTableRequest) {
         return repositoryHelper.findAll(studentRepository, dataTableRequest);
+    }
+
+    @Override
+    public void addRelation(Long groupId, Long studentId) {
+        repositoryHelper.addRelation(groupId, studentId);
+        Student student = studentRepository.findById(studentId).get();
+
+        if (student.getGroups().size() != 0) {
+            student.setVisible(true);
+            update(student);
+        }
+    }
+
+    @Override
+    public void removeRelation(Long groupId, Long studentId) {
+        repositoryHelper.removeRelation(groupId, studentId);
+        Student student = studentRepository.findById(studentId).get();
+
+        if (student.getGroups().size() == 0) {
+            student.setVisible(false);
+            update(student);
+        }
     }
 }
