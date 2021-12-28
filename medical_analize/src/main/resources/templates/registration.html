@@ -53,35 +53,34 @@
                                     <form method="POST" th:object="${authForm}" th:action="@{/registration}">
 
                                         <div class="form-outline mb-4">
-                                            <select th:field="*{role}" id="role">
-                                                <option value="DOCTOR">Doctor</option>
-                                                <option value="PATIENT">Patient</option>
-                                            </select>
                                             <label class="form-label" for="role">Role</label>
+                                            <select th:field="*{role}" id="role">
+                                                <option value="PATIENT">Patient</option>
+                                                <option value="DOCTOR">Doctor</option>
+                                            </select>
                                         </div>
 
                                         <div class="form-outline mb-4">
+                                            <label class="form-label" for="email">Email</label>
                                             <input type="email" th:field="*{email}" id="email"
                                                    class="form-control form-control-lg" required/>
-                                            <label class="form-label" for="email">Email</label>
-                                            <span class="has-error" th:if="${#fields.hasErrors('email')}"
+                                            <span class="has-error text-danger" th:if="${#fields.hasErrors('email')}"
                                                   th:errors="*{email}"></span>
                                         </div>
 
                                         <div class="form-outline mb-4">
+                                            <label class="form-label" for="password">Password</label>
                                             <input type="password" th:field="*{password}" id="password"
                                                    class="form-control form-control-lg" required/>
-                                            <label class="form-label" for="password">Password</label>
-                                            <span class="has-error" th:if="${#fields.hasErrors('password')}"
+                                            <span class="has-error text-danger" th:if="${#fields.hasErrors('password')}"
                                                   th:errors="*{password}"></span>
                                         </div>
 
                                         <div class="form-outline mb-4">
+                                            <label class="form-label" for="passwordConfirm">Confirm your password</label>
                                             <input type="password" th:field="*{passwordConfirm}" id="passwordConfirm"
                                                    class="form-control form-control-lg" required/>
-                                            <label class="form-label" for="passwordConfirm">Confirm your
-                                                password</label>
-                                            <<span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}"
+                                            <<span class="has-error text-danger" th:if="${#fields.hasErrors('passwordConfirm')}"
                                                    th:errors="*{passwordConfirm}"></span>
                                         </div>
                                         <div class="d-flex justify-content-center">
@@ -104,7 +103,6 @@
 </body>
 </html>
 
-
 <!--<!DOCTYPE html>-->
 <!--<html lang="en"-->
 <!--      xmlns="http://www.w3.org/1999/xhtml"-->
@@ -115,8 +113,11 @@
 <!--    <meta charset="UTF-8">-->
 <!--    <title>Registration</title>-->
 <!--    <style>-->
-<!--        body {-->
-<!--            color: #2ebaee;-->
+<!--        select {-->
+<!--            width: 427px ;-->
+<!--            height: 50px;-->
+<!--            border-radius: 5px;-->
+<!--            border-color: rgba(162, 153, 162, 0.52);-->
 <!--        }-->
 <!--    </style>-->
 <!--</head>-->
@@ -146,45 +147,53 @@
 <!--            </div>-->
 <!--        </div>-->
 
-<!--        <section class="vh-100">-->
+<!--        <section class="vh-100 ">-->
 <!--            <div class="mask d-flex align-items-center h-100 gradient-custom-3">-->
 <!--                <div class="container h-100">-->
 <!--                    <div class="row d-flex justify-content-center align-items-center h-100">-->
 <!--                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">-->
 <!--                            <div class="card" style="border-radius: 15px;">-->
-<!--                                <div class="card-body p-5">-->
+<!--                                <div class="card-body pl-5 pr-5">-->
 <!--                                    <h2 class="text-uppercase text-center mb-5">Create account</h2>-->
 <!--                                    <form method="POST" th:object="${authForm}" th:action="@{/registration}">-->
-<!--                                        <div class="form-outline mb-4">-->
-<!--                                            <input type="email" th:field="*{email}" id="email" class="form-control form-control-lg" required />-->
-<!--                                            <label class="form-label" for="email">Email</label>-->
-<!--                                            <span class="has-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
-<!--                                        </div>-->
 
 <!--                                        <div class="form-outline mb-4">-->
-<!--                                            <label class="form-label" for="role">Role</label>-->
 <!--                                            <select th:field="*{role}" id="role">-->
-<!--                                                <option value="DOCTOR">Doctor</option>-->
 <!--                                                <option value="PATIENT">Patient</option>-->
+<!--                                                <option value="DOCTOR">Doctor</option>-->
 <!--                                            </select>-->
+<!--                                            <label class="form-label" for="role">Role</label>-->
 <!--                                        </div>-->
 
 <!--                                        <div class="form-outline mb-4">-->
-<!--                                            <input type="password" th:field="*{password}" id="password" class="form-control form-control-lg" required />-->
+<!--                                            <input type="email" th:field="*{email}" id="email"-->
+<!--                                                   class="form-control form-control-lg" required/>-->
+<!--                                            <label class="form-label" for="email">Email</label>-->
+<!--                                            <span class="has-error" th:if="${#fields.hasErrors('email')}"-->
+<!--                                                  th:errors="*{email}"></span>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="form-outline mb-4">-->
+<!--                                            <input type="password" th:field="*{password}" id="password"-->
+<!--                                                   class="form-control form-control-lg" required/>-->
 <!--                                            <label class="form-label" for="password">Password</label>-->
-<!--                                            <span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>-->
+<!--                                            <span class="has-error" th:if="${#fields.hasErrors('password')}"-->
+<!--                                                  th:errors="*{password}"></span>-->
 <!--                                        </div>-->
 
 <!--                                        <div class="form-outline mb-4">-->
-<!--                                            <input type="password" th:field="*{passwordConfirm}" id="passwordConfirm" class="form-control form-control-lg" required />-->
+<!--                                            <input type="password" th:field="*{passwordConfirm}" id="passwordConfirm"-->
+<!--                                                   class="form-control form-control-lg" required/>-->
 <!--                                            <label class="form-label" for="passwordConfirm">Confirm your password</label>-->
-<!--                                            <<span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>-->
+<!--                                            <<span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}"-->
+<!--                                                   th:errors="*{passwordConfirm}"></span>-->
 <!--                                        </div>-->
 <!--                                        <div class="d-flex justify-content-center">-->
 <!--                                            <button type="submit" class="btn btn-info btn-block btn-lg">Create</button>-->
 <!--                                        </div>-->
 <!--                                        <p></p>-->
-<!--                                        <p class="mb-5 pb-lg-2" style="color: #6b6f70;">Have already an account? <a th:href="@{/login}" style="color: #09aee0;">Login here</a></p>-->
+<!--                                        <p class="mb-5 pb-lg-2" style="color: #6b6f70;">Have already an account? <a-->
+<!--                                                th:href="@{/login}" style="color: #09aee0;">Login here</a></p>-->
 <!--                                    </form>-->
 <!--                                </div>-->
 <!--                            </div>-->
