@@ -108,23 +108,23 @@ public class GroupController extends AbstractController {
         return "redirect:/groups";
     }
 
-    @GetMapping("/group/{groupId}/{studentId}")
-    public String addStudent(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
-        groupFacade.addStudent(groupId, studentId);
-        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
-        model.addAttribute("student", studentFacade.findById(studentId));
-        model.addAttribute("groups", groups);
-        return "pages/student/student_details";
-    }
-
-    @GetMapping("/delete/group/{studentId}/{groupId}")
-    public String deleteStudentFromGroup(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
-        groupFacade.removeStudent(groupId, studentId);
-        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
-        model.addAttribute("student", studentFacade.findById(studentId));
-        model.addAttribute("groups", groups);
-        return "pages/student/student_details";
-    }
+//    @GetMapping("/group/{groupId}/{studentId}")
+//    public String addStudent(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+//        groupFacade.addStudent(groupId, studentId);
+//        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
+//        model.addAttribute("student", studentFacade.findById(studentId));
+//        model.addAttribute("groups", groups);
+//        return "pages/student/student_details";
+//    }
+//
+//    @GetMapping("/delete/group/{studentId}/{groupId}")
+//    public String deleteStudentFromGroup(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+//        groupFacade.removeStudent(groupId, studentId);
+//        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
+//        model.addAttribute("student", studentFacade.findById(studentId));
+//        model.addAttribute("groups", groups);
+//        return "pages/student/student_details";
+//    }
 
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();

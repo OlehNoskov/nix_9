@@ -7,12 +7,11 @@ import java.util.Map;
 import java.util.Set;
 
 public interface GroupService extends BaseService<Group>{
-    void addStudent(Long groupId, Long studentId);
-
-    void removeStudent(Long groupId, Long studentId);
+//    void addStudent(Long groupId, Long studentId);
+//
+//    void removeStudent(Long groupId, Long studentId);
 
     Set<Student> getStudents(Long groupId);
 
-    Map<Long, String> findStudentsByGroupId(Long id);
-
+//    Map<Long, String> findStudentsByGroupId(Long id);
 }

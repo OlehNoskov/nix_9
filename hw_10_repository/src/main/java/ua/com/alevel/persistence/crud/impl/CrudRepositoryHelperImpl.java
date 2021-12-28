@@ -11,8 +11,6 @@ import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.BaseEntity;
-import ua.com.alevel.persistence.entity.Group;
-import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.persistence.repository.AbstractRepository;
 import ua.com.alevel.persistence.repository.GroupRepository;
 import ua.com.alevel.persistence.repository.StudentRepository;
@@ -91,22 +89,5 @@ public class CrudRepositoryHelperImpl <
         if (!repository.existsById(id)) {
             throw new RuntimeException("entity not found");
         }
-    }
-
-    @Override
-    public void addRelation(Long groupId, Long studentId) {
-        Group group = groupRepository.findById(groupId).get();
-        Student student = studentRepository.findById(studentId).get();
-        group.addStudent(student);
-        update((R) groupRepository, (E) group);
-    }
-
-    @Override
-    public void removeRelation(Long groupId, Long studentId) {
-        Group group = groupRepository.findById(groupId).get();
-        Student student = studentRepository.findById(studentId).get();
-        group.removeStudent(student);
-        update((R) studentRepository, (E) student);
-        update((R) groupRepository, (E) group);
     }
 }

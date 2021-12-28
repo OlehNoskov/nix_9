@@ -56,36 +56,36 @@ public class GroupServiceImpl implements GroupService {
         return groupRepositoryHelper.findAll(groupRepository, dataTableRequest);
     }
 
-    @Override
-    public void addStudent(Long groupId, Long studentId) {
-        Group group = groupRepositoryHelper.findById(groupRepository, groupId).get();
-        Student student = studentRepositoryHelper.findById(studentRepository, studentId).get();
-        group.addStudent(student);
-        groupRepositoryHelper.update(groupRepository, group);
-    }
-
-    @Override
-    public void removeStudent(Long groupId, Long studentId) {
-        Group group = groupRepositoryHelper.findById(groupRepository, groupId).get();
-        Student student = studentRepositoryHelper.findById(studentRepository, studentId).get();
-        group.removeStudent(student);
-        groupRepositoryHelper.update(groupRepository, group);
-    }
-
+//    @Override
+//    public void addStudent(Long groupId, Long studentId) {
+//        Group group = groupRepositoryHelper.findById(groupRepository, groupId).get();
+//        Student student = studentRepositoryHelper.findById(studentRepository, studentId).get();
+//        group.addStudent(student);
+//        groupRepositoryHelper.update(groupRepository, group);
+//    }
+//
+//    @Override
+//    public void removeStudent(Long groupId, Long studentId) {
+//        Group group = groupRepositoryHelper.findById(groupRepository, groupId).get();
+//        Student student = studentRepositoryHelper.findById(studentRepository, studentId).get();
+//        group.removeStudent(student);
+//        groupRepositoryHelper.update(groupRepository, group);
+//    }
+//
     @Override
     public Set<Student> getStudents(Long groupId) {
         return groupRepositoryHelper.findById(groupRepository, groupId).get().getStudents();
     }
 
-    @Override
-    public Map<Long, String> findStudentsByGroupId(Long id) {
-        Map<Long, String> map = new HashMap<>();
-        List<Student> students = groupRepository.findStudentsByGroupId(id);
-        for (Student student : students) {
-            map.put(student.getId(), student.getFirstName() + " "
-                    + student.getLastname()
-                    + " " + student.getAge());
-        }
-        return map;
-    }
+//    @Override
+//    public Map<Long, String> findStudentsByGroupId(Long id) {
+//        Map<Long, String> map = new HashMap<>();
+//        List<Student> students = groupRepository.findStudentsByGroupId(id);
+//        for (Student student : students) {
+//            map.put(student.getId(), student.getFirstName() + " "
+//                    + student.getLastname()
+//                    + " " + student.getAge());
+//        }
+//        return map;
+//    }
 }

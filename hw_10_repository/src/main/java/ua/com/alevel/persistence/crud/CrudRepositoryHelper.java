@@ -13,6 +13,4 @@ public interface CrudRepositoryHelper <E extends BaseEntity, R extends AbstractR
     void delete(R repository, Long id);
     Optional<E> findById(R repository, Long id);
     DataTableResponse<E> findAll(R repository, DataTableRequest dataTableRequest);
-    void addRelation(Long groupId, Long studentId);
-    void removeRelation(Long groupId, Long studentId);
 }

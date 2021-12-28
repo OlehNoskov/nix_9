@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.Set;
 
 public interface GroupFacade extends BaseFacade<GroupRequestDto, GroupResponseDto>{
-    void addStudent(Long groupId, Long studentId);
-
-    void removeStudent(Long groupId, Long studentId);
+//    void addStudent(Long groupId, Long studentId);
+//
+//    void removeStudent(Long groupId, Long studentId);
 
     Set<StudentResponseDto> getStudents(Long groupId);
 
-    Map<Long, String> findStudentsByGroupId(Long id);
+//    Map<Long, String> findStudentsByGroupId(Long id);
 }

@@ -1,5 +1,6 @@
 package ua.com.alevel.facade.impl;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
 import org.springframework.stereotype.Service;
@@ -58,13 +59,13 @@ public class StudentFacadeImpl implements StudentFacade {
         student.setFirstname(studentRequestDto.getFirstname());
         student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
-//        Set<Group> groups = new HashSet<>();
-//        if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
-//            for (Long groupsId : studentRequestDto.getGroupsIds()) {
-//                groups.add((Group) groupService.findById(groupsId).get());
-//            }
-//        }
-//        student.setGroups(groups);
+        Set<Group> groups = new HashSet<>();
+        if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
+            for (Long groupsId : studentRequestDto.getGroupsIds()) {
+                groups.add((Group) groupService.findById(groupsId).get());
+            }
+        }
+        student.setGroups(groups);
         studentService.update(student);
     }
 

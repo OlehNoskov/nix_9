@@ -87,21 +87,21 @@ public class GroupFacadeImpl implements GroupFacade {
         return pageData;
     }
 
-    @Override
-    public void addStudent(Long groupId, Long studentId) {
-        Group group = groupService.findById(groupId).get();
-        Student student =studentService.findById(studentId).get();
-        group.addStudent(student);
-        groupService.update(group);
-    }
-
-    @Override
-    public void removeStudent(Long groupId, Long studentId) {
-        Group group = groupService.findById(groupId).get();
-        Student student =studentService.findById(studentId).get();
-        group.removeStudent(student);
-        groupService.update(group);
-    }
+//    @Override
+//    public void addStudent(Long groupId, Long studentId) {
+//        Group group = groupService.findById(groupId).get();
+//        Student student =studentService.findById(studentId).get();
+//        group.addStudent(student);
+//        groupService.update(group);
+//    }
+//
+//    @Override
+//    public void removeStudent(Long groupId, Long studentId) {
+//        Group group = groupService.findById(groupId).get();
+//        Student student =studentService.findById(studentId).get();
+//        group.removeStudent(student);
+//        groupService.update(group);
+//    }
 
     @Override
     public Set<StudentResponseDto> getStudents(Long groupId) {
@@ -114,8 +114,8 @@ public class GroupFacadeImpl implements GroupFacade {
         return list;
     }
 
-    @Override
-    public Map<Long, String> findStudentsByGroupId(Long id) {
-        return groupService.findStudentsByGroupId(id);
-    }
+//    @Override
+//    public Map<Long, String> findStudentsByGroupId(Long id) {
+//        return groupService.findStudentsByGroupId(id);
+//    }
 }

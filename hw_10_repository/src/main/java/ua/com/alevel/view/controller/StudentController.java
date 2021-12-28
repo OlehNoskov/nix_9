@@ -92,12 +92,12 @@ public class StudentController extends AbstractController {
         return "pages/student/student_details";
     }
 
-    @GetMapping("/group/{studentId}/{groupId}")
-    public String addStudent (@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
-        groupFacade.addStudent(groupId, studentId);
-        Set<StudentResponseDto> students = groupFacade.getStudents(groupId);
-        model.addAttribute("group", groupFacade.findById(groupId));
-        model.addAttribute("students", students);
-        return "pages/group/group_details";
-    }
+//    @GetMapping("/group/{studentId}/{groupId}")
+//    public String addStudent (@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+//        groupFacade.addStudent(groupId, studentId);
+//        Set<StudentResponseDto> students = groupFacade.getStudents(groupId);
+//        model.addAttribute("group", groupFacade.findById(groupId));
+//        model.addAttribute("students", students);
+//        return "pages/group/group_details";
+//    }
 }

@@ -56,4 +56,14 @@ public class Student extends BaseEntity {
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
