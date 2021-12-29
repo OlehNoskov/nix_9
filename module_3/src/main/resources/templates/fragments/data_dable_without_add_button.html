@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="utf-8">
+  <title>All Personals</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card mb-2 mt-2" style="background-color:#121217;">
+        <center><b><h2><div class="card-header" style="color:white;" th:text="${cardHeader}"></div></h2></b></center>
+        <div class="card-body">
+          <table class="table table-hover table-dark">
+            <thead class="thead-dark">
+            <tr>
+              <th th:each="columnHeader : ${headerDataList}">
+                <span th:text="${columnHeader.getColumnName()}"></span>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <section layout:fragment="data_table_content"></section>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

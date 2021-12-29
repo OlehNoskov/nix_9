@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
     <meta charset="utf-8">
-    <title>Details Acc</title>
+    <title>Details User</title>
 </head>
 <body>
 
@@ -13,32 +13,100 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card mb-2 mt-2">
+            <div class="card mb-2 mt-2" style="background-color:#121217;">
+                <!--style="background-color:#33111b;opacity: 0.9"-->
                 <div class="card-header">
-                    Acc
+                    <center>
+                        <table>
+                            <tr>
+                                <th><h2><b><a style="color:white;">Счет</a></b></h2></th>
+                            </tr>
+                        </table>
+                    </center>
+
                 </div>
-                <div class="card-body">
-                    <table class="table table-hover">
+                <div class="card-body" style="opacity: 1.0">
+                    <table class="table table-hover table-dark">
                         <tr>
                             <th>id</th>
                             <td th:text="${account.getId()}"></td>
                         </tr>
                         <tr>
-                            <th>balance</th>
+                            <th>Номер счета</th>
+                            <td th:text="${account.getAccountNumbers()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Баланс</th>
                             <td th:text="${account.getBalance()}"></td>
                         </tr>
                         <tr>
-                            <th>user id</th>
-                            <td th:text="${account.getUserId()}"></td>
+                            <th>Добавлен</th>
+                            <td th:text="${account.getCreated()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Обновлен</th>
+                            <td th:text="${account.getUpdated()}"></td>
                         </tr>
                     </table>
-                    <hr>
-                    <div>
-                        <a th:href="@{'/operations/account/' + ${account.getId}}" type="button" class="btn btn-primary">show all operations</a>
-                    </div>
-                    <hr>
-                    <div>
-                        <a th:href="@{'/operations/account/new/' + ${account.getId}}" type="button" class="btn btn-primary">create new operation</a>
+
+                    <table class="table table-hover table-dark">
+                        <th>Транзакции:</th>
+                        <tr th:each="transaction,iter : ${accountTransactions}">
+                            <td th:text="${iter.count}"></td>
+                            <td th:text="${transaction.getCategoryName()}"></td>
+
+                            <td>
+                                <div th:switch="${transaction.isCategoryIncomeExpense()}">
+                                    <p th:case=true>
+                                        <font color="#7cfc00"><a
+                                                th:text="${transaction.getTransactionSum()}"></a></font>
+                                    </p>
+                                    <p th:case=false>
+                                        <font color="red"><a th:text="${transaction.getTransactionSum()}"></a></font>
+                                    </p>
+                                </div>
+                            </td>
+                            <td th:text="${transaction.getCreated()}"></td>
+                        </tr>
+                    </table>
+
+
+                    <div th:if="${accountDataList.size() != 0}">
+                        <table class="table table-hover table-dark">
+                            <form action="#" th:action="@{/accounts/getAnExtract }" th:object="${accountStatement}"
+                                  method="post">
+
+                                <input type="hidden" id="id" aria-describedby="id" th:field="*{id}"
+                                       th:value="${accountStatement.getId()}">
+                                <th>Получить выписку по счету:</th>
+                                <td th:text="С"></td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" id="dateFrom" th:field="*{dateFrom}">
+                                            <option th:each="date : ${accountDataList}"
+                                                    th:value="${date}"
+                                                    th:text="${date}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td th:text="По"></td>
+                                <td>
+                                    <div class="form-group">
+                                        <!--<label for="date">Example select</label>-->
+                                        <select class="form-control" id="dateTo" th:field="*{dateTo}">
+                                            <option th:each="date : ${accountDataList}"
+                                                    th:value="${date}"
+                                                    th:text="${date}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-success">получить</button>
+                                </td>
+                            </form>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -46,6 +114,57 @@
     </div>
 
 </div>
-
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout}">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>Details Acc</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div layout:fragment="content">-->
+
+<!--    <div class="row">-->
+<!--        <div class="col-12">-->
+<!--            <div class="card mb-2 mt-2">-->
+<!--                <div class="card-header">-->
+<!--                    Acc-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <table class="table table-hover">-->
+<!--                        <tr>-->
+<!--                            <th>id</th>-->
+<!--                            <td th:text="${account.getId()}"></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <th>balance</th>-->
+<!--                            <td th:text="${account.getBalance()}"></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <th>user id</th>-->
+<!--                            <td th:text="${account.getUserId()}"></td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                    <hr>-->
+<!--                    <div>-->
+<!--                        <a th:href="@{'/operations/account/' + ${account.getId}}" type="button" class="btn btn-primary">show all operations</a>-->
+<!--                    </div>-->
+<!--                    <hr>-->
+<!--                    <div>-->
+<!--                        <a th:href="@{'/operations/account/new/' + ${account.getId}}" type="button" class="btn btn-primary">create new operation</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->

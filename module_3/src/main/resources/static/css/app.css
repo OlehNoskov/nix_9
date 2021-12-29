@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body {
+    background: url('https://wallpaperaccess.com/full/1667643.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+a.nav-item.nav-link {
+    color: white;
+}
+
+.tab { margin-left: 100px; }

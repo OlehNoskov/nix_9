@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/data_dable_without_add_button}">
+<head>
+    <meta charset="utf-8">
+    <title>модуль3</title>
+</head>
+<body>
+
+<div layout:fragment="data_table_content">
+    <tr th:each="transaction,iter : ${userTransactions}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${transaction.getAccountNumbers()}"></td>
+        <td th:text="${transaction.getCategoryName()}"></td>
+
+        <td>
+            <div th:switch="${transaction.isCategoryIncomeExpense()}">
+                <p th:case=true>
+                    <font color="#7cfc00"><a th:text="${transaction.getTransactionSum()}"></a></font>
+                </p>
+                <p th:case=false>
+                    <font color="red"><a th:text="${transaction.getTransactionSum()}"></a></font>
+                </p>
+            </div>
+        </td>
+        <td th:text="${transaction.getCreated()}"></td>
+    </tr>
+</div>
+
+</body>
+</html>

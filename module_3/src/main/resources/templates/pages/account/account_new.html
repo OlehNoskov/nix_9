@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="utf-8">
+  <title>Добавление нового товара</title>
+
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2" style="background-color:#121217;">
+        <div class="card-header">
+          <center><b>Пользователь</b></center>
+        </div>
+        <div class="card-body">
+          <form action="#" th:action="@{/users/create}" th:object="${user}" method="post">
+            <div class="form-group">
+              <label for="userFirstName">Имя</label>
+              <input type="text" class="form-control" id="userFirstName" aria-describedby="userFirstName" th:field="*{firstName}">
+            </div>
+            <div class="form-group">
+              <label for="userSecondName">Фамилия</label>
+              <input type="text" class="form-control" id="userSecondName" aria-describedby="userSecondName" th:field="*{secondName}">
+            </div>
+            <div class="form-group">
+              <label for="UserAge">Возраст</label>
+              <input type="number" class="form-control" id="UserAge" aria-describedby="UserAge" th:field="*{age}">
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-success">Создать</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
