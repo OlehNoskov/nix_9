@@ -13,7 +13,7 @@ import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.AccountDao;
 import ua.com.alevel.persistence.entity.Account;
 import ua.com.alevel.persistence.entity.AccountStatement;
-import ua.com.alevel.persistence.entity.AccountStatementForFile;
+import ua.com.alevel.persistence.entity.AccountForFile;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -159,7 +159,7 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public List<AccountStatementForFile> getAccountStatementFileForDownload(AccountStatement accountStatement) {
+    public List<AccountForFile> getAccountStatementFileForDownload(AccountStatement accountStatement) {
         LOGGER_INFO.info("Создание выписки по счету");
         String sql = "SELECT created, transaction_sum, category_name, category_income_expense " +
                 "FROM transactions " +
@@ -167,20 +167,20 @@ public class AccountDaoImpl implements AccountDao {
                 "AND created BETWEEN '" + accountStatement.getDateFrom() +
                 "' AND '" + accountStatement.getDateTo() + "'";
 
-        List<AccountStatementForFile> accountStatementForFileList = new LinkedList<>();
+        List<AccountForFile> accountForFileList = new LinkedList<>();
         try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(sql)) {
             while (resultSet.next()) {
-                accountStatementForFileList.add(convertResultSetToAccountStatement(resultSet));
+                accountForFileList.add(convertResultSetToAccountStatement(resultSet));
             }
         } catch (SQLException e) {
             LOGGER_ERROR.error("Не удалось выполнить операцию на создание выписки по счету!");
             throw new RuntimeException("Не удалось выполнить операцию на создание выписки по счету!");
         }
-        return accountStatementForFileList;
+        return accountForFileList;
     }
 
-    private AccountStatementForFile convertResultSetToAccountStatement(ResultSet resultSet) throws SQLException {
-        AccountStatementForFile accountStatement = new AccountStatementForFile(
+    private AccountForFile convertResultSetToAccountStatement(ResultSet resultSet) throws SQLException {
+        AccountForFile accountStatement = new AccountForFile(
                 resultSet.getDate("created"),
                 resultSet.getBigDecimal("transaction_sum"),
                 resultSet.getString("category_name"),

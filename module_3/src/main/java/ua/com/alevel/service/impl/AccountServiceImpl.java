@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import ua.com.alevel.persistence.dao.AccountDao;
 import ua.com.alevel.persistence.entity.Account;
 import ua.com.alevel.persistence.entity.AccountStatement;
-import ua.com.alevel.persistence.entity.AccountStatementForFile;
+import ua.com.alevel.persistence.entity.AccountForFile;
 import ua.com.alevel.service.AccountService;
 
 import java.io.BufferedWriter;
@@ -69,7 +69,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String getAccountStatementFileForDownload(AccountStatement accountStatement) {
-        List <AccountStatementForFile> accountStatementForFileList = accountDao.getAccountStatementFileForDownload(accountStatement);
+        List <AccountForFile> accountForFileList = accountDao.getAccountStatementFileForDownload(accountStatement);
 
         String way = "src/main/resources";
         Path path = Paths.get(way);
@@ -92,11 +92,11 @@ public class AccountServiceImpl implements AccountService {
                 CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
                         .withHeader("Сумма", "Дата", "Доход/Расход")))
         {
-            for (int i = 0; i < accountStatementForFileList.size(); i++) {
-                csvPrinter.printRecord(accountStatementForFileList.get(i).getCategoryName(),
-                        accountStatementForFileList.get(i).getTransactionSum(),
-                        accountStatementForFileList.get(i).getOperationDate(),
-                        accountStatementForFileList.get(i).getIncomeExpense());
+            for (int i = 0; i < accountForFileList.size(); i++) {
+                csvPrinter.printRecord(accountForFileList.get(i).getCategoryName(),
+                        accountForFileList.get(i).getTransactionSum(),
+                        accountForFileList.get(i).getOperationDate(),
+                        accountForFileList.get(i).getIncomeExpense());
                 csvPrinter.flush();
             }
         } catch (IOException e) {

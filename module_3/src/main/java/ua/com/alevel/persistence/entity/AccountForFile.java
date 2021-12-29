@@ -3,15 +3,15 @@ package ua.com.alevel.persistence.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class AccountStatementForFile {
+public class AccountForFile {
 
     private String operationDate;
     private String transactionSum;
     private String categoryName;
     private String incomeExpense;
 
-    public AccountStatementForFile(Date operationDate, BigDecimal transactionSum,
-                                   String categoryName, boolean incomeExpense) {
+    public AccountForFile(Date operationDate, BigDecimal transactionSum,
+                          String categoryName, boolean incomeExpense) {
         this.operationDate = operationDate.toString();
         this.transactionSum = transformMoney(transactionSum);
         this.categoryName = categoryName;
@@ -47,10 +47,10 @@ public class AccountStatementForFile {
             if(prepareForView[1].length() == 1) {
                 prepareForView[1] = prepareForView[1] + "0";
             }
-            money = prepareForView[0] + " грн. " +  prepareForView[1] + " коп.";
+            money = prepareForView[0] + " hryvnia. " +  prepareForView[1] + " cop.";
         }
         else {
-            money = prepareForView[0] + " грн. 00 коп.";
+            money = prepareForView[0] + " hryvnia. 00 cop.";
         }
         System.out.println(findBal);
         return money;
