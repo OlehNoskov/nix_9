@@ -1,54 +1,10 @@
-create table users
-(
-    id                  serial
-        constraint users_pkey
-            primary key,
-    created             timestamp(6),
-    updated             timestamp(6),
-    user_first_name     varchar(255)   not null,
-    user_second_name     varchar(255)   not null,
-    user_age     BIGINT         not null
-);
-
-create table accounts
-(
-    id                  serial
-        constraint accounts_pkey
-            primary key,
-    created             timestamp(6),
-    updated             timestamp(6),
-    user_id             int            not null ,
-    account_numbers     varchar(255)   not null,
-    account_balance     BIGINT         not null,
-    foreign key (user_id) references users (id) ON DELETE CASCADE
-);
-
-create table categories
-(
-    id                  serial
-        constraint categories_pkey
-            primary key,
-    created                     timestamp(6),
-    updated                     timestamp(6),
-    category_name               varchar(255)   not null,
-    category_income_expense     BOOLEAN
-);
-
-create table transactions
-(
-    id                  serial
-        constraint transactions_pkey
-            primary key,
-    created                     timestamp(6),
-    updated                     timestamp(6),
-    user_id                     int            not null ,
-    account_id                  int            not null ,
-    category_id                 int,
-    transaction_sum             BIGINT         not null ,
-    user_name                   varchar(255),
-    account_numbers             varchar(255),
-    category_name               varchar(255),
-    category_income_expense     varchar(255),
-    foreign key (user_id) references users (id) ON DELETE CASCADE,
-    foreign key (account_id) references accounts (id) ON DELETE CASCADE
-);
+insert into users values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),20, 'Oleg', 'Noskov');
+insert into users values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),21, 'Sergey', 'Funtusov');
+insert into users values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),22, 'Irina', 'Cventuh');
+insert into users values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),24, 'Pavel', 'Noskov');
+insert into users values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),25, 'Igor', 'Babakin');
+insert into users values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),19, 'Olegs', 'Noskov');
+insert into users values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),18, 'Natasha', 'Legusha');
+insert into users values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),20, 'Olga', 'Zvereva');
+insert into users values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),21, 'Oleg', 'Unicum');
+insert into users values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(),21, 'Omar', 'Eps');
