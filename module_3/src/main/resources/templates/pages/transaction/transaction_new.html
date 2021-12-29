@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
   <meta charset="utf-8">
-  <title>Добавление нового товара</title>
+  <title></title>
 
 </head>
 <body>
@@ -14,23 +14,21 @@
 
   <div class="row">
     <div class="col-12">
-      <div class="card mb-2 mt-2" style="background-color:#1b2024;">
+      <div class="card mb-2 mt-2">
         <div class="card-header">
-          <center>
-            <h2><b><a style="color:white;">Транзакция</a></b></h2>
-          </center>>
+            <h2><b><a style="color:white;">Transaction</a></b></h2>
         </div>
         <div class="card-body">
           <form action="#" th:action="@{/transactions/create}" th:object="${transaction}" method="post">
             <<input type="hidden" id="accountId" aria-describedby="id" th:field="*{accountId}"
                     th:value="${accountId}" name="accountId">
             <div class="form-group">
-              <label style="color:white;" for="transactionSum">Сумма платежа</label>
+              <label style="color:white;" for="transactionSum">Sum</label>
               <input type="number" class="form-control" id="transactionSum"
                      aria-describedby="transactionSum" th:field="*{transactionSum}" step="0.01">
             </div>
             <div class="form-group">
-              <label>Категория товара</label>
+              <label>Category</label>
               <table>
                 <tr th:each="operation : ${operations}">
                   <div class="form-check">
@@ -48,7 +46,7 @@
               </table>
             </div>
             <hr>
-            <center><button type="submit" class="btn btn-success">Создать</button></center>>
+            <center><button type="submit" class="btn btn-success">Create</button></center>>
           </form>
         </div>
       </div>

@@ -29,18 +29,18 @@ public class TransactionController extends AbstractController {
 
     private final HeaderName[] columnNames = new HeaderName[] {
             new HeaderName("#"),
-            new HeaderName("Пользователь"),
-            new HeaderName("Номер Счета"),
-            new HeaderName("Назначение"),
-            new HeaderName("Сумма"),
-            new HeaderName("Дата")
+            new HeaderName("User"),
+            new HeaderName("Number check"),
+            new HeaderName("Appointment"),
+            new HeaderName("Sum"),
+            new HeaderName("Date")
     };
 
     @GetMapping
     public String findAll(Model model, WebRequest request) {
         initDataTable(columnNames, model);
         model.addAttribute("transactions", transactionFacade.findAll());
-        model.addAttribute("cardHeader", "Все транзакции");
+        model.addAttribute("cardHeader", "All transactions");
         return "pages/transaction/transaction_all";
     }
 
@@ -69,7 +69,7 @@ public class TransactionController extends AbstractController {
             transactionFacade.create(dto, (Long)operationId);
             return "redirect:/accounts/details/" + dto.getAccountId();
         }catch (NumberFormatException ex) {
-            throw new RuntimeException("Вы не выбрали операцию!");
+            throw new RuntimeException("You have not selected an operation!");
         }
     }
 }

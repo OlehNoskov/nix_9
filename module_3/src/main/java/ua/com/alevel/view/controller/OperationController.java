@@ -22,9 +22,9 @@ public class OperationController extends AbstractController {
 
     private final HeaderName[] columnNames = new HeaderName[] {
             new HeaderName("#"),
-            new HeaderName("Назначение"),
-            new HeaderName("Доход / Расход"),
-            new HeaderName("Удалить")
+            new HeaderName("Appointment"),
+            new HeaderName("Income / Consumption"),
+            new HeaderName("Delete")
     };
 
     public OperationController(OperationFacade operationFacade) {
@@ -36,7 +36,7 @@ public class OperationController extends AbstractController {
         initDataTable(columnNames, model);
         model.addAttribute("operations", operationFacade.findAll());
         model.addAttribute("createNew", "/operations/new");
-        model.addAttribute("cardHeader", "Все операции");
+        model.addAttribute("cardHeader", "All operations");
         return "pages/operation/operation_all";
     }
 

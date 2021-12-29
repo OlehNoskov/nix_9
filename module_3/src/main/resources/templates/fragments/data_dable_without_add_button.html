@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
   <meta charset="utf-8">
-  <title>All Personals</title>
+  <title></title>
 </head>
 <body>
 
@@ -13,11 +13,11 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <div class="card mb-2 mt-2" style="background-color:#121217;">
-        <center><b><h2><div class="card-header" style="color:white;" th:text="${cardHeader}"></div></h2></b></center>
+      <div class="card mb-2 mt-2">
+        <b><h2><div class="card-header" th:text="${cardHeader}"></div></h2></b>
         <div class="card-body">
-          <table class="table table-hover table-dark">
-            <thead class="thead-dark">
+          <table class="table table-hover table-light">
+            <thead class="thead-light">
             <tr>
               <th th:each="columnHeader : ${headerDataList}">
                 <span th:text="${columnHeader.getColumnName()}"></span>

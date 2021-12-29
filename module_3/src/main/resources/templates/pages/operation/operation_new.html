@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
   <meta charset="utf-8">
-  <title>Добавление нового товара</title>
+  <title>Operation new</title>
 
 </head>
 <body>
@@ -14,38 +14,38 @@
 
   <div class="row">
     <div class="col-12">
-      <div class="card mb-2 mt-2" style="background-color:#1b2024;">
+      <div class="card mb-2 mt-2">
         <div class="card-header">
-          <center><h2><b><a style="color:white;">Операция</a></b></h2></center>
+          <center><h2><b><a style="color:white;">Operation</a></b></h2></center>
         </div>
         <div class="card-body">
           <form action="#" th:action="@{/operations/create}" th:object="${operation}" method="post">
             <div class="form-group">
-              <label for="operationName" style="color:white;">Название категории:</label>
+              <label for="operationName" style="color:white;">Title category</label>
               <input type="text" class="form-control" id="operationName" aria-describedby="userFirstName"
                      th:field="*{operationName}">
             </div>
             <div class="form-group">
-              <label style="color:white;">Категория товара</label>
+              <label style="color:white;">Category</label>
               <table>
 
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="categoryIncomeExpense"
                          th:value="${true}" th:id="*{categoryIncomeExpense}">
                   <label class="form-check-label" th:for="*{categoryIncomeExpense}"
-                         style="color:white;" th:text="Доход"></label>
+                         style="color:white;" th:text="Income"></label>
                 </div>
 
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="categoryIncomeExpense"
                          th:value="${false}" th:id="*{categoryIncomeExpense}" checked>
                   <label class="form-check-label" th:for="*{categoryIncomeExpense}"
-                         style="color:white;" th:text="Расход"></label>
+                         style="color:white;" th:text="Consumption"></label>
                 </div>
               </table>
             </div>
             <hr>
-            <center><button type="submit" class="btn btn-success">Создать</button></center>
+            <button type="submit" class="btn btn-success">Create</button>>
           </form>
         </div>
       </div>

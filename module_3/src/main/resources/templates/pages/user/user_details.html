@@ -13,62 +13,60 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card mb-2 mt-2" style="background-color:#121217;"><!--opacity: 0.9-->
+            <div class="card mb-2 mt-2">
                 <div class="card-header">
-                    <center>
                         <table>
                             <tr>
-                                <th><h2><b><a style="color:white;">Пользователь</a></b></h2></th>
+                                <th><h2><b><a>User</a></b></h2></th>
                                 <td><a th:href="@{'/users/details/update/' + ${user.getId()}}" type="button"
-                                       class="btn btn-outline-primary">корректировать</a></td>
+                                       class="btn btn-outline-primary">update</a></td>
                             </tr>
                         </table>
-                    </center>
 
                 </div>
                 <div class="card-body" style="opacity: 1.0">
-                    <table class="table table-hover table-dark">
+                    <table class="table table-hover table-light">
                         <tr>
                             <th>id</th>
                             <td th:text="${user.getId()}"></td>
                         </tr>
                         <tr>
-                            <th>Имя</th>
+                            <th>Name</th>
                             <td th:text="${user.getFirstName()}"></td>
                         </tr>
                         <tr>
-                            <th>Фамилия</th>
-                            <td th:text="${user.getSecondName()}"></td>
+                            <th>Lastname</th>
+                            <td th:text="${user.getLastName()}"></td>
                         </tr>
                         <tr>
-                            <th>Возраст</th>
+                            <th>Age</th>
                             <td th:text="${user.getAge()}"></td>
                         </tr>
                         <tr>
-                            <th>Добавлен</th>
+                            <th>Creating</th>
                             <td th:text="${user.getCreated()}"></td>
                         </tr>
                         <tr>
-                            <th>Обновлен</th>
+                            <th>Updating</th>
                             <td th:text="${user.getUpdated()}"></td>
                         </tr>
                     </table>
 
-                    <table class="table table-hover table-dark">
-                        <th>Счета:</th>
+                    <table class="table table-hover table-light">
+                        <th>Check:</th>
                         <tr th:each="account : ${accounts}">
                             <td th:text="${account.getAccountNumbers()}"></td>
                             <td>
                                 <a th:href="@{'/transactions/new/' + ${account.getId()}}" type="button"
-                                   class="btn btn-outline-primary">произвести транзакцию</a>
+                                   class="btn btn-outline-primary">transaction</a>
                             </td>
                             <td>
                                 <a th:href="@{'/accounts/details/' + ${account.getId()}}" type="button"
-                                   class="btn btn-outline-info">инфо по счету</a>
+                                   class="btn btn-outline-info">info check</a>
                             </td>
                             <td>
                                 <a th:href="@{'/accounts/delete/' + ${account.getId()}} " type="button"
-                                   class="btn btn-outline-danger">удалить счет</a>
+                                   class="btn btn-outline-danger">delete check</a>
                             </td>
                         </tr>
 
@@ -77,11 +75,11 @@
                     <table class="table table-hover table-dark">
                         <tr>
                             <td>
-                                <a>Добавить счет</a>
+                                <a>add check</a>
                             <td>
                             <td>
                                 <a th:href="@{'/accounts/create/' + ${user.getId()}}" type="button"
-                                   class="btn btn-outline-success">создать счет</a>
+                                   class="btn btn-outline-success">create check</a>
                             </td>
                         </tr>
                     </table>
@@ -90,7 +88,7 @@
                         <center>
                             <a th:href="@{'/users/showTransactions/' + ${user.getId()}}"
                                type="button"
-                               class="btn btn-outline-primary">Показать все транзакции пользователя</a>
+                               class="btn btn-outline-primary">all transaction user</a>
                         </center>
                     </div>
                 </div>
@@ -102,53 +100,3 @@
 
 </body>
 </html>
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      layout:decorate="~{layout}">-->
-<!--<head>-->
-<!--    <meta charset="utf-8">-->
-<!--    <title>Details User</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<div layout:fragment="content">-->
-
-<!--    <div class="row">-->
-<!--        <div class="col-12">-->
-<!--            <div class="card mb-2 mt-2">-->
-<!--                <div class="card-header">-->
-<!--                    User-->
-<!--                </div>-->
-<!--                <div class="card-body">-->
-<!--                    <table class="table table-hover">-->
-<!--                        <tr>-->
-<!--                            <th>id</th>-->
-<!--                            <td th:text="${user.getId()}"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <th>email</th>-->
-<!--                            <td th:text="${user.getEmail()}"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <th>phone</th>-->
-<!--                            <td th:text="${user.getPhone()}"></td>-->
-<!--                        </tr>-->
-<!--                    </table>-->
-<!--                    <hr>-->
-<!--                    <div>-->
-<!--                        <a th:href="@{'/accounts/user/' + ${user.getId()}}" type="button" class="btn btn-primary">show all accounts</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--</div>-->
-
-<!--</body>-->
-<!--</html>-->

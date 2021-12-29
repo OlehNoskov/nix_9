@@ -24,11 +24,11 @@ public class UserController extends AbstractController {
 
     private final HeaderName[] columnNames = new HeaderName[] {
             new HeaderName("#"),
-            new HeaderName("Имя"),
-            new HeaderName("Фамилия"),
-            new HeaderName("Возраст"),
-            new HeaderName("Инфо"),
-            new HeaderName("Удалить")
+            new HeaderName("Name"),
+            new HeaderName("Lastname"),
+            new HeaderName("Age"),
+            new HeaderName("Details"),
+            new HeaderName("Delete")
     };
 
     public UserController(UserFacade userFacade, AccountFacade accountFacade, TransactionFacade transactionFacade) {
@@ -42,7 +42,7 @@ public class UserController extends AbstractController {
         initDataTable(columnNames, model);
         model.addAttribute("users", userFacade.findAll());
         model.addAttribute("createNew", "/users/new");
-        model.addAttribute("cardHeader", "Все пользователи");
+        model.addAttribute("cardHeader", "All users");
         return "pages/user/user_all";
     }
 

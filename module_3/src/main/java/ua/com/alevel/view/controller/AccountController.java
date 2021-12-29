@@ -36,8 +36,8 @@ public class AccountController extends AbstractController {
 
     private final HeaderName[] columnNames = new HeaderName[]{
             new HeaderName("#"),
-            new HeaderName("Номер Счета"),
-            new HeaderName("Баланс")
+            new HeaderName("Number check"),
+            new HeaderName("Balance")
     };
 
     public AccountController(AccountFacade accountFacade, TransactionFacade transactionFacade) {
@@ -50,7 +50,7 @@ public class AccountController extends AbstractController {
     public String findAll(Model model, WebRequest request) {
         initDataTable(columnNames, model);
         model.addAttribute("accounts", accountFacade.findAll());
-        model.addAttribute("cardHeader", "Все Счета");
+        model.addAttribute("cardHeader", "All check");
         return "pages/account/account_all";
     }
 

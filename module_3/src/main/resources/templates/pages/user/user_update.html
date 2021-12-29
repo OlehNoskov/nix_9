@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
   <meta charset="utf-8">
-  <title>Обновление данных</title>
+  <title></title>
 </head>
 <body>
 
@@ -13,27 +13,27 @@
 
   <div class="row">
     <div class="col-12">
-      <div class="card mb-2 mt-2" style="background-color:#1b2024;">
+      <div class="card mb-2 mt-2">
         <div class="card-header">
-          <center><h2><b><a style="color:white;">Пользователь</a></b></h2></center>
+          <h2><b><a>User</a></b></h2>
         </div>
         <div class="card-body">
           <form action="#" th:action="@{/users/details/update}" th:object="${user}" method="post">
             <input type="hidden" id="id" aria-describedby="id" th:field="*{id}" th:value="${user.getId()}">
             <div class="form-group">
-              <label style="color:white;" for="userFirstName">Имя</label>
+              <label for="userFirstName">Name</label>
               <input type="text" class="form-control" id="userFirstName" aria-describedby="userFirstName" th:field="*{firstName}">
             </div>
             <div class="form-group">
-              <label style="color:white;" for="userSecondName">Фамилия</label>
-              <input type="text" class="form-control" id="userSecondName" aria-describedby="userSecondName" th:field="*{secondName}">
+              <label for="userLastName">Lastname</label>
+              <input type="text" class="form-control" id="userLastName" aria-describedby="userLastName" th:field="*{lastName}">
             </div>
             <div class="form-group">
-              <label style="color:white;" for="UserAge">Возраст</label>
+              <label for="UserAge">Age</label>
               <input type="number" class="form-control" id="UserAge" aria-describedby="UserAge" th:field="*{age}">
             </div>
             <hr>
-            <button type="submit" class="btn btn-success">Обновить</button>
+            <button type="submit" class="btn btn-success">Update</button>
           </form>
         </div>
       </div>

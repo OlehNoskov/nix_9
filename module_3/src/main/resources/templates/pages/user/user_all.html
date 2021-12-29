@@ -5,7 +5,7 @@
       layout:decorate="~{fragments/data_table}">
 <head>
     <meta charset="utf-8">
-    <title>модуль3</title>
+    <title>All users</title>
 </head>
 <body>
 
@@ -13,13 +13,13 @@
     <tr th:each="user,iter : ${users}">
         <td th:text="${iter.count}"></td>
         <td th:text="${user.getFirstName()}"></td>
-        <td th:text="${user.getSecondName()}"></td>
+        <td th:text="${user.getLastName()}"></td>
         <td th:text="${user.getAge()}"></td>
         <td>
-            <a th:href="@{'/users/details/' + ${user.getId()}}" type="button" class="btn btn-outline-info">развернуть</a>
+            <a th:href="@{'/users/details/' + ${user.getId()}}" type="button" class="btn btn-outline-info">Details</a>
         </td>
         <td>
-            <a th:href="@{'/users/delete/' + ${user.getId()}}" type="button" class="btn btn-outline-danger">удалить</a>
+            <a th:href="@{'/users/delete/' + ${user.getId()}}" type="button" class="btn btn-outline-danger">Delete</a>
         </td>
     </tr>
 </div>
