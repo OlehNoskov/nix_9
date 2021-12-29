@@ -30,10 +30,10 @@ public class AccountResponseDto extends ResponseDto{
             if(prepareForView[1].length() == 1) {
                 prepareForView[1] = prepareForView[1] + "0";
             }
-            money = prepareForView[0] + " грн. " +  prepareForView[1] + " коп.";
+            money = prepareForView[0] + " hryvnia. " +  prepareForView[1] + " kop.";
         }
         else {
-            money = prepareForView[0] + " грн. 00 коп.";
+            money = prepareForView[0] + " hryvnia. 00 kop.";
         }
         System.out.println(findBal);
         return money;
