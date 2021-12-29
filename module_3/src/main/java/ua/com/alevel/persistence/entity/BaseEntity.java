@@ -17,7 +17,6 @@ public abstract class BaseEntity {
     private Date updated;
 
     public BaseEntity() {
-//        this.id = id;
         this.created = created;
         this.updated = updated;
     }

@@ -90,7 +90,7 @@ public class AccountServiceImpl implements AccountService {
         try (
                 BufferedWriter writer = Files.newBufferedWriter(Paths.get(way));
                 CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-                        .withHeader("Назначение", "Сумма", "Дата", "Доход/Расход")))
+                        .withHeader("Сумма", "Дата", "Доход/Расход")))
         {
             for (int i = 0; i < accountStatementForFileList.size(); i++) {
                 csvPrinter.printRecord(accountStatementForFileList.get(i).getCategoryName(),
@@ -100,7 +100,6 @@ public class AccountServiceImpl implements AccountService {
                 csvPrinter.flush();
             }
         } catch (IOException e) {
-            LOGGER_ERROR.error("Не удалось создать распечатку счета! Причина: " + e.getMessage());
             throw new RuntimeException("Не удалось создать файл-распечатку счета! Подробней в журнале.");
         }
         return way;

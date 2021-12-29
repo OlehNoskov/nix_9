@@ -47,11 +47,7 @@ public class Transaction extends BaseEntity {
         this.categoryIncomeExpense = categoryIncomeExpense;
     }
 
-
-
-    public Transaction() {
-
-    }
+    public Transaction() {}
 
     public Long getUserId() {
         return userId;
