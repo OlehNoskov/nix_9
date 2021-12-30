@@ -54,22 +54,38 @@ section.footer p.copyright{
 }
 
 section.footer ul li.instagram{
-    background-color: #25c5f5;
+    background-color: #09aee0;
 }
 
 section.footer ul li.telegram{
-    background-color: #25c5f5;
+    background-color: #09aee0;
 }
 section.footer ul li.viber{
-    background-color: #25c5f5;
+    background-color: #09aee0;
 }
 section.footer ul li.whatsapp{
-    background-color: #25c5f5;
+    background-color: #09aee0;
 }
 section.footer ul li.youTube{
-     background-color: #25c5f5;
+     background-color: #09aee0;
  }
 
-/*div.content.card-text{*/
-/*    color: #6b6f70;*/
-/*}*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html,
+body,
+.wrapper {
+    height: 100%;
+}
+.content {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 300px;
+}
+.footer {
+    height: 80px;
+    margin-top: -80px;
+}

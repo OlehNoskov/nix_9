@@ -7,8 +7,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Personal cabinet</title>
-    <link href=".../static/css/patient_dashboard.css" rel="stylesheet">
-
+    <style>
+        /*body{*/
+        /*    background: darkgray;*/
+        /*    background-size:cover;*/
+        /*}*/
+    p {
+   color: #6b6f70;
+    }
+    div.container{
+        border-color: #ffffff;
+    }
+    </style>
 </head>
 <body>
 <div layout:fragment="patient_content">
@@ -19,8 +29,8 @@
                 <div class="col text-center col-md-4 d-flex align-items-stretch">
                     <div class="card" style="width: 20rem;">
                         <img src="/img/transcript.PNG" alt="" class="card-img-top">
-                        <div class="card-body">
-                            <h4 class="card-title"><b>Transcript of medical analysis</b></h4>
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title ricing-card-title"><b>Transcript of medical analysis</b></h4>
                             <p class="card-text">Clinical and laboratory conclusion on any
                                 analyzes of an adult / child within 24 hours, analysis of indicators,
                                 reasons for changes in the norm and in pathologies.</p>
