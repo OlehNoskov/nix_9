@@ -70,22 +70,30 @@ section.footer ul li.youTube{
      background-color: #09aee0;
  }
 
-
 * {
     margin: 0;
     padding: 0;
 }
-html,
-body,
-.wrapper {
-    height: 100%;
-}
+
 .content {
-    box-sizing: border-box;
-    min-height: 100%;
-    padding-bottom: 300px;
+    min-height: calc(100vh - 300px);
 }
-.footer {
-    height: 80px;
-    margin-top: -80px;
-}
+
+
+
+
+
+/*html,*/
+/*body,*/
+/*.wrapper {*/
+/*    height: 100%;*/
+/*}*/
+/*.content {*/
+/*    box-sizing: border-box;*/
+/*    min-height: 100%;*/
+/*    padding-bottom: 300px;*/
+/*}*/
+/*.footer {*/
+/*    height: 80px;*/
+/*    margin-top: -80px;*/
+/*}*/
