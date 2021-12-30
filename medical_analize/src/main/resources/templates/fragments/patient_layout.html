@@ -14,7 +14,7 @@
 <div layout:fragment="auth_content">
 
     <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #ebebeb;">
-        <a class="navbar-brand" th:href="@{/patient}">
+        <a class="navbar-brand" th:href="@{/patients/dashboard}">
             <img src="https://cdn4.iconfinder.com/data/icons/office-and-business-conceptual-flat/169/23-512.png"
                  width="40" height="40" alt="logo">
         </a>
@@ -50,10 +50,9 @@
                    style="cursor: pointer !important;">Logout</a>
             </li>
         </ul>
-
     </nav>
 
-    <div layout:fragment="patient_content"></div>
+    <div layout:fragment="patient_content" class="content"></div>
 
     <section class="footer">
         <div class="container-fluid">
