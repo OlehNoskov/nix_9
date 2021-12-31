@@ -28,7 +28,9 @@ h4 {
     width: 70px;
     height: 70px;
     border-radius: 6px;
-    object-fit: cover
+    object-fit: cover;
+    border:1px solid #d3d3d3;
+    padding: 10px;
 }
 
 #img-section p,
@@ -49,7 +51,7 @@ label {
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 500;
-    color: #777;
+        color: #777;
     padding-left: 3px
 }
 
@@ -63,7 +65,7 @@ input[placeholder] {
 
 .form-control:focus {
     box-shadow: none;
-    border: 1.5px solid #0779e4
+    border: 1.5px solid #0779e4;
 }
 
 select {
@@ -110,7 +112,7 @@ select:focus {
     border: 1px solid #ddd
 }
 
-.danger:hover {
+.success:hover {
     background-color: green;
     color: #fff
 }

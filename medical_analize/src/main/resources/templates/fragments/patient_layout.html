@@ -19,7 +19,7 @@
 <body>
 <div layout:fragment="auth_content">
 
-    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #ebebeb;">
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
         <a class="navbar-brand" th:href="@{/patients/dashboard}">
             <img src="/img/logo.png"
                  width="40" height="40" alt="logo">
@@ -32,7 +32,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="analyzes" data-toggle="dropdown">
                     Analyzes
                 </a>
-                <div class="dropdown-menu" style="background-color: #ebebeb;">
+                <div class="dropdown-menu" style="background-color: #e3f2fd;">
                     <a class="dropdown-item" th:href="@{/patient/analyzes/new}">new analyze</a>
                     <a class="dropdown-item" th:href="@{/patient/analyzes/all/success}">all success analyzes</a>
                     <a class="dropdown-item" th:href="@{/patient/analyzes/all/review}">all review analyzes</a>
@@ -40,7 +40,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="feedback" data-toggle="dropdown">Feedback</a>
-                <div class="dropdown-menu" style="background-color: #ebebeb;">
+                <div class="dropdown-menu" style="background-color: #e3f2fd;">
                     <a class="dropdown-item" th:href="@{/patient/feedback/new}">new feedback</a>
                     <a class="dropdown-item" th:href="@{/patient/feedback/}">all my feedback</a>
                 </div>

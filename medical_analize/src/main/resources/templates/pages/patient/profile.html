@@ -11,32 +11,64 @@
 </head>
 <body>
 <div layout:fragment="patient_content">
-
+    <!--    <form action="#" th:action="@{'/patients/update/' + ${patient.getId()}}" th:object="${patient}" method="post"-->
+    <!--          enctype="multipart/form-data">-->
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom">Profile settings</h4>
         <div class="d-flex align-items-start py-3 border-bottom">
-            <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                class="img" alt="">
+            <!--            <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"-->
+            <!--                class="img" alt="">-->
+            <img src="https://cdn-icons-png.flaticon.com/512/2521/2521826.png"
+                 class="img" alt="">
             <div class="pl-sm-4 pl-2" id="img-section"><b>Profile Photo</b>
-                <p>Accepted file type .png. Less than 1MB</p>
-                <button class="btn button border"><b>Upload</b></button>
+                <p></p>
+
+                <!--                    <div class="custom-file">-->
+                <!--                        <input type="file" class="custom-file-input" id="customFile">-->
+                <!--                        <label class="custom-file-label" for="customFile">Выбрать файл</label>-->
+                <!--                    </div>-->
+
+                <!--                <div class="input-group mb-3">-->
+                <!--                    <div class="custom-file">-->
+                <!--                        <input type="file" class="custom-file-input" id="inputGroupFile02"/>-->
+                <!--                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>-->
+                <!--                    </div>-->
+                <!--                <script>-->
+                <!--                    $('#inputGroupFile02').on('change',function(){-->
+                <!--                        //get the file name-->
+                <!--                        const fileName = $(this).val();-->
+                <!--                        //replace the "Choose a file" label-->
+                <!--                        $(this).next('.custom-file-label').html(fileName);-->
+                <!--                    })-->
+                <!--                </script>-->
+
+                <label class="btn button border"><b>Upload</b> <input type="file" hidden></label>
+                <!--                <button class="btn button border"><input type="file" hidden> <b>Upload</b></button>-->
             </div>
         </div>
 
         <div class="py-2">
             <div class="row py-2">
                 <div class="col-md-6"><label for="firstname">Name</label>
-                    <input type="text" class="bg-light form-control" placeholder="Steve"></div>
+                    <input type="text" class="bg-light form-control" placeholder="Steve" required></div>
+                <!--                        <input type="text" class="bg-light form-control is-valid" placeholder="Steve"-->
+                <!--                               th:field="*{firstname}" required></div>-->
+                <div class="invalid-feedback">
+                    Please enter your name!
+                </div>
                 <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname</label>
-                    <input type="text" class="bg-light form-control" placeholder="Smith"></div>
+                    <input type="text" class="bg-light form-control" placeholder="Smith" required></div>
+                <div class="invalid-feedback">
+                    Please enter your surname!
+                </div>
             </div>
 
             <div class="row py-2">
                 <div class="col-md-6"><label for="country">Sex</label>
                     <select name="sex" id="sex" class="bg-light">
-                    <option value="female" selected>FEMALE</option>
-                    <option value="male">MALE</option>
-                </select></div>
+                        <option value="female" selected>FEMALE</option>
+                        <option value="male">MALE</option>
+                    </select></div>
                 <div class="col-md-6"><label for="country">Country</label>
                     <select name="country" id="country" class="bg-light">
                         <option value="india" selected>Ukraine</option>
@@ -55,11 +87,12 @@
             </div>
 
             <div class="row py-2">
-                <!--                <div class="col-md-6 pt-md-0 pt-3" id="lang"> <label for="birthday">Birthday</label>-->
-                <!--                        <label for="age"> Birthday<em>*</em></label>-->
-                <!--                        <input id="age" type="date" min="1920-01-01" max="2022-01-01"><br>-->
-                <!--                    </select>-->
-                <!--                </div>-->
+
+<!--                <div class="col-md-6 pt-md-0 pt-3" id="lang"><label for="birthday"></label>-->
+<!--                    <label for="age"> Birthday<em>*</em></label>-->
+<!--                    <input id="age" type="date" min="1920-01-01" max="2022-01-01"><br>-->
+<!--                    </select>-->
+<!--                </div>-->
             </div>
 
             <div class="py-3 pb-4 border-bottom">
@@ -75,7 +108,112 @@
             </div>
         </div>
     </div>
+    <!--    </form>-->
 </div>
 
 </body>
 </html>
+
+
+<!--ограничение по типу файла-->
+<!--<input type="file" id="file-uploader" accept=".jpg, .png" multiple>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      layout:decorate="~{fragments/patient_layout}">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link href="/css/patient_profile.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div layout:fragment="patient_content">-->
+
+<!--    <div class="wrapper bg-white mt-sm-5">-->
+<!--        <h4 class="pb-4 border-bottom">Profile settings</h4>-->
+<!--        <div class="d-flex align-items-start py-3 border-bottom">-->
+<!--            &lt;!&ndash;            <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"&ndash;&gt;-->
+<!--            &lt;!&ndash;                class="img" alt="">&ndash;&gt;-->
+<!--            <img src="https://cdn-icons-png.flaticon.com/512/2521/2521826.png"-->
+<!--                 class="img" alt="">-->
+<!--            <div class="pl-sm-4 pl-2" id="img-section"><b>Profile Photo</b>-->
+<!--                <p></p>-->
+
+<!--                &lt;!&ndash;                <div class="input-group mb-3">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <div class="custom-file">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <input type="file" class="custom-file-input" id="inputGroupFile02"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <script>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    $('#inputGroupFile02').on('change',function(){&ndash;&gt;-->
+<!--                &lt;!&ndash;                        //get the file name&ndash;&gt;-->
+<!--                &lt;!&ndash;                        const fileName = $(this).val();&ndash;&gt;-->
+<!--                &lt;!&ndash;                        //replace the "Choose a file" label&ndash;&gt;-->
+<!--                &lt;!&ndash;                        $(this).next('.custom-file-label').html(fileName);&ndash;&gt;-->
+<!--                &lt;!&ndash;                    })&ndash;&gt;-->
+<!--                &lt;!&ndash;                </script>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <label class="btn button border"><b>Upload</b> <input type="file" hidden></label>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <button class="btn button border"><input type="file" hidden> <b>Upload</b></button>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="py-2">-->
+<!--            <div class="row py-2">-->
+<!--                <div class="col-md-6"><label for="firstname">Name</label>-->
+<!--                    <input type="text" class="bg-light form-control" placeholder="Steve"></div>-->
+<!--                <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname</label>-->
+<!--                    <input type="text" class="bg-light form-control" placeholder="Smith"></div>-->
+<!--            </div>-->
+
+<!--            <div class="row py-2">-->
+<!--                <div class="col-md-6"><label for="country">Sex</label>-->
+<!--                    <select name="sex" id="sex" class="bg-light">-->
+<!--                        <option value="female" selected>FEMALE</option>-->
+<!--                        <option value="male">MALE</option>-->
+<!--                    </select></div>-->
+<!--                <div class="col-md-6"><label for="country">Country</label>-->
+<!--                    <select name="country" id="country" class="bg-light">-->
+<!--                        <option value="india" selected>Ukraine</option>-->
+<!--                        <option value="rus">Russia</option>-->
+<!--                        <option value="br">Belarus</option>-->
+<!--                        <option value="kz">Kazahstan</option>-->
+<!--                        <option value="tn">Tajikistan</option>-->
+<!--                        <option value="ml">Moldova</option>-->
+<!--                        <option value="pl">Poland</option>-->
+<!--                        <option value="usa">USA</option>-->
+<!--                        <option value="gm">Germany</option>-->
+<!--                        <option value="dn">Denmark</option>-->
+<!--                        <option value="ch">Czech</option>-->
+<!--                        <option value="ch">other</option>-->
+<!--                    </select></div>-->
+<!--            </div>-->
+
+<!--            <div class="row py-2">-->
+<!--                &lt;!&ndash;                <div class="col-md-6 pt-md-0 pt-3" id="lang"> <label for="birthday">Birthday</label>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <label for="age"> Birthday<em>*</em></label>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <input id="age" type="date" min="1920-01-01" max="2022-01-01"><br>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </select>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
+
+<!--            <div class="py-3 pb-4 border-bottom">-->
+<!--                <button class="btn btn-success mr-3" type="submit">Save Changes</button>-->
+<!--            </div>-->
+<!--            <div class="d-sm-flex align-items-center pt-3" id="deactivate">-->
+<!--                <div>-->
+<!--                    <b>Deactivate your profile</b>-->
+<!--                </div>-->
+<!--                <div class="ml-auto">-->
+<!--                    <button class="btn danger">Deactivate</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
