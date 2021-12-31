@@ -104,6 +104,17 @@ select:focus {
     color: #fff
 }
 
+.btn-success {
+    background-color: #fff;
+    color: green;
+    border: 1px solid #ddd
+}
+
+.danger:hover {
+    background-color: green;
+    color: #fff
+}
+
 @media(max-width:576px) {
     .wrapper {
         padding: 25px 20px
