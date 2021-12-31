@@ -12,7 +12,7 @@ public interface GroupFacade extends BaseFacade<GroupRequestDto, GroupResponseDt
 //
 //    void removeStudent(Long groupId, Long studentId);
 
-    Set<StudentResponseDto> getStudents(Long groupId);
+//    Set<StudentResponseDto> getStudents(Long groupId);
 
-//    Map<Long, String> findStudentsByGroupId(Long id);
+    Map<Long, String> findStudentsByGroupId(Long groupId);
 }

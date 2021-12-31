@@ -1,6 +1,7 @@
 package ua.com.alevel.view.dto.request;
 
 import java.util.List;
+import java.util.Set;
 
 public class StudentRequestDto extends RequestDto{
 
@@ -34,8 +35,11 @@ public class StudentRequestDto extends RequestDto{
         this.age = age;
     }
 
-    public List<Long> getGroupsIds() {
-        return groupsIds;
+//    public List<Long> getGroupsIds() {
+//        return groupsIds;
+//    }
+    public Set<Long> getGroupsIds() {
+        return (Set<Long>) groupsIds;
     }
 
     public void setGroupsIds(List<Long> groupsIds) {

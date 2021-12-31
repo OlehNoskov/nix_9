@@ -8,26 +8,38 @@ import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.persistence.repository.GroupRepository;
-import ua.com.alevel.persistence.repository.StudentRepository;
 import ua.com.alevel.service.GroupService;
+import ua.com.alevel.service.StudentService;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class GroupServiceImpl implements GroupService {
 
+//    private final CrudRepositoryHelper<Group, GroupRepository> groupRepositoryHelper;
+//    private final CrudRepositoryHelper<Student, StudentRepository> studentRepositoryHelper;
+//    private final GroupRepository groupRepository;
+//    private final StudentRepository studentRepository;
+//
+//    public GroupServiceImpl(CrudRepositoryHelper<Group, GroupRepository> groupRepositoryHelper,
+//                            CrudRepositoryHelper<Student, StudentRepository> studentRepositoryHelper,
+//                            GroupRepository groupRepository, StudentRepository studentRepository) {
+//        this.groupRepositoryHelper = groupRepositoryHelper;
+//        this.studentRepositoryHelper = studentRepositoryHelper;
+//        this.groupRepository = groupRepository;
+//        this.studentRepository = studentRepository;
+//    }
+
     private final CrudRepositoryHelper<Group, GroupRepository> groupRepositoryHelper;
-    private final CrudRepositoryHelper<Student, StudentRepository> studentRepositoryHelper;
     private final GroupRepository groupRepository;
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
     public GroupServiceImpl(CrudRepositoryHelper<Group, GroupRepository> groupRepositoryHelper,
-                            CrudRepositoryHelper<Student, StudentRepository> studentRepositoryHelper,
-                            GroupRepository groupRepository, StudentRepository studentRepository) {
+                            GroupRepository groupRepository, StudentService studentService) {
         this.groupRepositoryHelper = groupRepositoryHelper;
-        this.studentRepositoryHelper = studentRepositoryHelper;
         this.groupRepository = groupRepository;
-        this.studentRepository = studentRepository;
+        this.studentService = studentService;
     }
 
 
@@ -43,12 +55,22 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void delete(Long id) {
+//        groupRepositoryHelper.delete(groupRepository, id);
+        Group group = groupRepositoryHelper.findById(groupRepository, id).get();
+        List<Student> listStudents = group.getStudents().stream().filter(student -> studentService.findAllGroupsByStudentId(student.getId()).size() == 1).collect(Collectors.toList());
+        group.getStudents().retainAll(listStudents);
+        groupRepositoryHelper.update(groupRepository, group);
         groupRepositoryHelper.delete(groupRepository, id);
     }
 
+//    @Override
+//    public Optional<Group> findById(Long id) {
+//        return groupRepositoryHelper.findById(groupRepository, id);
+//    }
+
     @Override
-    public Optional<Group> findById(Long id) {
-        return groupRepositoryHelper.findById(groupRepository, id);
+    public Group findById(Long id) {
+        return groupRepositoryHelper.findById(groupRepository, id).get();
     }
 
     @Override
@@ -72,20 +94,20 @@ public class GroupServiceImpl implements GroupService {
 //        groupRepositoryHelper.update(groupRepository, group);
 //    }
 //
-    @Override
-    public Set<Student> getStudents(Long groupId) {
-        return groupRepositoryHelper.findById(groupRepository, groupId).get().getStudents();
-    }
-
 //    @Override
-//    public Map<Long, String> findStudentsByGroupId(Long id) {
-//        Map<Long, String> map = new HashMap<>();
-//        List<Student> students = groupRepository.findStudentsByGroupId(id);
-//        for (Student student : students) {
-//            map.put(student.getId(), student.getFirstName() + " "
-//                    + student.getLastname()
-//                    + " " + student.getAge());
-//        }
-//        return map;
+//    public Set<Student> getStudents(Long groupId) {
+//        return groupRepositoryHelper.findById(groupRepository, groupId).get().getStudents();
 //    }
+
+    @Override
+    public Map<Long, String> findStudentsByGroupId(Long groupId) {
+        Map<Long, String> map = new HashMap<>();
+        Set<Student> students = findById(groupId).getStudents();
+        for (Student student : students) {
+            map.put(student.getId(), student.getFirstName() + " "
+                    + student.getLastname()
+                    + " " + student.getAge());
+        }
+        return map;
+    }
 }
