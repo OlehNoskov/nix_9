@@ -24,8 +24,8 @@ public class PatientAnalyzeController {
         return "pages/patient/analyzes/analyzes_all";
     }
 
-    @GetMapping("/new")
-    public String redirectToNew(Model model) {
-        return "pages/patient/analyzes/analyzes_new";
-    }
+//    @GetMapping("/new")
+//    public String redirectToNew(Model model) {
+//        return "pages/patient/analyzes/analyzes_new";
+//    }
 }

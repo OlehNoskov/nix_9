@@ -30,12 +30,12 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="analyzes" data-toggle="dropdown">
-                    Analyzes
+                    Orders
                 </a>
                 <div class="dropdown-menu" style="background-color: #e3f2fd;">
-                    <a class="dropdown-item" th:href="@{/patient/analyzes/new}">new analyze</a>
-                    <a class="dropdown-item" th:href="@{/patient/analyzes/all/success}">all success analyzes</a>
-                    <a class="dropdown-item" th:href="@{/patient/analyzes/all/review}">all review analyzes</a>
+                    <a class="dropdown-item" th:href="@{/patient/order}">new order</a>
+                    <a class="dropdown-item" th:href="@{/patient/analyzes/all/success}">all success orders</a>
+                    <a class="dropdown-item" th:href="@{/patient/analyzes/all/review}">all review orders</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -74,14 +74,16 @@
                         <li class="instagram"><a
                                 href="https://instagram.com/laboratorydoc_rastvorceva?igshid=1ibp6uytkzcgl"><img
                                 src="/img/Instagram.png" alt="instagram"></a></li>
-                        <li class="telegram"><a href="https://t.me/LaboratoryDoc_Rastvorceva"><img
-                                src="/img/telegram.png"
-                                alt="telegram"></a></li>
-                        <li class="viber"><a href="/"><img src="/img/viber.png" alt="viber"></a></li>
+                        <li class="telegram"><a href="https://t.me/LaboratoryDoc_Rastvorceva">
+                            <img src="/img/telegram.png" alt="telegram"></a>
+                        </li>
+                        <li class="viber"><a href="/"><img src="/img/viber.png" alt="viber"></a>
+                        </li>
                         <li class="whatsapp"><a href="https://wa.me/380669518351"><img src="/img/whatsapp.png"
                                                                                        alt="whatsapp"></a></li>
                         <li class="youTube"><a href="https://www.youtube.com/channel/UCzaw9ZU2Mvlpt9NOKvgGWXg"><img
-                                src="/img/YouTube.png" alt="youTube"></a></li>
+                                src="/img/YouTube.png" alt="youTube"></a>
+                        </li>
                     </ul>
                     <p class="copyright">Copyright ⓒ 2022. All rights reserved by Noskov Oleh</p>
                 </div>
@@ -93,3 +95,101 @@
 
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      layout:decorate="~{fragments/auth_layout}">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link href="/css/patient_layout.css" rel="stylesheet">-->
+<!--    <style>-->
+<!--        section.footer{-->
+<!--            padding: 0;-->
+<!--            margin: 0;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<div layout:fragment="auth_content">-->
+
+<!--    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">-->
+<!--        <a class="navbar-brand" th:href="@{/patients/dashboard}">-->
+<!--            <img src="/img/logo.png"-->
+<!--                 width="40" height="40" alt="logo">-->
+<!--        </a>-->
+<!--        <ul class="navbar-nav">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-brand" th:href="@{/patient/analyzes/all/temp}">Loaded analyzes</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" id="analyzes" data-toggle="dropdown">-->
+<!--                    Analyzes-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu" style="background-color: #e3f2fd;">-->
+<!--                    <a class="dropdown-item" th:href="@{/patient/analyzes/new}">new analyze</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/patient/analyzes/all/success}">all success analyzes</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/patient/analyzes/all/review}">all review analyzes</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" id="feedback" data-toggle="dropdown">Feedback</a>-->
+<!--                <div class="dropdown-menu" style="background-color: #e3f2fd;">-->
+<!--                    <a class="dropdown-item" th:href="@{/patient/feedback/new}">new feedback</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/patient/feedback/}">all my feedback</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--        </ul>-->
+
+<!--        <ul class="navbar-nav ml-auto">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" th:href="@{/patients/profile}">Profile</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-item nav-link" onclick="document.forms['logoutForm'].submit()"-->
+<!--                   style="cursor: pointer !important;">Logout</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+
+<!--    <div layout:fragment="patient_content" class="content"></div>-->
+
+<!--    <section class="footer">-->
+<!--        <div class="container-fluid">-->
+<!--            <div class="row no-gutters">-->
+<!--                <div class="col-6">-->
+<!--                    <div class="contact">Contact with us</div>-->
+<!--                    <p class="address">Malinovskogo Street 8 / Kharkov Ukraine</p>-->
+<!--                    <p class="phone">Phone: <span>+38 (066) 951 83 51</span></p>-->
+<!--                    <p class="email">E-mail: <span>ira1994girl@gmail.com</span></p>-->
+<!--                </div>-->
+<!--                <div class="col-6">-->
+<!--                    <ul>-->
+<!--                        <li class="instagram"><a-->
+<!--                                href="https://instagram.com/laboratorydoc_rastvorceva?igshid=1ibp6uytkzcgl"><img-->
+<!--                                src="/img/Instagram.png" alt="instagram"></a></li>-->
+<!--                        <li class="telegram"><a href="https://t.me/LaboratoryDoc_Rastvorceva">-->
+<!--                            <img src="/img/telegram.png" alt="telegram"></a>-->
+<!--                        </li>-->
+<!--                        <li class="viber"><a href="/"><img src="/img/viber.png" alt="viber"></a>-->
+<!--                        </li>-->
+<!--                        <li class="whatsapp"><a href="https://wa.me/380669518351"><img src="/img/whatsapp.png"-->
+<!--                                                                                       alt="whatsapp"></a></li>-->
+<!--                        <li class="youTube"><a href="https://www.youtube.com/channel/UCzaw9ZU2Mvlpt9NOKvgGWXg"><img-->
+<!--                                src="/img/YouTube.png" alt="youTube"></a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                    <p class="copyright">Copyright ⓒ 2022. All rights reserved by Noskov Oleh</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
