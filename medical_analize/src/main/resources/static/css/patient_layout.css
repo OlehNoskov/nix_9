@@ -1,3 +1,8 @@
+nav ul li a:hover{
+    color: #39b9ef;
+    text-decoration: underline;
+}
+
 section.footer{
     background-color: black;
     opacity: 0.9;

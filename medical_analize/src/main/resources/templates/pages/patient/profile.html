@@ -64,7 +64,7 @@
             </div>
 
             <div class="row py-2">
-                <div class="col-md-6"><label for="country">Sex</label>
+                <div class="col-md-6"><label for="sex">Sex</label>
                     <select name="sex" id="sex" class="bg-light">
                         <option value="female" selected>FEMALE</option>
                         <option value="male">MALE</option>
@@ -87,12 +87,34 @@
             </div>
 
             <div class="row py-2">
+                <div class="md-form md-outline input-with-post-icon datepicker col-md-6 pt-md-0 pt-3">
+                    <label for="birthday">Birthday</label>
+                    <input placeholder="Select date" type="date" min="1920-01-01" max="2022-01-01" id="birthday"
+                           class="form-control" required>
+                </div>
+                <!--                <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">-->
+                <!--                    <input placeholder="Select date" type="text" id="example" class="form-control">-->
+                <!--                    <label for="example">Try me...</label>-->
+                <!--                    <i class="fas fa-calendar input-prefix" tabindex=0></i>-->
+                <!--                </div>-->
 
-<!--                <div class="col-md-6 pt-md-0 pt-3" id="lang"><label for="birthday"></label>-->
-<!--                    <label for="age"> Birthday<em>*</em></label>-->
-<!--                    <input id="age" type="date" min="1920-01-01" max="2022-01-01"><br>-->
-<!--                    </select>-->
-<!--                </div>-->
+                <!--                <div class="col-md-6 pt-md-0 pt-3" id="lang"><label for="birthday"></label>-->
+                <!--                    <label for="age"> Birthday<em>*</em></label>-->
+                <!--                    <input id="age" type="date" min="1920-01-01" max="2022-01-01"><br>-->
+                <!--                    </select>-->
+                <!--                </div>-->
+                <div class="col-md-6 pt-md-0 pt-3"><label for="height">Heiqht</label>
+                    <input type="number" min="1" max="50" class="bg-light form-control input-range" placeholder="180" required></div>
+                <div class="invalid-feedback">
+                    Please enter your height!
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-md-6 pt-md-0 pt-3"><label for="weight">Weiqht</label>
+                    <input type="number" data-min="1" data-max="50" class="bg-light form-control" placeholder="80" required></div>
+                <div class="invalid-feedback">
+                    Please enter your weight!
+                </div>
             </div>
 
             <div class="py-3 pb-4 border-bottom">
@@ -111,6 +133,8 @@
     <!--    </form>-->
 </div>
 
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script src="/js/input_height_and_weight_valid.js"></script>
 </body>
 </html>
 
@@ -132,7 +156,8 @@
 <!--</head>-->
 <!--<body>-->
 <!--<div layout:fragment="patient_content">-->
-
+<!--    &lt;!&ndash;    <form action="#" th:action="@{'/patients/update/' + ${patient.getId()}}" th:object="${patient}" method="post"&ndash;&gt;-->
+<!--    &lt;!&ndash;          enctype="multipart/form-data">&ndash;&gt;-->
 <!--    <div class="wrapper bg-white mt-sm-5">-->
 <!--        <h4 class="pb-4 border-bottom">Profile settings</h4>-->
 <!--        <div class="d-flex align-items-start py-3 border-bottom">-->
@@ -142,6 +167,11 @@
 <!--                 class="img" alt="">-->
 <!--            <div class="pl-sm-4 pl-2" id="img-section"><b>Profile Photo</b>-->
 <!--                <p></p>-->
+
+<!--                &lt;!&ndash;                    <div class="custom-file">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <input type="file" class="custom-file-input" id="customFile">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <label class="custom-file-label" for="customFile">Выбрать файл</label>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </div>&ndash;&gt;-->
 
 <!--                &lt;!&ndash;                <div class="input-group mb-3">&ndash;&gt;-->
 <!--                &lt;!&ndash;                    <div class="custom-file">&ndash;&gt;-->
@@ -156,7 +186,8 @@
 <!--                &lt;!&ndash;                        $(this).next('.custom-file-label').html(fileName);&ndash;&gt;-->
 <!--                &lt;!&ndash;                    })&ndash;&gt;-->
 <!--                &lt;!&ndash;                </script>&ndash;&gt;-->
-<!--                &lt;!&ndash;                <label class="btn button border"><b>Upload</b> <input type="file" hidden></label>&ndash;&gt;-->
+
+<!--                <label class="btn button border"><b>Upload</b> <input type="file" hidden></label>-->
 <!--                &lt;!&ndash;                <button class="btn button border"><input type="file" hidden> <b>Upload</b></button>&ndash;&gt;-->
 <!--            </div>-->
 <!--        </div>-->
@@ -164,13 +195,21 @@
 <!--        <div class="py-2">-->
 <!--            <div class="row py-2">-->
 <!--                <div class="col-md-6"><label for="firstname">Name</label>-->
-<!--                    <input type="text" class="bg-light form-control" placeholder="Steve"></div>-->
+<!--                    <input type="text" class="bg-light form-control" placeholder="Steve" required></div>-->
+<!--                &lt;!&ndash;                        <input type="text" class="bg-light form-control is-valid" placeholder="Steve"&ndash;&gt;-->
+<!--                &lt;!&ndash;                               th:field="*{firstname}" required></div>&ndash;&gt;-->
+<!--                <div class="invalid-feedback">-->
+<!--                    Please enter your name!-->
+<!--                </div>-->
 <!--                <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname</label>-->
-<!--                    <input type="text" class="bg-light form-control" placeholder="Smith"></div>-->
+<!--                    <input type="text" class="bg-light form-control" placeholder="Smith" required></div>-->
+<!--                <div class="invalid-feedback">-->
+<!--                    Please enter your surname!-->
+<!--                </div>-->
 <!--            </div>-->
 
 <!--            <div class="row py-2">-->
-<!--                <div class="col-md-6"><label for="country">Sex</label>-->
+<!--                <div class="col-md-6"><label for="sex">Sex</label>-->
 <!--                    <select name="sex" id="sex" class="bg-light">-->
 <!--                        <option value="female" selected>FEMALE</option>-->
 <!--                        <option value="male">MALE</option>-->
@@ -193,11 +232,34 @@
 <!--            </div>-->
 
 <!--            <div class="row py-2">-->
-<!--                &lt;!&ndash;                <div class="col-md-6 pt-md-0 pt-3" id="lang"> <label for="birthday">Birthday</label>&ndash;&gt;-->
-<!--                &lt;!&ndash;                        <label for="age"> Birthday<em>*</em></label>&ndash;&gt;-->
-<!--                &lt;!&ndash;                        <input id="age" type="date" min="1920-01-01" max="2022-01-01"><br>&ndash;&gt;-->
+<!--                <div class="md-form md-outline input-with-post-icon datepicker col-md-6 pt-md-0 pt-3">-->
+<!--                    <label for="birthday">Birthday</label>-->
+<!--                    <input placeholder="Select date" type="date" min="1920-01-01" max="2022-01-01" id="birthday"-->
+<!--                           class="form-control" required>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;                <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <input placeholder="Select date" type="text" id="example" class="form-control">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <label for="example">Try me...</label>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <i class="fas fa-calendar input-prefix" tabindex=0></i>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--                &lt;!&ndash;                <div class="col-md-6 pt-md-0 pt-3" id="lang"><label for="birthday"></label>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <label for="age"> Birthday<em>*</em></label>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <input id="age" type="date" min="1920-01-01" max="2022-01-01"><br>&ndash;&gt;-->
 <!--                &lt;!&ndash;                    </select>&ndash;&gt;-->
 <!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="col-md-6 pt-md-0 pt-3"><label for="height">Heiqht</label>-->
+<!--                    <input type="number" data-min="1" data-max="50" class="bg-light form-control input-range" placeholder="180" required></div>-->
+<!--                <div class="invalid-feedback">-->
+<!--                    Please enter your height!-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row py-2">-->
+<!--                <div class="col-md-6 pt-md-0 pt-3"><label for="weight">Weiqht</label>-->
+<!--                    <input type="number" data-min="1" data-max="50" class="bg-light form-control" placeholder="80" required></div>-->
+<!--                <div class="invalid-feedback">-->
+<!--                    Please enter your weight!-->
+<!--                </div>-->
 <!--            </div>-->
 
 <!--            <div class="py-3 pb-4 border-bottom">-->
@@ -213,7 +275,9 @@
 <!--            </div>-->
 <!--        </div>-->
 <!--    </div>-->
+<!--    &lt;!&ndash;    </form>&ndash;&gt;-->
 <!--</div>-->
 
+<!--<script src="/js/input_height_and_weight_valid.js"></script>-->
 <!--</body>-->
 <!--</html>-->
