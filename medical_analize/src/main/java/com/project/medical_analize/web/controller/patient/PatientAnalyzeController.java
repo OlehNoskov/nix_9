@@ -28,4 +28,9 @@ public class PatientAnalyzeController {
 //    public String redirectToNew(Model model) {
 //        return "pages/patient/analyzes/analyzes_new";
 //    }
+
+    @GetMapping("/example")
+    public String example(Model model){
+        return "pages/patient/analyzes/example_transcript";
+    }
 }

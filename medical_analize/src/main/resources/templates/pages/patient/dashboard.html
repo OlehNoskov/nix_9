@@ -11,13 +11,23 @@
         p {
             color: #6b6f70;
         }
+
         div.container {
             border-color: #ffffff;
+        }
+        .example  {
+            opacity: 1;
+            -webkit-transition: .3s ease-in-out;
+            transition: .3s ease-in-out;
+        }
+        .example:hover {
+            opacity: .7;
         }
     </style>
     <link href="/css/patient_dashboard.css" rel="stylesheet">
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 </head>
+
 <body>
 <div layout:fragment="patient_content">
 
@@ -105,28 +115,28 @@
         </div>
 
         <div class="row gutters-tiny mb-3">
-            <div class="col-12 col-md-6 col-xl-3 mt-2">
+            <div class="col-12 col-md-6 col-xl-3 mt-2 example">
                 <a class="block text-center" th:href="@{/patient/analyzes/all/temp}">
                     <img src="/img/my_orders.png" width="250"
                          height="200" alt="Пример">
                 </a>
             </div>
 
-            <div class="col-12 col-md-6 col-xl-3 mt-2">
+            <div class="col-12 col-md-6 col-xl-3 mt-2 example">
                 <a class="block text-center" th:href="@{/patient/analyzes/all/temp}">
                     <img src="/img/my_analyses_dashboard.png" width="250"
-                         height="200" alt="Пример">
+                         height="200" alt="Пример" class="my_image">
                 </a>
             </div>
 
-            <div class="col-12 col-md-6 col-xl-3 mt-2">
-                <a class="block text-center" th:href="@{/patient/analyzes/all/temp}">
+            <div class="col-12 col-md-6 col-xl-3 mt-2 example">
+                <a class="block text-center" th:href="@{/patient/analyzes/example}">
                     <img src="/img/example_transcript.png" width="250"
                          height="200" alt="Пример">
                 </a>
             </div>
 
-            <div class="col-12 col-md-6 col-xl-3 mt-2">
+            <div class="col-12 col-md-6 col-xl-3 mt-2 example">
                 <a class="block text-center" href="https://analitika-lab.com.ua/price">
                     <img src="/img/price_analyses.png" width="250"
                          height="200" alt="Пример">
@@ -142,9 +152,6 @@
 
 </body>
 </html>
-
-
-
 
 
 <!--<!DOCTYPE html>-->
