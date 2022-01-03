@@ -11,11 +11,11 @@
         p {
             color: #6b6f70;
         }
-
         div.container {
             border-color: #ffffff;
         }
     </style>
+    <link href="/css/patient_dashboard.css" rel="stylesheet">
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 </head>
 <body>
@@ -104,48 +104,57 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row gutters-tiny mb-3">
             <div class="col-12 col-md-6 col-xl-3 mt-2">
                 <a class="block text-center" th:href="@{/patient/analyzes/all/temp}">
-                    <div class="block-content bg-gd-dusk">
-                        <p class="mt-5">
-                            <i class="si si-like fa-3x text-white-op"></i>
-                        </p>
-                        <p class="font-w600 text-white">All<br>my analyzes</p>
-                    </div>
+                    <img src="/img/my_orders.png" width="250"
+                         height="200" alt="Пример">
+<!--                    <div class="block-content bg-gd-dusk">-->
+<!--                        <p class="mt-5">-->
+<!--                            <i class="si si-like fa-3x text-white-op">-->
+<!--                            </i>-->
+<!--                        </p>-->
+<!--                        <p class="font-w600 text-white">All<br>my analyzes</p>-->
+<!--                    </div>-->
                 </a>
             </div>
 
             <div class="col-12 col-md-6 col-xl-3 mt-2">
                 <a class="block text-center" th:href="@{/patient/analyzes/all/temp}">
-                    <div class="block-content bg-gd-dusk">
-                        <p class="mt-5">
-                            <i class="si si-like fa-3x text-white-op"></i>
-                        </p>
-                        <p class="font-w600 text-white">All<br>my orders</p>
-                    </div>
+                    <img src="/img/my_analyses_dashboard.png" width="250"
+                         height="200" alt="Пример">
+<!--                    <div class="block-content bg-gd-dusk">-->
+<!--                        <p class="mt-5">-->
+<!--                            <i class="si si-like fa-3x text-white-op"></i>-->
+<!--                        </p>-->
+<!--                        <p class="font-w600 text-white"><br>My orders</p>-->
+<!--                    </div>-->
                 </a>
             </div>
 
             <div class="col-12 col-md-6 col-xl-3 mt-2">
                 <a class="block text-center" th:href="@{/patient/analyzes/all/temp}">
-                    <div class="block-content bg-gd-dusk">
-                        <p class="mt-5">
-                            <i class="si si-like fa-3x text-white-op"></i>
-                        </p>
-                        <p class="font-w600 text-white">All<br>my analyzes</p>
-                    </div>
+                    <img src="/img/example_transcript.png" width="250"
+                         height="200" alt="Пример">
+<!--                    <div class="block-content bg-gd-dusk">-->
+<!--                        <p class="mt-5">-->
+<!--                            <i class="si si-like fa-3x text-white-op"></i>-->
+<!--                        </p>-->
+<!--                        <p class="font-w600 text-white"><br>Example transcript of medical analysis </p>-->
+<!--                    </div>-->
                 </a>
             </div>
 
             <div class="col-12 col-md-6 col-xl-3 mt-2">
-                <a class="block text-center" th:href="@{/patient/analyzes/all/temp}">
-                    <div class="block-content bg-gd-dusk">
-                        <p class="mt-5">
-                            <i class="si si-like fa-3x text-white-op"></i>
-                        </p>
-                        <p class="font-w600 text-white"><br>Price analyzes</p>
-                    </div>
+                <a class="block text-center" href="https://analitika-lab.com.ua/price">
+                    <img src="/img/price_analyses.png" width="250"
+                         height="200" alt="Пример">
+<!--                    <div class="block-content bg-gd-dusk">-->
+<!--                        <p class="mt-5">-->
+<!--                            <i class="si si-like fa-3x text-white-op"></i>-->
+<!--                        </p>-->
+<!--                        <p class="font-w600 text-white"><br>Price analyzes</p>-->
+<!--                    </div>-->
                 </a>
             </div>
         </div>
