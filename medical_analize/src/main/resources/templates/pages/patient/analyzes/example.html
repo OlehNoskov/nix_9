@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/patient_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Example transcript</title>
+</head>
+<body>
+<div layout:fragment="patient_content">
+
+    <h1>Example transcript</h1>
+    <div class="row">
+        <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+            <a th:href="@{/patient/analyses/all/examples/transcript}">
+                <i class="fa fa-file-pdf-o fa-2x text-danger"></i> Общий анализ крови женщины</a><br>
+            <p class="mt-1">Признаки дефицита витминов В12 и/или В9</p>
+
+            <a href="/data/examples/labmap_primer_2_biohim_analiz_krovi_rebenka.pdf"><i class="fa fa-file-pdf-o fa-2x text-danger"></i> Биохимический анализ крови ребенка в 1 год и 2 месяца</a>
+            <p class="mt-1">Высокие ферменты печени и низкий ферритин</p>
+
+            <a href="/data/examples/labmap_primer_3_analiz_krovi_muzhchiny.pdf"><i class="fa fa-file-pdf-o fa-2x text-danger"></i> Общий и биохимический анализ крови мужчины</a>
+            <p class="mt-1">C изменением показателей липидного профиля<br>и высоким уровнем мочевой кислоты</p>
+        </div>
+        <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

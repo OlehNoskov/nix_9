@@ -30,5 +30,4 @@ public class PatientCreateOrderController {
     public String newOrder(Model model, WebRequest webRequest) {
         return "pages/patient/order/new_order";
     }
-
 }

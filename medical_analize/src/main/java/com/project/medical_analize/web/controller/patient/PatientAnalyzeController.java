@@ -29,8 +29,13 @@ public class PatientAnalyzeController {
 //        return "pages/patient/analyzes/analyzes_new";
 //    }
 
-    @GetMapping("/example")
+    @GetMapping("/all/examples")
     public String example(Model model){
+        return "pages/patient/analyzes/example";
+    }
+
+    @GetMapping("/all/examples/transcript")
+    public String exampleTranscript(Model model){
         return "pages/patient/analyzes/example_transcript";
     }
 }

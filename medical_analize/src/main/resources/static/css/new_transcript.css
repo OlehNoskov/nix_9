@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: aliceblue
+}
+
+.wrapper {
+    padding: 30px 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px auto;
+}
+
+h4 {
+    letter-spacing: -1px;
+    font-weight: 400
+}
+
+label {
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+    padding-left: 3px
+}
+
+.form-control {
+    border-radius: 10px
+}
+
+input[placeholder] {
+    font-weight: 500
+}
+
+textarea:hover{
+border-color: grey;
+}
