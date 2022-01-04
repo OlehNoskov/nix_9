@@ -72,12 +72,14 @@ public class GroupController extends AbstractController {
     @GetMapping("/new")
     public String redirectToNewGroupPage(Model model) {
         model.addAttribute("group", new GroupRequestDto());
+        System.out.println("get new create group");
         return "pages/group/group_new";
     }
 
     @PostMapping("/new")
     public String createNewGroup(@ModelAttribute("group") GroupRequestDto dto) {
         groupFacade.create(dto);
+        System.out.println("post group create!");
         return "redirect:/groups";
     }
 
@@ -98,6 +100,7 @@ public class GroupController extends AbstractController {
     public String details(@PathVariable Long id, Model model) {
         GroupResponseDto groupResponseDto = groupFacade.findById(id);
         model.addAttribute("group", groupResponseDto);
+        System.out.println("get group details!");
         return "pages/group/group_details";
     }
 
