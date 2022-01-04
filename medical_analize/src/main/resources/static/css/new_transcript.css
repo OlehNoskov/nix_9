@@ -51,3 +51,27 @@ a.payment:hover {
     background-color: green;
     color: #fff
 }
+
+p{
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+    padding-left: 3px
+}
+
+option{
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+    padding-left: 3px
+}
+
+select{
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+    padding-left: 3px
+}

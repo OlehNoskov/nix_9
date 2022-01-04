@@ -126,3 +126,18 @@ select:focus {
         line-height: 18px
     }
 }
+option{
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+    padding-left: 3px
+}
+
+select{
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+    padding-left: 3px
+}
