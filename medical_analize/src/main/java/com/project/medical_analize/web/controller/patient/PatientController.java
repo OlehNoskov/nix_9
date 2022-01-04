@@ -18,4 +18,14 @@ public class PatientController {
     public String profile(Model model) {
         return "pages/patient/profile";
     }
+
+//    @GetMapping("/profile")
+//    public String profile(Model model) {
+//        return "pages/patient/profile_edit";
+//    }
+
+    @GetMapping("/profile/edit")
+    public String profileEdit(Model model) {
+        return "pages/patient/profile_edit";
+    }
 }

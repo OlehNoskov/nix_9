@@ -141,3 +141,17 @@ select{
     color: #777;
     padding-left: 3px
 }
+
+div.edit.a{
+    background-color: #fff;
+    color: #0779e4
+}
+
+div.edit.a:hover {
+    background-color: #0779e4;
+    color: #fff;
+}
+
+div.edit.a{
+    padding-left: 50px ;
+}
