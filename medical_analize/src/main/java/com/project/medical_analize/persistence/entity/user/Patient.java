@@ -5,6 +5,7 @@ import com.project.medical_analize.persistence.sex.Sex;
 import com.project.medical_analize.persistence.repository.type.RoleType;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,15 +18,21 @@ public class Patient extends User {
     @Column(name = "last_name")
     private String lastName;
 
-//    @Temporal(TemporalType.DATE)
-//    @Column(name = "birth_day")
-//    private Date birthDay;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "birth_day")
+    private Date birthDay;
 
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
     @Column(name = "phone")
     private Integer phone;
+
+    private Integer height;
+
+    private Integer weight;
+
+    private String country;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order> orders;
@@ -89,11 +96,35 @@ public class Patient extends User {
         this.doctors = doctors;
     }
 
-//    public Date getBirthDay() {
-//        return birthDay;
-//    }
-//
-//    public void setBirthDay(Date birthDay) {
-//        this.birthDay = birthDay;
-//    }
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }

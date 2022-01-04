@@ -3,6 +3,7 @@ package com.project.medical_analize.web.controller.patient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
@@ -15,6 +16,11 @@ public class PatientCreateOrderController {
     public String transcript(Model model) {
         return "pages/patient/order/transcript";
     }
+    @PostMapping("/new/transcript")
+    public String newTranscriptPayment(Model model) {
+        return "redirect:pages/patient/new/order/payment";
+    }
+
 
     @GetMapping("/new/check-up")
     public String check_up(Model model) {
