@@ -238,19 +238,19 @@
             <div class="row py-2">
                 <div class="col-md-4">
                     <p>Bad habits<Br>
-<!--                        <textarea name="bad_habits" cols="40" rows="3"></textarea></p>-->
+                        <!--                        <textarea name="bad_habits" cols="40" rows="3"></textarea></p>-->
                         <input type="text" name="bad_habits" class="bg-light form-control"
                                placeholder="" id="bad_habits" required>
                 </div>
                 <div class="col-md-4">
                     <p>Drugs taken<Br>
-<!--                        <textarea name="drags_taken" cols="40" rows="3"></textarea></p>-->
+                        <!--                        <textarea name="drags_taken" cols="40" rows="3"></textarea></p>-->
                         <input type="text" name="drugs_taken" class="bg-light form-control"
                                placeholder="" id="drugs_taken" required>
                 </div>
                 <div class="col-md-4">
                     <p>Chronic diseases<Br>
-<!--                        <textarea name="chronic_diseases" cols="40" rows="3"></textarea></p>-->
+                        <!--                        <textarea name="chronic_diseases" cols="40" rows="3"></textarea></p>-->
                         <input type="text" name="chronic_diseases" class="bg-light form-control"
                                placeholder="" id="chronic_diseases" required>
                 </div>
@@ -259,28 +259,37 @@
             <div class="row py-2">
                 <div class="col-md-4">
                     <p>Burglary complaints<Br>
-<!--                        <textarea name="bad_habits" cols="40" rows="3"></textarea></p>-->
+                        <!--                        <textarea name="bad_habits" cols="40" rows="3"></textarea></p>-->
                         <input type="text" name="burglary_complaints" class="bg-light form-control"
                                placeholder="" id="burglary_complaints" required>
                 </div>
                 <div class="col-md-4">
                     <p>Hereditary diseases<Br>
-<!--                        <textarea name="drags_taken" cols="40" rows="3"></textarea></p>-->
+                        <!--                        <textarea name="drags_taken" cols="40" rows="3"></textarea></p>-->
                         <input type="text" name="hereditary_diseases" class="bg-light form-control"
                                placeholder="" id="hereditary_diseases" required>
                 </div>
                 <div class="col-md-4">
                     <p>Features of nutrition and diet<Br>
-<!--                        <textarea name="chronic_diseases" cols="40" rows="3"></textarea></p>-->
+                        <!--                        <textarea name="chronic_diseases" cols="40" rows="3"></textarea></p>-->
                         <input type="text" name="diet" class="bg-light form-control"
                                placeholder="" id="diet" required>
                 </div>
             </div>
-
-            <div class="py-3 pb-4 border-bottom">
-<!--                <button class="btn btn-success mr-3" type="submit">Next</button>-->
-                <a th:href="@{/patient/new/order/payment}"
-                   class="btn btn-info align-self-end btn btn-lg btn-block mt-auto">Next</a>
+            <div class="row py-2">
+                <div class="col-md-3 pb-4 border-bottom">
+                    <p>Upload file with analyses</p>
+                    <p><input type="file" name="photo" multiple accept="image/*,image/jpeg/pdf">
+                </div>
+                <div class="col-md-3 pb-4 border-bottom">
+                </div>
+                <div class="col-md-3 pb-4 border-bottom">
+                </div>
+                <div class="col-md-3 pb-4 border-bottom">
+                    <!--                <button class="btn btn-success mr-3" type="submit">Next</button>-->
+                    <a th:href="@{/patient/new/order/payment}"
+                       class="btn btn-success align-self-end btn btn-lg btn-block mt-auto payment">Next</a>
+                </div>
             </div>
         </div>
     </div>

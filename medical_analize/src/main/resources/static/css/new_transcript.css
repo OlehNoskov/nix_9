@@ -40,3 +40,14 @@ input[placeholder] {
 textarea:hover{
 border-color: grey;
 }
+
+a.payment {
+    background-color: #fff;
+    color: green;
+    border: 1px solid #ddd
+}
+
+a.payment:hover {
+    background-color: green;
+    color: #fff
+}
