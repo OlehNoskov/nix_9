@@ -19,6 +19,7 @@ public class CrudRepositoryHelperImpl <
         E extends BaseEntity,
         R extends BaseRepository<E>>
         implements CrudRepositoryHelper<E,R> {
+
     @Override
     public void create(R repository, E entity) {
         repository.save(entity);

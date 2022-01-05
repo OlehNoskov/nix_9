@@ -9,7 +9,7 @@ import com.project.medical_analize.persistence.entity.user.Patient;
 import com.project.medical_analize.persistence.entity.user.User;
 import com.project.medical_analize.persistence.repository.user.DoctorRepository;
 import com.project.medical_analize.persistence.repository.user.PatientRepository;
-import com.project.medical_analize.service.PersonalCrudService;
+import com.project.medical_analize.service.UserCrudService;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-public class PersonalCrudServiceImpl implements PersonalCrudService {
+public class UserCrudServiceImpl implements UserCrudService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final DoctorRepository doctorRepository;
@@ -29,7 +29,7 @@ public class PersonalCrudServiceImpl implements PersonalCrudService {
     private final CrudRepositoryHelper<Patient, PatientRepository> crudRepositoryHelperPatient;
 
 
-    public PersonalCrudServiceImpl(
+    public UserCrudServiceImpl(
             BCryptPasswordEncoder bCryptPasswordEncoder,
             DoctorRepository doctorRepository,
             PatientRepository patientRepository,
@@ -66,7 +66,7 @@ public class PersonalCrudServiceImpl implements PersonalCrudService {
 
     @Override
     public void update(User entity) {
-
+        crudRepositoryHelperPatient.update(patientRepository, (Patient) entity);
     }
 
     @Override
@@ -79,11 +79,6 @@ public class PersonalCrudServiceImpl implements PersonalCrudService {
         System.out.println("personal crud service!");
         return Optional.empty();
     }
-
-//    @Override
-//    public User findById(Long id) {
-//        return null;
-//    }
 
     @Override
     public DataTableResponse<User> findAll(DataTableRequest request) {
