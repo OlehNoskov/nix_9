@@ -9,7 +9,6 @@ import java.util.Set;
 
 public interface StudentFacade extends BaseFacade<StudentRequestDto, StudentResponseDto>{
 
-//    Set<GroupResponseDto> getGroups(Long studentId);
-
-    Map<Long, String> findAllGroupsByStudentId(Long studentId);
+    Set<GroupResponseDto> getGroups(Long studentId);
+    Set<StudentResponseDto> findAll();
 }

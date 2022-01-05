@@ -39,12 +39,11 @@
           </table>
           <hr>
           <div>
-            <a th:href="@{/students/new/}" type="button" class="btn btn-primary">Add new student</a>
+            <a th:href="@{'/groups/group/students/'+ ${group.getId()}}" type="button" class="btn btn-primary">Show all student</a>
           </div>
           <hr>
           <div>
-            <a th:href="@{/students/}" type="button" class="btn btn-primary">Show
-              all student</a>
+            <a th:href="@{'/students/add/' + ${group.getId()}}" type="button" class="btn btn-success">Add student in Group</a>
           </div>
         </div>
 

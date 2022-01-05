@@ -9,6 +9,7 @@ import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 import ua.com.alevel.service.GroupService;
+import ua.com.alevel.service.StudentService;
 import ua.com.alevel.util.WebRequestUtil;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
 import ua.com.alevel.view.dto.request.PageAndSizeData;
@@ -26,16 +27,12 @@ import java.util.stream.Collectors;
 public class GroupFacadeImpl implements GroupFacade {
 
     private final GroupService groupService;
+    private final StudentService studentService;
 
-    public GroupFacadeImpl(GroupService groupService) {
+    public GroupFacadeImpl(GroupService groupService, StudentService studentService) {
         this.groupService = groupService;
+        this.studentService = studentService;
     }
-//    private final StudentService studentService;
-
-//    public GroupFacadeImpl(GroupService groupService, StudentService studentService) {
-//        this.groupService = groupService;
-//        this.studentService = studentService;
-//    }
 
     @Override
     public void create(GroupRequestDto groupRequestDto) {
@@ -46,7 +43,7 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public void update(GroupRequestDto groupRequestDto, long id) {
-        Group group = groupService.findById(id);
+        Group group = groupService.findById(id).get();
         group.setName(groupRequestDto.getName());
         group.setUpdated(new Timestamp(System.currentTimeMillis()));
         groupService.update(group);
@@ -60,22 +57,7 @@ public class GroupFacadeImpl implements GroupFacade {
     @Override
     public GroupResponseDto findById(long id) {
         System.out.println("Find group facade");
-        return new GroupResponseDto(groupService.findById(id));
-    }
-
-//    @Override
-//    public Set<StudentResponseDto> getStudents(Long groupId) {
-//        return null;
-//    }
-
-//    @Override
-//    public Set<StudentResponseDto> getStudents(Long groupId) {
-//        return null;
-//    }
-
-    @Override
-    public Map<Long, String> findStudentsByGroupId(Long groupId) {
-        return groupService.findStudentsByGroupId(groupId);
+        return new GroupResponseDto(groupService.findById(id).get());
     }
 
     @Override
@@ -107,18 +89,37 @@ public class GroupFacadeImpl implements GroupFacade {
         return pageData;
     }
 
+    @Override
+    public List<GroupResponseDto> findAll() {
+        List<Group> all = groupService.findAll();
+        List<GroupResponseDto> items = all.stream().map(GroupResponseDto::new).collect(Collectors.toList());
+        return items;
+    }
 
+    @Override
+    public void addStudent(Long groupId, Long studentId) {
+        Group group = groupService.findById(groupId).get();
+        Student student = studentService.findById(studentId).get();
+        group.addStudent(student);
+        groupService.update(group);
+    }
 
-//
+    @Override
+    public void removeStudent(Long groupId, Long studentId) {
+        Group group = groupService.findById(groupId).get();
+        Student student = studentService.findById(studentId).get();
+        group.removeStudent(student);
+        groupService.update(group);
+    }
 
-//    @Override
-//    public Set<StudentResponseDto> getStudents(Long groupId) {
-//        Set<Student> students = groupService.findById(groupId).get().getStudents();
-//        Set<StudentResponseDto> list = new HashSet<>();
-//        for (Student student : students) {
-//            StudentResponseDto studentResponseDto = new StudentResponseDto(student);
-//            list.add(studentResponseDto);
-//        }
-//        return list;
-//    }
+    @Override
+    public Set<StudentResponseDto> getStudents(Long groupId) {
+        Set<Student> students = groupService.findById(groupId).get().getStudents();
+        Set<StudentResponseDto> list = new HashSet<>();
+        for(Student student: students){
+            StudentResponseDto studentResponseDto = new StudentResponseDto(student);
+            list.add(studentResponseDto);
+        }
+        return list;
+    }
 }

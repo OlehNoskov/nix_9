@@ -1,12 +1,18 @@
 package ua.com.alevel.service;
 
 import ua.com.alevel.persistence.entity.Group;
+import ua.com.alevel.persistence.entity.Student;
 
-import java.util.Map;
+import java.util.List;
+import java.util.Set;
 
 public interface GroupService extends BaseService<Group>{
 
-//    Set<Student> getStudents(Long groupId);
+    void addStudent(Long groupId, Long studentId);
 
-    Map<Long, String> findStudentsByGroupId(Long groupId);
+    void removeStudent(Long groupId, Long studentId);
+
+    List<Group> findAll();
+
+    Set<Student> getStudents(Long id);
 }

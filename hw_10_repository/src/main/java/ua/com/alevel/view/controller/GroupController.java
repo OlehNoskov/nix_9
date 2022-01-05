@@ -15,6 +15,7 @@ import ua.com.alevel.facade.StudentFacade;
 import ua.com.alevel.view.dto.request.GroupRequestDto;
 import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
+import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +93,6 @@ public class GroupController extends AbstractController {
     public String update(@PathVariable Long id, Model model) {
         GroupResponseDto groupResponseDto = groupFacade.findById(id);
         model.addAttribute("group", groupResponseDto);
-        System.out.println("details group and find group!");
         return "pages/group/group_update";
     }
 
@@ -105,27 +105,39 @@ public class GroupController extends AbstractController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
+        Set<StudentResponseDto> students = groupFacade.getStudents(id);
+        for(StudentResponseDto student: students){
+            groupFacade.removeStudent(id, student.getId());
+}
         groupFacade.delete(id);
         return "redirect:/groups";
     }
 
-//    @GetMapping("/group/{groupId}/{studentId}")
-//    public String addStudent(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
-//        groupFacade.addStudent(groupId, studentId);
-//        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
-//        model.addAttribute("student", studentFacade.findById(studentId));
-//        model.addAttribute("groups", groups);
-//        return "pages/student/student_details";
-//    }
-//
-//    @GetMapping("/delete/group/{studentId}/{groupId}")
-//    public String deleteStudentFromGroup(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
-//        groupFacade.removeStudent(groupId, studentId);
-//        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
-//        model.addAttribute("student", studentFacade.findById(studentId));
-//        model.addAttribute("groups", groups);
-//        return "pages/student/student_details";
-//    }
+    @GetMapping("/group/{groupId}/{studentId}")
+    public String addStudent(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+        groupFacade.addStudent(groupId, studentId);
+        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
+        model.addAttribute("student", studentFacade.findById(studentId));
+        model.addAttribute("groups", groups);
+        return "pages/student/student_details";
+    }
+
+    @GetMapping("/delete/group/{studentId}/{groupId}")
+    public String deleteStudentFromGroup(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+        groupFacade.removeStudent(groupId, studentId);
+        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
+        model.addAttribute("student", studentFacade.findById(studentId));
+        model.addAttribute("groups", groups);
+        return "pages/student/student_details";
+    }
+
+    @GetMapping("/group/students/{id}")
+    public String allStudentFromGroup(Model model, @PathVariable Long id) {
+        Set<StudentResponseDto> students = groupFacade.getStudents(id);
+        model.addAttribute("group", groupFacade.findById(id));
+        model.addAttribute("students", students);
+        return "pages/student/students_group";
+    }
 
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<GroupResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();

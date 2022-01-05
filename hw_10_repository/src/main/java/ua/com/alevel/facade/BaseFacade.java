@@ -7,6 +7,7 @@ import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.ResponseDto;
 
 public interface BaseFacade <REQ extends RequestDto, RES extends ResponseDto> {
+
     void create(REQ req);
     void update(REQ req, long id);
     void delete(long id);

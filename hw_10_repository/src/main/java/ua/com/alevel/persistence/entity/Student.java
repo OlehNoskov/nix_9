@@ -16,7 +16,7 @@ public class Student extends BaseEntity {
 
     private Integer age;
 
-    @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "students", cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
     //не обязательно писать fetch = FetchType.LAZY, так как он default.
     private Set<Group> groups;
 

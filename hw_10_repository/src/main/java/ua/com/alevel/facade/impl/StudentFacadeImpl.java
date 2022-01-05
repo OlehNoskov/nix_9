@@ -16,12 +16,13 @@ import ua.com.alevel.util.WebRequestUtil;
 import ua.com.alevel.view.dto.request.PageAndSizeData;
 import ua.com.alevel.view.dto.request.SortData;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
+import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,23 +34,10 @@ public class StudentFacadeImpl implements StudentFacade {
     private final StudentService studentService;
     private final GroupService groupService;
 
-
     public StudentFacadeImpl(StudentService studentService, GroupService groupService) {
         this.studentService = studentService;
         this.groupService = groupService;
     }
-
-
-//    @Override
-//    public void create(StudentRequestDto studentRequestDto) {
-//        Student student = new Student();
-//        student.setFirstname(studentRequestDto.getFirstname());
-//        student.setLastname(studentRequestDto.getLastname());
-//        student.setAge(studentRequestDto.getAge());
-//        Set<Group> groups = new HashSet<>();
-//        student.setGroups(groups);
-//        studentService.create(student);
-//    }
 
     @Override
     public void create(StudentRequestDto studentRequestDto) {
@@ -57,27 +45,16 @@ public class StudentFacadeImpl implements StudentFacade {
         student.setFirstname(studentRequestDto.getFirstname());
         student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
-        try {
-            Set<Long> groupsId = studentRequestDto.getGroupsIds();
-           studentService.create(student);
-            for (Long id : groupsId) {
-                Group group = groupService.findById(id);
-                (group).addStudent(student);
-                groupService.update(group);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        studentService.create(student);
     }
 
     @Override
     public void update(StudentRequestDto studentRequestDto, long id) {
-        Student student = studentService.findById(id);
+        Student student = studentService.findById(id).get();
         student.setFirstname(studentRequestDto.getFirstname());
         student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
         student.setUpdated(new Timestamp(System.currentTimeMillis()));
-        Set<Group> groups = new HashSet<>();
         studentService.update(student);
     }
 
@@ -88,7 +65,7 @@ public class StudentFacadeImpl implements StudentFacade {
 
     @Override
     public StudentResponseDto findById(long id) {
-        return new StudentResponseDto((Student) studentService.findById(id));
+        return new StudentResponseDto((Student) studentService.findById(id).get());
     }
 
     @Override
@@ -126,19 +103,21 @@ public class StudentFacadeImpl implements StudentFacade {
         return pageData;
     }
 
-//    @Override
-//    public Set<GroupResponseDto> getGroups(Long studentId) {
-//        Set<Group> groups = studentService.getGroups(studentId);
-//        Set<GroupResponseDto> list = new HashSet<>();
-//        for (Group group : groups) {
-//            GroupResponseDto groupResponseDto = new GroupResponseDto(group);
-//            list.add(groupResponseDto);
-//        }
-//        return list;
-//    }
+    @Override
+    public Set<GroupResponseDto> getGroups(Long studentId) {
+        Set<Group> groups = studentService.getGroups(studentId);
+        Set<GroupResponseDto> list  = new HashSet<>();
+        for(Group group: groups){
+            GroupResponseDto groupResponseDto =new GroupResponseDto(group);
+            list.add(groupResponseDto);
+        }
+        return list;
+    }
 
     @Override
-    public Map<Long, String> findAllGroupsByStudentId(Long studentId) {
-        return studentService.findAllGroupsByStudentId(studentId);
+    public Set<StudentResponseDto> findAll() {
+        List<Student> allStudents = studentService.findAll();
+        Set<StudentResponseDto> list = allStudents.stream().map(StudentResponseDto::new).collect(Collectors.toSet());
+        return list;
     }
 }

@@ -13,6 +13,7 @@ import ua.com.alevel.view.dto.request.StudentRequestDto;
 import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
 
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -54,7 +55,7 @@ public class StudentController extends AbstractController {
         return findAllRedirect(request, model, "students");
     }
 
-        @GetMapping("/new")
+    @GetMapping("/new")
     public String redirectToNewStudentPage(Model model) {
         model.addAttribute("student", new StudentRequestDto());
         return "pages/student/student_new";
@@ -92,12 +93,20 @@ public class StudentController extends AbstractController {
         return "pages/student/student_details";
     }
 
-//    @GetMapping("/group/{studentId}/{groupId}")
-//    public String addStudent (@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
-//        groupFacade.addStudent(groupId, studentId);
-//        Set<StudentResponseDto> students = groupFacade.getStudents(groupId);
-//        model.addAttribute("group", groupFacade.findById(groupId));
-//        model.addAttribute("students", students);
-//        return "pages/group/group_details";
-//    }
+    @GetMapping("/add/{id}")
+    public String redirectToAddPatientPage(@PathVariable Long id, Model model, WebRequest request) {
+        Set<StudentResponseDto> students = studentFacade.findAll();
+        model.addAttribute("students", students);
+        model.addAttribute("group", groupFacade.findById(id));
+        return "pages/student/student_add";
+    }
+
+    @GetMapping("/group/{studentId}/{groupId}")
+    public String addStudent (@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+        groupFacade.addStudent(groupId, studentId);
+        Set<StudentResponseDto> students = groupFacade.getStudents(groupId);
+        model.addAttribute("group", groupFacade.findById(groupId));
+        model.addAttribute("students", students);
+        return "pages/group/group_details";
+    }
 }
