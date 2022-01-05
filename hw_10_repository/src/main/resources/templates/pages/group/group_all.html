@@ -14,7 +14,6 @@
     <tr th:each="group,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
         <td th:text="${group.getName()}"></td>
-        <td th:text="${group.getStudentCount()}"></td>
         <td>
             <a th:href="@{'/groups/details/' + ${group.getId()}}" type="button" class="btn btn-warning">details</a>
         </td>

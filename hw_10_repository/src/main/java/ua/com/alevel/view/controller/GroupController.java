@@ -20,7 +20,6 @@ import ua.com.alevel.view.dto.response.StudentResponseDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static ua.com.alevel.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 
@@ -40,7 +39,6 @@ public class GroupController extends AbstractController {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("name", "name", "name"),
-                new HeaderName("student count", "studentCount", "studentCount"),
                 new HeaderName("details", null, null),
                 new HeaderName("edit", null, null),
                 new HeaderName("delete", null, null)
@@ -106,9 +104,9 @@ public class GroupController extends AbstractController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         List<StudentResponseDto> students = groupFacade.getStudents(id);
-        for(StudentResponseDto student: students){
+        for (StudentResponseDto student : students) {
             groupFacade.removeStudent(id, student.getId());
-}
+        }
         groupFacade.delete(id);
         return "redirect:/groups";
     }
