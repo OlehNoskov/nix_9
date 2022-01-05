@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
+
 import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.AccountDao;
 import ua.com.alevel.persistence.dao.OperationDao;
@@ -19,8 +20,6 @@ import ua.com.alevel.persistence.entity.Transaction;
 import ua.com.alevel.persistence.entity.User;
 
 import java.math.BigDecimal;
-import java.sql.PreparedStatement;
-
 
 @SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class,
