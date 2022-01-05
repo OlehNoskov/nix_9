@@ -92,6 +92,7 @@ public class GroupController extends AbstractController {
     public String update(@PathVariable Long id, Model model) {
         GroupResponseDto groupResponseDto = groupFacade.findById(id);
         model.addAttribute("group", groupResponseDto);
+        System.out.println("details group and find group!");
         return "pages/group/group_update";
     }
 

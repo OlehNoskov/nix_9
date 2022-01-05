@@ -70,6 +70,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Group findById(Long id) {
+        System.out.println("Group service find!");
         return groupRepositoryHelper.findById(groupRepository, id).get();
     }
 

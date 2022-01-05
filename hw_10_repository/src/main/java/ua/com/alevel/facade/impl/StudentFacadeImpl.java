@@ -1,6 +1,5 @@
 package ua.com.alevel.facade.impl;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import ua.com.alevel.util.WebRequestUtil;
 import ua.com.alevel.view.dto.request.PageAndSizeData;
 import ua.com.alevel.view.dto.request.SortData;
 import ua.com.alevel.view.dto.request.StudentRequestDto;
-import ua.com.alevel.view.dto.response.GroupResponseDto;
 import ua.com.alevel.view.dto.response.PageData;
 import ua.com.alevel.view.dto.response.StudentResponseDto;
 
@@ -74,20 +72,12 @@ public class StudentFacadeImpl implements StudentFacade {
 
     @Override
     public void update(StudentRequestDto studentRequestDto, long id) {
-//        Student student = new Student();
-//        student.setId(id);
         Student student = studentService.findById(id);
         student.setFirstname(studentRequestDto.getFirstname());
         student.setLastname(studentRequestDto.getLastname());
         student.setAge(studentRequestDto.getAge());
         student.setUpdated(new Timestamp(System.currentTimeMillis()));
         Set<Group> groups = new HashSet<>();
-//        if (CollectionUtils.isNotEmpty(studentRequestDto.getGroupsIds())) {
-//            for (Long groupsId : studentRequestDto.getGroupsIds()) {
-//                groups.add((Group) groupService.findById(groupsId));
-//            }
-//        }
-//        student.setGroups(groups);
         studentService.update(student);
     }
 

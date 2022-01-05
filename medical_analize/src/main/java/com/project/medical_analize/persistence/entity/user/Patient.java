@@ -1,10 +1,12 @@
 package com.project.medical_analize.persistence.entity.user;
 
+import com.project.medical_analize.persistence.entity.BaseEntity;
 import com.project.medical_analize.persistence.entity.order.Order;
 import com.project.medical_analize.persistence.sex.Sex;
 import com.project.medical_analize.persistence.repository.type.RoleType;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +14,7 @@ import java.util.Set;
 @Entity
 @DiscriminatorValue("PATIENT")
 public class Patient extends User {
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -26,7 +29,7 @@ public class Patient extends User {
     private Sex sex;
 
     @Column(name = "phone")
-    private Integer phone;
+    private BigDecimal phone;
 
     private Integer height;
 
@@ -44,8 +47,8 @@ public class Patient extends User {
     public Patient() {
         super();
         setRoleType(RoleType.ROLE_PATIENT);
-        orders = new HashSet<>();
-        doctors = new HashSet<>();
+        this.orders = new HashSet<>();
+        this.doctors = new HashSet<>();
     }
 
     public String getFirstName() {
@@ -64,11 +67,11 @@ public class Patient extends User {
         this.lastName = lastName;
     }
 
-    public Integer getPhone() {
+    public BigDecimal getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(BigDecimal phone) {
         this.phone = phone;
     }
 

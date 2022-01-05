@@ -6,7 +6,7 @@ import com.project.medical_analize.persistence.entity.BaseEntity;
 
 import java.util.Optional;
 
-public interface BaseCrudService <E extends BaseEntity>{
+public interface BaseCrudService<E extends BaseEntity> {
 
     void create(E entity);
     void update(E entity);

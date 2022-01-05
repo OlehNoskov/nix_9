@@ -46,7 +46,6 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public void update(GroupRequestDto groupRequestDto, long id) {
-//        Group group = new Group();
         Group group = groupService.findById(id);
         group.setName(groupRequestDto.getName());
         group.setUpdated(new Timestamp(System.currentTimeMillis()));
@@ -60,9 +59,9 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public GroupResponseDto findById(long id) {
+        System.out.println("Find group facade");
         return new GroupResponseDto(groupService.findById(id));
     }
-
 
 //    @Override
 //    public Set<StudentResponseDto> getStudents(Long groupId) {

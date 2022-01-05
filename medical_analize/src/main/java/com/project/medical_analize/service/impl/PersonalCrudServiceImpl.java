@@ -28,6 +28,7 @@ public class PersonalCrudServiceImpl implements PersonalCrudService {
     private final CrudRepositoryHelper<Doctor, DoctorRepository> crudRepositoryHelperDoctor;
     private final CrudRepositoryHelper<Patient, PatientRepository> crudRepositoryHelperPatient;
 
+
     public PersonalCrudServiceImpl(
             BCryptPasswordEncoder bCryptPasswordEncoder,
             DoctorRepository doctorRepository,
@@ -55,7 +56,7 @@ public class PersonalCrudServiceImpl implements PersonalCrudService {
 
         if (personal instanceof Patient) {
             if (patientRepository.existsByEmail(personal.getEmail())) {
-                throw new EntityExistException("this doctor is exist");
+                throw new EntityExistException("this patient is exist");
             }
             Patient patient = (Patient) personal;
             patient.setPassword(bCryptPasswordEncoder.encode(personal.getPassword()));
@@ -75,8 +76,14 @@ public class PersonalCrudServiceImpl implements PersonalCrudService {
 
     @Override
     public Optional<User> findById(Long id) {
+        System.out.println("personal crud service!");
         return Optional.empty();
     }
+
+//    @Override
+//    public User findById(Long id) {
+//        return null;
+//    }
 
     @Override
     public DataTableResponse<User> findAll(DataTableRequest request) {
