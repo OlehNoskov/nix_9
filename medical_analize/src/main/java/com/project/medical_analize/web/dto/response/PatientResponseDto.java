@@ -10,7 +10,7 @@ public class PatientResponseDto extends ResponseDto{
 
     private String firstName;
     private String lastName;
-    private Date birthDay;
+//    private Date birthDay;
     private Sex sex;
     private BigDecimal phone;
     private Integer height;
@@ -26,7 +26,7 @@ public class PatientResponseDto extends ResponseDto{
         setVisible(patient.getVisible());
         this.firstName = patient.getFirstName();
         this.lastName = patient.getLastName();
-        this.birthDay = patient.getBirthDay();
+//        this.birthDay = patient.getBirthDay();
         this.sex = patient.getSex();
         this.phone = patient.getPhone();
         this.height = patient.getHeight();
@@ -42,9 +42,9 @@ public class PatientResponseDto extends ResponseDto{
         return lastName;
     }
 
-    public Date getBirthDay() {
-        return birthDay;
-    }
+//    public Date getBirthDay() {
+//        return birthDay;
+//    }
 
     public Sex getSex() {
         return sex;

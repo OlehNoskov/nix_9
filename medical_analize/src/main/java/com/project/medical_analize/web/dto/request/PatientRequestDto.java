@@ -4,20 +4,20 @@ import com.project.medical_analize.persistence.entity.order.Order;
 import com.project.medical_analize.persistence.sex.Sex;
 
 import java.math.BigDecimal;
-import java.util.Date;
+//import java.util.Date;
 import java.util.Set;
 
 public class PatientRequestDto extends RequestDto {
 
     private String firstName;
     private String lastName;
-    private Date birthDay;
+//    private Date birthDay;
     private Sex sex;
     private BigDecimal phone;
     private Integer height;
     private Integer weight;
     private String country;
-    private Set<Order> orders;
+//    private Set<Order> orders;
 
     public String getFirstName() {
         return firstName;
@@ -35,13 +35,13 @@ public class PatientRequestDto extends RequestDto {
         this.lastName = lastName;
     }
 
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
-    }
+//    public Date getBirthDay() {
+//        return birthDay;
+//    }
+//
+//    public void setBirthDay(Date birthDay) {
+//        this.birthDay = birthDay;
+//    }
 
     public Sex getSex() {
         return sex;
@@ -83,11 +83,11 @@ public class PatientRequestDto extends RequestDto {
         this.country = country;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
+//    public Set<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(Set<Order> orders) {
+//        this.orders = orders;
+//    }
 }

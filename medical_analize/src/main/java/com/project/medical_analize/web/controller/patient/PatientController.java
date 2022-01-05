@@ -27,6 +27,7 @@ public class PatientController {
     public String profile( @PathVariable Long id ,Model model) {
         PatientResponseDto patientResponseDto = patientFacade.findById(id);
         model.addAttribute("patient", patientResponseDto);
+        System.out.println("get patient profile controller!");
         return "pages/patient/profile";
     }
 
@@ -34,13 +35,14 @@ public class PatientController {
     public String profileEdit(@PathVariable Long id, Model model) {
         PatientResponseDto patientResponseDto = patientFacade.findById(id);
         model.addAttribute("patient", patientResponseDto);
+        System.out.println("get edit controller patient");
         return "pages/patient/profile_edit";
     }
 
-
     @PostMapping("/profile/edit/{id}")
-    public String updateStudent(@PathVariable Long id, @ModelAttribute("patient") PatientRequestDto patientRequestDto) {
+    public String updatePatient(@PathVariable Long id, @ModelAttribute("patient") PatientRequestDto patientRequestDto) {
         patientFacade.update(patientRequestDto, id);
+        System.out.println("post controller patient");
         return "redirect:/patients/dashboard";
     }
 }

@@ -35,17 +35,17 @@ public class PatientFacadeImpl implements PatientFacade {
 
     @Override
     public void update(PatientRequestDto patientRequestDto, long id) {
-//        Patient patient = (Patient) patientService.findById(id);
-        Patient patient = new Patient();
+        Patient patient = patientService.findById(id).get();
         patient.setId(id);
         patient.setFirstName(patientRequestDto.getFirstName());
         patient.setLastName(patientRequestDto.getLastName());
-        patient.setBirthDay(patientRequestDto.getBirthDay());
+//        patient.setBirthDay(patientRequestDto.getBirthDay());
         patient.setSex(patient.getSex());
         patient.setCountry(patient.getCountry());
         patient.setHeight(patient.getHeight());
         patient.setWeight(patient.getWeight());
-        patient.setPhone(patient.getPhone());
+//        patient.setPhone(patient.getPhone());
+        System.out.println("facade update patient");
         patientService.update(patient);
     }
 
@@ -56,7 +56,7 @@ public class PatientFacadeImpl implements PatientFacade {
 
     @Override
     public PatientResponseDto findById(long id) {
-        System.out.println("Patient facade! ");
+        System.out.println("Patient facade!");
         return new PatientResponseDto((Patient) patientService.findById(id).get());
     }
 

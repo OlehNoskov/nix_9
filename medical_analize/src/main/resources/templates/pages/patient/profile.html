@@ -20,7 +20,7 @@
                 <p></p>
             </div>
             <div class="edit">
-                <a th:href="@{/patients/profile/edit}" type="button" class="btn btn-outline-primary">Edit profile</a>
+                <a th:href="@{'/patients/profile/edit/'+ ${patient.getId()}}" type="button" class="btn btn-outline-primary">Edit profile</a>
             </div>
 
         </div>
@@ -28,7 +28,6 @@
         <div class="py-2">
             <div class="row py-2">
                 <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-xs-12">
-                    <!-- Button Groups -->
                     <div class="block">
                         <div class="block-content">
                             <table class="table">
@@ -40,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <th>Surname</th>
-                                    <td th:text="${patient.getLastName()}"></td>-->
+                                    <td th:text="${patient.getLastName()}"></td>
 <!--                                    <td>Noskov</td>-->
                                 </tr>
                                 <tr>
@@ -55,13 +54,13 @@
                                 </tr>
                                 <tr>
                                     <th>Phone</th>
-                                    <td th:text="${patient.getPhone()}"></td>
-<!--                                    <td>+380991560574</td>-->
+<!--                                    <td th:text="${patient.getPhone()}"></td>-->
+                                    <td>+380991560574</td>
                                 </tr>
                                 <tr>
                                     <th>Birthday</th>
-                                    <td th:text="${patient.getBirthDay()}"></td>
-<!--                                    <td>02.01.2022</td>-->
+<!--                                    <td th:text="${patient.getBirthDay()}"></td>-->
+                                    <td>02.01.2022</td>
                                 </tr>
                                 <tr>
                                     <th>Height</th>

@@ -1,4 +1,4 @@
-# insert into users values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true,doctor3@mail.ru, 'Oleg', 'Noskov','MALE');
+# insert into users values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Oleg', 'Noskov','MALE');
 # insert into users values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Sergey', 'Funtusov','MALE');
 # insert into users values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Irina', 'Cventuh','FEMALE');
 # insert into users values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Pavel', 'Noskov','MALE');
