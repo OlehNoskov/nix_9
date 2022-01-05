@@ -38,7 +38,6 @@ public class GroupFacadeImpl implements GroupFacade {
     public void create(GroupRequestDto groupRequestDto) {
         Group group = new Group();
         group.setName(groupRequestDto.getName());
-        System.out.println("Create group!!!");
         groupService.create(group);
     }
 
@@ -57,7 +56,8 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public GroupResponseDto findById(long id) {
-        return new GroupResponseDto(groupService.findById(id).get());
+        Group group = groupService.findById(id).get();
+        return new GroupResponseDto(group);
     }
 
     @Override
@@ -74,9 +74,9 @@ public class GroupFacadeImpl implements GroupFacade {
         DataTableResponse<Group> all = groupService.findAll(dataTableRequest);
         List<GroupResponseDto> groups = all.getItems().
                 stream().
-                map(GroupResponseDto::new).
-                peek(dto -> dto.setStudentCount((Integer) all.getOtherParamMap().get(dto.getId()))).
-                collect(Collectors.toList());
+                map(GroupResponseDto::new).collect(Collectors.toList());
+//                peek(dto -> dto.setStudentCount((Integer) all.getOtherParamMap().get(dto.getId()))).
+//                collect(Collectors.toList());
 
         PageData<GroupResponseDto> pageData = new PageData<>();
         pageData.setItems(groups);
@@ -116,7 +116,7 @@ public class GroupFacadeImpl implements GroupFacade {
     public List<StudentResponseDto> getStudents(Long groupId) {
         List<Student> students = groupService.findById(groupId).get().getStudents();
         List<StudentResponseDto> list = new ArrayList<>();
-        for(Student student: students){
+        for (Student student : students) {
             StudentResponseDto studentResponseDto = new StudentResponseDto(student);
             list.add(studentResponseDto);
         }

@@ -29,11 +29,9 @@ import java.util.stream.Collectors;
 public class StudentFacadeImpl implements StudentFacade {
 
     private final StudentService studentService;
-    private final GroupService groupService;
 
     public StudentFacadeImpl(StudentService studentService, GroupService groupService) {
         this.studentService = studentService;
-        this.groupService = groupService;
     }
 
     @Override

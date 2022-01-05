@@ -2,9 +2,7 @@ package ua.com.alevel.persistence.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "courses")
@@ -13,9 +11,8 @@ public class Group extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-
-    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
     //не обязательно писать fetch = FetchType.LAZY, так как он default.
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
     @JoinTable(
             name = "course_student",
             joinColumns = @JoinColumn(name = "course_id"),
