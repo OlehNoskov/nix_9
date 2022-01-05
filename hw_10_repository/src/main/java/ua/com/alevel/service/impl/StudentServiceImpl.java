@@ -56,7 +56,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Set<Group> getGroups(Long studentId) {
+    public List<Group> getGroups(Long studentId) {
         return repositoryHelper.findById(studentRepository, studentId).get().getGroups();
     }
 }

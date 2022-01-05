@@ -95,7 +95,7 @@ public class StudentController extends AbstractController {
 
     @GetMapping("/add/{id}")
     public String redirectToAddPatientPage(@PathVariable Long id, Model model, WebRequest request) {
-        Set<StudentResponseDto> students = studentFacade.findAll();
+        List<StudentResponseDto> students = studentFacade.findAll();
         model.addAttribute("students", students);
         model.addAttribute("group", groupFacade.findById(id));
         return "pages/student/student_add";
@@ -104,9 +104,18 @@ public class StudentController extends AbstractController {
     @GetMapping("/group/{studentId}/{groupId}")
     public String addStudent (@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
         groupFacade.addStudent(groupId, studentId);
-        Set<StudentResponseDto> students = groupFacade.getStudents(groupId);
+        List<StudentResponseDto> students = groupFacade.getStudents(groupId);
         model.addAttribute("group", groupFacade.findById(groupId));
         model.addAttribute("students", students);
         return "pages/group/group_details";
+    }
+
+    @GetMapping("/delete/group/{studentId}/{groupId}")
+    public String deleteStudentFromGroup(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
+        groupFacade.removeStudent(groupId,studentId);
+        List<StudentResponseDto> students = groupFacade.getStudents(groupId);
+        model.addAttribute("group", groupFacade.findById(groupId));
+        model.addAttribute("students", students);
+        return "pages/student/students_group";
     }
 }

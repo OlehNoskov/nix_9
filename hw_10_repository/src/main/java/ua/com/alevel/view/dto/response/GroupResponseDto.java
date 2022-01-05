@@ -20,10 +20,6 @@ public class GroupResponseDto extends ResponseDto{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Integer getStudentCount() {
         return studentCount;
     }

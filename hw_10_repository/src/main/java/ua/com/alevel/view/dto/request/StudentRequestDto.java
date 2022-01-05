@@ -35,9 +35,6 @@ public class StudentRequestDto extends RequestDto{
         this.age = age;
     }
 
-//    public List<Long> getGroupsIds() {
-//        return groupsIds;
-//    }
     public Set<Long> getGroupsIds() {
         return (Set<Long>) groupsIds;
     }

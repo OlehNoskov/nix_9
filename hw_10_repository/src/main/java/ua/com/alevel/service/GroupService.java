@@ -14,5 +14,5 @@ public interface GroupService extends BaseService<Group>{
 
     List<Group> findAll();
 
-    Set<Student> getStudents(Long id);
+    List<Student> getStudents(Long id);
 }

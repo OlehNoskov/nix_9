@@ -19,6 +19,7 @@
                     All Patients
                 </div>
                 <div class="card-body">
+                    <!--                    <form action="#" th:action="@{'/sudents/add/'+ +${group.getId()}}" th:object="${group}" method="post">-->
                     <table class="table table-sm table-hover">
                         <thead>
                         <tr>
@@ -39,8 +40,12 @@
                             <td th:text="${student.getFirstname()}"></td>
                             <td th:text="${student.getAge()}"></td>
                             <td>
+
                                 <a th:href="@{'/students/group/' + ${student.getId()} + '/' +${group.getId()}}"
                                    type="button" class="btn btn-primary">Add</a>
+
+<!--                                <a th:href="@{'/groups/group/students' + '/' +${group.getId()}}"-->
+<!--                                   type="button" class="btn btn-primary">Add</a>-->
                         </tr>
                         </tbody>
                     </table>

@@ -105,7 +105,7 @@ public class GroupController extends AbstractController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
-        Set<StudentResponseDto> students = groupFacade.getStudents(id);
+        List<StudentResponseDto> students = groupFacade.getStudents(id);
         for(StudentResponseDto student: students){
             groupFacade.removeStudent(id, student.getId());
 }
@@ -116,16 +116,7 @@ public class GroupController extends AbstractController {
     @GetMapping("/group/{groupId}/{studentId}")
     public String addStudent(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
         groupFacade.addStudent(groupId, studentId);
-        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
-        model.addAttribute("student", studentFacade.findById(studentId));
-        model.addAttribute("groups", groups);
-        return "pages/student/student_details";
-    }
-
-    @GetMapping("/delete/group/{studentId}/{groupId}")
-    public String deleteStudentFromGroup(@PathVariable Long studentId, @PathVariable Long groupId, Model model) {
-        groupFacade.removeStudent(groupId, studentId);
-        Set<GroupResponseDto> groups = studentFacade.getGroups(studentId);
+        List<GroupResponseDto> groups = studentFacade.getGroups(studentId);
         model.addAttribute("student", studentFacade.findById(studentId));
         model.addAttribute("groups", groups);
         return "pages/student/student_details";
@@ -133,7 +124,7 @@ public class GroupController extends AbstractController {
 
     @GetMapping("/group/students/{id}")
     public String allStudentFromGroup(Model model, @PathVariable Long id) {
-        Set<StudentResponseDto> students = groupFacade.getStudents(id);
+        List<StudentResponseDto> students = groupFacade.getStudents(id);
         model.addAttribute("group", groupFacade.findById(id));
         model.addAttribute("students", students);
         return "pages/student/students_group";

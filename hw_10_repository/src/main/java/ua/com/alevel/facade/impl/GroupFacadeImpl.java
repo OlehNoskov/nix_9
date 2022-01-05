@@ -38,6 +38,7 @@ public class GroupFacadeImpl implements GroupFacade {
     public void create(GroupRequestDto groupRequestDto) {
         Group group = new Group();
         group.setName(groupRequestDto.getName());
+        System.out.println("Create group!!!");
         groupService.create(group);
     }
 
@@ -56,7 +57,6 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public GroupResponseDto findById(long id) {
-        System.out.println("Find group facade");
         return new GroupResponseDto(groupService.findById(id).get());
     }
 
@@ -113,9 +113,9 @@ public class GroupFacadeImpl implements GroupFacade {
     }
 
     @Override
-    public Set<StudentResponseDto> getStudents(Long groupId) {
-        Set<Student> students = groupService.findById(groupId).get().getStudents();
-        Set<StudentResponseDto> list = new HashSet<>();
+    public List<StudentResponseDto> getStudents(Long groupId) {
+        List<Student> students = groupService.findById(groupId).get().getStudents();
+        List<StudentResponseDto> list = new ArrayList<>();
         for(Student student: students){
             StudentResponseDto studentResponseDto = new StudentResponseDto(student);
             list.add(studentResponseDto);

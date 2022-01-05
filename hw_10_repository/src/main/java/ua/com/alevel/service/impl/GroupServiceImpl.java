@@ -87,7 +87,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Set<Student> getStudents(Long id) {
+    public List<Student> getStudents(Long id) {
         return groupRepositoryHelper.findById(groupRepository,id).get().getStudents();
     }
 }

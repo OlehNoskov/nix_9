@@ -1,7 +1,9 @@
 package ua.com.alevel.persistence.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,17 +13,18 @@ public class Group extends BaseEntity {
     @Column(name = "name")
     private String name;
 
+
     @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
     //не обязательно писать fetch = FetchType.LAZY, так как он default.
     @JoinTable(
             name = "course_student",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private Set<Student> students;
+    private List<Student> students;
 
     public Group() {
         super();
-        students = new HashSet<>();
+        students = new ArrayList<>();
     }
 
     public String getName() {
@@ -32,11 +35,11 @@ public class Group extends BaseEntity {
         this.name = name;
     }
 
-    public Set<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<Student> students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 

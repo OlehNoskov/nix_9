@@ -22,10 +22,7 @@ import ua.com.alevel.view.dto.response.StudentResponseDto;
 
 import java.sql.Timestamp;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -104,9 +101,9 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public Set<GroupResponseDto> getGroups(Long studentId) {
-        Set<Group> groups = studentService.getGroups(studentId);
-        Set<GroupResponseDto> list  = new HashSet<>();
+    public List<GroupResponseDto> getGroups(Long studentId) {
+        List<Group> groups = studentService.getGroups(studentId);
+        List<GroupResponseDto> list  = new ArrayList<>();
         for(Group group: groups){
             GroupResponseDto groupResponseDto =new GroupResponseDto(group);
             list.add(groupResponseDto);
@@ -115,9 +112,9 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public Set<StudentResponseDto> findAll() {
+    public List<StudentResponseDto> findAll() {
         List<Student> allStudents = studentService.findAll();
-        Set<StudentResponseDto> list = allStudents.stream().map(StudentResponseDto::new).collect(Collectors.toSet());
+        List<StudentResponseDto> list = allStudents.stream().map(StudentResponseDto::new).collect(Collectors.toList());
         return list;
     }
 }
