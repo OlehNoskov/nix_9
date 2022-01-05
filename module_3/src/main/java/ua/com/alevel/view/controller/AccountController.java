@@ -73,7 +73,6 @@ public class AccountController extends AbstractController {
         for (int i = 0; i < transactionResponseDtoList.size(); i++) {
             transactionDates.add(transactionResponseDtoList.get(i).getCreated());
         }
-
         model.addAttribute("accountTransactions", transactionResponseDtoList);
         model.addAttribute("accountDataList", transactionDates);
         model.addAttribute("accountStatement", new AccountStatementRequestDto(id));
