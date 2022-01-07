@@ -8,13 +8,20 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="/css/home_page_dashboard.css" rel="stylesheet">
+    <style>
+        section.footer{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="content">
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl navbar-light"
+         style="background-color: #e3f2fd;">
         <a class="navbar-brand" th:href="@{/main}">
-            <img src="/img/logo.png" width="40" height="40" alt="logo">
+            <img src="/img/logo.png" width="20" height="20" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,10 +47,38 @@
             </ul>
         </div>
     </nav>
-    <div layout:fragment="home_content">
+    <div layout:fragment="home_content" class="home-content"></div>
 
-    </div>
-
+    <section class="footer">
+        <div class="container-fluid">
+            <div class="row no-gutters">
+                <div class="col-6">
+                    <div class="contact">Contact with us</div>
+                    <p class="address">Malinovskogo Street 8 / Kharkov Ukraine</p>
+                    <p class="phone">Phone: <span>+38 (066) 951 83 51</span></p>
+                    <p class="email">E-mail: <span>ira1994girl@gmail.com</span></p>
+                </div>
+                <div class="col-6">
+                    <ul>
+                        <li class="instagram"><a
+                                href="https://instagram.com/laboratorydoc_rastvorceva?igshid=1ibp6uytkzcgl"><img
+                                src="/img/Instagram.png" alt="instagram"></a></li>
+                        <li class="telegram"><a href="https://t.me/LaboratoryDoc_Rastvorceva">
+                            <img src="/img/telegram.png" alt="telegram"></a>
+                        </li>
+                        <li class="viber"><a href="/"><img src="/img/viber.png" alt="viber"></a>
+                        </li>
+                        <li class="whatsapp"><a href="https://wa.me/380669518351"><img src="/img/whatsapp.png"
+                                                                                       alt="whatsapp"></a></li>
+                        <li class="youTube"><a href="https://www.youtube.com/channel/UCzaw9ZU2Mvlpt9NOKvgGWXg"><img
+                                src="/img/YouTube.png" alt="youTube"></a>
+                        </li>
+                    </ul>
+<!--                    <p class="copyright">Copyright ⓒ 2022. All rights reserved by Noskov Oleh</p>-->
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 </body>

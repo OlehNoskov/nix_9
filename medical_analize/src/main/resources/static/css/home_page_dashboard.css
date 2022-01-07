@@ -7,3 +7,83 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
 }
+
+section.footer{
+    background-color: #e3f2fd;
+    opacity: 0.95;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+}
+section.footer div.contact{
+    color: #424646;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+section.footer p{
+    color: #6b6f70;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+section.footer p.address{
+    font-size: 20px;
+    color: #6b6f70;
+}
+
+section.footer p.copyright{
+    font-size: 16px;
+    color: #3b3939;
+}
+
+section.footer p span{
+    color: #09aee0;
+    font-size: 22px;
+}
+
+section.footer ul{
+    list-style-type:none;
+    margin-top: 70px;
+    padding: 0;
+}
+
+section.footer ul li{
+    display: inline-block;
+    padding: 20px;
+    border-radius: 50px;
+    margin-right: 25px;
+}
+
+section.footer p.copyright{
+    margin-top: 88px;
+}
+
+section.footer ul li.instagram{
+    background-color: #09aee0;
+}
+
+section.footer ul li.telegram{
+    background-color: #09aee0;
+}
+section.footer ul li.viber{
+    background-color: #09aee0;
+}
+section.footer ul li.whatsapp{
+    background-color: #09aee0;
+}
+section.footer ul li.youTube{
+    background-color: #09aee0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.home-content {
+    min-height: calc(100vh - 300px);
+}
