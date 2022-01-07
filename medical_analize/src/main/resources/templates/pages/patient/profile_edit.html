@@ -11,8 +11,6 @@
 </head>
 <body>
 <div layout:fragment="patient_content">
-    <!--    <form action="#" th:action="@{'/patients/update/' + ${patient.getId()}}" th:object="${patient}" method="post"-->
-    <!--          enctype="multipart/form-data">-->
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom">Profile settings</h4>
         <div class="d-flex align-items-start py-3 border-bottom">
@@ -49,15 +47,14 @@
 
         <div class="py-2">
             <form action="#" th:action="@{'/patients/edit/' + ${patient.getId()}}" th:object="${patient}"
-                  method="post"
-                  enctype="multipart/form-data">
+                  method="post" enctype="multipart/form-data">
                 <div class="row py-2">
-                    <div class="col-md-6"><label for="firstname">Name<span class="text-danger">*</span></label>
+                    <div class="col-md-6">
+                        <label for="firstname">Name<span class="text-danger">*</span></label>
                         <!--                        <input type="text" name="firstName" class="bg-light form-control"-->
                         <!--                               placeholder="Steve" id="firstname" required></div>-->
                         <input type="text" name="firstname" class="bg-light form-control" placeholder="Steve"
-                               id="firstname" aria-describedby="firstname" required
-                               th:field="*{firstName}"></div>
+                               id="firstname" aria-describedby="firstname" required th:field="*{firstName}" ></div>
                     <div class="invalid-feedback">
                         Please enter your name!
                     </div>
@@ -66,7 +63,7 @@
                         <!--                        <input type="text" name="lastName" class="bg-light form-control"-->
                         <!--                               placeholder="Smith" id="lastname" required>-->
                         <input type="text" name="lastName" class="bg-light form-control"
-                               placeholder="Smith" id="lastname" aria-describedby="lastname" th:field="*{lastName}" >
+                               placeholder="Smith" id="lastname" aria-describedby="lastname" th:field="*{lastName}" required>
                     </div>
                     <div class="invalid-feedback">
                         Please enter your surname!
@@ -75,13 +72,13 @@
 
                 <div class="row py-2">
                     <div class="col-md-6"><label for="sex">Sex</label>
-                        <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}">
+                        <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}" required>
                             <option value="female" selected>FEMALE</option>
                             <option value="male">MALE</option>
                         </select>
                     </div>
                     <div class="col-md-6"><label for="country">Country</label>
-                        <select name="country" id="country" class="bg-light" th:field="*{country}">
+                        <select name="country" id="country" class="bg-light" th:field="*{country}" required>
                             <option value="india" selected>Ukraine</option>
                             <option value="rus">Russia</option>
                             <option value="br">Belarus</option>
@@ -290,16 +287,16 @@
                 <div class="py-3 pb-4 border-bottom">
                     <button class="btn btn-success mr-3" type="submit">Save Changes</button>
                 </div>
-
-                <div class="d-sm-flex align-items-center pt-3" id="deactivate">
-                    <div>
-                        <b>Deactivate your profile</b>
-                    </div>
-                    <div class="ml-auto">
-                        <button class="btn danger">Deactivate</button>
-                    </div>
-                </div>
             </form>
+<!--                <div class="d-sm-flex align-items-center pt-3" id="deactivate">-->
+<!--                    <div>-->
+<!--                        <b>Deactivate your profile</b>-->
+<!--                    </div>-->
+<!--                    <div class="ml-auto">-->
+<!--                        <button class="btn danger">Deactivate</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </form>-->
         </div>
     </div>
 </div>
