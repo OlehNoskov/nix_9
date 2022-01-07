@@ -19,8 +19,8 @@ public class HomePage {
         return "pages/open/about_us";
     }
 
-    @GetMapping("/blog")
+    @GetMapping("/articles")
     public String blog(Model model) {
-        return "pages/open/blog";
+        return "pages/open/articles";
     }
 }
