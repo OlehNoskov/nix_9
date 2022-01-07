@@ -20,7 +20,12 @@ public class HomePage {
     }
 
     @GetMapping("/articles")
-    public String blog(Model model) {
+    public String articles(Model model) {
         return "pages/open/articles";
+    }
+
+    @GetMapping("/feedback")
+    public String feedback(Model model) {
+        return "pages/open/feedback";
     }
 }
