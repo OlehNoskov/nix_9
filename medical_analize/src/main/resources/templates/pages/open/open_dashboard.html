@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/home_page_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link href="/css/main_dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+<div layout:fragment="home_content">
+
+    <!--    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">-->
+    <!--        <ol class="carousel-indicators">-->
+    <!--            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>-->
+    <!--            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>-->
+    <!--            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>-->
+    <!--        </ol>-->
+    <!--        <div class="carousel-inner">-->
+    <!--            <div class="carousel-item active">-->
+    <!--                <img src="https://wallpaperbat.com/img/276872-medical-wallpaper.jpg" class="d-block w-100" alt="...">-->
+    <!--                <div class="carousel-caption d-none d-md-block">-->
+    <!--                    <h5>First slide label</h5>-->
+    <!--                    <p></p>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="carousel-item">-->
+    <!--                <img src="https://previews.123rf.com/images/samarttiw/samarttiw1612/samarttiw161200072/69148239-medical-abstract-science-background-illustrations.jpg"-->
+    <!--                     class="d-block w-100" alt="...">-->
+    <!--                <div class="carousel-caption d-none d-md-block">-->
+    <!--                    <h5>Second slide label</h5>-->
+    <!--                    <p></p>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="carousel-item">-->
+    <!--                <img src="https://previews.123rf.com/images/kriangkrai/kriangkrai1311/kriangkrai131100006/23860656-abstract-vector-background-graphics-medical-illustrations-.jpg"-->
+    <!--                     class="d-block w-100" alt="...">-->
+    <!--                <div class="carousel-caption d-none d-md-block">-->
+    <!--                    <h5>Third slide label</h5>-->
+    <!--                    <p></p>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">-->
+    <!--            <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+    <!--            <span class="sr-only">Previous</span>-->
+    <!--        </a>-->
+    <!--        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">-->
+    <!--            <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+    <!--            <span class="sr-only">Next</span>-->
+    <!--        </a>-->
+    <!--    </div>-->
+
+    <div class="wrapper bg-white mt-sm-5">
+        <div class="container-fluid">
+            <h1>Decryption of medical tests online</h1>
+            <p class="title mt-5">
+                🔺️ Decoding of any medical analyzes of adults and children in 24 hours.
+            </p>
+            <p class="title-second">
+                (You will receive a complete and detailed clinical and diagnostic opinion on all your analyzes and
+                indicators in them)
+            </p>
+            <div class="d-flex align-items-start border-bottom">
+            </div>
+            <p class="title mt-5">
+                🔺️ Recommendations for the delivery of tests (personal Check-Up).
+            </p>
+            <p class="title-second">
+                (You will receive a detailed list of tests that need to be passed in your situation, with a
+                description of each indicator).
+            </p>
+            <div class="d-flex align-items-start border-bottom">
+            </div>
+            <p class="title mt-5">
+                🔺️ Personal account for storing your medical analyzes.
+            </p>
+            <p class="title-second">
+                (You can store the medical analyzes of all your family members in one place on secure servers for FREE).
+            </p>
+        </div>
+    </div>
+
+    <div class="wrapper bg-white mt-sm-5 mb-5">
+        <div class="container-fluid">
+            <h2>Services and prices</h2>
+
+            <div class="row">
+                <div class="col text-center col-12 col-md-6 col-xl-4 d-flex align-items-stretch mt-2">
+                    <div class="card" style="width: 20rem;">
+                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=AAjG6cnWpUB6Bm9"
+                             alt="" class="card-img-top" height="304" width="293">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title ricing-card-title"><b>Transcript of medical analysis</b></h4>
+                            <p class="card-text">Clinical and laboratory conclusion on any
+                                analyzes of an adult / child within 24 hours, analysis of indicators,
+                                reasons for changes in the norm and in pathologies.</p>
+                            <p class="price-text-one">
+                                Service cost: 6 $ (150 UAH or 450 RUB)
+                            </p>
+                            <a th:href="@{/login}"
+                               class="btn btn-outline-info align-self-end btn btn-lg btn-block mt-auto">Decipher
+                                analysis</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center col-12 col-md-6 col-xl-4 d-flex align-items-stretch mt-2">
+                    <div class="card" style="width: 20rem;">
+                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=4yFOTShsHPlt63s"
+                             alt="" class="card-img-top" height="304" width="293">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title ricing-card-title"><b>Check-Up</b></h4>
+                            <p class="card-text">You will receive an individual list
+                                of tests that need to be passed in your situation
+                                and to monitor your health.</p>
+                            <p class="price-text-two">
+                                Service cost: 8 $ (200 UAH or 600 RUB)
+                            </p>
+                            <a th:href="@{/login}"
+                               class="btn btn-outline-warning align-self-end btn btn-lg btn-block mt-auto">Order
+                                Check-Up</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center col-12 col-md-6 col-xl-4 d-flex align-items-stretch mt-2">
+                    <div class="card" style="width: 20rem;">
+                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=62c19n4vf1uJgrq"
+                             alt="" class="card-img-top" height="304" width="293">
+                        <div class="card-body">
+                            <h4 class="card-title "><b>Comprehensive consultation</b></h4>
+                            <p class="card-text">
+                                Analysis of your situation, with a review of all analyzes and your examinations with a
+                                clinical
+                                and diagnostic conclusion and recommendations for your further actions.
+                                ️Recommendations for the delivery of tests.</p>
+                            <p class="price-text-three">
+                                Service cost: 12 $ (300 UAH or 850 RUB)
+                            </p>
+                            <a th:href="@{/login}"
+                               class="btn btn-outline-success align-self-end btn btn-lg btn-block mt-auto">Order
+                                consultation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

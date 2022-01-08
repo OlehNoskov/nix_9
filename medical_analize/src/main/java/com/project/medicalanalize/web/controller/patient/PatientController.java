@@ -20,7 +20,7 @@ public class PatientController {
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
-        return "pages/patient/dashboard";
+        return "pages/patient/patient_dashboard";
     }
 
     @GetMapping("/profile/{id}")

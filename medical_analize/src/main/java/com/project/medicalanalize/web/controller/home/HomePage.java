@@ -11,7 +11,7 @@ public class HomePage {
 
     @GetMapping()
     public String dashboard(Model model) {
-        return "pages/open/dashboard";
+        return "pages/open/open_dashboard";
     }
 
     @GetMapping("/about")

@@ -1,7 +1,75 @@
 h1{
     font-size: 40px;
-    color: #3b3939;
+    color: #288dc2;
     text-align: center;
     font-weight: bold;
     margin-top: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+.wrapper {
+    padding: 30px 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px auto;
+    opacity: 0.9;
+}
+.title{
+    font-size: 28px;
+    font-weight: bold;
+    color: #424040;
+}
+.title-second{
+    font-size: 20px;
+    font-style: italic;
+    color: #777777;
+}
+
+h2{
+    font-size: 32px;
+    color: #288dc2;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    text-decoration-line: underline;
+    -moz-text-decoration-style: solid;
+    -moz-text-decoration-color: #09aee0;
+}
+
+h4{
+  font-size: 24px;
+}
+
+.card-text{
+    color: #777777;
+    font-size: 16px;
+}
+
+.price-text-one{
+    font-size: 18px;
+    font-weight: bold;
+    color: #424646 ;
+    font-style: italic;
+    margin-top: 50px;
+
+}
+
+.price-text-two{
+    font-size: 18px;
+    font-weight: bold;
+    color: #424646 ;
+    font-style: italic;
+    margin-top: 125px;
+}
+
+.price-text-three{
+    font-size: 18px;
+    font-weight: bold;
+    color: #424646 ;
+    font-style: italic;
 }
