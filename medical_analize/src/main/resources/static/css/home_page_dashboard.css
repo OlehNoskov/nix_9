@@ -88,6 +88,6 @@ section.footer ul li.youTube{
     min-height: calc(100vh - 300px);
 }
 
-.link{
-
+.card-text{
+    text-align: justify;
 }

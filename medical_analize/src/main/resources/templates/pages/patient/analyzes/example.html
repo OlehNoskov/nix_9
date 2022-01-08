@@ -8,28 +8,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Example transcript</title>
-    <link href="/css/patient_dashboard.css" rel="stylesheet">
+    <link href="/css/transient_example.css" rel="stylesheet">
 </head>
 <body>
 <div layout:fragment="patient_content">
 
-    <h1>Example transcript</h1>
-    <div class="row">
-        <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
-            <a th:href="@{/patient/analyses/all/examples/transcript}">
-                <i class="fa fa-file-pdf-o fa-2x text-danger"></i> Общий анализ крови женщины</a><br>
-            <p class="mt-1">Признаки дефицита витминов В12 и/или В9</p>
-
-            <a href="/data/examples/labmap_primer_2_biohim_analiz_krovi_rebenka.pdf"><i class="fa fa-file-pdf-o fa-2x text-danger"></i> Биохимический анализ крови ребенка в 1 год и 2 месяца</a>
-            <p class="mt-1">Высокие ферменты печени и низкий ферритин</p>
-
-            <a href="/data/examples/labmap_primer_3_analiz_krovi_muzhchiny.pdf"><i class="fa fa-file-pdf-o fa-2x text-danger"></i> Общий и биохимический анализ крови мужчины</a>
-            <p class="mt-1">C изменением показателей липидного профиля<br>и высоким уровнем мочевой кислоты</p>
+    <div class="wrapper bg-white mt-sm-5">
+        <h2>Example transient</h2>
+        <div class="d-flex align-items-start py-3 border-bottom">
         </div>
-        <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+        <div class="py-2">
+            <div class="row py-2">
+                <div class="col-xl-8 title">
+                    <p>Example transcript of medical analysis</p>
+                    <div class="d-flex align-items-start py-3 border-bottom">
+                    </div>
+                </div>
+                <div class="col-xl-4 button">
+                    <a href="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=attachment&link=EUsnqRs445703TT"
+                       class="btn btn-outline-info align-self-end btn btn-lg btn-block mt-auto">Download</a>
+                </div>
+            </div>
 
+            <div class="row py-2">
+                <div class="col-xl-8 title">
+                    <p>Example Check-Up</p>
+                    <div class="d-flex align-items-start py-3 border-bottom">
+                    </div>
+                </div>
+                <div class="col-xl-4 button">
+                    <a href="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=attachment&link=7eVmJX0mBhYPEh6"
+                       class="btn btn-outline-warning align-self-end btn btn-lg btn-block mt-auto">Download</a>
+                </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-xl-8 title">
+                    <p>Example comprehensive consultation</p>
+                </div>
+                <div class="col-xl-4 button">
+                    <a href="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=attachment&link=GQ4fggEI0kc6u7M"
+                       class="btn btn-outline-success align-self-end btn btn-lg btn-block mt-auto">Download</a>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 </div>
 
 </body>

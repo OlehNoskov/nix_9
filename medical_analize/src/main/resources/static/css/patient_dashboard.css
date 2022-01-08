@@ -13,3 +13,26 @@ div.row.gutters-tiny.div{
     background: -moz-linear-gradient(45deg, rgb(152, 207, 195), rgb(86, 181, 184));
     background: linear-gradient(45deg, rgb(152, 207, 195), rgb(86, 181, 184));
 }
+.price-text-one{
+    font-size: 18px;
+    font-weight: bold;
+    color: #424646 ;
+    font-style: italic;
+    margin-top: 70px;
+
+}
+
+.price-text-two{
+    font-size: 18px;
+    font-weight: bold;
+    color: #424646 ;
+    font-style: italic;
+    margin-top: 125px;
+}
+
+.price-text-three{
+    font-size: 18px;
+    font-weight: bold;
+    color: #424646 ;
+    font-style: italic;
+}

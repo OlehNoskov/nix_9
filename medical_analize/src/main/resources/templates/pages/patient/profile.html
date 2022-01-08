@@ -20,9 +20,9 @@
                 <p></p>
             </div>
             <div class="edit">
-                <a th:href="@{'/patients/profile/edit/'+ ${patient.getId()}}" type="button" class="btn btn-outline-primary">Edit profile</a>
+                <a th:href="@{'/patients/profile/edit/'+ ${patient.getId()}}" type="button"
+                   class="btn btn-outline-primary">Edit profile</a>
             </div>
-
         </div>
 
         <div class="py-2">
@@ -35,42 +35,42 @@
                                 <tr>
                                     <th>Name</th>
                                     <td th:text="${patient.getFirstName()}"></td>
-<!--                                    <td>Oleg</td>-->
+                                    <!--                                    <td>Oleg</td>-->
                                 </tr>
                                 <tr>
                                     <th>Surname</th>
                                     <td th:text="${patient.getLastName()}"></td>
-<!--                                    <td>Noskov</td>-->
+                                    <!--                                    <td>Noskov</td>-->
                                 </tr>
                                 <tr>
                                     <th>Sex</th>
                                     <td th:text="${patient.getSex()}"></td>
-<!--                                    <td>MALE</td>-->
+                                    <!--                                    <td>MALE</td>-->
                                 </tr>
                                 <tr>
                                     <th>Country</th>
                                     <td th:text="${patient.getCountry()}"></td>
-<!--                                    <td>Ukraine</td>-->
+                                    <!--                                    <td>Ukraine</td>-->
                                 </tr>
                                 <tr>
                                     <th>Phone</th>
-<!--                                    <td th:text="${patient.getPhone()}"></td>-->
+                                    <!--                                    <td th:text="${patient.getPhone()}"></td>-->
                                     <td>+380991560574</td>
                                 </tr>
                                 <tr>
                                     <th>Birthday</th>
-<!--                                    <td th:text="${patient.getBirthDay()}"></td>-->
+                                    <!--                                    <td th:text="${patient.getBirthDay()}"></td>-->
                                     <td>02.01.2022</td>
                                 </tr>
                                 <tr>
                                     <th>Height</th>
                                     <td th:text="${patient.getHeight()}"></td>
-<!--                                    <td>180</td>-->
+                                    <!--                                    <td>180</td>-->
                                 </tr>
                                 <tr>
                                     <th>Weight</th>
                                     <td th:text="${patient.getWeight()}"></td>
-<!--                                    <td>80</td>-->
+                                    <!--                                    <td>80</td>-->
                                 </tr>
                                 </tbody>
                             </table>
@@ -84,6 +84,3 @@
 
 </body>
 </html>
-
-<!--ограничение по типу файла-->
-<!--<input type="file" id="file-uploader" accept=".jpg, .png" multiple>-->
