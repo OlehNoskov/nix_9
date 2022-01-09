@@ -16,16 +16,12 @@
         <h4 class="pb-4 border-bottom">New feedback</h4>
         <div class="py-2">
             <div class="row py-2">
-                <!--    <form action="#" th:action="@{'/patients/update/' + ${patient.getId()}}" th:object="${patient}" method="post"-->
-                <div class="col-md-6 col-xl-12 col-12"><label for="feedback">Title new feedback <span class="text-danger">*</span></label>
-                    <input type="text" name="feedback" class="bg-light form-control"
-                           placeholder="" id="feedback" required></div>
-
+<!--                <form action="#" th:action="@{/students/new}" th:object="${student}" method="post">-->
                 <div class="form-group col-md-6 col-xl-12 col-12">
                     <label for="new_feedback">Text your feedback <span class="text-danger">*</span></label>
                     <textarea class="form-control" id="new_feedback" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary mx-3">Submit</button>
+                <button type="submit" class="btn btn-outline-primary mx-3">Submit</button>
                 <!--        </form>-->
             </div>
         </div>

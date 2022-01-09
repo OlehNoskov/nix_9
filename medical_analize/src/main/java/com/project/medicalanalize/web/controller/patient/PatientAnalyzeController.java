@@ -21,7 +21,7 @@ public class PatientAnalyzeController {
 
     @GetMapping("/all/temp")
     public String temp(Model model) {
-        return "pages/patient/analyzes/analyzes_all";
+        return "pages/patient/analyzes/loaded_analyses";
     }
 
     @GetMapping("/all/examples")
