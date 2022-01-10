@@ -2,6 +2,7 @@ package com.project.medicalanalize.config.security;
 
 import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.persistence.repository.user.UserRepository;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

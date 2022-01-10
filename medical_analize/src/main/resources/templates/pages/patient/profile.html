@@ -50,11 +50,13 @@
                                 </tr>
                                 <tr>
                                     <th>Phone</th>
-                                    <td>+380991560574</td>
+                                    <td th:text="${patient.getPhone()}"></td>
+<!--                                    <td>+380991560574</td>-->
                                 </tr>
                                 <tr>
                                     <th>Birthday</th>
-                                    <td>02.01.2022</td>
+                                    <td th:text="${patient.getBirthDay()}"></td>
+<!--                                    <td>02.01.2022</td>-->
                                 </tr>
                                 <tr>
                                     <th>Height</th>
