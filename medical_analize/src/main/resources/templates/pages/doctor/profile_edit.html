@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit profile</title>
+    <link href="/css/patient_profile.css" rel="stylesheet">
 </head>
 <body>
 
@@ -72,26 +73,28 @@
                     </div>
                 </div>
 
-                <div class="row py-2">
-                    <div class="col-md-6"><label for="sex">Sex</label>
-                        <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}" required>
-                            <option value="female" selected>FEMALE</option>
-                            <option value="male">MALE</option>
-                        </select>
-                    </div>
+<!--                <div class="row py-2">-->
+<!--                    <div class="col-md-6"><label for="sex">Sex</label>-->
+<!--                        <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}" required>-->
+<!--                            <option value="female" selected>FEMALE</option>-->
+<!--                            <option value="male">MALE</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
                     <div class="col-md-6"><label for="country">Country</label>
                         <select name="country" id="country" class="bg-light" th:field="*{country}" required>
                             <option value="india" selected>Ukraine</option>
-                            <option value="rus">Russia</option>
-                            <option value="br">Belarus</option>
-                            <option value="kz">Kazahstan</option>
-                            <option value="tn">Tajikistan</option>
-                            <option value="ml">Moldova</option>
-                            <option value="pl">Poland</option>
-                            <option value="usa">USA</option>
-                            <option value="gm">Germany</option>
-                            <option value="dn">Denmark</option>
-                            <option value="ch">Czech</option>
+                            <option value="Russia">Russia</option>
+                            <option value="Belarus">Belarus</option>
+                            <option value="Hungary">Hungary</option>
+                            <option value="Kazakhstan">Kazakhstan</option>
+                            <option value="Tajikistan">Tajikistan</option>
+                            <option value="Moldova">Moldova</option>
+                            <option value="Poland">Poland</option>
+                            <option value="USA">USA</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Denmark">Denmark</option>
+                            <option value="Czech Republic">Czech Republic</option>
                             <option value="ch">other</option>
                         </select>
                     </div>
@@ -259,23 +262,6 @@
                             <option value="1923">1923</option>
                             <option value="1922">1922</option>
                         </select>
-                    </div>
-                </div>
-
-                <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3"><label for="height">Heiqht</label>
-                        <input type="number" name="height" class="bg-light form-control" placeholder min="0" max="300"
-                               id="height" aria-describedby="height" value="180" th:field="*{height}" required>
-                    </div>
-                    <div class="invalid-feedback">
-                        Please enter your height!
-                    </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="weight">Weiqht</label>
-                        <input type="number" name="weight" class="bg-light form-control" placeholder min="0" max="300"
-                               id="weight" aria-describedby="weight" th:field="*{weight}" required></div>
-                    <div class="invalid-feedback">
-                        Please enter your weight!
                     </div>
                 </div>
                 <!--                <div class="row py-2">-->
