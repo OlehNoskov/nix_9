@@ -54,6 +54,9 @@ public class AuthController extends AbstractController {
             }
             if (SecurityUtil.hasRole(RoleType.ROLE_PATIENT.name())) {
                 return "redirect:/patients/dashboard";
+
+            } else {
+                return "redirect:/main";
             }
         }
         if (error != null) {
@@ -96,6 +99,11 @@ public class AuthController extends AbstractController {
         }
         if (SecurityUtil.hasRole(RoleType.ROLE_PATIENT.name())) {
             return "redirect:/patients/dashboard";
+        }
+        if (!SecurityUtil.hasRole(RoleType.ROLE_PATIENT.name())
+                & !SecurityUtil.hasRole(RoleType.ROLE_DOCTOR.name())
+                & !SecurityUtil.hasRole(RoleType.ROLE_ADMIN.name())) {
+            return "redirect:/main";
         }
         return "redirect:/login";
     }

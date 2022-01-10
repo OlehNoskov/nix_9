@@ -1,0 +1,17 @@
+.wrapper {
+    padding: 30px 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px auto;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://oir.mobi/uploads/posts/2021-03/1616567323_8-p-meditsinskii-fon-dlya-prezentatsii-8.jpg') no-repeat center center fixed;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}

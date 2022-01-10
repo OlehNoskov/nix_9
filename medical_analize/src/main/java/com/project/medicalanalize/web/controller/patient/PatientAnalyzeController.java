@@ -9,16 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/patient/analyzes")
 public class PatientAnalyzeController {
 
-    @GetMapping("/all/success")
-    public String success(Model model) {
-        return "pages/patient/analyzes/analyzes_all";
-    }
-
-    @GetMapping("/all/review")
-    public String review(Model model) {
-        return "pages/patient/analyzes/analyzes_all";
-    }
-
     @GetMapping("/all/temp")
     public String temp(Model model) {
         return "pages/patient/analyzes/loaded_analyses";

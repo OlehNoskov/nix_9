@@ -32,8 +32,23 @@ public class PatientCreateOrderController {
         return "pages/patient/order/comprehensive";
     }
 
-    @GetMapping
+    @GetMapping("/new")
     public String newOrder(Model model, WebRequest webRequest) {
         return "pages/patient/order/new_order";
+    }
+
+    @GetMapping("/all")
+    public String allOrders(Model model, WebRequest webRequest) {
+        return "pages/patient/order/my_orders_all";
+    }
+
+    @GetMapping("/success/all")
+    public String allSuccessOrders(Model model, WebRequest webRequest) {
+        return "pages/patient/order/success_all_orders";
+    }
+
+    @GetMapping("/review/all")
+    public String allReviewOrders(Model model, WebRequest webRequest) {
+        return "pages/patient/order/review_all_orders";
     }
 }
