@@ -34,47 +34,23 @@ public class DoctorResponseDto extends ResponseDto {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
-    }
-
     public Sex getSex() {
         return sex;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
     }
 
     public BigDecimal getPhone() {
         return phone;
     }
 
-    public void setPhone(BigDecimal phone) {
-        this.phone = phone;
-    }
-
     public String getCountry() {
         return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 }

@@ -48,7 +48,7 @@
         </div>
 
         <div class="py-2">
-            <form action="#" th:action="@{'/doctors/profile/edit/' + ${patient.getId()}}" th:object="${patient}"
+            <form action="#" th:action="@{'/doctors/profile/edit/' + ${doctor.getId()}}" th:object="${doctor}"
                   method="post" enctype="multipart/form-data">
                 <div class="row py-2">
                     <div class="col-md-6">

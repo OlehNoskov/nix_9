@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity
 @DiscriminatorValue("DOCTOR")
 public class Doctor extends User {
+
     @Column(name = "first_name")
     private String firstName;
 
