@@ -4,27 +4,53 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/patient_layout}">
+
 <head>
     <meta charset="UTF-8">
     <title>Loaded analyses</title>
     <link href="/css/patient/loaded_analyses.css" rel="stylesheet">
 </head>
+
 <body>
 <div layout:fragment="patient_content">
 
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom">My loaded analyses</h4>
+
         <div class="py-2">
             <div class="row py-2">
-                <!--                <form action="#" th:action="@{/students/new}" th:object="${student}" method="post">-->
-                <div class="form-group col-md-12 col-xl-12 col-12">
+                <div class="col-xl-12">
+                    <div class="block">
+                        <div class="block-content">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Name file</th>
+                                    <td>file</td>
+                                </tr>
+                                <tr>
+                                    <th>Date created</th>
+                                    <td>02.01.2022</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
+                        <form enctype="multipart/form-data" method="post" accept-charset="utf-8" action="#">
+                            <div class="col-md-3 pb-4 border-bottom">
+                                <p>Upload file with analyses</p>
+                                <p><input type="file" name="photo" multiple accept="image/*,image/jpeg/pdf">
+                            </div>
+                            <div class="py-3 pb-4 border-bottom">
+                                <button type="submit" class="btn btn-outline-primary">Upload</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <!--        </form>-->
             </div>
         </div>
     </div>
-
 </div>
+
 </body>
 </html>

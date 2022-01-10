@@ -3,14 +3,15 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/auth_layout}">
+      layout:decorate="~{fragments/admin_layout}">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>All doctors</title>
+    <link href="/css/admin/admin_dashboard.css" rel="stylesheet">
 </head>
 <body>
-<div layout:fragment="auth_content">
-    <div layout:fragment="admin_content"></div>
+<div layout:fragment="admin_content">
+    <h1>Page orders</h1>
 </div>
 </body>
 </html>

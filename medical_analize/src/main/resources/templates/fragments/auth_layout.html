@@ -17,12 +17,12 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <nav class="navbar navbar-dark bg-dark">
-                    <a class="nav-item nav-link" th:href="@{/admin/dashboard}">Dashboard</a>
+                <nav class="navbar navbar-light bg-dark">
+<!--                    <a class="nav-item nav-link" th:href="@{/admin/dashboard}">Dashboard</a>-->
                     <a class="nav-item nav-link" th:href="@{/admin/doctors}">Doctors</a>
                     <a class="nav-item nav-link" th:href="@{/admin/orders}">Orders</a>
                     <a class="nav-item nav-link" th:href="@{/admin/patients}">Patients</a>
-                    <a class="nav-item nav-link" th:href="@{/admin/personals}">Personals</a>
+<!--                    <a class="nav-item nav-link" th:href="@{/admin/personals}">Personals</a>-->
                     <a class="nav-item nav-link" onclick="document.forms['logoutForm'].submit()" style="cursor: pointer !important;">Logout</a>
                 </nav>
             </div>
@@ -37,6 +37,9 @@
 <!--                    </form>-->
 <!--                    <a class="nav-item nav-link" onclick="document.forms['logoutForm'].submit()" style="cursor: pointer !important;">Logout</a>-->
 <!--                </nav>-->
+            </div>
+
+            <div sec:authorize="hasRole('ROLE_DOCTOR')">
             </div>
 
             <div class="row" th:if="${showMessage}">
