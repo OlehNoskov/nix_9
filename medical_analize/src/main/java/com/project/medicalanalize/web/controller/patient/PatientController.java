@@ -24,7 +24,7 @@ public class PatientController {
     }
 
     @GetMapping("/profile/{id}")
-    public String profile( @PathVariable Long id ,Model model) {
+    public String profile(@PathVariable Long id ,Model model) {
         PatientResponseDto patientResponseDto = patientFacade.findById(id);
         model.addAttribute("patient", patientResponseDto);
         System.out.println("get patient profile controller!");

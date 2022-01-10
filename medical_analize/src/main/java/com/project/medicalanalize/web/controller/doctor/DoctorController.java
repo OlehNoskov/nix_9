@@ -28,7 +28,7 @@ public class DoctorController {
         DoctorResponseDto doctorResponseDto = doctorFacade.findById(id);
         model.addAttribute("doctor", doctorResponseDto);
         System.out.println("get doctor profile controller!");
-        return "pages/patient/profile";
+        return "pages/doctor/profile";
     }
 
     @GetMapping("/profile/edit/{id}")
