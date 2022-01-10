@@ -47,7 +47,7 @@
         </div>
 
         <div class="py-2">
-            <form action="#" th:action="@{'/patients/edit/' + ${patient.getId()}}" th:object="${patient}"
+            <form action="#" th:action="@{'/patients/profile/edit/' + ${patient.getId()}}" th:object="${patient}"
                   method="post" enctype="multipart/form-data">
                 <div class="row py-2">
                     <div class="col-md-6">
@@ -72,12 +72,12 @@
                 </div>
 
                 <div class="row py-2">
-                    <div class="col-md-6"><label for="sex">Sex</label>
-                        <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}" required>
-                            <option value="female" selected>FEMALE</option>
-                            <option value="male">MALE</option>
-                        </select>
-                    </div>
+<!--                    <div class="col-md-6"><label for="sex">Sex</label>-->
+<!--                        <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}" required>-->
+<!--                            <option value="female" selected>FEMALE</option>-->
+<!--                            <option value="male">MALE</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
                     <div class="col-md-6"><label for="country">Country</label>
                         <select name="country" id="country" class="bg-light" th:field="*{country}" required>
                             <option value="india" selected>Ukraine</option>

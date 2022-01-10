@@ -6,7 +6,8 @@
       layout:decorate="~{fragments/doctor_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
+    <link href="/css/patient_profile.css" rel="stylesheet">
 </head>
 <body>
 <div layout:fragment="doctor_content">
@@ -34,22 +35,18 @@
                                 <tr>
                                     <th>Name</th>
                                     <td th:text="${doctor.getFirstName()}"></td>
-                                    <!--                                    <td>Oleg</td>-->
                                 </tr>
                                 <tr>
                                     <th>Surname</th>
                                     <td th:text="${doctor.getLastName()}"></td>
-                                    <!--                                    <td>Noskov</td>-->
                                 </tr>
                                 <tr>
                                     <th>Sex</th>
                                     <td th:text="${doctor.getSex()}"></td>
-                                    <!--                                    <td>MALE</td>-->
                                 </tr>
                                 <tr>
                                     <th>Country</th>
                                     <td th:text="${doctor.getCountry()}"></td>
-                                    <!--                                    <td>Ukraine</td>-->
                                 </tr>
                                 <tr>
                                     <th>Phone</th>
