@@ -17,7 +17,7 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <nav class="navbar navbar-light bg-dark">
+                <nav class="navbar navbar-dark bg-dark">
 <!--                    <a class="nav-item nav-link" th:href="@{/admin/dashboard}">Dashboard</a>-->
                     <a class="nav-item nav-link" th:href="@{/admin/doctors}">Doctors</a>
                     <a class="nav-item nav-link" th:href="@{/admin/orders}">Orders</a>
@@ -40,6 +40,15 @@
             </div>
 
             <div sec:authorize="hasRole('ROLE_DOCTOR')">
+                <!--                <nav class="navbar navbar-dark bg-dark">-->
+                <!--                    <a class="nav-item nav-link" th:href="@{/patients/dashboard}">Dashboard</a>-->
+                <!--                    <a class="nav-item nav-link" th:href="@{/patients/profile}">Profile</a>-->
+                <!--                    <form class="d-flex">-->
+                <!--                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+                <!--                        <button class="btn btn-outline-success" type="submit">Search</button>-->
+                <!--                    </form>-->
+                <!--                    <a class="nav-item nav-link" onclick="document.forms['logoutForm'].submit()" style="cursor: pointer !important;">Logout</a>-->
+                <!--                </nav>-->
             </div>
 
             <div class="row" th:if="${showMessage}">
