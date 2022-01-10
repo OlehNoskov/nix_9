@@ -3,8 +3,8 @@ package com.project.medicalanalize.web.controller.patient;
 import com.project.medicalanalize.facade.PatientFacade;
 import com.project.medicalanalize.web.dto.request.PatientRequestDto;
 import com.project.medicalanalize.web.dto.response.PatientResponseDto;
-import org.springframework.stereotype.Controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 

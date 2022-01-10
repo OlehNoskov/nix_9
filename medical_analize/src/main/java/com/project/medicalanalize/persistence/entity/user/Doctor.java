@@ -4,6 +4,7 @@ import com.project.medicalanalize.persistence.sex.Sex;
 import com.project.medicalanalize.persistence.repository.type.RoleType;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +24,11 @@ public class Doctor extends User {
 
     @Enumerated(EnumType.STRING)
     private Sex sex;
+
+    @Column(name = "phone")
+    private BigDecimal phone;
+
+    private String country;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
@@ -75,5 +81,21 @@ public class Doctor extends User {
 
     public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public BigDecimal getPhone() {
+        return phone;
+    }
+
+    public void setPhone(BigDecimal phone) {
+        this.phone = phone;
     }
 }

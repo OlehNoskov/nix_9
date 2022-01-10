@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/doctor_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="doctor_content">
+
+    <div class="wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom">Profile</h4>
+        <div class="d-flex align-items-start py-3 border-bottom">
+            <img src="/img/foto-profile.png" class="img" alt="">
+            <div class="pl-sm-4 pl-2" id="img-section">
+                <p></p>
+            </div>
+            <div class="edit">
+                <a th:href="@{'/doctors/profile/edit/'+ ${doctor.getId()}}" type="button"
+                   class="btn btn-outline-primary">Edit profile</a>
+            </div>
+        </div>
+
+        <div class="py-2">
+            <div class="row py-2">
+                <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-xs-12">
+                    <div class="block">
+                        <div class="block-content">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <td th:text="${doctor.getFirstName()}"></td>
+                                    <!--                                    <td>Oleg</td>-->
+                                </tr>
+                                <tr>
+                                    <th>Surname</th>
+                                    <td th:text="${doctor.getLastName()}"></td>
+                                    <!--                                    <td>Noskov</td>-->
+                                </tr>
+                                <tr>
+                                    <th>Sex</th>
+                                    <td th:text="${doctor.getSex()}"></td>
+                                    <!--                                    <td>MALE</td>-->
+                                </tr>
+                                <tr>
+                                    <th>Country</th>
+                                    <td th:text="${doctor.getCountry()}"></td>
+                                    <!--                                    <td>Ukraine</td>-->
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <!--                                    <td th:text="${doctor.getPhone()}"></td>-->
+                                    <td>+380991560574</td>
+                                </tr>
+                                <tr>
+                                    <th>Birthday</th>
+                                    <!--                                    <td th:text="${doctor.getBirthDay()}"></td>-->
+                                    <td>02.01.2022</td>
+                                </tr>
+                                <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

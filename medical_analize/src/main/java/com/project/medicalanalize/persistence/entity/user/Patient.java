@@ -6,6 +6,7 @@ import com.project.medicalanalize.persistence.repository.type.RoleType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,9 +20,9 @@ public class Patient extends User {
     @Column(name = "last_name")
     private String lastName;
 
-//    @Temporal(TemporalType.DATE)
-//    @Column(name = "birth_day")
-//    private Date birthDay;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "birth_day")
+    private Date birthDay;
 
     @Enumerated(EnumType.STRING)
     private Sex sex;
@@ -97,13 +98,13 @@ public class Patient extends User {
         this.doctors = doctors;
     }
 
-//    public Date getBirthDay() {
-//        return birthDay;
-//    }
-//
-//    public void setBirthDay(Date birthDay) {
-//        this.birthDay = birthDay;
-//    }
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
 
     public Integer getHeight() {
         return height;

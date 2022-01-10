@@ -1,23 +1,34 @@
-package com.project.medicalanalize.web.dto.request;
+package com.project.medicalanalize.web.dto.response;
 
-import com.project.medicalanalize.persistence.entity.order.Order;
+import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.sex.Sex;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
-public class PatientRequestDto extends RequestDto {
+public class DoctorResponseDto extends ResponseDto {
 
     private String firstName;
     private String lastName;
     private Date birthDay;
     private Sex sex;
     private BigDecimal phone;
-    private Integer height;
-    private Integer weight;
     private String country;
-    private Set<Order> orders;
+
+    DoctorResponseDto(){}
+
+    public DoctorResponseDto(Doctor doctor){
+        setId(doctor.getId());
+        setCreated(doctor.getCreated());
+        setUpdated(doctor.getUpdated());
+        setVisible(doctor.getVisible());
+        this.firstName = doctor.getFirstName();
+        this.lastName = doctor.getLastName();
+        this.birthDay = doctor.getBirthDay();
+        this.sex = doctor.getSex();
+        this.phone = doctor.getPhone();
+        this.country = doctor.getCountry();
+    }
 
     public String getFirstName() {
         return firstName;
@@ -59,35 +70,11 @@ public class PatientRequestDto extends RequestDto {
         this.phone = phone;
     }
 
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
     public String getCountry() {
         return country;
     }
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
     }
 }

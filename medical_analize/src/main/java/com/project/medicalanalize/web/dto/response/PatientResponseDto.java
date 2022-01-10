@@ -2,15 +2,17 @@ package com.project.medicalanalize.web.dto.response;
 
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.persistence.sex.Sex;
-//import java.util.Date;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 public class PatientResponseDto extends ResponseDto{
 
     private String firstName;
     private String lastName;
-//    private Date birthDay;
+    private Date birthDay;
     private Sex sex;
-//    private BigDecimal phone;
+    private BigDecimal phone;
     private Integer height;
     private Integer weight;
     private String country;
@@ -24,9 +26,9 @@ public class PatientResponseDto extends ResponseDto{
         setVisible(patient.getVisible());
         this.firstName = patient.getFirstName();
         this.lastName = patient.getLastName();
-//        this.birthDay = patient.getBirthDay();
+        this.birthDay = patient.getBirthDay();
         this.sex = patient.getSex();
-//        this.phone = patient.getPhone();
+        this.phone = patient.getPhone();
         this.height = patient.getHeight();
         this.weight = patient.getWeight();
         this.country = patient.getCountry();
@@ -40,17 +42,17 @@ public class PatientResponseDto extends ResponseDto{
         return lastName;
     }
 
-//    public Date getBirthDay() {
-//        return birthDay;
-//    }
+    public Date getBirthDay() {
+        return birthDay;
+    }
 
     public Sex getSex() {
         return sex;
     }
 
-//    public BigDecimal getPhone() {
-//        return phone;
-//    }
+    public BigDecimal getPhone() {
+        return phone;
+    }
 
     public Integer getHeight() {
         return height;
