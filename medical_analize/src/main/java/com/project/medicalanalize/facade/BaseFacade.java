@@ -1,9 +1,9 @@
 package com.project.medicalanalize.facade;
 
 import com.project.medicalanalize.web.dto.request.RequestDto;
-
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.ResponseDto;
+
 import org.springframework.web.context.request.WebRequest;
 
 public interface BaseFacade <REQ extends RequestDto, RES extends ResponseDto>{

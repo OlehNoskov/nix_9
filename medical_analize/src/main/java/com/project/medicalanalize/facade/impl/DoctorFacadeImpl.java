@@ -69,7 +69,7 @@ public class DoctorFacadeImpl implements DoctorFacade {
         dataTableRequest.setOrder(sortData.getOrder());
 
 //        Map<String, String[]> parameterMap = request.getParameterMap();
-
+//
 //        if (MapUtils.isNotEmpty(parameterMap)) {
 //            String[] params = request.getParameterMap().get("groupId");
 //        }
