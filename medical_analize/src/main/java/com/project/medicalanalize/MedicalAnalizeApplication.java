@@ -38,8 +38,6 @@ public class MedicalAnalizeApplication {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(2021, 11, 24);
-
-        System.out.println(calendar.getTime());
     }
 
     @EventListener(ApplicationReadyEvent.class)
