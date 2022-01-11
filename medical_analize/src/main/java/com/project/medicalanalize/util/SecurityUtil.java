@@ -21,7 +21,6 @@ public final class SecurityUtil {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    //Возможность посмотреть все заказы по пациенту
     public static String getUsername() {
         Authentication authentication = SecurityUtil.getAuthentication();
         User principal = (User) authentication.getPrincipal();

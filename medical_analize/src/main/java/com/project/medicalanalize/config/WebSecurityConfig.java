@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/patients/**").access("hasRole('ROLE_PATIENT')")
                 .antMatchers("/", "/main/**").permitAll().anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/dashboard").permitAll() //TODO
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/main").permitAll()
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
     }
 
