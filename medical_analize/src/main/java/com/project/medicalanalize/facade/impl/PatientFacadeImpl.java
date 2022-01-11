@@ -39,12 +39,12 @@ public class PatientFacadeImpl implements PatientFacade {
         patient.setId(id);
         patient.setFirstName(patientRequestDto.getFirstName());
         patient.setLastName(patientRequestDto.getLastName());
-//        patient.setBirthDay(patientRequestDto.getBirthDay());
+        patient.setBirthDay(patientRequestDto.getBirthDay());
         patient.setSex(patientRequestDto.getSex());
         patient.setCountry(patientRequestDto.getCountry());
         patient.setHeight(patientRequestDto.getHeight());
         patient.setWeight(patientRequestDto.getWeight());
-//        patient.setPhone(patientRequestDto.getPhone());
+        patient.setPhone(patientRequestDto.getPhone());
         System.out.println("facade update patient");
         patientService.update(patient);
     }

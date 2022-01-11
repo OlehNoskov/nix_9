@@ -1,7 +1,8 @@
 package com.project.medicalanalize.web.dto.response;
 
 import com.project.medicalanalize.persistence.entity.user.Doctor;
-import com.project.medicalanalize.persistence.sex.Sex;
+import com.project.medicalanalize.persistence.type.Country;
+import com.project.medicalanalize.persistence.type.Sex;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,7 +14,7 @@ public class DoctorResponseDto extends ResponseDto {
     private Date birthDay;
     private Sex sex;
     private BigDecimal phone;
-    private String country;
+    private Country country;
 
     DoctorResponseDto(){}
 
@@ -50,7 +51,7 @@ public class DoctorResponseDto extends ResponseDto {
         return phone;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 }

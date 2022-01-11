@@ -42,7 +42,7 @@ public class DoctorFacadeImpl implements DoctorFacade {
         doctor.setSex(doctorRequestDto.getSex());
         doctor.setCountry(doctorRequestDto.getCountry());
         doctor.setPhone(doctorRequestDto.getPhone());
-        System.out.println("facade update patient");
+        System.out.println("facade update doctor");
         doctorService.update(doctor);
     }
 

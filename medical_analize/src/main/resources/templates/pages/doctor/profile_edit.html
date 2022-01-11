@@ -54,8 +54,6 @@
                 <div class="row py-2">
                     <div class="col-md-6">
                         <label for="firstname">Name<span class="text-danger">*</span></label>
-                        <!--                        <input type="text" name="firstName" class="bg-light form-control"-->
-                        <!--                               placeholder="Steve" id="firstname" required></div>-->
                         <input type="text" name="firstname" class="bg-light form-control" placeholder="Steve"
                                id="firstname" aria-describedby="firstname" required th:field="*{firstName}" ></div>
                     <div class="invalid-feedback">
@@ -63,8 +61,6 @@
                     </div>
                     <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname
                         <span class="text-danger">*</span></label>
-                        <!--                        <input type="text" name="lastName" class="bg-light form-control"-->
-                        <!--                               placeholder="Smith" id="lastname" required>-->
                         <input type="text" name="lastName" class="bg-light form-control"
                                placeholder="Smith" id="lastname" aria-describedby="lastname" th:field="*{lastName}" required>
                     </div>
@@ -76,7 +72,7 @@
                 <div class="row py-2">
                     <div class="col-md-6"><label for="sex">Sex</label>
                         <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}" required>
-                                <option th:each="sex : ${T(com.project.medicalanalize.persistence.sex.Sex).values()}"
+                                <option th:each="sex : ${T(com.project.medicalanalize.persistence.type.Sex).values()}"
                                         th:value="${sex}"
                                         th:text="${sex}">
                                 </option>
@@ -86,19 +82,10 @@
 
                     <div class="col-md-6"><label for="country">Country</label>
                         <select name="country" id="country" class="bg-light" th:field="*{country}" required>
-                            <option value="Ukraine" selected>Ukraine</option>
-                            <option value="Russia">Russia</option>
-                            <option value="Belarus">Belarus</option>
-                            <option value="Hungary">Hungary</option>
-                            <option value="Kazakhstan">Kazakhstan</option>
-                            <option value="Tajikistan">Tajikistan</option>
-                            <option value="Moldova">Moldova</option>
-                            <option value="Poland">Poland</option>
-                            <option value="USA">USA</option>
-                            <option value="Germany">Germany</option>
-                            <option value="Denmark">Denmark</option>
-                            <option value="Czech Republic">Czech Republic</option>
-                            <option value="ch">other</option>
+                            <option th:each="country : ${T(com.project.medicalanalize.persistence.type.Country).values()}"
+                                    th:value="${country}"
+                                    th:text="${country}">
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -267,13 +254,13 @@
                         </select>
                     </div>
                 </div>
-                <!--                <div class="row py-2">-->
-                <!--                    <div class="col-md-6 pt-md-0 pt-3"><label for="height">Phone</label>-->
-                <!--                        <input type="tel" name="phone" class="bg-light form-control" placeholder="380991565588"-->
-                <!--                               id="phone" aria-describedby="phone" value=""-->
-                <!--                               pattern="[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{4}" th:field="*{phone}">-->
-                <!--                    </div>-->
-                <!--                </div>-->
+                                <div class="row py-2">
+                                    <div class="col-md-6 pt-md-0 pt-3"><label for="height">Phone</label>
+                                        <input type="tel" name="phone" class="bg-light form-control" placeholder="380991565588"
+                                               id="phone" aria-describedby="phone" value=""
+                                               pattern="[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{4}" th:field="*{phone}">
+                                    </div>
+                                </div>
 
                 <div class="py-3 pb-4 border-bottom">
                     <button class="btn btn-success mr-3" type="submit">Save Changes</button>

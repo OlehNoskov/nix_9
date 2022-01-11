@@ -1,7 +1,8 @@
 package com.project.medicalanalize.web.dto.request;
 
 import com.project.medicalanalize.persistence.entity.order.Order;
-import com.project.medicalanalize.persistence.sex.Sex;
+import com.project.medicalanalize.persistence.type.Country;
+import com.project.medicalanalize.persistence.type.Sex;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,7 +15,7 @@ public class DoctorRequestDto extends RequestDto {
     private Date birthDay;
     private Sex sex;
     private BigDecimal phone;
-    private String country;
+    private Country country;
     private Set<Order> orders;
 
     public String getFirstName() {
@@ -41,11 +42,11 @@ public class DoctorRequestDto extends RequestDto {
         this.sex = sex;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 

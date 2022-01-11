@@ -1,7 +1,8 @@
 package com.project.medicalanalize.persistence.entity.user;
 
 import com.project.medicalanalize.persistence.entity.order.Order;
-import com.project.medicalanalize.persistence.sex.Sex;
+import com.project.medicalanalize.persistence.type.Country;
+import com.project.medicalanalize.persistence.type.Sex;
 import com.project.medicalanalize.persistence.repository.type.RoleType;
 
 import javax.persistence.*;
@@ -34,7 +35,8 @@ public class Patient extends User {
 
     private Integer weight;
 
-    private String country;
+    @Enumerated(EnumType.STRING)
+    private Country country;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order> orders;
@@ -122,11 +124,11 @@ public class Patient extends User {
         this.weight = weight;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 }

@@ -1,6 +1,7 @@
 package com.project.medicalanalize.persistence.entity.user;
 
-import com.project.medicalanalize.persistence.sex.Sex;
+import com.project.medicalanalize.persistence.type.Country;
+import com.project.medicalanalize.persistence.type.Sex;
 import com.project.medicalanalize.persistence.repository.type.RoleType;
 
 import javax.persistence.*;
@@ -29,7 +30,8 @@ public class Doctor extends User {
     @Column(name = "phone")
     private BigDecimal phone;
 
-    private String country;
+    @Enumerated(EnumType.STRING)
+    private Country country;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
@@ -84,11 +86,11 @@ public class Doctor extends User {
         this.birthDay = birthDay;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 

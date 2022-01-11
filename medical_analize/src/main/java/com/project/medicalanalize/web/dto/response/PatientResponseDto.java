@@ -1,12 +1,13 @@
 package com.project.medicalanalize.web.dto.response;
 
 import com.project.medicalanalize.persistence.entity.user.Patient;
-import com.project.medicalanalize.persistence.sex.Sex;
+import com.project.medicalanalize.persistence.type.Country;
+import com.project.medicalanalize.persistence.type.Sex;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class PatientResponseDto extends ResponseDto{
+public class PatientResponseDto extends ResponseDto {
 
     private String firstName;
     private String lastName;
@@ -15,11 +16,12 @@ public class PatientResponseDto extends ResponseDto{
     private BigDecimal phone;
     private Integer height;
     private Integer weight;
-    private String country;
+    private Country country;
 
-    public PatientResponseDto(){}
+    public PatientResponseDto() {
+    }
 
-    public PatientResponseDto(Patient patient){
+    public PatientResponseDto(Patient patient) {
         setId(patient.getId());
         setCreated(patient.getCreated());
         setUpdated(patient.getUpdated());
@@ -62,7 +64,7 @@ public class PatientResponseDto extends ResponseDto{
         return weight;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 }
