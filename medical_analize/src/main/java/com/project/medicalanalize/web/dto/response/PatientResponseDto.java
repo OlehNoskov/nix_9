@@ -4,7 +4,6 @@ import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class PatientResponseDto extends ResponseDto {
@@ -13,7 +12,7 @@ public class PatientResponseDto extends ResponseDto {
     private String lastName;
     private Date birthDay;
     private Sex sex;
-    private BigDecimal phone;
+    private String phone;
     private Integer height;
     private Integer weight;
     private Country country;
@@ -52,7 +51,7 @@ public class PatientResponseDto extends ResponseDto {
         return sex;
     }
 
-    public BigDecimal getPhone() {
+    public String getPhone() {
         return phone;
     }
 

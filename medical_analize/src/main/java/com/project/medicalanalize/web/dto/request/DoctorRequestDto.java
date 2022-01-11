@@ -4,7 +4,6 @@ import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,7 +13,7 @@ public class DoctorRequestDto extends RequestDto {
     private String lastName;
     private Date birthDay;
     private Sex sex;
-    private BigDecimal phone;
+    private String phone;
     private Country country;
     private Set<Order> orders;
 
@@ -66,11 +65,11 @@ public class DoctorRequestDto extends RequestDto {
         this.birthDay = birthDay;
     }
 
-    public BigDecimal getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(BigDecimal phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

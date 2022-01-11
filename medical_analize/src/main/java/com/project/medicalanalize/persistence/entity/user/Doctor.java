@@ -28,7 +28,7 @@ public class Doctor extends User {
     private Sex sex;
 
     @Column(name = "phone")
-    private BigDecimal phone;
+    private String phone;
 
     @Enumerated(EnumType.STRING)
     private Country country;
@@ -94,11 +94,11 @@ public class Doctor extends User {
         this.country = country;
     }
 
-    public BigDecimal getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(BigDecimal phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

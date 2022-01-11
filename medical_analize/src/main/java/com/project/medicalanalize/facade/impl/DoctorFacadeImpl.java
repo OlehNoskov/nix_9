@@ -42,7 +42,6 @@ public class DoctorFacadeImpl implements DoctorFacade {
         doctor.setSex(doctorRequestDto.getSex());
         doctor.setCountry(doctorRequestDto.getCountry());
         doctor.setPhone(doctorRequestDto.getPhone());
-        System.out.println("facade update doctor");
         doctorService.update(doctor);
     }
 
@@ -53,7 +52,6 @@ public class DoctorFacadeImpl implements DoctorFacade {
 
     @Override
     public DoctorResponseDto findById(long id) {
-        System.out.println("Patient facade!");
         return new DoctorResponseDto(doctorService.findById(id).get());
     }
 

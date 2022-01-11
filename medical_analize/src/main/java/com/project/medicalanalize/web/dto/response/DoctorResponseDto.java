@@ -13,7 +13,7 @@ public class DoctorResponseDto extends ResponseDto {
     private String lastName;
     private Date birthDay;
     private Sex sex;
-    private BigDecimal phone;
+    private String phone;
     private Country country;
 
     DoctorResponseDto(){}
@@ -47,7 +47,7 @@ public class DoctorResponseDto extends ResponseDto {
         return sex;
     }
 
-    public BigDecimal getPhone() {
+    public String getPhone() {
         return phone;
     }
 

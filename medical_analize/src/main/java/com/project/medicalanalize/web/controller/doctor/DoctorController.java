@@ -1,6 +1,8 @@
 package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.DoctorFacade;
+import com.project.medicalanalize.facade.UserFacade;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
 import com.project.medicalanalize.web.dto.response.DoctorResponseDto;
 
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class DoctorController {
 
     private final DoctorFacade doctorFacade;
+    private final UserFacade userFacade;
 
-    public DoctorController(DoctorFacade doctorFacade) {
+    public DoctorController(DoctorFacade doctorFacade, UserFacade userFacade) {
         this.doctorFacade = doctorFacade;
+        this.userFacade = userFacade;
     }
 
     @GetMapping("/dashboard")
@@ -23,11 +27,12 @@ public class DoctorController {
         return "pages/doctor/dashboard";
     }
 
-    @GetMapping("/profile/{id}")
+    @GetMapping("/profile")
     public String profile(@PathVariable Long id , Model model) {
-        DoctorResponseDto doctorResponseDto = doctorFacade.findById(id);
+        User user = userFacade.getCurrentUser();
+        DoctorResponseDto doctorResponseDto = doctorFacade.findById(user.getId());
+        System.out.println(user.getId());
         model.addAttribute("doctor", doctorResponseDto);
-        System.out.println("get doctor profile controller!");
         return "pages/doctor/profile";
     }
 
@@ -35,14 +40,12 @@ public class DoctorController {
     public String profileEdit(@PathVariable Long id, Model model) {
         DoctorResponseDto doctorResponseDto = doctorFacade.findById(id);
         model.addAttribute("doctor", doctorResponseDto);
-        System.out.println("get edit controller doctor");
         return "pages/doctor/profile_edit";
     }
 
     @PostMapping("/profile/edit/{id}")
     public String updatePatient(@PathVariable Long id, @ModelAttribute("doctor") DoctorRequestDto doctorRequestDto) {
         doctorFacade.update(doctorRequestDto, id);
-        System.out.println("post controller edit doctor");
         return "redirect:/doctors/dashboard";
     }
 }

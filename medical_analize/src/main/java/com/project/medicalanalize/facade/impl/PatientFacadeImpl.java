@@ -45,7 +45,6 @@ public class PatientFacadeImpl implements PatientFacade {
         patient.setHeight(patientRequestDto.getHeight());
         patient.setWeight(patientRequestDto.getWeight());
         patient.setPhone(patientRequestDto.getPhone());
-        System.out.println("facade update patient");
         patientService.update(patient);
     }
 
@@ -56,7 +55,6 @@ public class PatientFacadeImpl implements PatientFacade {
 
     @Override
     public PatientResponseDto findById(long id) {
-        System.out.println("Patient facade!");
         return new PatientResponseDto(patientService.findById(id).get());
     }
 
@@ -70,12 +68,6 @@ public class PatientFacadeImpl implements PatientFacade {
         dataTableRequest.setPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
-
-//        Map<String, String[]> parameterMap = request.getParameterMap();
-
-//        if (MapUtils.isNotEmpty(parameterMap)) {
-//            String[] params = request.getParameterMap().get("groupId");
-//        }
         DataTableResponse<Patient> all = patientService.findAll(dataTableRequest);
 
         List<PatientResponseDto> list = all.getItems().

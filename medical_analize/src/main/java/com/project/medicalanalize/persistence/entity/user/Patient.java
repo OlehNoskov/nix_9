@@ -6,7 +6,6 @@ import com.project.medicalanalize.persistence.type.Sex;
 import com.project.medicalanalize.persistence.repository.type.RoleType;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +28,7 @@ public class Patient extends User {
     private Sex sex;
 
     @Column(name = "phone")
-    private BigDecimal phone;
+    private String phone;
 
     private Integer height;
 
@@ -68,11 +67,11 @@ public class Patient extends User {
         this.lastName = lastName;
     }
 
-    public BigDecimal getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(BigDecimal phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
