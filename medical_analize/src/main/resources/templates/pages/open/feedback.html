@@ -4,159 +4,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/home_page_layout}">
+
 <head>
     <meta charset="UTF-8">
     <title>Feedback</title>
+    <link href="/css/main_dashboard.css" rel="stylesheet">
 </head>
 
 <body>
 
 <div layout:fragment="home_content">
 
-    <div class="container-fluid mt-5">
-        <div class="container p-5">
-            <div class="row">
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=LnP99sCwpOC5iqw"
-                             alt="" class="card-img-top">
-                        <div class="card-body d-flex flex-column">
-                            <h4 class="card-title ricing-card-title"><b>Diagnostics of the gastritis</b></h4>
-                            <p class="card-text">Gastritis is an inflammatory process in the stomach lining. This
-                                disease provokes a violation of the absorption of food and digestion. It is the most
-                                common disease among the rest in the digestive system.</p>
-                            <a th:href="@{/main/articles/article/diagnostics_of_the_gastritis}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=vXiJnsoeYdcEhJZ"
-                             alt="" class="card-img-top">
-                        <div class="card-body d-flex flex-column">
-                            <h4 class="card-title ricing-card-title"><b>Thyroid diagnostics</b></h4>
-                            <p class="card-text">The thyroid gland is one of the endocrine organs, the hormones of which
-                                are involved in the metabolism of the whole organism. Violation of its function affects
-                                all organs and systems.</p>
-                            <a th:href="@{/main/articles/article/thyroid_diagnostics}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=FoPBx4fhtrfchMN"
-                             alt="" class="card-img-top">
-                        <div class="card-body">
-                            <h4 class="card-title "><b>Mycoplasma, ureoplasma - where is the lie?</b></h4>
-                            <p class="card-text">
-                                Ureaplasma and mycoplasma are small bacteria about which a lot of horror has been said.
-                                We hear that as soon as they are identified, they urgently need to be treated! But is it
-                                really so?</p>
-                            <a th:href="@{/main/articles/article/mycoplasma}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=oH1gQZ1JbfWy2TF"
-                             alt="" class="card-img-top">
-                        <div class="card-body d-flex flex-column">
-                            <h4 class="card-title ricing-card-title"><b>Lamblia diagnostic methods</b></h4>
-                            <p class="card-text">Giardiasis (giardiasis) is a disease caused by protozoa - lamblia,
-                                parasitizing in the small intestine, sometimes in the gallbladder. In humans, one
-                                species of lamblia, L. intestinalis, parasitizes.</p>
-                            <a th:href="@{/main/articles/article/lamblia_diagnostic_methods}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=2v4kjTIPivx2p2w"
-                             alt="" class="card-img-top">
-                        <div class="card-body d-flex flex-column">
-                            <h4 class="card-title ricing-card-title"><b>Myocardial infarction</b></h4>
-                            <p class="card-text">A heart attack is a necrosis of the heart muscle, due to circulatory
-                                disorders.
-                                ⚠️This disease is one of the ten most common in the world.</p>
-                            <a th:href="@{/main/articles/article/myocardial_infarction}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=ivIbeTTIUSI22dX"
-                             alt="" class="card-img-top">
-                        <div class="card-body">
-                            <h4 class="card-title "><b>Vitamin D</b></h4>
-                            <p class="card-text">
-                                Many people know that vitamin D is essential for children and adults for healthy bone
-                                growth. Lack of this vitamin in children can cause rickets, and in adults - softening of
-                                the bones and an increased risk of fractures. Modern scientific research associates
-                                vitamin D deficiency with immune disorders, increased susceptibility to infections, the
-                                development of certain types of cancer, diabetes mellitus and cardiovascular
-                                diseases.</p>
-                            <a th:href="@{/main/articles/article/vitamin_d}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=qgByrYZygiVymuQ"
-                             alt="" class="card-img-top">
-                        <div class="card-body d-flex flex-column">
-                            <h4 class="card-title ricing-card-title"><b>D-Dimer</b></h4>
-                            <p class="card-text">
-                                D-dimer is a protein fragment that appears during the breakdown of a blood clot, which
-                                occurs during blood clotting and is considered a marker for blood clots.</p>
-                            <a th:href="@{/main/articles/article/d_dimer}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=RJKbQao0qzhFdBa"
-                             alt="" class="card-img-top">
-                        <div class="card-body d-flex flex-column">
-                            <h4 class="card-title ricing-card-title"><b>Immunoconflict</b></h4>
-                            <p class="card-text">
-                                Immunoconflict or Rh conflict - arises due to the incompatibility of the blood group or
-                                Rh factor of the mother and the fetus, during organ transplantation or blood transfusion
-                                (blood transfusion)</p>
-                            <a th:href="@{/main/articles/article/immunoconflict}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
-                    <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=7fXJ0jFJ2vGWiIN"
-                             alt="" class="card-img-top">
-                        <div class="card-body">
-                            <h4 class="card-title "><b>Coprogram - is your gut health.</b></h4>
-                            <p class="card-text">
-                                Coprogram is an analysis of intestinal contents
-                                It is used to diagnose various diseases of the gastrointestinal tract: pathology of the
-                                liver, stomach, pancreas, duodenum, small and large intestine, gallbladder and biliary
-                                tract.</p>
-                            <a th:href="@{/main/articles/article/coprogram}"
-                               class="btn btn-success align-self-end btn btn-lg btn-block mt-auto">Read</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="wrapper bg-white mt-sm-5">
+        <div class="container-fluid">
+            <h2>Feedback</h2>
 
         </div>
     </div>
