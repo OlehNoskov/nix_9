@@ -22,7 +22,7 @@ public class PatientFeedbackController {
     }
 
 //    @PostMapping("/new")
-//    public String createNewFeedback(@ModelAttribute("feedback") Fe studentRequestDto) {
+//    public String createNewFeedback(@ModelAttribute("feedback") FeedbackRequestDto feedbackRequestDto) {
 //        feedbackFacade.create(feedbackRequestDto);
 //        return "redirect:/patients/dashboard";
 //    }
