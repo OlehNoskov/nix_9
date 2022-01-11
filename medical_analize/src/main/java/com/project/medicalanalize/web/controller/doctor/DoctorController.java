@@ -28,10 +28,9 @@ public class DoctorController {
     }
 
     @GetMapping("/profile")
-    public String profile(@PathVariable Long id , Model model) {
+    public String profile(Model model) {
         User user = userFacade.getCurrentUser();
         DoctorResponseDto doctorResponseDto = doctorFacade.findById(user.getId());
-        System.out.println(user.getId());
         model.addAttribute("doctor", doctorResponseDto);
         return "pages/doctor/profile";
     }
