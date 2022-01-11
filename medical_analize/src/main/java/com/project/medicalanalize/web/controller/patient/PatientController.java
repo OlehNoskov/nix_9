@@ -1,6 +1,8 @@
 package com.project.medicalanalize.web.controller.patient;
 
 import com.project.medicalanalize.facade.PatientFacade;
+import com.project.medicalanalize.facade.UserFacade;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.dto.request.PatientRequestDto;
 import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class PatientController {
 
     private final PatientFacade patientFacade;
+    private final UserFacade userFacade;
 
-    public PatientController(PatientFacade patientFacade) {
+    public PatientController(PatientFacade patientFacade, UserFacade userFacade) {
         this.patientFacade = patientFacade;
+        this.userFacade = userFacade;
     }
 
     @GetMapping("/dashboard")
@@ -23,9 +27,10 @@ public class PatientController {
         return "pages/patient/patient_dashboard";
     }
 
-    @GetMapping("/profile/{id}")
-    public String profile(@PathVariable Long id ,Model model) {
-        PatientResponseDto patientResponseDto = patientFacade.findById(id);
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        User user = userFacade.getCurrentUser();
+        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
         model.addAttribute("patient", patientResponseDto);
         System.out.println("get patient profile controller!");
         return "pages/patient/profile";

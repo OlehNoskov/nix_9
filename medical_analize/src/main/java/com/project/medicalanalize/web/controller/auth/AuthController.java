@@ -36,6 +36,11 @@ public class AuthController extends AbstractController {
         return redirectProcess(model);
     }
 
+    @GetMapping("/dashboard")
+    public String dash(Model model) {
+        return redirectProcess(model);
+    }
+
     @GetMapping("/open")
     public String open(Model model) {
         return "pages/open/open";

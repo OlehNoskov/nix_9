@@ -28,7 +28,6 @@ public class UserCrudServiceImpl implements UserCrudService {
     private final CrudRepositoryHelper<Doctor, DoctorRepository> crudRepositoryHelperDoctor;
     private final CrudRepositoryHelper<Patient, PatientRepository> crudRepositoryHelperPatient;
 
-
     public UserCrudServiceImpl(
             BCryptPasswordEncoder bCryptPasswordEncoder,
             DoctorRepository doctorRepository,
