@@ -3,7 +3,7 @@ package com.project.medicalanalize.facade.impl;
 import com.project.medicalanalize.facade.TranscriptFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
-import com.project.medicalanalize.persistence.entity.order.Transcript;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.service.TranscriptService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
@@ -30,33 +30,17 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 
     @Override
     public void create(TranscriptRequestDto transcriptRequestDto) {
-        Transcript transcript = new Transcript();
-        transcript.setPrice(transcriptRequestDto.getPrice());
-        transcript.setBadHabits(transcriptRequestDto.getBadHabits());
-        transcript.setDrugsTaken(transcriptRequestDto.getDrugsTaken());
-        transcript.setChronicDiseases(transcriptRequestDto.getChronicDiseases());
-        transcript.setBurglaryComplaints(transcriptRequestDto.getBurglaryComplaints());
-        transcript.setHereditary_diseases(transcriptRequestDto.getHereditary_diseases());
-        transcript.setFeaturesNutrition(transcriptRequestDto.getFeaturesNutrition());
-        transcript.setFile(transcriptRequestDto.getFile());
-//        setterTranscript(transcriptRequestDto, transcript);
+        TranscriptOrder transcript = new TranscriptOrder();
+        setterTranscript(transcriptRequestDto, transcript);
         transcriptService.create(transcript);
     }
 
     @Override
     public void update(TranscriptRequestDto transcriptRequestDto, long id) {
-        Transcript transcript = transcriptService.findById(id).get();
+        TranscriptOrder transcript = transcriptService.findById(id).get();
         transcript.setId(id);
-        transcript.setPrice(transcriptRequestDto.getPrice());
-        transcript.setBadHabits(transcriptRequestDto.getBadHabits());
-        transcript.setDrugsTaken(transcriptRequestDto.getDrugsTaken());
-        transcript.setChronicDiseases(transcriptRequestDto.getChronicDiseases());
-        transcript.setBurglaryComplaints(transcriptRequestDto.getBurglaryComplaints());
-        transcript.setHereditary_diseases(transcriptRequestDto.getHereditary_diseases());
-        transcript.setFeaturesNutrition(transcriptRequestDto.getFeaturesNutrition());
-        transcript.setFile(transcriptRequestDto.getFile());
         transcript.setUpdated(new Timestamp(System.currentTimeMillis()));
-//        setterTranscript(transcriptRequestDto, transcript);
+        setterTranscript(transcriptRequestDto, transcript);
         transcriptService.update(transcript);
     }
 
@@ -72,6 +56,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 
     @Override
     public PageData<TranscriptResponseDto> findAll(WebRequest request) {
+
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
@@ -81,7 +66,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
 
-        DataTableResponse<Transcript> all = transcriptService.findAll(dataTableRequest);
+        DataTableResponse<TranscriptOrder> all = transcriptService.findAll(dataTableRequest);
 
         List<TranscriptResponseDto> list = all.getItems().
                 stream().
@@ -99,7 +84,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         return pageData;
     }
 
-    private Transcript setterTranscript(TranscriptRequestDto transcriptRequestDto, Transcript transcript) {
+    private TranscriptOrder setterTranscript(TranscriptRequestDto transcriptRequestDto, TranscriptOrder transcript) {
         transcript.setPrice(transcriptRequestDto.getPrice());
         transcript.setBadHabits(transcriptRequestDto.getBadHabits());
         transcript.setDrugsTaken(transcriptRequestDto.getDrugsTaken());

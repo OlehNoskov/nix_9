@@ -1,8 +1,8 @@
 package com.project.medicalanalize.web.dto.response;
 
-import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
+import com.project.medicalanalize.persistence.entity.order.ComprehensiveConsultationOrder;
 
-public class TranscriptResponseDto extends ResponseDto {
+public class ConsultationResponseDto extends ResponseDto{
 
     private Integer price;
     private String badHabits;
@@ -12,23 +12,20 @@ public class TranscriptResponseDto extends ResponseDto {
     private String hereditary_diseases;
     private String featuresNutrition;
     private String file;
-//    private Patient patient;
-//    private Doctor doctor;
 
-
-    public TranscriptResponseDto(TranscriptOrder transcript) {
-        setId(transcript.getId());
-        setCreated(transcript.getCreated());
-        setUpdated(transcript.getUpdated());
-        setVisible(transcript.getVisible());
-        this.price = transcript.getPrice();
-        this.badHabits = transcript.getBadHabits();
-        this.drugsTaken = transcript.getDrugsTaken();
-        this.chronicDiseases = transcript.getChronicDiseases();
-        this.burglaryComplaints = transcript.getBurglaryComplaints();
-        this.hereditary_diseases = transcript.getHereditary_diseases();
-        this.featuresNutrition = transcript.getFeaturesNutrition();
-        this.file = transcript.getFile();
+    public ConsultationResponseDto(ComprehensiveConsultationOrder consultationOrder) {
+        setId(consultationOrder.getId());
+        setCreated(consultationOrder.getCreated());
+        setUpdated(consultationOrder.getUpdated());
+        setVisible(consultationOrder.getVisible());
+        this.price = consultationOrder.getPrice();
+        this.badHabits = consultationOrder.getBadHabits();
+        this.drugsTaken = consultationOrder.getDrugsTaken();
+        this.chronicDiseases = consultationOrder.getChronicDiseases();
+        this.burglaryComplaints = consultationOrder.getBurglaryComplaints();
+        this.hereditary_diseases = consultationOrder.getHereditary_diseases();
+        this.featuresNutrition = consultationOrder.getFeaturesNutrition();
+        this.file = consultationOrder.getFile();
     }
 
     public Integer getPrice() {
@@ -94,20 +91,4 @@ public class TranscriptResponseDto extends ResponseDto {
     public void setFile(String file) {
         this.file = file;
     }
-
-//    public Patient getPatient() {
-//        return patient;
-//    }
-//
-//    public void setPatient(Patient patient) {
-//        this.patient = patient;
-//    }
-//
-//    public Doctor getDoctor() {
-//        return doctor;
-//    }
-//
-//    public void setDoctor(Doctor doctor) {
-//        this.doctor = doctor;
-//    }
-}   
+}

@@ -1,6 +1,6 @@
 package com.project.medicalanalize.service;
 
-import com.project.medicalanalize.persistence.entity.order.Transcript;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 
-public interface TranscriptService extends BaseCrudService<Transcript> {
+public interface TranscriptService extends BaseCrudService<TranscriptOrder> {
 }

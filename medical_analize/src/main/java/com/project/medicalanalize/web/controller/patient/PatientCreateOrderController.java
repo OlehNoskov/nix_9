@@ -1,28 +1,34 @@
 package com.project.medicalanalize.web.controller.patient;
 
-import com.project.medicalanalize.facade.PatientFacade;
-import com.project.medicalanalize.facade.TranscriptFacade;
-import com.project.medicalanalize.facade.UserFacade;
-import com.project.medicalanalize.persistence.entity.user.User;
-import com.project.medicalanalize.web.dto.request.PatientRequestDto;
+import com.project.medicalanalize.facade.*;
+import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
+import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
-import com.project.medicalanalize.web.dto.response.PatientResponseDto;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-
 
 @Controller
 @RequestMapping("/patient/order")
 public class PatientCreateOrderController {
 
     private final TranscriptFacade transcriptFacade;
+    private final ConsultationOrderFacade consultationOrderFacade;
+    private final CheckUpFacade checkUpFacade;
     private final PatientFacade patientFacade;
     private final UserFacade userFacade;
 
-    public PatientCreateOrderController(TranscriptFacade transcriptFacade, PatientFacade patientFacade, UserFacade userFacade) {
+
+    public PatientCreateOrderController(TranscriptFacade transcriptFacade,
+                                        ConsultationOrderFacade consultationOrderFacade,
+                                        CheckUpFacade checkUpFacade,
+                                        PatientFacade patientFacade,
+                                        UserFacade userFacade) {
         this.transcriptFacade = transcriptFacade;
+        this.consultationOrderFacade = consultationOrderFacade;
+        this.checkUpFacade = checkUpFacade;
         this.patientFacade = patientFacade;
         this.userFacade = userFacade;
     }
@@ -47,13 +53,27 @@ public class PatientCreateOrderController {
 //    }
 
     @GetMapping("/new/check-up")
-    public String check_up(Model model) {
+    public String newCheckUp(Model model) {
+        model.addAttribute("check_up", new CheckUpRequestDto());
         return "pages/patient/order/check_up";
     }
 
+    @PostMapping("/new/check-up")
+    public String createNewCheckUp(@ModelAttribute("check_up") CheckUpRequestDto checkUpRequestDto) {
+        checkUpFacade.create(checkUpRequestDto);
+        return "redirect:/patients/dashboard";
+    }
+
     @GetMapping("/new/comprehensive")
-    public String comprehensive(Model model) {
+    public String newComprehensive(Model model) {
+        model.addAttribute("consultation", new ConsultationRequestDto());
         return "pages/patient/order/comprehensive";
+    }
+
+    @PostMapping("/new/comprehensive")
+    public String createConsultation(@ModelAttribute("consultation") ConsultationRequestDto consultationRequestDto) {
+        consultationOrderFacade.create(consultationRequestDto);
+        return "redirect:/patients/dashboard";
     }
 
     @GetMapping("/new")

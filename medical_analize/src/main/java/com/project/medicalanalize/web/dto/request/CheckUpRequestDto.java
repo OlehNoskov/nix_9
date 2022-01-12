@@ -1,40 +1,21 @@
-package com.project.medicalanalize.persistence.entity.order;
+package com.project.medicalanalize.web.dto.request;
 
-import com.project.medicalanalize.persistence.type.OrderType;
+public class CheckUpRequestDto extends RequestDto{
 
-import javax.persistence.*;
-
-@Entity
-@DiscriminatorValue("TRANSCRIPT")
-public class Transcript extends Order {
-
-    @Column(name = "price")
     private Integer price;
-
-    @Column(name = "bad_habits")
     private String badHabits;
-
-    @Column(name = "drugs_taken")
     private String drugsTaken;
-
-    @Column(name = "chronic_diseases")
     private String chronicDiseases;
-
-    @Column(name = "burglary_complaints")
     private String burglaryComplaints;
-
-    @Column(name = "hereditary_diseases")
     private String hereditary_diseases;
-
-    @Column(name = "features_nutrition")
     private String featuresNutrition;
 
-    @Column(name = "link_file")
-    private String file;
+    public Integer getPrice() {
+        return price;
+    }
 
-    public Transcript() {
-        super();
-        setOrderType(OrderType.TRANSCRIPT);
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public String getBadHabits() {
@@ -83,21 +64,5 @@ public class Transcript extends Order {
 
     public void setFeaturesNutrition(String featuresNutrition) {
         this.featuresNutrition = featuresNutrition;
-    }
-
-    public Integer getPrice() {
-        return 6;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
     }
 }

@@ -3,7 +3,7 @@ package com.project.medicalanalize.service.impl;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
-import com.project.medicalanalize.persistence.entity.order.Transcript;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.repository.order.TranscriptRepository;
 import com.project.medicalanalize.service.TranscriptService;
 
@@ -17,10 +17,10 @@ import java.util.Optional;
 @Service
 public class TranscriptServiceImpl implements TranscriptService {
 
-    private final CrudRepositoryHelper<Transcript, TranscriptRepository> transcriptRepositoryHelper;
+    private final CrudRepositoryHelper<TranscriptOrder, TranscriptRepository> transcriptRepositoryHelper;
     private final TranscriptRepository transcriptRepository;
 
-    public TranscriptServiceImpl(CrudRepositoryHelper<Transcript, TranscriptRepository> transcriptRepositoryHelper,
+    public TranscriptServiceImpl(CrudRepositoryHelper<TranscriptOrder, TranscriptRepository> transcriptRepositoryHelper,
                                  TranscriptRepository transcriptRepository) {
         this.transcriptRepositoryHelper = transcriptRepositoryHelper;
         this.transcriptRepository = transcriptRepository;
@@ -28,13 +28,13 @@ public class TranscriptServiceImpl implements TranscriptService {
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
-    public void create(Transcript entity) {
+    public void create(TranscriptOrder entity) {
         transcriptRepositoryHelper.create(transcriptRepository, entity);
     }
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
-    public void update(Transcript entity) {
+    public void update(TranscriptOrder entity) {
         transcriptRepositoryHelper.update(transcriptRepository, entity);
     }
 
@@ -46,13 +46,13 @@ public class TranscriptServiceImpl implements TranscriptService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Transcript> findById(Long id) {
+    public Optional<TranscriptOrder> findById(Long id) {
         return transcriptRepositoryHelper.findById(transcriptRepository, id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public DataTableResponse<Transcript> findAll(DataTableRequest request) {
+    public DataTableResponse<TranscriptOrder> findAll(DataTableRequest request) {
         return transcriptRepositoryHelper.findAll(transcriptRepository, request);
     }
 }
