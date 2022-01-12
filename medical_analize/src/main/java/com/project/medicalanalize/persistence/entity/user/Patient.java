@@ -1,5 +1,6 @@
 package com.project.medicalanalize.persistence.entity.user;
 
+import com.project.medicalanalize.persistence.entity.feedback.Feedback;
 import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
@@ -39,6 +40,9 @@ public class Patient extends User {
 
     @Enumerated(EnumType.STRING)
     private Country country;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Feedback> feedbacks;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order> orders;
@@ -127,10 +131,6 @@ public class Patient extends User {
 }
 
 
-
-
-
-
 //@Entity
 //@DiscriminatorValue("PATIENT")
 //public class Patient extends User {
@@ -176,7 +176,7 @@ public class Patient extends User {
 //    private Set<Order> orders;
 
 //    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patients")
-    //mappedBy = "patients" --> Set <Patient> patients in Doctor class
+//mappedBy = "patients" --> Set <Patient> patients in Doctor class
 //    private Set<Doctor> doctors;
 //
 //    public Patient() {
