@@ -110,4 +110,4 @@ public class TranscriptResponseDto extends ResponseDto {
 //    public void setDoctor(Doctor doctor) {
 //        this.doctor = doctor;
 //    }
-}
+}   

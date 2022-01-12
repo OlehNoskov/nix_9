@@ -7,9 +7,10 @@ public class TranscriptRequestDto extends RequestDto {
     private String drugsTaken;
     private String chronicDiseases;
     private String burglaryComplaints;
-    private String hereditary_diseases;
+    private String hereditary_diseases; //TODO
     private String featuresNutrition;
     private String file;
+
 //    private Patient patient;
 //    private Doctor doctor;
 

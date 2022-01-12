@@ -30,10 +30,10 @@ public class PatientCreateOrderController {
         return "pages/patient/order/transcript";
     }
 
-    @PostMapping("/new/transcript/{id}")
-    public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto dto) {
-        transcriptFacade.create(dto);
-        return "redirect:pages/patient/patient_dashboard";
+    @PostMapping("/new/transcript")
+    public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) {
+        transcriptFacade.create(transcriptRequestDto);
+        return "redirect:/patients/dashboard";
     }
 
 //    @PostMapping("/new/transcript")

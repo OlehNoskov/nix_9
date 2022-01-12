@@ -15,6 +15,7 @@ import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,6 +55,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         transcript.setHereditary_diseases(transcriptRequestDto.getHereditary_diseases());
         transcript.setFeaturesNutrition(transcriptRequestDto.getFeaturesNutrition());
         transcript.setFile(transcriptRequestDto.getFile());
+        transcript.setUpdated(new Timestamp(System.currentTimeMillis()));
 //        setterTranscript(transcriptRequestDto, transcript);
         transcriptService.update(transcript);
     }
