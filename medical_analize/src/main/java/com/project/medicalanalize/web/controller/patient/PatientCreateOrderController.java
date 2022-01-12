@@ -2,13 +2,14 @@ package com.project.medicalanalize.web.controller.patient;
 
 import com.project.medicalanalize.facade.PatientFacade;
 import com.project.medicalanalize.facade.TranscriptFacade;
+import com.project.medicalanalize.facade.UserFacade;
+import com.project.medicalanalize.persistence.entity.user.User;
+import com.project.medicalanalize.web.dto.request.PatientRequestDto;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
+import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 
@@ -18,14 +19,18 @@ public class PatientCreateOrderController {
 
     private final TranscriptFacade transcriptFacade;
     private final PatientFacade patientFacade;
+    private final UserFacade userFacade;
 
-    public PatientCreateOrderController(TranscriptFacade transcriptFacade, PatientFacade patientFacade) {
+    public PatientCreateOrderController(TranscriptFacade transcriptFacade, PatientFacade patientFacade, UserFacade userFacade) {
         this.transcriptFacade = transcriptFacade;
         this.patientFacade = patientFacade;
+        this.userFacade = userFacade;
     }
 
     @GetMapping("/new/transcript")
-    public String transcript(Model model) {
+    public String newTranscript(Model model) {
+//        PatientResponseDto patientResponseDto = patientFacade.findById(id);
+//        model.addAttribute("patient", patientResponseDto);
         model.addAttribute("transcript", new TranscriptRequestDto());
         return "pages/patient/order/transcript";
     }

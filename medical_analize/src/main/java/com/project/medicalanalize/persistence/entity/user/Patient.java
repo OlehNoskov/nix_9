@@ -4,8 +4,10 @@ import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
 import com.project.medicalanalize.persistence.repository.type.RoleType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +23,7 @@ public class Patient extends User {
     private String lastName;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "birth_day")
     private Date birthDay;
 
@@ -116,6 +119,10 @@ public class Patient extends User {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public String getDateBirthdayChangeFormat() {
+        return new SimpleDateFormat("dd/MM/yyyy").format(birthDay);
     }
 }
 
