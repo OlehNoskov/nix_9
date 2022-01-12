@@ -1,10 +1,12 @@
 package com.project.medicalanalize.web.dto.response;
 
+import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
 
 import java.util.Date;
+import java.util.Set;
 
 public class PatientResponseDto extends ResponseDto {
 
@@ -16,6 +18,7 @@ public class PatientResponseDto extends ResponseDto {
     private Integer height;
     private Integer weight;
     private Country country;
+    private Set<Order> orders;
 
     public PatientResponseDto() {
     }
@@ -33,6 +36,7 @@ public class PatientResponseDto extends ResponseDto {
         this.height = patient.getHeight();
         this.weight = patient.getWeight();
         this.country = patient.getCountry();
+        this.orders = patient.getOrders();
     }
 
     public String getFirstName() {
@@ -65,5 +69,13 @@ public class PatientResponseDto extends ResponseDto {
 
     public Country getCountry() {
         return country;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }

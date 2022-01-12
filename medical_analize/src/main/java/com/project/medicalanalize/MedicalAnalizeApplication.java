@@ -13,12 +13,13 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Calendar;
+import java.util.Date;
 
 
 @SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,
-        HibernateJpaAutoConfiguration.class })
+        HibernateJpaAutoConfiguration.class})
 public class MedicalAnalizeApplication {
 
     private final BCryptPasswordEncoder encoder;
@@ -38,6 +39,8 @@ public class MedicalAnalizeApplication {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(2021, 11, 24);
+        Date date = calendar.getTime();
+        System.out.println(date);
     }
 
     @EventListener(ApplicationReadyEvent.class)

@@ -1,8 +1,12 @@
 package com.project.medicalanalize.web.controller.patient;
 
+import com.project.medicalanalize.facade.PatientFacade;
+import com.project.medicalanalize.facade.TranscriptFacade;
+import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
@@ -12,15 +16,30 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping("/patient/order")
 public class PatientCreateOrderController {
 
+    private final TranscriptFacade transcriptFacade;
+    private final PatientFacade patientFacade;
+
+    public PatientCreateOrderController(TranscriptFacade transcriptFacade, PatientFacade patientFacade) {
+        this.transcriptFacade = transcriptFacade;
+        this.patientFacade = patientFacade;
+    }
+
     @GetMapping("/new/transcript")
     public String transcript(Model model) {
+        model.addAttribute("transcript", new TranscriptRequestDto());
         return "pages/patient/order/transcript";
     }
 
-    @PostMapping("/new/transcript")
-    public String newTranscriptPayment(Model model) {
-        return "redirect:pages/patient/new/order/payment";
+    @PostMapping("/new/transcript/{id}")
+    public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto dto) {
+        transcriptFacade.create(dto);
+        return "redirect:pages/patient/patient_dashboard";
     }
+
+//    @PostMapping("/new/transcript")
+//    public String newTranscriptPayment(Model model) {
+//        return "redirect:pages/patient/new/order/payment";
+//    }
 
     @GetMapping("/new/check-up")
     public String check_up(Model model) {
