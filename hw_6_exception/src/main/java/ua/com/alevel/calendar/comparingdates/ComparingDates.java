@@ -1,6 +1,5 @@
 package ua.com.alevel.calendar.comparingdates;
 
-import org.w3c.dom.ls.LSOutput;
 import ua.com.alevel.calendar.MainMenuProgram;
 import ua.com.alevel.calendar.createcalendar.CreationCalendarFormat;
 import ua.com.alevel.calendar.createcalendar.MenuCreationDateFormat;
