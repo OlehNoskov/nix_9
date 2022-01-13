@@ -4,7 +4,9 @@ import com.project.medicalanalize.facade.FeedbackFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.feedback.Feedback;
+import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.FeedbackService;
+import com.project.medicalanalize.service.PatientService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
@@ -22,15 +24,17 @@ import java.util.stream.Collectors;
 public class FeedbackFacadeImpl implements FeedbackFacade {
 
     private final FeedbackService feedbackService;
-
-    public FeedbackFacadeImpl(FeedbackService feedbackService) {
+    private final PatientService patientService;
+    public FeedbackFacadeImpl(FeedbackService feedbackService, PatientService patientService) {
         this.feedbackService = feedbackService;
+        this.patientService = patientService;
     }
 
     @Override
     public void create(FeedbackRequestDto feedbackRequestDto) {
         Feedback feedback = new Feedback();
         feedback.setFeedback(feedbackRequestDto.getFeedback());
+        feedback.setPatient(patientService.findById(feedbackRequestDto.getPatient().getId()).get());
         feedbackService.create(feedback);
     }
 

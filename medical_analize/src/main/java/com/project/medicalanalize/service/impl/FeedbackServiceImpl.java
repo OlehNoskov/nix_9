@@ -20,7 +20,8 @@ public class FeedbackServiceImpl implements FeedbackService {
     private final CrudRepositoryHelper<Feedback, FeedbackRepository> feedbackRepositoryHelper;
     private final FeedbackRepository feedbackRepository;
 
-    public FeedbackServiceImpl(CrudRepositoryHelper<Feedback, FeedbackRepository> feedbackRepositoryHelper, FeedbackRepository feedbackRepository) {
+    public FeedbackServiceImpl(CrudRepositoryHelper<Feedback, FeedbackRepository> feedbackRepositoryHelper,
+                               FeedbackRepository feedbackRepository) {
         this.feedbackRepositoryHelper = feedbackRepositoryHelper;
         this.feedbackRepository = feedbackRepository;
     }

@@ -275,6 +275,12 @@
                     </div>
                 </div>
                 <div class="row py-2">
+                    <div class="form-group col-md-10 col-xl-10 col-12">
+                        <label for="complaints">Your complaints <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="complaints" rows="3" th:field="*{complaints}" required></textarea>
+                    </div>
+                </div>
+                <div class="row py-2">
                     <div class="col-md-3 pb-4 border-bottom">
                         <p>Upload file with analyses</p>
                         <input type="file" name="photo" multiple accept="image/*,image/jpeg/pdf">

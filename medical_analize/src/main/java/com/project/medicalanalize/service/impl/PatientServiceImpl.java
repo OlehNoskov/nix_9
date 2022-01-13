@@ -4,7 +4,11 @@ import com.project.medicalanalize.exception.EntityExistException;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
+import com.project.medicalanalize.persistence.entity.feedback.Feedback;
+import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import com.project.medicalanalize.persistence.repository.feedback.FeedbacksRepository;
+import com.project.medicalanalize.persistence.repository.order.OrderRepository;
 import com.project.medicalanalize.persistence.repository.user.PatientRepository;
 import com.project.medicalanalize.service.PatientService;
 
@@ -22,13 +26,18 @@ public class PatientServiceImpl implements PatientService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final CrudRepositoryHelper<Patient, PatientRepository> patientRepositoryHelper;
     private final PatientRepository patientRepository;
+    private final OrderRepository orderRepository;
+    private final FeedbacksRepository feedbacksRepository;
 
     public PatientServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder,
                               CrudRepositoryHelper<Patient, PatientRepository> patientRepositoryHelper,
-                              PatientRepository patientRepository) {
+                              PatientRepository patientRepository,
+                              OrderRepository orderRepository, FeedbacksRepository feedbacksRepository) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.patientRepositoryHelper = patientRepositoryHelper;
         this.patientRepository = patientRepository;
+        this.orderRepository = orderRepository;
+        this.feedbacksRepository = feedbacksRepository;
     }
 
     @Override
@@ -63,5 +72,21 @@ public class PatientServiceImpl implements PatientService {
     @Transactional(readOnly = true)
     public DataTableResponse<Patient> findAll(DataTableRequest request) {
         return patientRepositoryHelper.findAll(patientRepository,request);
+    }
+
+    @Override
+    public void addOrder(Long patientId, Long orderId) {
+        Order order = (Order) orderRepository.getById(orderId);
+        Patient patient = findById(patientId).get();
+        patient.addOrder(order);
+        update(patient);
+    }
+
+    @Override
+    public void addFeedback(Long patientId, Long feedbackId) {
+        Feedback feedback = (Feedback) feedbacksRepository.getById(feedbackId);
+        Patient patient = findById(patientId).get();
+        patient.addFeedback(feedback);
+        update(patient);
     }
 }

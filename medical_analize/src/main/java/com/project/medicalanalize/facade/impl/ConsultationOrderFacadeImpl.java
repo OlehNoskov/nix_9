@@ -91,6 +91,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         consultationOrder.setBurglaryComplaints(consultationRequestDto.getBurglaryComplaints());
         consultationOrder.setHereditary_diseases(consultationRequestDto.getHereditary_diseases());
         consultationOrder.setFeaturesNutrition(consultationRequestDto.getFeaturesNutrition());
+        consultationOrder.setComplaints(consultationRequestDto.getComplaints());
         consultationOrder.setFile(consultationRequestDto.getFile());
         return consultationOrder;
     }

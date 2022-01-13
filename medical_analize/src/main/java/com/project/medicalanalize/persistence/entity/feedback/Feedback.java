@@ -30,6 +30,14 @@ public class Feedback extends BaseEntity {
         return getPatient().getFirstName();
     }
 
+    public void setNamePatient(String namePatient) {
+        this.namePatient = namePatient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     public Patient getPatient() {
         return patient;
     }

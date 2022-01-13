@@ -5,6 +5,7 @@ import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
 import com.project.medicalanalize.persistence.repository.type.RoleType;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -51,6 +52,7 @@ public class Patient extends User {
         super();
         setRoleType(RoleType.ROLE_PATIENT);
         this.orders = new HashSet<>();
+        this.feedbacks = new HashSet<>();
     }
 
     public String getFirstName() {
@@ -128,7 +130,27 @@ public class Patient extends User {
     public String getDateBirthdayChangeFormat() {
         return new SimpleDateFormat("dd/MM/yyyy").format(birthDay);
     }
+
+    public Set<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(Set<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
+        order.setPatient(this);
+    }
+
+    public void addFeedback(Feedback feedback) {
+        feedbacks.add(feedback);
+        feedback.setPatient(this);
+    }
 }
+
+
 
 
 //@Entity

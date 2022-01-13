@@ -91,6 +91,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         checkUp.setBurglaryComplaints(checkUpRequestDto.getBurglaryComplaints());
         checkUp.setHereditary_diseases(checkUpRequestDto.getHereditary_diseases());
         checkUp.setFeaturesNutrition(checkUpRequestDto.getFeaturesNutrition());
+        checkUp.setComplaints(checkUpRequestDto.getComplaints());
         return checkUp;
     }
 }

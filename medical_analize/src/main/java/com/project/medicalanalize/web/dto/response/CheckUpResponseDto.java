@@ -11,6 +11,7 @@ public class CheckUpResponseDto extends ResponseDto{
     private String burglaryComplaints;
     private String hereditary_diseases;
     private String featuresNutrition;
+    private String complaints;
 
     public CheckUpResponseDto(CheckUp checkUp) {
         setId(checkUp.getId());
@@ -24,6 +25,7 @@ public class CheckUpResponseDto extends ResponseDto{
         this.burglaryComplaints = checkUp.getBurglaryComplaints();
         this.hereditary_diseases = checkUp.getHereditary_diseases();
         this.featuresNutrition = checkUp.getFeaturesNutrition();
+        this.complaints = checkUp.getComplaints();
     }
 
     public Integer getPrice() {
@@ -52,5 +54,9 @@ public class CheckUpResponseDto extends ResponseDto{
 
     public String getFeaturesNutrition() {
         return featuresNutrition;
+    }
+
+    public String getComplaints() {
+        return complaints;
     }
 }

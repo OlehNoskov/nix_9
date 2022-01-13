@@ -9,6 +9,7 @@ public class CheckUpRequestDto extends RequestDto{
     private String burglaryComplaints;
     private String hereditary_diseases;
     private String featuresNutrition;
+    private String complaints;
 
     public Integer getPrice() {
         return price;
@@ -64,5 +65,13 @@ public class CheckUpRequestDto extends RequestDto{
 
     public void setFeaturesNutrition(String featuresNutrition) {
         this.featuresNutrition = featuresNutrition;
+    }
+
+    public String getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(String complaints) {
+        this.complaints = complaints;
     }
 }

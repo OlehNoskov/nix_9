@@ -277,7 +277,7 @@
                 <div class="row py-2">
                     <div class="form-group col-md-10 col-xl-10 col-12">
                         <label for="new_feedback">Your complaints <span class="text-danger">*</span></label>
-                        <textarea class="form-control" id="new_feedback" rows="3"></textarea>
+                        <textarea class="form-control" id="new_feedback" rows="3" th:field="*{complaints}"></textarea>
                     </div>
                     <div class="col-xl-2 col-md-2 payment">
                         <button class="btn btn-success mr-3" type="submit">Next</button>

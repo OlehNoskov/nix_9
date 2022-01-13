@@ -31,6 +31,9 @@ public class Order extends BaseEntity {
     @Column(name = "features_nutrition")
     private String featuresNutrition;
 
+    @Column(name = "complaints")
+    private String complaints;
+
     @Column(name = "link_file")
     private String file;
 
@@ -127,6 +130,14 @@ public class Order extends BaseEntity {
 
     public void setFeaturesNutrition(String featuresNutrition) {
         this.featuresNutrition = featuresNutrition;
+    }
+
+    public String getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(String complaints) {
+        this.complaints = complaints;
     }
 
     public String getFile() {
