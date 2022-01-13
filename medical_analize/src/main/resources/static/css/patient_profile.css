@@ -155,3 +155,12 @@ div.edit.a:hover {
 div.edit.a{
     padding-left: 50px ;
 }
+
+a.nav-item.nav-link:hover{
+    cursor: pointer;
+    text-decoration-line: underline;
+    color: #12ccc6;
+}
+a.nav-item.nav-link {
+    color: white;
+}

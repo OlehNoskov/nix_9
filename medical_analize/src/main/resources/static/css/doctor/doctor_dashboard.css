@@ -9,17 +9,11 @@ body {
     background: url('https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=CP9s91ybkKc966T') no-repeat center center fixed;
 }
 
-.wrapper {
-    padding: 30px 50px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    margin: 10px auto;
+a.nav-item.nav-link:hover{
+    cursor: pointer;
+    text-decoration-line: underline;
+    color: #12ccc6;
 }
-
-h1{
-    font-size: 40px;
-    color: #288dc2;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 20px;
+a.nav-item.nav-link {
+    color: white;
 }
