@@ -43,7 +43,7 @@ public class MedicalAnalizeApplication {
     public void listen() {
         if (!adminRepository.existsByEmail("admin@mail.com")) {
             Admin admin = new Admin();
-                admin.setEmail("admin@mail.com");
+                    admin.setEmail("admin@mail.com");
             admin.setPassword(encoder.encode("rootroot"));
             adminRepository.save(admin);
         }

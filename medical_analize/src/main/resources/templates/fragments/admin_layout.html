@@ -11,6 +11,7 @@
 <body>
 <div layout:fragment="auth_content">
     <div layout:fragment="admin_content">
+
         <div class="row">
             <div class="col-12">
                 <div class="card mb-2 mt-2">
@@ -118,8 +119,7 @@
         <form method="POST" th:action="@{${createUrl}}" id="personalSearch">
             <input type="submit"
                    id="personalSearchSubmit"
-                   style="visibility: hidden"
-            />
+                   style="visibility: hidden"/>
         </form>
 
         <span th:data-sort="${pageData.getSort()}"
@@ -130,11 +130,11 @@
     </span>
 
     </div>
+<!--</div>-->
 
-    <th:block layout:fragment="scripts">
-        <script type="text/javascript" th:src="@{/js/pagination.js}"></script>
-    </th:block>
+<th:block layout:fragment="scripts">
+    <script type="text/javascript" th:src="@{/js/pagination.js}"></script>
+</th:block>
 </div>
-
 </body>
 </html>
