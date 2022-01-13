@@ -4,8 +4,6 @@ import com.project.medicalanalize.exception.EntityExistException;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
-import com.project.medicalanalize.persistence.entity.feedback.Feedback;
-import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.persistence.repository.feedback.FeedbacksRepository;
 import com.project.medicalanalize.persistence.repository.order.OrderRepository;
@@ -73,20 +71,20 @@ public class PatientServiceImpl implements PatientService {
     public DataTableResponse<Patient> findAll(DataTableRequest request) {
         return patientRepositoryHelper.findAll(patientRepository,request);
     }
-
-    @Override
-    public void addOrder(Long patientId, Long orderId) {
-        Order order = (Order) orderRepository.getById(orderId);
-        Patient patient = findById(patientId).get();
-        patient.addOrder(order);
-        update(patient);
-    }
-
-    @Override
-    public void addFeedback(Long patientId, Long feedbackId) {
-        Feedback feedback = (Feedback) feedbacksRepository.getById(feedbackId);
-        Patient patient = findById(patientId).get();
-        patient.addFeedback(feedback);
-        update(patient);
-    }
+//
+//    @Override
+//    public void addOrder(Long patientId, Long orderId) {
+//        Order order = (Order) orderRepository.getById(orderId);
+//        Patient patient = findById(patientId).get();
+//        patient.addOrder(order);
+//        update(patient);
+//    }
+//
+//    @Override
+//    public void addFeedback(Long patientId, Long feedbackId) {
+//        Feedback feedback = (Feedback) feedbacksRepository.getById(feedbackId);
+//        Patient patient = findById(patientId).get();
+//        patient.addFeedback(feedback);
+//        update(patient);
+//    }
 }

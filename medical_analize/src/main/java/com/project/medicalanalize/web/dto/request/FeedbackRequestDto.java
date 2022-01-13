@@ -2,7 +2,7 @@ package com.project.medicalanalize.web.dto.request;
 
 import com.project.medicalanalize.persistence.entity.user.Patient;
 
-public class FeedbackRequestDto extends RequestDto{
+public class FeedbackRequestDto extends RequestDto {
 
     private String feedback;
     private Long patientId;
@@ -24,7 +24,7 @@ public class FeedbackRequestDto extends RequestDto{
         this.patientId = patientId;
     }
 
-        public Patient getPatient() {
+    public Patient getPatient() {
         return patient;
     }
 

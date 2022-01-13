@@ -6,7 +6,6 @@ import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.PatientService;
 import com.project.medicalanalize.util.WebRequestUtil;
-import com.project.medicalanalize.web.dto.request.LinkRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.PatientRequestDto;
 import com.project.medicalanalize.web.dto.request.SortData;
@@ -86,17 +85,17 @@ public class PatientFacadeImpl implements PatientFacade {
         return pageData;
     }
 
-    @Override
-    public void addOrder(LinkRequestDto linkRequestDto) {
-        Long patientId = linkRequestDto.getPatientId();
-        Long orderId = linkRequestDto.getOrderId();
-        patientService.addOrder(patientId, orderId);
-    }
-
-    @Override
-    public void addFeedback(LinkRequestDto linkRequestDto) {
-        Long patientId = linkRequestDto.getPatientId();
-        Long feedbackId = linkRequestDto.getFeedbackId();
-        patientService.addFeedback(patientId, feedbackId);
-    }
+//    @Override
+//    public void addOrder(LinkRequestDto linkRequestDto) {
+//        Long patientId = linkRequestDto.getPatientId();
+//        Long orderId = linkRequestDto.getOrderId();
+//        patientService.addOrder(patientId, orderId);
+//    }
+//
+//    @Override
+//    public void addFeedback(LinkRequestDto linkRequestDto) {
+//        Long patientId = linkRequestDto.getPatientId();
+//        Long feedbackId = linkRequestDto.getFeedbackId();
+//        patientService.addFeedback(patientId, feedbackId);
+//    }
 }

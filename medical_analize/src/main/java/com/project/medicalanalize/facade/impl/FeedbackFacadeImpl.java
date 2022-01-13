@@ -4,7 +4,6 @@ import com.project.medicalanalize.facade.FeedbackFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.feedback.Feedback;
-import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.FeedbackService;
 import com.project.medicalanalize.service.PatientService;
 import com.project.medicalanalize.util.WebRequestUtil;
