@@ -3,8 +3,10 @@ package com.project.medicalanalize.web.controller.patient;
 import com.project.medicalanalize.facade.FeedbackFacade;
 import com.project.medicalanalize.facade.PatientFacade;
 import com.project.medicalanalize.facade.UserFacade;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
 
+import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,9 @@ public class PatientFeedbackController {
 
     @GetMapping
     public String dashboard(Model model) {
+        User user = userFacade.getCurrentUser();
+        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
+        model.addAttribute("patient", patientResponseDto);
         return "pages/patient/feedback/feedback_all";
     }
 

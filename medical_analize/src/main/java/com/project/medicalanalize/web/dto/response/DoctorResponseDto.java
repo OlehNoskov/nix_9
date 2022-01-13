@@ -4,7 +4,6 @@ import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class DoctorResponseDto extends ResponseDto {

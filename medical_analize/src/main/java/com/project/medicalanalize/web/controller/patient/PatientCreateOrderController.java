@@ -1,10 +1,12 @@
 package com.project.medicalanalize.web.controller.patient;
 
 import com.project.medicalanalize.facade.*;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
 
+import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,26 +19,26 @@ public class PatientCreateOrderController {
     private final TranscriptFacade transcriptFacade;
     private final ConsultationOrderFacade consultationOrderFacade;
     private final CheckUpFacade checkUpFacade;
-    private final PatientFacade patientFacade;
     private final UserFacade userFacade;
+    private final PatientFacade patientFacade;
 
 
     public PatientCreateOrderController(TranscriptFacade transcriptFacade,
                                         ConsultationOrderFacade consultationOrderFacade,
                                         CheckUpFacade checkUpFacade,
-                                        PatientFacade patientFacade,
-                                        UserFacade userFacade) {
+                                        UserFacade userFacade, PatientFacade patientFacade) {
         this.transcriptFacade = transcriptFacade;
         this.consultationOrderFacade = consultationOrderFacade;
         this.checkUpFacade = checkUpFacade;
-        this.patientFacade = patientFacade;
         this.userFacade = userFacade;
+        this.patientFacade = patientFacade;
     }
 
     @GetMapping("/new/transcript")
     public String newTranscript(Model model) {
-//        PatientResponseDto patientResponseDto = patientFacade.findById(id);
-//        model.addAttribute("patient", patientResponseDto);
+        User user = userFacade.getCurrentUser();
+        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
+        model.addAttribute("patient", patientResponseDto);
         model.addAttribute("transcript", new TranscriptRequestDto());
         return "pages/patient/order/transcript";
     }

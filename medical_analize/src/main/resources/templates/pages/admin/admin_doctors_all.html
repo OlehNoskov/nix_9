@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorate="~{fragments/admin_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>All doctors</title>
+    <title>Doctors all</title>
     <link href="/css/admin/admin_dashboard.css" rel="stylesheet">
 </head>
+
 <body>
-<div layout:fragment="admin_content">
-    <h1>Page doctors</h1>
+<div layout:fragment="data_table_content">
+    <tr th:each="doctor,iter : ${pageData.getItems()}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${doctor.getFirstName()}"></td>
+        <td th:text="${doctor.getLastName()}"></td>
+        <td>
+            <a th:href="@{'/doctors/details/' + ${doctor.getId()}}" type="button" class="btn btn-primary">details</a>
+        </td>
+        <td>
+            <a th:href="@{'/doctors/update/' + ${doctor.getId()}}" type="button" class="btn btn-success">edit</a>
+        </td>
+        <td>
+            <a th:href="@{'/doctors/delete/' + ${doctor.getId()}}" type="button" class="btn btn-danger">delete</a>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

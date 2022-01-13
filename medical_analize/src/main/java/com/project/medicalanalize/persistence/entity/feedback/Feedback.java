@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Table(name = "feedbacks")
 public class Feedback extends BaseEntity {
 
-    @Column(name = "feedback")
+    @Lob
+    @Column(name = "feedback", length=512)
     private String feedback;
 
     @Transient

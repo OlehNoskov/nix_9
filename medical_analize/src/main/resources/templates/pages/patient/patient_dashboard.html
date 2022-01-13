@@ -31,22 +31,7 @@
 
 <body>
 <div layout:fragment="patient_content">
-<!--    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>-->
-<!--    <script>-->
-<!--        $(document).ready(function() {-->
-<!--            Swal.fire({-->
-<!--                title: 'Успешно!',-->
-<!--                html: 'Вы успешно вошли в кабинет', // или text-->
-<!--                type: 'success',-->
-<!--                confirmButtonText: 'Ок',-->
 
-<!--                buttonsStyling:!1,-->
-<!--                confirmButtonClass:"btn btn-lg btn-alt-success m-5",-->
-<!--                cancelButtonClass:"btn btn-lg btn-alt-danger m-5",-->
-<!--                inputClass:"form-control",-->
-<!--            })-->
-<!--        });-->
-<!--    </script>-->
     <div class="container-fluid mt-5">
         <div class="container p-5">
             <div class="row">
@@ -62,7 +47,8 @@
                                 Service cost: 6 $ (150 UAH or 450 RUB)
                             </p>
                             <a th:href="@{/patient/order/new/transcript}"
-                               class="btn btn-outline-info align-self-end btn btn-lg btn-block mt-auto">Decipher analysis</a>
+                               class="btn btn-outline-info align-self-end btn btn-lg btn-block mt-auto">Decipher
+                                analysis</a>
                         </div>
                     </div>
                 </div>
@@ -78,7 +64,8 @@
                                 Service cost: 8 $ (200 UAH or 600 RUB)
                             </p>
                             <a th:href="@{/patient/order/new/check-up}"
-                               class="btn btn-outline-warning align-self-end btn btn-lg btn-block mt-auto">Order Check-Up</a>
+                               class="btn btn-outline-warning align-self-end btn btn-lg btn-block mt-auto">Order
+                                Check-Up</a>
                         </div>
                     </div>
                 </div>
@@ -96,7 +83,8 @@
                                 Service cost: 12 $ (300 UAH or 850 RUB)
                             </p>
                             <a th:href="@{/patient/order/new/comprehensive}"
-                               class="btn btn-outline-success align-self-end btn btn-lg btn-block mt-auto">Order consultation</a>
+                               class="btn btn-outline-success align-self-end btn btn-lg btn-block mt-auto">Order
+                                consultation</a>
                         </div>
                     </div>
                 </div>

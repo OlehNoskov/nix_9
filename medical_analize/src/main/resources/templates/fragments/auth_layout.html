@@ -18,11 +18,12 @@
             </form>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <nav class="navbar navbar-dark bg-dark">
-<!--                    <a class="nav-item nav-link" th:href="@{/admin/dashboard}">Dashboard</a>-->
+                    <a class="nav-item nav-link" th:href="@{/admin/dashboard}">Dashboard</a>
                     <a class="nav-item nav-link" th:href="@{/admin/doctors}">Doctors</a>
                     <a class="nav-item nav-link" th:href="@{/admin/orders}">Orders</a>
                     <a class="nav-item nav-link" th:href="@{/admin/patients}">Patients</a>
-                    <a class="nav-item nav-link" onclick="document.forms['logoutForm'].submit()" style="cursor: pointer !important;">Logout</a>
+                    <a class="nav-item nav-link" onclick="document.forms['logoutForm'].submit()"
+                       style="cursor: pointer !important;">Logout</a>
                 </nav>
             </div>
 
@@ -30,17 +31,18 @@
             </div>
 
             <div sec:authorize="hasRole('ROLE_DOCTOR')">
-                                <nav class="navbar navbar-light bg-light">
-                                    <a class="nav-item nav-link" th:href="@{/doctors/dashboard}">
-                                        <img src="/img/logo.png" width="40" height="40" alt="logo">
-                                    </a>
-                                    <a class="nav-item nav-link" th:href="@{/doctors/profile}">Profile</a>
-                                    <form class="d-flex">
-                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search patient">
-                                        <button class="btn btn-outline-success" type="submit">Search</button>
-                                    </form>
-                                    <a class="nav-item nav-link" onclick="document.forms['logoutForm'].submit()" style="cursor: pointer !important;">Logout</a>
-                                </nav>
+                <nav class="navbar navbar-light bg-light">
+                    <a class="nav-item nav-link" th:href="@{/doctors/dashboard}">
+                        <img src="/img/logo.png" width="40" height="40" alt="logo">
+                    </a>
+                    <a class="nav-item nav-link" th:href="@{/doctors/profile}">Profile</a>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search patient">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <a class="nav-item nav-link" onclick="document.forms['logoutForm'].submit()"
+                       style="cursor: pointer !important;">Logout</a>
+                </nav>
             </div>
 
             <div class="row" th:if="${showMessage}">

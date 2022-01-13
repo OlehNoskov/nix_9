@@ -38,7 +38,8 @@ public class GroupController extends AbstractController {
     private HeaderName[] getColumnTitles() {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
-                new HeaderName("name", "name", "name"),
+                new HeaderName("firstname", "firstname", "firstname"),
+                new HeaderName("firstname", "firstname", "firstname"),
                 new HeaderName("details", null, null),
                 new HeaderName("edit", null, null),
                 new HeaderName("delete", null, null)
