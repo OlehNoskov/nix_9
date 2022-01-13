@@ -1,4 +1,4 @@
-package com.project.medicalanalize.web.controller.admin;
+package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.PatientFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
@@ -24,12 +24,12 @@ import java.util.Map;
 import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 
 @Controller
-@RequestMapping("/admin/patients")
-public class AdminPatientController  extends AbstractController{
+@RequestMapping("/doctors/patients")
+public class DoctorPatientController extends AbstractController {
 
     private final PatientFacade patientFacade;
 
-    public AdminPatientController(PatientFacade patientFacade) {
+    public DoctorPatientController(PatientFacade patientFacade) {
         this.patientFacade = patientFacade;
     }
 
@@ -52,10 +52,10 @@ public class AdminPatientController  extends AbstractController{
         List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
-        model.addAttribute("createUrl", "/admin/patients/all");
+        model.addAttribute("createUrl", "/doctors/patients/all");
         model.addAttribute("pageData", response);
-        model.addAttribute("cardHeader", "All Patients");
-        return "pages/admin/admin_patients_all";
+        model.addAttribute("cardHeader", "All patients");
+        return "pages/admin/admin_doctors_all";
 
     }
 
@@ -65,12 +65,12 @@ public class AdminPatientController  extends AbstractController{
         if (MapUtils.isNotEmpty(parameterMap)) {
             parameterMap.forEach(model::addAttribute);
         }
-        return new ModelAndView("redirect:/admin/patients", model);
+        return new ModelAndView("redirect:/doctors/patients", model);
     }
 
-    private List<HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<PatientResponseDto> response) {
-        List<HeaderData> headerDataList = new ArrayList<>();
-        for (HeaderName headerName : columnTitles) {
+    private List<AbstractController.HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<PatientResponseDto> response) {
+        List<AbstractController.HeaderData> headerDataList = new ArrayList<>();
+        for (AbstractController.HeaderName headerName : columnTitles) {
             HeaderData data = new HeaderData();
             data.setHeaderName(headerName.getColumnName());
             if (StringUtils.isBlank(headerName.getTableName())) {

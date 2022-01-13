@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Doctors all</title>
-    <link href="/css/admin/admin_dashboard.css" rel="stylesheet">
+    <link href="/css/doctor/doctor_dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
             <a th:href="@{'/patients/details/' + ${patient.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
         <td>
-            <a th:href="@{'/patients/update/' + ${patient.getId()}}" type="button" class="btn btn-warning">edit</a>
+            <a th:href="@{'/patients/update/' + ${patient.getId()}}" type="button" class="btn btn-success">edit</a>
         </td>
         <td>
             <a th:href="@{'/patients/delete/' + ${patient.getId()}}" type="button" class="btn btn-danger">delete</a>
@@ -28,23 +28,4 @@
     </tr>
 </div>
 </body>
-</html>
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en"-->
-<!--      xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      xmlns:th="http://www.thymeleaf.org"-->
-<!--      layout:decorate="~{fragments/admin_layout}">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>All patients</title>-->
-<!--    <link href="/css/admin/admin_dashboard.css" rel="stylesheet">-->
-<!--</head>-->
-<!--<body>-->
-<!--<div layout:fragment="admin_content">-->
-<!--    <h1>Page patients</h1>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
+</html
