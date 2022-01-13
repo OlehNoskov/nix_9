@@ -41,10 +41,11 @@ public class Order extends BaseEntity {
     @Column(name = "order_type", nullable = false)
     private OrderType orderType;
 
-    @ManyToOne(fetch= FetchType.LAZY, cascade= CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne(fetch= FetchType.LAZY, cascade= CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Doctor doctor;
 
     public Order() {

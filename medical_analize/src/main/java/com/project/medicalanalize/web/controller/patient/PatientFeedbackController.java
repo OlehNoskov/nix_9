@@ -1,6 +1,8 @@
 package com.project.medicalanalize.web.controller.patient;
 
 import com.project.medicalanalize.facade.FeedbackFacade;
+import com.project.medicalanalize.facade.PatientFacade;
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
 
 import org.springframework.stereotype.Controller;
@@ -11,10 +13,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/patient/feedback")
 public class PatientFeedbackController {
 
-        private final FeedbackFacade feedbackFacade;
+    private final FeedbackFacade feedbackFacade;
+    private final PatientFacade patientFacade;
+    private final UserFacade userFacade;
 
-    public PatientFeedbackController(FeedbackFacade feedbackFacade) {
+    public PatientFeedbackController(FeedbackFacade feedbackFacade, PatientFacade patientFacade, UserFacade userFacade) {
         this.feedbackFacade = feedbackFacade;
+        this.patientFacade = patientFacade;
+        this.userFacade = userFacade;
     }
 
     @GetMapping

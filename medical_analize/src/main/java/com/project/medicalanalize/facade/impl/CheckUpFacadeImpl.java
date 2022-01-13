@@ -1,9 +1,11 @@
 package com.project.medicalanalize.facade.impl;
 
 import com.project.medicalanalize.facade.CheckUpFacade;
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
+import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.CheckUpService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
@@ -23,15 +25,18 @@ import java.util.stream.Collectors;
 public class CheckUpFacadeImpl implements CheckUpFacade {
 
     private final CheckUpService checkUpService;
+    private final UserFacade userFacade;
 
-    public CheckUpFacadeImpl(CheckUpService checkUpService) {
+    public CheckUpFacadeImpl(CheckUpService checkUpService, UserFacade userFacade) {
         this.checkUpService = checkUpService;
+        this.userFacade = userFacade;
     }
 
     @Override
     public void create(CheckUpRequestDto checkUpRequestDto) {
         CheckUp checkUp = new CheckUp();
         setterFieldCheckUp(checkUpRequestDto, checkUp);
+        checkUp.setPatient((Patient) userFacade.getCurrentUser());
         checkUpService.create(checkUp);
     }
 

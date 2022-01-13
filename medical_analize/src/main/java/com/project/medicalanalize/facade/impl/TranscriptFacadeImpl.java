@@ -1,9 +1,11 @@
 package com.project.medicalanalize.facade.impl;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
+import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.TranscriptService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
@@ -23,15 +25,18 @@ import java.util.stream.Collectors;
 public class TranscriptFacadeImpl implements TranscriptFacade {
 
     private final TranscriptService transcriptService;
+    private final UserFacade userFacade;
 
-    public TranscriptFacadeImpl(TranscriptService transcriptService) {
+    public TranscriptFacadeImpl(TranscriptService transcriptService, UserFacade userFacade) {
         this.transcriptService = transcriptService;
+        this.userFacade = userFacade;
     }
 
     @Override
     public void create(TranscriptRequestDto transcriptRequestDto) {
         TranscriptOrder transcript = new TranscriptOrder();
         setterTranscript(transcriptRequestDto, transcript);
+        transcript.setPatient((Patient) userFacade.getCurrentUser());
         transcriptService.create(transcript);
     }
 

@@ -1,9 +1,11 @@
 package com.project.medicalanalize.facade.impl;
 
 import com.project.medicalanalize.facade.ConsultationOrderFacade;
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.ComprehensiveConsultationOrder;
+import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
@@ -23,15 +25,18 @@ import java.util.stream.Collectors;
 public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
 
     private final ComprehensiveConsultationOrderService consultationOrderService;
+    private final UserFacade userFacade;
 
-    public ConsultationOrderFacadeImpl(ComprehensiveConsultationOrderService consultationOrderService) {
+    public ConsultationOrderFacadeImpl(ComprehensiveConsultationOrderService consultationOrderService, UserFacade userFacade) {
         this.consultationOrderService = consultationOrderService;
+        this.userFacade = userFacade;
     }
 
     @Override
     public void create(ConsultationRequestDto consultationRequestDto) {
         ComprehensiveConsultationOrder consultationOrder = new ComprehensiveConsultationOrder();
         setterConsultation(consultationRequestDto, consultationOrder);
+        consultationOrder.setPatient((Patient) userFacade.getCurrentUser());
         consultationOrderService.create(consultationOrder);
     }
 

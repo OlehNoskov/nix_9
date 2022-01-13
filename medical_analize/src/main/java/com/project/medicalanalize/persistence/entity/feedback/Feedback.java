@@ -15,8 +15,8 @@ public class Feedback extends BaseEntity {
     @Transient
     private String namePatient;
 
-    @ManyToOne(fetch= FetchType.LAZY, cascade= CascadeType.ALL)
-    @JoinColumn(name="patient_id", nullable=false)
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     public String getFeedback() {

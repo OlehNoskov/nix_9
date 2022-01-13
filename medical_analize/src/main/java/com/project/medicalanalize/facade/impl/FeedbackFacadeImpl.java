@@ -1,11 +1,12 @@
 package com.project.medicalanalize.facade.impl;
 
 import com.project.medicalanalize.facade.FeedbackFacade;
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.feedback.Feedback;
+import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.FeedbackService;
-import com.project.medicalanalize.service.PatientService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
@@ -23,17 +24,18 @@ import java.util.stream.Collectors;
 public class FeedbackFacadeImpl implements FeedbackFacade {
 
     private final FeedbackService feedbackService;
-    private final PatientService patientService;
-    public FeedbackFacadeImpl(FeedbackService feedbackService, PatientService patientService) {
+    private final UserFacade userFacade;
+
+    public FeedbackFacadeImpl(FeedbackService feedbackService,UserFacade userFacade) {
         this.feedbackService = feedbackService;
-        this.patientService = patientService;
+        this.userFacade = userFacade;
     }
 
     @Override
     public void create(FeedbackRequestDto feedbackRequestDto) {
         Feedback feedback = new Feedback();
+        feedback.setPatient((Patient) userFacade.getCurrentUser());
         feedback.setFeedback(feedbackRequestDto.getFeedback());
-        feedback.setPatient(patientService.findById(feedbackRequestDto.getPatient().getId()).get());
         feedbackService.create(feedback);
     }
 
