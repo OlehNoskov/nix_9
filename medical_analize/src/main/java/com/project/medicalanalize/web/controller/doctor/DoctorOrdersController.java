@@ -1,11 +1,11 @@
 package com.project.medicalanalize.web.controller.doctor;
 
-import com.project.medicalanalize.facade.PatientFacade;
+import com.project.medicalanalize.facade.TranscriptFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.PageData;
-import com.project.medicalanalize.web.dto.response.PatientResponseDto;
-
+import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import org.apache.commons.collections4.MapUtils;
+
 import org.apache.commons.lang3.StringUtils;
 
 import org.springframework.stereotype.Controller;
@@ -24,39 +24,38 @@ import java.util.Map;
 import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 
 @Controller
-@RequestMapping("/doctors/patients")
-public class DoctorPatientController extends AbstractController {
+@RequestMapping("/doctors/transcript")
+public class DoctorOrdersController extends AbstractController {
 
-    private final PatientFacade patientFacade;
+    private final TranscriptFacade transcriptFacade;
 
-    public DoctorPatientController(PatientFacade patientFacade) {
-        this.patientFacade = patientFacade;
+    public DoctorOrdersController(TranscriptFacade transcriptFacade) {
+        this.transcriptFacade = transcriptFacade;
     }
 
-    private HeaderName[] getColumnTitles() {
+    private AbstractController.HeaderName[] getColumnTitles() {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
+                new HeaderName("created", "created", "created"),
+                new HeaderName("type", "type", "type"),
                 new HeaderName("firstname", "firstname", "firstname"),
-                new HeaderName("lastname", "lastname", "lastname"),
-                new HeaderName("details", null, null),
-                new HeaderName("edit", null, null),
-                new HeaderName("delete", null, null)
+//                new HeaderName("lastname", "lastname", "lastname"),
+                new HeaderName("add", null, null),
         };
     }
 
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData<PatientResponseDto> response = patientFacade.findAll(webRequest);
+        PageData<TranscriptResponseDto> response = transcriptFacade.findAll(webRequest);
         response.initPaginationState(response.getCurrentPage());
         List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
-        model.addAttribute("createUrl", "/doctors/patients/all");
+        model.addAttribute("createUrl", "/doctors/transcript/all");
         model.addAttribute("pageData", response);
-        model.addAttribute("cardHeader", "All patients");
-        return "pages/doctor/all_patients";
-
+        model.addAttribute("cardHeader", "All transcript");
+        return "pages/doctor/doctor_all_transcript";
     }
 
     @PostMapping("/all")
@@ -65,12 +64,12 @@ public class DoctorPatientController extends AbstractController {
         if (MapUtils.isNotEmpty(parameterMap)) {
             parameterMap.forEach(model::addAttribute);
         }
-        return new ModelAndView("redirect:/doctors/patients", model);
+        return new ModelAndView("redirect:/doctors/dashboard", model);
     }
 
-    private List<AbstractController.HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<PatientResponseDto> response) {
-        List<AbstractController.HeaderData> headerDataList = new ArrayList<>();
-        for (AbstractController.HeaderName headerName : columnTitles) {
+    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<TranscriptResponseDto> response) {
+        List<HeaderData> headerDataList = new ArrayList<>();
+        for (HeaderName headerName : columnTitles) {
             HeaderData data = new HeaderData();
             data.setHeaderName(headerName.getColumnName());
             if (StringUtils.isBlank(headerName.getTableName())) {
