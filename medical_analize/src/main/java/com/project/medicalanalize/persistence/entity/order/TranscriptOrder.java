@@ -23,5 +23,4 @@ public class TranscriptOrder extends Order {
     public void setPrice(Integer price) {
         this.price = price;
     }
-
 }

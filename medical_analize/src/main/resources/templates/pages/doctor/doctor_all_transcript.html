@@ -17,14 +17,14 @@
         <td th:text="${transcript.getCreated()}"></td>
         <td th:text="${transcript.getPrice()}"></td>
         <td>
-            <a th:href="@{'/order/details/' + ${transcript.getId()}}" type="button" class="btn btn-primary">details</a>
+            <a th:href="@{'doctors/transcript/add/' + ${transcript.getId()}}" type="button" class="btn btn-primary">add</a>
         </td>
-        <td>
-            <a th:href="@{'/order/update/' + ${transcript.getId()}}" type="button" class="btn btn-success">edit</a>
-        </td>
-        <td>
-            <a th:href="@{'/order/delete/' + ${transcript.getId()}}" type="button" class="btn btn-danger">delete</a>
-        </td>
+<!--        <td>-->
+<!--            <a th:href="@{'/order/update/' + ${transcript.getId()}}" type="button" class="btn btn-success">edit</a>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <a th:href="@{'/order/delete/' + ${transcript.getId()}}" type="button" class="btn btn-danger">delete</a>-->
+<!--        </td>-->
     </tr>
 </div>
 </body>

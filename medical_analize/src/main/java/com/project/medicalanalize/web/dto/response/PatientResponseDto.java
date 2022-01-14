@@ -29,8 +29,4 @@ public class PatientResponseDto extends UserResponseDto {
     public Set<Order> getOrders() {
         return orders;
     }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
 }
