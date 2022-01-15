@@ -36,12 +36,4 @@ public class GeneralBlood extends BaseEntity {
     public GeneralBlood() {
         super();
     }
-
-//    public TranscriptOrder getTranscript() {
-//        return transcript;
-//    }
-//
-//    public void setTranscript(TranscriptOrder transcript) {
-//        this.transcript = transcript;
-//    }
 }

@@ -3,18 +3,13 @@ package com.project.medicalanalize.facade.impl.typetranscript;
 import com.project.medicalanalize.facade.typetranscript.GeneralBloodFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
-import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.order.transcript.GeneralBlood;
-import com.project.medicalanalize.persistence.entity.user.Doctor;
-import com.project.medicalanalize.persistence.entity.user.Patient;
-import com.project.medicalanalize.service.TranscriptService;
 import com.project.medicalanalize.service.typetranscript.GeneralBloodService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.request.typetranscript.GeneralBloodRequestDto;
 import com.project.medicalanalize.web.dto.response.PageData;
-import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import com.project.medicalanalize.web.dto.response.typetranscript.GeneralBloodResponseDto;
 
 import org.springframework.stereotype.Service;
@@ -28,18 +23,16 @@ import java.util.stream.Collectors;
 @Service
 public class GeneralBloodFacadeImpl implements GeneralBloodFacade {
 
-    private final TranscriptService transcriptService;
     private final GeneralBloodService generalBloodService;
 
-    public GeneralBloodFacadeImpl(TranscriptService transcriptService, GeneralBloodService generalBloodService) {
-        this.transcriptService = transcriptService;
+    public GeneralBloodFacadeImpl(GeneralBloodService generalBloodService) {
         this.generalBloodService = generalBloodService;
     }
 
     @Override
     public void create(GeneralBloodRequestDto generalBloodRequestDto) {
         GeneralBlood generalBlood = new GeneralBlood();
-        setterFields(generalBloodRequestDto,generalBlood);
+        setterFields(generalBloodRequestDto, generalBlood);
         generalBlood.setTranscript(generalBloodRequestDto.getTranscriptOrder());
         generalBloodService.create(generalBlood);
     }
@@ -49,7 +42,7 @@ public class GeneralBloodFacadeImpl implements GeneralBloodFacade {
         GeneralBlood generalBlood = generalBloodService.findById(id).get();
         generalBlood.setId(id);
         generalBlood.setUpdated(new Timestamp(System.currentTimeMillis()));
-        setterFields(generalBloodRequestDto,generalBlood);
+        setterFields(generalBloodRequestDto, generalBlood);
         generalBloodService.update(generalBlood);
     }
 
@@ -93,20 +86,20 @@ public class GeneralBloodFacadeImpl implements GeneralBloodFacade {
     }
 
     private GeneralBlood setterFields(GeneralBloodRequestDto generalBloodRequestDto, GeneralBlood generalBlood) {
-       generalBlood.setHemoglobin(generalBloodRequestDto.getHemoglobin());
-       generalBlood.setErythrocytes(generalBloodRequestDto.getErythrocytes());
-       generalBlood.setReticulocytes(generalBloodRequestDto.getReticulocytes());
-       generalBlood.setPlatelets(generalBloodRequestDto.getPlatelets());
-       generalBlood.setLeukocytes(generalBloodRequestDto.getLeukocytes());
-       generalBlood.setSoe(generalBloodRequestDto.getSoe());
-       generalBlood.setMyelocytes(generalBloodRequestDto.getMyelocytes());
-       generalBlood.setMetamyelocytes(generalBloodRequestDto.getMetamyelocytes());
-       generalBlood.setStab(generalBloodRequestDto.getStab());
-       generalBlood.setSegmented_nuclear(generalBloodRequestDto.getSegmented_nuclear());
-       generalBlood.setEosinophils(generalBloodRequestDto.getEosinophils());
-       generalBlood.setBasophils(generalBloodRequestDto.getBasophils());
-       generalBlood.setLymphocytes(generalBloodRequestDto.getLymphocytes());
-       generalBlood.setMonocytes(generalBloodRequestDto.getMonocytes());
+        generalBlood.setHemoglobin(generalBloodRequestDto.getHemoglobin());
+        generalBlood.setErythrocytes(generalBloodRequestDto.getErythrocytes());
+        generalBlood.setReticulocytes(generalBloodRequestDto.getReticulocytes());
+        generalBlood.setPlatelets(generalBloodRequestDto.getPlatelets());
+        generalBlood.setLeukocytes(generalBloodRequestDto.getLeukocytes());
+        generalBlood.setSoe(generalBloodRequestDto.getSoe());
+        generalBlood.setMyelocytes(generalBloodRequestDto.getMyelocytes());
+        generalBlood.setMetamyelocytes(generalBloodRequestDto.getMetamyelocytes());
+        generalBlood.setStab(generalBloodRequestDto.getStab());
+        generalBlood.setSegmented_nuclear(generalBloodRequestDto.getSegmented_nuclear());
+        generalBlood.setEosinophils(generalBloodRequestDto.getEosinophils());
+        generalBlood.setBasophils(generalBloodRequestDto.getBasophils());
+        generalBlood.setLymphocytes(generalBloodRequestDto.getLymphocytes());
+        generalBlood.setMonocytes(generalBloodRequestDto.getMonocytes());
         return generalBlood;
     }
 }
