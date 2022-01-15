@@ -14,6 +14,7 @@
     <tr th:each="check_up,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
         <td th:text="${check_up.getCreated()}"></td>
+        <td th:text="${check_up.getNamePatient()}"></td>
         <td th:text="${check_up.getPrice()}"></td>
         <td>
             <a th:href="@{'doctors/check_up/add/' + ${check_up.getId()}}" type="button" class="btn btn-primary">Add</a>

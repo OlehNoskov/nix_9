@@ -15,6 +15,7 @@
     <tr th:each="transcript,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
         <td th:text="${transcript.getCreated()}"></td>
+        <td th:text="${transcript.getNamePatient()}"></td>
         <td th:text="${transcript.getPrice()}"></td>
         <td>
             <a th:href="@{'doctors/transcript/add/' + ${transcript.getId()}}" type="button" class="btn btn-primary">Add</a>

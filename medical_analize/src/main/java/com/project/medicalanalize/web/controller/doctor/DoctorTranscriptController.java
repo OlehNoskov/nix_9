@@ -4,8 +4,8 @@ import com.project.medicalanalize.facade.TranscriptFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
-import org.apache.commons.collections4.MapUtils;
 
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import org.springframework.stereotype.Controller;
@@ -37,8 +37,8 @@ public class DoctorTranscriptController extends AbstractController {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("created", "created", "created"),
-                new HeaderName("type", "type", "type"),
-                new HeaderName("firstname", "firstname", "firstname"),
+                new HeaderName("name patient", "firstname", "firstname"),
+                new HeaderName("price", "price", "price"),
                 new HeaderName("add", null, null),
         };
     }

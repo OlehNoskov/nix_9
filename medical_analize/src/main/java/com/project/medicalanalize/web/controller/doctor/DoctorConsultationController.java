@@ -36,8 +36,8 @@ public class DoctorConsultationController extends AbstractController {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("created", "created", "created"),
-                new HeaderName("type", "type", "type"),
-                new HeaderName("firstname", "firstname", "firstname"),
+                new HeaderName("name patient", "firstname", "firstname"),
+                new HeaderName("price", "price", "price"),
                 new HeaderName("add", null, null),
         };
     }

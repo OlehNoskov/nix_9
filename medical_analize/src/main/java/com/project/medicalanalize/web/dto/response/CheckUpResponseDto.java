@@ -3,7 +3,12 @@ package com.project.medicalanalize.web.dto.response;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import lombok.Getter;
 
+import java.util.Date;
+
 public class CheckUpResponseDto extends OrderResponseDto {
+
+    @Getter
+    private Date created;
 
     @Getter
     private Integer price;
@@ -12,7 +17,8 @@ public class CheckUpResponseDto extends OrderResponseDto {
     private String complaints;
 
     public CheckUpResponseDto(CheckUp checkUp) {
-        super();
+        super(checkUp);
+        this.created = checkUp.getCreated();
         this.price = checkUp.getPrice();
         this.complaints = checkUp.getComplaints();
     }
