@@ -14,7 +14,7 @@
 <div layout:fragment="data_table_content">
     <tr th:each="transcript,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
-        <td th:text="${transcript.getCreated()}"></td>
+        <td th:text="${#calendars.format(transcript.getCreated(),'dd MMMM yyyy')}"></td>
         <td th:text="${transcript.getNamePatient()}"></td>
         <td>
             <a th:href="@{'/transcript/details/' + ${transcript.getId()}}" type="button" class="btn btn-primary">details</a>

@@ -5,6 +5,7 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
+import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.TranscriptService;
 import com.project.medicalanalize.util.WebRequestUtil;
@@ -47,6 +48,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         transcript.setId(id);
         transcript.setUpdated(new Timestamp(System.currentTimeMillis()));
         setterTranscript(transcriptRequestDto, transcript);
+        transcript.setDoctor((Doctor) userFacade.getCurrentUser());
         transcriptService.update(transcript);
     }
 

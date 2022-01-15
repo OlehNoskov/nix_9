@@ -14,7 +14,7 @@
 <div layout:fragment="data_table_content">
     <tr th:each="consultation,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
-        <td th:text="${consultation.getCreated()}"></td>
+        <td th:text="${#calendars.format(consultation.getCreated(),'dd MMMM yyyy')}"></td>
         <td th:text="${consultation.getNamePatient()}"></td>
         <td th:text="${consultation.getPrice()}"></td>
         <td>
