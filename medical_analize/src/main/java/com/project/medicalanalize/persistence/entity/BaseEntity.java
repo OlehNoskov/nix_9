@@ -1,21 +1,33 @@
 package com.project.medicalanalize.persistence.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
 public abstract class BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @Getter
+    @Setter
     private Long id;
 
+    @Getter
+    @Setter
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
+    @Getter
+    @Setter
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
 
+    @Getter
+    @Setter
     private Boolean visible;
 
     public BaseEntity() {
@@ -27,37 +39,5 @@ public abstract class BaseEntity {
     @PreUpdate
     public void onPreUpdate() {
         this.updated = new Date();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
-
-    public Boolean getVisible() {
-        return visible;
-    }
-
-    public void setVisible(Boolean visible) {
-        this.visible = visible;
     }
 }
