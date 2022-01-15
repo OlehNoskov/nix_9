@@ -70,19 +70,4 @@ public class DoctorServiceImpl implements DoctorService {
     public DataTableResponse findAll(DataTableRequest request) {
         return doctorRepositoryHelper.findAll(doctorRepository, request);
     }
-
-    @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
-    public void addOrder(Long doctorId, Long orderId) {
-        Doctor doctor = doctorRepositoryHelper.findById(doctorRepository, doctorId).get();
-        Order order = simpleRepositoryCrudRepositoryHelper.findById(orderRepository, orderId).get();
-        doctor.addOrder(order);
-        doctorRepositoryHelper.update(doctorRepository, doctor);
-    }
-
-    @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
-    public void removeOrder(Long doctorId, Long orderId) {
-
-    }
 }

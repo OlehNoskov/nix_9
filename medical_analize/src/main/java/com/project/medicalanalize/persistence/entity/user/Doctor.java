@@ -24,13 +24,4 @@ public class Doctor extends User {
         setRoleType(RoleType.ROLE_DOCTOR);
         this.orders = new HashSet<>();
     }
-
-    public void addOrder(Order order){
-        orders.add(order);
-        order.getDoctor().addOrder(order);
-    }
-
-    public void removeOrder(Order order){
-        orders.remove(order);
-    }
 }

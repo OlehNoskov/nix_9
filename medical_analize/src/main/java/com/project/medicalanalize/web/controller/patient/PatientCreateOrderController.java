@@ -46,13 +46,24 @@ public class PatientCreateOrderController {
     @PostMapping("/new/transcript")
     public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) {
         transcriptFacade.create(transcriptRequestDto);
-        return "redirect:/patients/dashboard";
+        return "redirect:/patient/order/transcript/payment";
     }
 
-//    @PostMapping("/new/transcript")
-//    public String newTranscriptPayment(Model model) {
-//        return "redirect:pages/patient/new/order/payment";
-//    }
+    @GetMapping("/transcript/payment")
+    public String pagePaymentTranscript(Model model) {
+        return "pages/patient/payment";
+    }
+
+    @GetMapping("/check-up/payment")
+    public String pagePaymentCheckUp(Model model) {
+        return "pages/patient/payment";
+    }
+
+    @GetMapping("/consultation/payment")
+    public String pagePaymentConsultation(Model model) {
+        return "pages/patient/payment";
+    }
+
 
     @GetMapping("/new/check-up")
     public String newCheckUp(Model model) {
@@ -63,7 +74,7 @@ public class PatientCreateOrderController {
     @PostMapping("/new/check-up")
     public String createNewCheckUp(@ModelAttribute("check_up") CheckUpRequestDto checkUpRequestDto) {
         checkUpFacade.create(checkUpRequestDto);
-        return "redirect:/patients/dashboard";
+        return "redirect:/patient/order/check-up/payment";
     }
 
     @GetMapping("/new/comprehensive")
@@ -75,7 +86,7 @@ public class PatientCreateOrderController {
     @PostMapping("/new/comprehensive")
     public String createConsultation(@ModelAttribute("consultation") ConsultationRequestDto consultationRequestDto) {
         consultationOrderFacade.create(consultationRequestDto);
-        return "redirect:/patients/dashboard";
+        return "redirect:/patient/order/consultation/payment";
     }
 
     @GetMapping("/new")
@@ -91,10 +102,5 @@ public class PatientCreateOrderController {
     @GetMapping("/success/all")
     public String allSuccessOrders(Model model, WebRequest webRequest) {
         return "pages/patient/order/success_all_orders";
-    }
-
-    @GetMapping("/review/all")
-    public String allReviewOrders(Model model, WebRequest webRequest) {
-        return "pages/patient/order/review_all_orders";
     }
 }

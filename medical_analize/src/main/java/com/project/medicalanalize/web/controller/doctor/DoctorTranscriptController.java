@@ -88,4 +88,17 @@ public class DoctorTranscriptController extends AbstractController {
         }
         return headerDataList;
     }
+
+    //    @GetMapping("/transcript/add/{id}")
+//    public String addGetOrder(@PathVariable Long id, Model model) {
+//        DoctorResponseDto doctorResponseDto = doctorFacade.findById(id);
+//        model.addAttribute("doctor", doctorResponseDto);
+//        return "pages/doctor/doctor_all_transcript";
+//    }
+
+//    @PostMapping("/transcript/add/{id}")
+//    public String addOrder(@PathVariable Long id, @ModelAttribute("doctor") DoctorRequestDto doctorRequestDto) throws ParseException {
+//        doctorFacade.update(doctorRequestDto, id);
+//        return "redirect:/doctors/dashboard";
+//    }
 }

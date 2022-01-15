@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/patient/new/order/")
 public class PaymentController {
 
-    @GetMapping("/payment")
-    public String pagePayment(Model model) {
-        return "pages/patient/payment";
-    }
-
     @PostMapping("/payment")
     public String pagePaymentRedirect(Model model) {
         return "redirect:/patient/new order/payment/successful";
