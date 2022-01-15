@@ -19,17 +19,16 @@
                         <h3 class="mb-4">Credit Card Checkout</h3>
                     </div>
                     <div class="row">
-                        <!--                        <form action="#" th:action="@{'/groups/update/' + ${group.getId()}}" th:object="${group}" method="post" enctype="multipart/form-data">-->
                         <div class="col-sm-7 border-line pb-3">
                             <div class="form-group">
                                 <p class="text-muted text-sm mb-0">Name on the card</p>
-                                <input type="text" name="name" placeholder="Name" size="15">
+                                <input type="text" name="name" placeholder="Name" size="15" required>
                             </div>
                             <div class="form-group">
                                 <p class="text-muted text-sm mb-0">Card Number</p>
                                 <div class="row px-3"><input type="text" name="card-num"
                                                              placeholder="0000 0000 0000 0000" size="18" id="cr_no"
-                                                             minlength="19" maxlength="19">
+                                                             minlength="19" maxlength="19" required>
                                     <p class="mb-0 ml-3">/</p> <img class="image ml-1"
                                                                     src="https://i.imgur.com/WIAP9Ku.jpg">
                                 </div>
@@ -38,12 +37,12 @@
                                 <p class="text-muted text-sm mb-0">Expiry date</p> <input type="text" name="exp"
                                                                                           placeholder="MM/YY" size="6"
                                                                                           id="exp" minlength="5"
-                                                                                          maxlength="5">
+                                                                                          maxlength="5" required>
                             </div>
                             <div class="form-group">
                                 <p class="text-muted text-sm mb-0">CVV/CVC</p> <input type="password" name="cvv"
                                                                                       placeholder="000" size="1"
-                                                                                      minlength="3" maxlength="3">
+                                                                                      minlength="3" maxlength="3" required>
                             </div>
                             <div class="form-group mb-0">
                                 <div class="custom-control custom-checkbox custom-control-inline"><input id="chk1"
@@ -56,16 +55,16 @@
                             </div>
                         </div>
                         <div class="col-sm-5 text-sm-center justify-content-center pt-4 pb-4">
-                            <!--                            <small class="text-sm text-muted">Order number</small>-->
-                            <!--                            <h5 class="mb-5">12345678</h5> -->
                             <small class="text-sm text-muted">Payment amount</small>
                             <div class="row px-3 justify-content-sm-center">
-                                <h2 class=""><span class="text-md font-weight-bold mr-2">$</span><span
-                                        class="text-danger">12</span></h2>
+                                <h2 class="">
+                                    <span class="text-md font-weight-bold mr-2">$</span>
+                                    <span class="text-danger">12</span>
+                                </h2>
                             </div>
-                            <button type="submit" class="btn btn-red text-center mt-4">PAY</button>
+                            <a th:href="@{/patients/dashboard/}" type="button"
+                               class="btn btn-red text-center mt-4">Pay</a>
                         </div>
-<!--                        </form>-->
                     </div>
                 </div>
             </div>

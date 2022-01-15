@@ -51,6 +51,7 @@ public class PatientCreateOrderController {
 
     @GetMapping("/transcript/payment")
     public String pagePaymentTranscript(Model model) {
+        model.addAttribute("transcript", new TranscriptRequestDto());
         return "pages/patient/payment";
     }
 
