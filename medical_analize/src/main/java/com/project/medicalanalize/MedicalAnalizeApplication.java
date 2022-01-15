@@ -12,8 +12,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 

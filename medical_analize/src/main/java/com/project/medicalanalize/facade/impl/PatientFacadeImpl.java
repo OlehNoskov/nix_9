@@ -44,7 +44,7 @@ public class PatientFacadeImpl implements PatientFacade {
         patient.setFirstName(patientRequestDto.getFirstName());
         patient.setLastName(patientRequestDto.getLastName());
         patient.setBirthDay(patientRequestDto.getBirthDay());
-//        System.out.println(dateFormatter(patientRequestDto.getBirthDay()));
+ //       System.out.println(dateFormatter(patientRequestDto.getBirthDay())); //TODO
         patient.setSex(patientRequestDto.getSex());
         patient.setCountry(patientRequestDto.getCountry());
         patient.setHeight(patientRequestDto.getHeight());
