@@ -1,43 +1,22 @@
 package com.project.medicalanalize.web.dto.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 public abstract class ResponseDto {
 
+    @Getter
+    @Setter
     private long id;
+    @Getter
+    @Setter
     private Date created;
+    @Getter
+    @Setter
     private Date updated;
+    @Getter
+    @Setter
     private boolean visible;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
 }

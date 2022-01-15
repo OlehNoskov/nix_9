@@ -1,6 +1,7 @@
 package com.project.medicalanalize.persistence.entity.order;
 
 import com.project.medicalanalize.persistence.type.OrderType;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @DiscriminatorValue("TRANSCRIPT")
 public class TranscriptOrder extends Order {
 
+    @Setter
     @Column(name = "price")
     private Integer price;
 
@@ -18,9 +20,5 @@ public class TranscriptOrder extends Order {
 
     public Integer getPrice() {
         return 6;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
     }
 }

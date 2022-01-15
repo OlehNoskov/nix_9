@@ -9,7 +9,6 @@
     <title>Doctors all</title>
     <link href="/css/doctor/doctor_dashboard.css" rel="stylesheet">
 </head>
-
 <body>
 <div layout:fragment="data_table_content">
     <tr th:each="check_up,iter : ${pageData.getItems()}">
@@ -17,15 +16,10 @@
         <td th:text="${check_up.getCreated()}"></td>
         <td th:text="${check_up.getPrice()}"></td>
         <td>
-            <a th:href="@{'/order/details/' + ${transcript.getId()}}" type="button" class="btn btn-primary">details</a>
-        </td>
-        <td>
-            <a th:href="@{'/order/update/' + ${transcript.getId()}}" type="button" class="btn btn-success">edit</a>
-        </td>
-        <td>
-            <a th:href="@{'/order/delete/' + ${transcript.getId()}}" type="button" class="btn btn-danger">delete</a>
+            <a th:href="@{'doctors/check_up/add/' + ${check_up.getId()}}" type="button" class="btn btn-primary">Add</a>
         </td>
     </tr>
 </div>
+
 </body>
 </html>

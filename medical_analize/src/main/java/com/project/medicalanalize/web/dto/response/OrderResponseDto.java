@@ -1,12 +1,20 @@
 package com.project.medicalanalize.web.dto.response;
 
+import lombok.Getter;
+
 public class OrderResponseDto extends ResponseDto {
 
+    @Getter
     private String badHabits;
+    @Getter
     private String drugsTaken;
+    @Getter
     private String chronicDiseases;
+    @Getter
     private String burglaryComplaints;
+    @Getter
     private String hereditary_diseases;
+    @Getter
     private String featuresNutrition;
 
     public OrderResponseDto() {
@@ -16,29 +24,5 @@ public class OrderResponseDto extends ResponseDto {
         this.burglaryComplaints = getBurglaryComplaints();
         this.hereditary_diseases = getHereditary_diseases();
         this.featuresNutrition = getFeaturesNutrition();
-    }
-
-    public String getBadHabits() {
-        return badHabits;
-    }
-
-    public String getDrugsTaken() {
-        return drugsTaken;
-    }
-
-    public String getChronicDiseases() {
-        return chronicDiseases;
-    }
-
-    public String getBurglaryComplaints() {
-        return burglaryComplaints;
-    }
-
-    public String getHereditary_diseases() {
-        return hereditary_diseases;
-    }
-
-    public String getFeaturesNutrition() {
-        return featuresNutrition;
     }
 }

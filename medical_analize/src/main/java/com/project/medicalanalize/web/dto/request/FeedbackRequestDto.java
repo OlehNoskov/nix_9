@@ -1,34 +1,18 @@
 package com.project.medicalanalize.web.dto.request;
 
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import lombok.Getter;
+import lombok.Setter;
 
 public class FeedbackRequestDto extends RequestDto {
 
+    @Getter
+    @Setter
     private String feedback;
+    @Getter
+    @Setter
     private Long patientId;
+    @Getter
+    @Setter
     private Patient patient;
-
-    public String getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
-
-    public Long getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
 }

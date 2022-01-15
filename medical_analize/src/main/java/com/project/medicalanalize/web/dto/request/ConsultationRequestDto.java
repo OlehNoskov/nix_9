@@ -1,23 +1,14 @@
 package com.project.medicalanalize.web.dto.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class ConsultationRequestDto extends OrderRequestDto {
 
+    @Getter
+    @Setter
     private String complaints;
+    @Getter
+    @Setter
     private String file;
-
-    public String getComplaints() {
-        return complaints;
-    }
-
-    public void setComplaints(String complaints) {
-        this.complaints = complaints;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
 }

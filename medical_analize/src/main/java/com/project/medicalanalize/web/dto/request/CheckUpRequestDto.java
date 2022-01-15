@@ -1,14 +1,11 @@
 package com.project.medicalanalize.web.dto.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class CheckUpRequestDto extends OrderRequestDto{
 
+    @Getter
+    @Setter
     private String complaints;
-
-    public String getComplaints() {
-        return complaints;
-    }
-
-    public void setComplaints(String complaints) {
-        this.complaints = complaints;
-    }
 }

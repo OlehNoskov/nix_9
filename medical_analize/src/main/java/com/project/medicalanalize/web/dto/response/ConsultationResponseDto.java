@@ -1,11 +1,15 @@
 package com.project.medicalanalize.web.dto.response;
 
 import com.project.medicalanalize.persistence.entity.order.ComprehensiveConsultationOrder;
+import lombok.Getter;
 
 public class ConsultationResponseDto extends OrderResponseDto {
 
+    @Getter
     private Integer price;
+    @Getter
     private String complaints;
+    @Getter
     private String file;
 
     public ConsultationResponseDto(ComprehensiveConsultationOrder consultationOrder) {
@@ -13,17 +17,5 @@ public class ConsultationResponseDto extends OrderResponseDto {
         this.price = consultationOrder.getPrice();
         this.complaints = consultationOrder.getComplaints();
         this.file = consultationOrder.getFile();
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public String getComplaints() {
-        return complaints;
-    }
-
-    public String getFile() {
-        return file;
     }
 }
