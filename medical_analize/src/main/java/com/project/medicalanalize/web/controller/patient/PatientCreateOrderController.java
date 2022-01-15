@@ -34,22 +34,13 @@ public class PatientCreateOrderController {
         this.patientFacade = patientFacade;
     }
 
-//    @GetMapping("/new/transcript")
-//    public String newTranscript(Model model) {
-//        User user = userFacade.getCurrentUser();
-//        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
-//        model.addAttribute("patient", patientResponseDto);
-//        model.addAttribute("transcript", new TranscriptRequestDto());
-//        return "pages/patient/order/transcript";
-//    }
-
     @GetMapping("/new/transcript")
     public String newTranscript(Model model) {
         User user = userFacade.getCurrentUser();
         PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
         model.addAttribute("patient", patientResponseDto);
         model.addAttribute("transcript", new TranscriptRequestDto());
-        return "pages/patient/order/transcript/general_blood_analysis";
+        return "pages/patient/order/transcript";
     }
 
     @PostMapping("/new/transcript")
