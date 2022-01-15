@@ -29,13 +29,6 @@
     </properties>
 
     <dependencies>
-        <!-- aws s3 -->
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk</artifactId>
-            <version>1.11.486</version>
-        </dependency>
-
         <!-- spring-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

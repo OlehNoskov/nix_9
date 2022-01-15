@@ -21,7 +21,8 @@ public class DoctorController {
     private final UserFacade userFacade;
     private final TranscriptFacade transcriptFacade;
 
-    public DoctorController(DoctorFacade doctorFacade, UserFacade userFacade, TranscriptFacade transcriptFacade) {
+    public DoctorController(DoctorFacade doctorFacade, UserFacade userFacade,
+                            TranscriptFacade transcriptFacade) {
         this.doctorFacade = doctorFacade;
         this.userFacade = userFacade;
         this.transcriptFacade = transcriptFacade;

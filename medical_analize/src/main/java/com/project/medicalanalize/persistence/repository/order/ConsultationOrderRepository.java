@@ -5,5 +5,5 @@ import com.project.medicalanalize.persistence.entity.order.ComprehensiveConsulta
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ComprehensiveConsultationOrderRepository extends OrderRepository<ComprehensiveConsultationOrder>{
+public interface ConsultationOrderRepository extends OrderRepository<ComprehensiveConsultationOrder>{
 }

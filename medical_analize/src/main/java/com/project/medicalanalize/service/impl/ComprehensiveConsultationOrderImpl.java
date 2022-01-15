@@ -4,7 +4,7 @@ import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.ComprehensiveConsultationOrder;
-import com.project.medicalanalize.persistence.repository.order.ComprehensiveConsultationOrderRepository;
+import com.project.medicalanalize.persistence.repository.order.ConsultationOrderRepository;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 
 import org.springframework.stereotype.Service;
@@ -17,10 +17,10 @@ import java.util.Optional;
 @Service
 public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsultationOrderService {
 
-    private final CrudRepositoryHelper<ComprehensiveConsultationOrder, ComprehensiveConsultationOrderRepository> consultationRepositoryHelper;
-    private final ComprehensiveConsultationOrderRepository consultationOrderRepository;
+    private final CrudRepositoryHelper<ComprehensiveConsultationOrder, ConsultationOrderRepository> consultationRepositoryHelper;
+    private final ConsultationOrderRepository consultationOrderRepository;
 
-    public ComprehensiveConsultationOrderImpl(CrudRepositoryHelper<ComprehensiveConsultationOrder, ComprehensiveConsultationOrderRepository> consultationRepositoryHelper, ComprehensiveConsultationOrderRepository consultationOrderRepository) {
+    public ComprehensiveConsultationOrderImpl(CrudRepositoryHelper<ComprehensiveConsultationOrder, ConsultationOrderRepository> consultationRepositoryHelper, ConsultationOrderRepository consultationOrderRepository) {
         this.consultationRepositoryHelper = consultationRepositoryHelper;
         this.consultationOrderRepository = consultationOrderRepository;
     }

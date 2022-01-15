@@ -28,7 +28,6 @@ public class UserResponseDto extends ResponseDto {
     private Country country;
 
     public UserResponseDto(User user) {
-
         setId(user.getId());
         setCreated(user.getCreated());
         setUpdated(user.getUpdated());

@@ -1,6 +1,7 @@
 package com.project.medicalanalize.web.dto.response;
 
 import com.project.medicalanalize.persistence.entity.order.Order;
+import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import lombok.Getter;
 
@@ -29,6 +30,9 @@ public class OrderResponseDto extends ResponseDto {
 
     @Getter
     private Patient patient;
+
+    @Getter
+    private Doctor doctor;
 
     private String namePatient;
 

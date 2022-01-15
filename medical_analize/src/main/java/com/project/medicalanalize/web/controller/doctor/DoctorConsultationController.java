@@ -2,11 +2,12 @@ package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.ConsultationOrderFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
-import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
+
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
