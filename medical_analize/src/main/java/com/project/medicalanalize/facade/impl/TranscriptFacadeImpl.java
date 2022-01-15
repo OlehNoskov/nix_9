@@ -49,6 +49,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         transcript.setUpdated(new Timestamp(System.currentTimeMillis()));
         setterTranscript(transcriptRequestDto, transcript);
         transcript.setDoctor((Doctor) userFacade.getCurrentUser());
+        transcript.setAnswer(transcriptRequestDto.getAnswer());
         transcriptService.update(transcript);
     }
 
@@ -101,6 +102,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         transcript.setHereditary_diseases(transcriptRequestDto.getHereditary_diseases());
         transcript.setFeaturesNutrition(transcriptRequestDto.getFeaturesNutrition());
         transcript.setFile(transcriptRequestDto.getFile());
+        transcript.setAnswer(transcriptRequestDto.getAnswer());
         return transcript;
     }
 }
