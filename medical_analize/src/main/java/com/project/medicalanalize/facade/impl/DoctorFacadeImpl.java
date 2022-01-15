@@ -3,8 +3,10 @@ package com.project.medicalanalize.facade.impl;
 import com.project.medicalanalize.facade.DoctorFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
+import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.service.DoctorService;
+import com.project.medicalanalize.service.OrderService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
@@ -22,9 +24,11 @@ import java.util.stream.Collectors;
 public class DoctorFacadeImpl implements DoctorFacade {
 
     private final DoctorService doctorService;
+    private final OrderService orderService;
 
-    public DoctorFacadeImpl(DoctorService doctorService) {
+    public DoctorFacadeImpl(DoctorService doctorService, OrderService orderService) {
         this.doctorService = doctorService;
+        this.orderService = orderService;
     }
 
     @Override
@@ -42,6 +46,7 @@ public class DoctorFacadeImpl implements DoctorFacade {
         doctor.setSex(doctorRequestDto.getSex());
         doctor.setCountry(doctorRequestDto.getCountry());
         doctor.setPhone(doctorRequestDto.getPhone());
+        doctor.setOrders(doctorRequestDto.getOrders());
         doctorService.update(doctor);
     }
 
@@ -82,5 +87,13 @@ public class DoctorFacadeImpl implements DoctorFacade {
         pageData.setItemsSize(all.getItemsSize());
         pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
+    }
+
+    @Override
+    public void addOrder(Long doctorId, Long orderId) {
+        Doctor doctor = doctorService.findById(doctorId).get();
+        Order order = orderService.findById(orderId).get();
+        doctor.addOrder(order);
+        doctorService.update(doctor);
     }
 }
