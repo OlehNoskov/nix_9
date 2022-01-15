@@ -45,6 +45,7 @@ public class OrderResponseDto extends ResponseDto {
         this.burglaryComplaints = order.getBurglaryComplaints();
         this.hereditary_diseases = order.getHereditary_diseases();
         this.featuresNutrition = order.getFeaturesNutrition();
+        this.answer = order.getAnswer();
         this.patient = order.getPatient();
     }
 
