@@ -38,6 +38,7 @@ public class OrderResponseDto extends ResponseDto {
 
     public OrderResponseDto(Order order) {
         super();
+        setId(order.getId());
         this.badHabits = order.getBadHabits();
         this.drugsTaken = order.getDrugsTaken();
         this.chronicDiseases = order.getChronicDiseases();

@@ -7,7 +7,6 @@ import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
 import com.project.medicalanalize.web.dto.response.DoctorResponseDto;
 
-import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,12 +52,5 @@ public class DoctorController {
     public String updateDoctor(@PathVariable Long id, @ModelAttribute("doctor") DoctorRequestDto doctorRequestDto) throws ParseException {
         doctorFacade.update(doctorRequestDto, id);
         return "redirect:/doctors/dashboard";
-    }
-
-    @GetMapping("/transcript/details/{id}")
-    public String detailsTranscript(@PathVariable Long id, Model model) {
-        TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(id);
-        model.addAttribute("transcript", transcriptResponseDto);
-        return "pages/doctor/transcript_details";
     }
 }

@@ -2,6 +2,8 @@ package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
+import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
+import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 
@@ -11,12 +13,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -89,16 +90,16 @@ public class DoctorTranscriptController extends AbstractController {
         return headerDataList;
     }
 
-    //    @GetMapping("/transcript/add/{id}")
-//    public String addGetOrder(@PathVariable Long id, Model model) {
-//        DoctorResponseDto doctorResponseDto = doctorFacade.findById(id);
-//        model.addAttribute("doctor", doctorResponseDto);
-//        return "pages/doctor/doctor_all_transcript";
-//    }
+    @GetMapping("/details/{id}")
+    public String detailsTranscript(@PathVariable Long id, Model model) {
+        TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(id);
+        model.addAttribute("transcript", transcriptResponseDto);
+        return "pages/doctor/transcript_details";
+    }
 
-//    @PostMapping("/transcript/add/{id}")
-//    public String addOrder(@PathVariable Long id, @ModelAttribute("doctor") DoctorRequestDto doctorRequestDto) throws ParseException {
-//        doctorFacade.update(doctorRequestDto, id);
-//        return "redirect:/doctors/dashboard";
-//    }
+    @PostMapping("/details/{id}")
+    public String answerPatient(@PathVariable Long id, @ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) throws ParseException {
+        transcriptFacade.update(transcriptRequestDto, id);
+        return "redirect:/doctors/dashboard";
+    }
 }

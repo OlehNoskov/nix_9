@@ -18,7 +18,8 @@
         <td th:text="${transcript.getNamePatient()}"></td>
         <td th:text="${transcript.getPrice()}"></td>
         <td>
-            <a th:href="@{'/doctors/transcript/details/' + ${transcript.getId()}}" type="button" class="btn btn-warning">Add</a>
+            <a th:href="@{'/doctors/transcript/details/' + ${transcript.getId()}}" type="button"
+               class="btn btn-warning">Add</a>
         </td>
     </tr>
 </div>
