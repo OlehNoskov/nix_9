@@ -8,6 +8,7 @@ public class PageAndSizeData {
     @Getter
     @Setter
     int page;
+
     @Getter
     @Setter
     int size;

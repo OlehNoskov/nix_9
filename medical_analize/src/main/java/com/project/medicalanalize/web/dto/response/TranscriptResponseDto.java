@@ -7,6 +7,7 @@ public class TranscriptResponseDto extends OrderResponseDto {
 
     @Getter
     private Integer price;
+
     @Getter
     private String file;
 

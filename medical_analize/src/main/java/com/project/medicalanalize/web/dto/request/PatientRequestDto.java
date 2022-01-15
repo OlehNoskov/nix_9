@@ -7,6 +7,7 @@ public class PatientRequestDto extends UserRequestDto {
     @Getter
     @Setter
     private Integer height;
+
     @Getter
     @Setter
     private Integer weight;

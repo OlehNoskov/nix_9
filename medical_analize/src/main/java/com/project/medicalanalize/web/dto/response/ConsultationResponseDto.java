@@ -7,8 +7,10 @@ public class ConsultationResponseDto extends OrderResponseDto {
 
     @Getter
     private Integer price;
+
     @Getter
     private String complaints;
+
     @Getter
     private String file;
 

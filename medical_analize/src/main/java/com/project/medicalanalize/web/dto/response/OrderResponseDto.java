@@ -6,14 +6,19 @@ public class OrderResponseDto extends ResponseDto {
 
     @Getter
     private String badHabits;
+
     @Getter
     private String drugsTaken;
+
     @Getter
     private String chronicDiseases;
+
     @Getter
     private String burglaryComplaints;
+
     @Getter
     private String hereditary_diseases;
+
     @Getter
     private String featuresNutrition;
 

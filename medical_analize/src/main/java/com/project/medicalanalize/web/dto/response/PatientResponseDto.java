@@ -10,8 +10,10 @@ public class PatientResponseDto extends UserResponseDto {
 
     @Getter
     private Integer height;
+
     @Getter
     private Integer weight;
+
     @Getter
     private Set<Order> orders;
 

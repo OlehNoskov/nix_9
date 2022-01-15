@@ -10,12 +10,15 @@ public abstract class ResponseDto {
     @Getter
     @Setter
     private long id;
+
     @Getter
     @Setter
     private Date created;
+
     @Getter
     @Setter
     private Date updated;
+
     @Getter
     @Setter
     private boolean visible;

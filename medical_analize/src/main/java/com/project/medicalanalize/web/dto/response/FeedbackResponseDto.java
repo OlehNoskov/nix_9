@@ -10,9 +10,11 @@ public class FeedbackResponseDto extends ResponseDto{
     @Getter
     @Setter
     private String feedback;
+
     @Getter
     @Setter
     private String namePatient;
+
     @Getter
     @Setter
     Patient patientEntity;

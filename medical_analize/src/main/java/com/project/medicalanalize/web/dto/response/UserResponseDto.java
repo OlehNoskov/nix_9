@@ -9,20 +9,21 @@ import java.util.Date;
 
 public class UserResponseDto extends ResponseDto {
 
-    //    private String day;
-//    private String months;
-//    private String year;
-
     @Getter
     private String firstName;
+
     @Getter
     private String lastName;
+
     @Getter
     private Date birthDay;
+
     @Getter
     private Sex sex;
+
     @Getter
     private String phone;
+
     @Getter
     private Country country;
 

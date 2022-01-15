@@ -7,6 +7,7 @@ public class SortData {
     @Getter
     @Setter
     private String sort;
+
     @Getter
     @Setter
     private String order;

@@ -7,6 +7,7 @@ public class CheckUpResponseDto extends OrderResponseDto {
 
     @Getter
     private Integer price;
+
     @Getter
     private String complaints;
 
