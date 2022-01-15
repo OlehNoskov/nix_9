@@ -47,7 +47,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         TranscriptOrder transcript = transcriptService.findById(id).get();
         transcript.setId(id);
         transcript.setUpdated(new Timestamp(System.currentTimeMillis()));
-//        setterTranscript(transcriptRequestDto, transcript);
+        transcript.setVisible(false);
         transcript.setDoctor((Doctor) userFacade.getCurrentUser());
         transcript.setAnswer(transcriptRequestDto.getAnswer());
         transcriptService.update(transcript);
