@@ -32,14 +32,14 @@ public class MedicalAnalizeApplication {
     public static void main(String[] args) {
         SpringApplication.run(MedicalAnalizeApplication.class, args);
 
-        String dd = "27";
-        String mm = "03";
-        String yyyy = "2021";
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2021, 11, 24);
-        Date date = calendar.getTime();
-        System.out.println(date);
+//        String dd = "27";
+//        String mm = "03";
+//        String yyyy = "2021";
+//
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(2021, 11, 24);
+//        Date date = calendar.getTime();
+//        System.out.println(date);
     }
 
     @EventListener(ApplicationReadyEvent.class)
