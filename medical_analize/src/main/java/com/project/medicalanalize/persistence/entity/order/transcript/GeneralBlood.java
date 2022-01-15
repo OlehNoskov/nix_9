@@ -37,11 +37,11 @@ public class GeneralBlood extends BaseEntity {
         super();
     }
 
-    public TranscriptOrder getTranscript() {
-        return transcript;
-    }
-
-    public void setTranscript(TranscriptOrder transcript) {
-        this.transcript = transcript;
-    }
+//    public TranscriptOrder getTranscript() {
+//        return transcript;
+//    }
+//
+//    public void setTranscript(TranscriptOrder transcript) {
+//        this.transcript = transcript;
+//    }
 }
