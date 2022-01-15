@@ -25,12 +25,16 @@ public class OrderResponseDto extends ResponseDto {
     private String featuresNutrition;
 
     @Getter
+    private String answer;
+
+    @Getter
     private Patient patient;
 
     private String namePatient;
 
     public OrderResponseDto(Order order) {
         super();
+        setId(order.getId());
         this.badHabits = order.getBadHabits();
         this.drugsTaken = order.getDrugsTaken();
         this.chronicDiseases = order.getChronicDiseases();

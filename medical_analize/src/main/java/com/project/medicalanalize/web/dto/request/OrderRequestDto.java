@@ -14,4 +14,5 @@ public class OrderRequestDto extends RequestDto {
     private String burglaryComplaints;
     private String hereditary_diseases;
     private String featuresNutrition;
+    private String answer;
 }

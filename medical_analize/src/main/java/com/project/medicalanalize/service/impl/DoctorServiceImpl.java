@@ -7,7 +7,6 @@ import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.repository.order.OrderRepository;
-import com.project.medicalanalize.persistence.repository.order.OrderSimpleRepository;
 import com.project.medicalanalize.persistence.repository.user.DoctorRepository;
 import com.project.medicalanalize.service.DoctorService;
 
@@ -25,17 +24,12 @@ public class DoctorServiceImpl implements DoctorService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final CrudRepositoryHelper<Doctor, DoctorRepository> doctorRepositoryHelper;
     private final DoctorRepository doctorRepository;
-    private final CrudRepositoryHelper<Order, OrderSimpleRepository> simpleRepositoryCrudRepositoryHelper;
-    private final OrderSimpleRepository orderRepository;
 
     public DoctorServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder, CrudRepositoryHelper<Doctor,
-            DoctorRepository> doctorRepositoryHelper, DoctorRepository doctorRepository, CrudRepositoryHelper<Order, OrderSimpleRepository> simpleRepositoryCrudRepositoryHelper, OrderRepository orderRepository, OrderSimpleRepository orderRepository1) {
+            DoctorRepository> doctorRepositoryHelper, DoctorRepository doctorRepository) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.doctorRepositoryHelper = doctorRepositoryHelper;
         this.doctorRepository = doctorRepository;
-        this.simpleRepositoryCrudRepositoryHelper = simpleRepositoryCrudRepositoryHelper;
-
-        this.orderRepository = orderRepository1;
     }
 
     @Override

@@ -42,6 +42,10 @@ public class Order extends BaseEntity {
     @Column(name = "link_file")
     private String file;
 
+    @Lob
+    @Column(name = "answer", length = 1000)
+    private String answer;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "order_type", nullable = false)
     private OrderType orderType;

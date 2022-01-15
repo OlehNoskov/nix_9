@@ -1,6 +1,7 @@
 package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.DoctorFacade;
+import com.project.medicalanalize.facade.TranscriptFacade;
 import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
@@ -18,10 +19,12 @@ public class DoctorController {
 
     private final DoctorFacade doctorFacade;
     private final UserFacade userFacade;
+    private final TranscriptFacade transcriptFacade;
 
-    public DoctorController(DoctorFacade doctorFacade, UserFacade userFacade) {
+    public DoctorController(DoctorFacade doctorFacade, UserFacade userFacade, TranscriptFacade transcriptFacade) {
         this.doctorFacade = doctorFacade;
         this.userFacade = userFacade;
+        this.transcriptFacade = transcriptFacade;
     }
 
     @GetMapping("/dashboard")
