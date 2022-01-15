@@ -40,7 +40,6 @@ public class GeneralBloodResponseDto extends ResponseDto {
     public GeneralBloodResponseDto(GeneralBlood generalBlood) {
         super();
         setId(generalBlood.getId());
-        set
         this.hemoglobin = generalBlood.getHemoglobin();
         this.erythrocytes = generalBlood.getErythrocytes();
         this.reticulocytes = generalBlood.getReticulocytes();
