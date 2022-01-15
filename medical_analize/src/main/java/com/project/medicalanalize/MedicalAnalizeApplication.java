@@ -12,6 +12,11 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 @SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,
@@ -29,14 +34,14 @@ public class MedicalAnalizeApplication {
     public static void main(String[] args) {
         SpringApplication.run(MedicalAnalizeApplication.class, args);
 
-//        String dd = "27";
-//        String mm = "03";
-//        String yyyy = "2021";
-//
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(2021, 11, 24);
-//        Date date = calendar.getTime();
-//        System.out.println(date);
+        String dd = "27";
+        String mm = "03";
+        String yyyy = "2021";
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2021, 11, 24);
+        Date date = calendar.getTime();
+        System.out.println(date);
     }
 
     @EventListener(ApplicationReadyEvent.class)

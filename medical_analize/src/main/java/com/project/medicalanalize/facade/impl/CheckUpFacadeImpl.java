@@ -36,6 +36,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
     public void create(CheckUpRequestDto checkUpRequestDto) {
         CheckUp checkUp = new CheckUp();
         setterFieldCheckUp(checkUpRequestDto, checkUp);
+        checkUp.setPrice(checkUp.getPrice());
         checkUp.setPatient((Patient) userFacade.getCurrentUser());
         checkUpService.create(checkUp);
     }

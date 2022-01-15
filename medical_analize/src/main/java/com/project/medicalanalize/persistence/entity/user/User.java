@@ -33,7 +33,7 @@ public class User extends BaseEntity {
     private String lastName;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "birth_day")
     private Date birthDay;
 

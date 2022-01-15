@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+
 @Controller
 @RequestMapping("/doctors")
 public class DoctorController {
@@ -43,7 +45,7 @@ public class DoctorController {
     }
 
     @PostMapping("/profile/edit/{id}")
-    public String updatePatient(@PathVariable Long id, @ModelAttribute("doctor") DoctorRequestDto doctorRequestDto) {
+    public String updatePatient(@PathVariable Long id, @ModelAttribute("doctor") DoctorRequestDto doctorRequestDto) throws ParseException {
         doctorFacade.update(doctorRequestDto, id);
         return "redirect:/doctors/dashboard";
     }

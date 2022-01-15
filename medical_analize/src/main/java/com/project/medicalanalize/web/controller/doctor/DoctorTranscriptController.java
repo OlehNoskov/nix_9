@@ -25,11 +25,11 @@ import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM
 
 @Controller
 @RequestMapping("/doctors/transcript")
-public class DoctorOrdersController extends AbstractController {
+public class DoctorTranscriptController extends AbstractController {
 
     private final TranscriptFacade transcriptFacade;
 
-    public DoctorOrdersController(TranscriptFacade transcriptFacade) {
+    public DoctorTranscriptController(TranscriptFacade transcriptFacade) {
         this.transcriptFacade = transcriptFacade;
     }
 
@@ -39,7 +39,6 @@ public class DoctorOrdersController extends AbstractController {
                 new HeaderName("created", "created", "created"),
                 new HeaderName("type", "type", "type"),
                 new HeaderName("firstname", "firstname", "firstname"),
-//                new HeaderName("lastname", "lastname", "lastname"),
                 new HeaderName("add", null, null),
         };
     }

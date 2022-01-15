@@ -4,9 +4,15 @@ import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UserResponseDto extends ResponseDto {
+
+    private String day;
+    private String months;
+    private String year;
 
     private String firstName;
     private String lastName;
@@ -37,7 +43,11 @@ public class UserResponseDto extends ResponseDto {
         return lastName;
     }
 
-    public Date getBirthDay() {
+    public Date getBirthDay() throws ParseException {
+//        String s = getYear()+"-"+getDay()+"-"+getMonths();
+//        SimpleDateFormat format = new SimpleDateFormat();
+//        format.applyPattern("yyyy-MM-dd");
+//        return format.parse(s);
         return birthDay;
     }
 
@@ -51,5 +61,17 @@ public class UserResponseDto extends ResponseDto {
 
     public Country getCountry() {
         return country;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public String getMonths() {
+        return months;
+    }
+
+    public String getYear() {
+        return year;
     }
 }

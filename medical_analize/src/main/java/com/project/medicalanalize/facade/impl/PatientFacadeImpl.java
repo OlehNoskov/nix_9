@@ -15,6 +15,11 @@ import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
+import java.sql.Timestamp;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,12 +38,13 @@ public class PatientFacadeImpl implements PatientFacade {
     }
 
     @Override
-    public void update(PatientRequestDto patientRequestDto, long id) {
+    public void update(PatientRequestDto patientRequestDto, long id) throws ParseException {
         Patient patient = patientService.findById(id).get();
         patient.setId(id);
         patient.setFirstName(patientRequestDto.getFirstName());
         patient.setLastName(patientRequestDto.getLastName());
         patient.setBirthDay(patientRequestDto.getBirthDay());
+//        System.out.println(dateFormatter(patientRequestDto.getBirthDay()));
         patient.setSex(patientRequestDto.getSex());
         patient.setCountry(patientRequestDto.getCountry());
         patient.setHeight(patientRequestDto.getHeight());
@@ -85,17 +91,10 @@ public class PatientFacadeImpl implements PatientFacade {
         return pageData;
     }
 
-//    @Override
-//    public void addOrder(LinkRequestDto linkRequestDto) {
-//        Long patientId = linkRequestDto.getPatientId();
-//        Long orderId = linkRequestDto.getOrderId();
-//        patientService.addOrder(patientId, orderId);
-//    }
-//
-//    @Override
-//    public void addFeedback(LinkRequestDto linkRequestDto) {
-//        Long patientId = linkRequestDto.getPatientId();
-//        Long feedbackId = linkRequestDto.getFeedbackId();
-//        patientService.addFeedback(patientId, feedbackId);
+//    private Date dateFormatter(Date date) throws ParseException {
+//        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        String parseDate = formatter.format(date);
+//        Date result = new SimpleDateFormat("yyyy-MM-dd").parse(parseDate);
+//        return result;
 //    }
 }

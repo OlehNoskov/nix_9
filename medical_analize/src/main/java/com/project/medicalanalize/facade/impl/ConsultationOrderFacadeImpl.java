@@ -36,6 +36,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
     public void create(ConsultationRequestDto consultationRequestDto) {
         ComprehensiveConsultationOrder consultationOrder = new ComprehensiveConsultationOrder();
         setterConsultation(consultationRequestDto, consultationOrder);
+        consultationOrder.setPrice(consultationOrder.getPrice());
         consultationOrder.setPatient((Patient) userFacade.getCurrentUser());
         consultationOrderService.create(consultationOrder);
     }

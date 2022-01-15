@@ -36,6 +36,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     public void create(TranscriptRequestDto transcriptRequestDto) {
         TranscriptOrder transcript = new TranscriptOrder();
         setterTranscript(transcriptRequestDto, transcript);
+        transcript.setPrice(transcript.getPrice());
         transcript.setPatient((Patient) userFacade.getCurrentUser());
         transcriptService.create(transcript);
     }
