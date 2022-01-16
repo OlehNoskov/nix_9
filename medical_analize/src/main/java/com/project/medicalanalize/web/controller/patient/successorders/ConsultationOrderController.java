@@ -48,7 +48,7 @@ public class ConsultationOrderController extends AbstractController {
         HeaderName[] columnTitles = getColumnTitles();
         PageData<ConsultationResponseDto> response = consultationOrderFacade.findAll(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<AbstractController.HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
+        List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/patient/completed/order/consultation/all");

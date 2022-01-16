@@ -4,31 +4,26 @@ import com.project.medicalanalize.persistence.entity.feedback.Feedback;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 
 import lombok.Getter;
-import lombok.Setter;
 
-public class FeedbackResponseDto extends ResponseDto{
+public class FeedbackResponseDto extends ResponseDto {
 
     @Getter
-    @Setter
     private String feedback;
 
     @Getter
-    @Setter
-    private String namePatient;
-
-    @Getter
-    @Setter
     Patient patientEntity;
 
-    public FeedbackResponseDto() {
-    }
+    private String namePatient;
 
     public FeedbackResponseDto(Feedback feedback) {
+        super();
         setId(feedback.getId());
-        setCreated(feedback.getCreated());
-        setUpdated(feedback.getUpdated());
+        System.out.println(feedback.getId());
         this.feedback = feedback.getFeedback();
-        this.namePatient = feedback.getNamePatient();
         this.patientEntity = feedback.getPatient();
+    }
+
+    public String getNamePatient() {
+        return patientEntity.getFirstName();
     }
 }

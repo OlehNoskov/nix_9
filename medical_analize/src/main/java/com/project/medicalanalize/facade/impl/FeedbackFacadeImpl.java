@@ -17,6 +17,7 @@ import com.project.medicalanalize.web.dto.response.PageData;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,8 @@ public class FeedbackFacadeImpl implements FeedbackFacade {
     @Override
     public void update(FeedbackRequestDto feedbackRequestDto, long id) {
         Feedback feedback = feedbackService.findById(id).get();
+        feedback.setId(id);
+        feedback.setUpdated(new Timestamp(System.currentTimeMillis()));
         feedback.setFeedback(feedbackRequestDto.getFeedback());
         feedbackService.update(feedback);
     }
