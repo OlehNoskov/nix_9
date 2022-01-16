@@ -105,10 +105,6 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         consultationOrder.setHereditary_diseases(consultationRequestDto.getHereditary_diseases());
         consultationOrder.setFeaturesNutrition(consultationRequestDto.getFeaturesNutrition());
         consultationOrder.setComplaints(consultationRequestDto.getComplaints());
-//        consultationOrder.setMedicines(consultationRequestDto.getMedicines());
-//        consultationOrder.setProfileDoctor(consultationRequestDto.getProfileDoctor());
-//        consultationOrder.setInstrumentalResearch(consultationRequestDto.getInstrumentalResearch());
-//        consultationOrder.setNutritionalAdvice(consultationRequestDto.getNutritionalAdvice());
         return consultationOrder;
     }
 }
