@@ -6,21 +6,49 @@
       layout:decorate="~{fragments/patient_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>All success orders</title>
     <link href="/css/patient/loaded_analyses.css" rel="stylesheet">
 </head>
 <body>
 <div layout:fragment="patient_content">
 
-    <div class="wrapper bg-white mt-sm-5">
-        <h4 class="pb-4 border-bottom">My success orders all</h4>
-        <div class="py-2">
-            <div class="row py-2">
-                <!--                <form action="#" th:action="@{/students/new}" th:object="${student}" method="post">-->
-                <div class="form-group col-md-12 col-xl-12 col-12">
-
+    <div class="container-fluid mt-5 mb-3">
+        <div class="wrapper bg-white mt-sm-5">
+            <h4 class="pb-4 border-bottom">My success orders all</h4>
+            <div class="container p-5">
+                <div class="row">
+                    <div class="col text-center col-md-4 d-flex align-items-stretch">
+                        <div class="card" style="width: 20rem;">
+                            <img src="/img/transcript.PNG" alt="" class="card-img-top">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title ricing-card-title"><b>Transcript of medical analysis</b></h4>
+                                <a th:href="@{/patient/completed/order/transcript}"
+                                   class="btn btn-outline-info align-self-end btn btn-lg btn-block mt-auto">Select</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col text-center col-md-4 d-flex align-items-stretch">
+                        <div class="card" style="width: 20rem;">
+                            <img src="/img/check-up.PNG" alt="" class="card-img-top">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title ricing-card-title"><b>Check-Up</b></h4>
+                                <a th:href="@{/patient/order/new/check-up}"
+                                   class="btn btn-outline-warning align-self-end btn btn-lg btn-block mt-auto">Select</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col text-center col-md-4 d-flex align-items-stretch">
+                        <div class="card" style="width: 20rem;">
+                            <img src="/img/comprehensive.png" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title consultation">
+                                    <b>Comprehensive consultation</b></h4>
+                                <a th:href="@{/patient/order/new/comprehensive}"
+                                   class="btn btn-outline-success align-self-end btn btn-lg btn-block mt-auto">Select</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!--        </form>-->
             </div>
         </div>
     </div>

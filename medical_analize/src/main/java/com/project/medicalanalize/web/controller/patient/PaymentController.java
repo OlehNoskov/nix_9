@@ -1,5 +1,6 @@
 package com.project.medicalanalize.web.controller.patient;
 
+import com.project.medicalanalize.persistence.entity.order.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

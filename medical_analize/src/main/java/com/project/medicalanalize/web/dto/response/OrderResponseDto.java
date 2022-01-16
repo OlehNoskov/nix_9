@@ -7,6 +7,9 @@ import lombok.Getter;
 
 public class OrderResponseDto extends ResponseDto {
 
+//    @Getter
+//    private Integer price;
+
     @Getter
     private String badHabits;
 
@@ -39,6 +42,7 @@ public class OrderResponseDto extends ResponseDto {
     public OrderResponseDto(Order order) {
         super();
         setId(order.getId());
+//        this.price = order.getPrice();
         this.badHabits = order.getBadHabits();
         this.drugsTaken = order.getDrugsTaken();
         this.chronicDiseases = order.getChronicDiseases();
@@ -47,10 +51,16 @@ public class OrderResponseDto extends ResponseDto {
         this.featuresNutrition = order.getFeaturesNutrition();
         this.answer = order.getAnswer();
         this.patient = order.getPatient();
+        this.doctor = order.getDoctor();
     }
 
     public String getNamePatient() {
         String result = patient.getFirstName() + " " + patient.getLastName();
+        return result;
+    }
+
+    public String getNameDoctor() {
+        String result = doctor.getFirstName() + " " + doctor.getLastName();
         return result;
     }
 }
