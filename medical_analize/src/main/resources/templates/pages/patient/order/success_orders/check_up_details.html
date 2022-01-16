@@ -14,7 +14,8 @@
 
     <div class="wrapper bg-white mt-sm-5 order-details">
         <h4 class="pb-4 border-bottom">Details transcript order</h4>
-        <div class="d-flex align-items-start py-3 col-xl-12 col-12 col-md-12">
+        <div class="col-xl-12 col-12 col-md-12">
+            <label class="consultation">Recommended list of medical tests <span></span></label>
             <div class="card">
                 <div class="card-body">
                     <p th:object="${check_up}" th:text="${check_up.getAnswer()}">
@@ -24,7 +25,7 @@
         </div>
         <div>
             <a th:href="@{/patient/completed/order/check_up}" type="button"
-               class="btn btn-outline-danger ml-3">Back</a>
+               class="btn btn-outline-danger ml-3 mt-3">Back</a>
         </div>
     </div>
 
