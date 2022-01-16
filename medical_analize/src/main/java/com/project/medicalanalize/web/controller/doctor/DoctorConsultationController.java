@@ -2,6 +2,9 @@ package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.ConsultationOrderFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
+import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
+import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
+import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -11,12 +14,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -87,5 +89,18 @@ public class DoctorConsultationController extends AbstractController {
             headerDataList.add(data);
         }
         return headerDataList;
+    }
+
+    @GetMapping("/details/{id}")
+    public String detailsConsultation(@PathVariable Long id, Model model) {
+        ConsultationResponseDto checkUpResponseDto = consultationOrderFacade.findById(id);
+        model.addAttribute("consultation", checkUpResponseDto);
+        return "pages/doctor/consultation_details";
+    }
+
+    @PostMapping("/details/{id}")
+    public String answerPatientConsultation(@PathVariable Long id, @ModelAttribute("consultation") ConsultationRequestDto consultationRequestDto) throws ParseException {
+        consultationOrderFacade.update(consultationRequestDto, id);
+        return "redirect:/doctors/dashboard";
     }
 }
