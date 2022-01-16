@@ -66,10 +66,10 @@ public class ConsultationOrderController extends AbstractController {
         return new ModelAndView("redirect:/patients/dashboard", model);
     }
 
-    private List<AbstractController.HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<ConsultationResponseDto> response) {
-        List<AbstractController.HeaderData> headerDataList = new ArrayList<>();
-        for (AbstractController.HeaderName headerName : columnTitles) {
-            AbstractController.HeaderData data = new AbstractController.HeaderData();
+    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<ConsultationResponseDto> response) {
+        List<HeaderData> headerDataList = new ArrayList<>();
+        for (HeaderName headerName : columnTitles) {
+            HeaderData data = new AbstractController.HeaderData();
             data.setHeaderName(headerName.getColumnName());
             if (StringUtils.isBlank(headerName.getTableName())) {
                 data.setSortable(false);

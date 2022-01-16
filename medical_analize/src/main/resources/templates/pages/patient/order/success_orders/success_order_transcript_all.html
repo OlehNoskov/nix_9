@@ -15,11 +15,10 @@
     <tr th:each="transcript,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
         <td th:text="${#calendars.format(transcript.getCreated(),'dd MMMM yyyy HH:mm')}"></td>
-<!--        <td th:text="${transcript.getNameDoctor()}"></td>-->
+        <td th:text="${transcript.getNameDoctor()}"></td>
         <td>
             <a th:href="@{'/patient/completed/order/transcript/details/' + ${transcript.getId()}}"
-               type="button"
-               class="btn btn-warning">Details</a>
+               type="button" class="btn btn-outline-info">Details</a>
         </td>
     </tr>
 
