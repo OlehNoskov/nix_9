@@ -65,9 +65,11 @@ public class PatientCreateOrderController {
         return "pages/patient/payment";
     }
 
-
     @GetMapping("/new/check-up")
     public String newCheckUp(Model model) {
+        User user = userFacade.getCurrentUser();
+        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
+        model.addAttribute("patient", patientResponseDto);
         model.addAttribute("check_up", new CheckUpRequestDto());
         return "pages/patient/order/check_up";
     }
@@ -80,6 +82,9 @@ public class PatientCreateOrderController {
 
     @GetMapping("/new/comprehensive")
     public String newComprehensive(Model model) {
+        User user = userFacade.getCurrentUser();
+        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
+        model.addAttribute("patient", patientResponseDto);
         model.addAttribute("consultation", new ConsultationRequestDto());
         return "pages/patient/order/comprehensive";
     }

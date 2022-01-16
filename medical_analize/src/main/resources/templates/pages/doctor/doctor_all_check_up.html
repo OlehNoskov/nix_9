@@ -9,15 +9,16 @@
     <title>Doctors all</title>
     <link href="/css/doctor/doctor_dashboard.css" rel="stylesheet">
 </head>
+
 <body>
 <div layout:fragment="data_table_content">
     <tr th:each="check_up,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
-        <td th:text="${#calendars.format(check_up.getCreated(),'dd MMMM yyyy')}"></td>
+        <td th:text="${#calendars.format(check_up.getCreated(),'dd MMMM yyyy HH:mm')}"></td>
         <td th:text="${check_up.getNamePatient()}"></td>
         <td th:text="${check_up.getPrice()}"></td>
         <td>
-            <a th:href="@{'doctors/check_up/add/' + ${check_up.getId()}}" type="button" class="btn btn-primary">Add</a>
+            <a th:href="@{'check_up/details/' + ${check_up.getId()}}" type="button" class="btn btn-info">Review</a>
         </td>
     </tr>
 </div>

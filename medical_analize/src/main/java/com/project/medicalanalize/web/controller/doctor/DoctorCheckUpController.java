@@ -2,6 +2,7 @@ package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.CheckUpFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
+import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
 import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -11,12 +12,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,10 +36,10 @@ public class DoctorCheckUpController extends AbstractController {
     private AbstractController.HeaderName[] getColumnTitles() {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
-                new HeaderName("created", "created", "created"),
-                new HeaderName("name patient", "firstname", "firstname"),
-                new HeaderName("price", "price", "price"),
-                new HeaderName("add", null, null),
+                new HeaderName("Created", "created", "created"),
+                new HeaderName("Name patient", "firstname", "firstname"),
+                new HeaderName("Price", "price", "price"),
+                new HeaderName("Review", null, null),
         };
     }
 
@@ -87,5 +87,18 @@ public class DoctorCheckUpController extends AbstractController {
             headerDataList.add(data);
         }
         return headerDataList;
+    }
+
+    @GetMapping("/details/{id}")
+    public String detailsTranscript(@PathVariable Long id, Model model) {
+        CheckUpResponseDto checkUpResponseDto = checkUpFacade.findById(id);
+        model.addAttribute("check_up", checkUpResponseDto);
+        return "pages/doctor/check_up_details";
+    }
+
+    @PostMapping("/details/{id}")
+    public String answerPatientCheckUp(@PathVariable Long id, @ModelAttribute("check_up") CheckUpRequestDto checkUpRequestDto) throws ParseException {
+        checkUpFacade.update(checkUpRequestDto, id);
+        return "redirect:/doctors/dashboard";
     }
 }

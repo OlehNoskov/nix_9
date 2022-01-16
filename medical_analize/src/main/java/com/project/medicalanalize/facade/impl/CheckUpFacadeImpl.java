@@ -5,6 +5,7 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
+import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.CheckUpService;
 import com.project.medicalanalize.util.WebRequestUtil;
@@ -46,7 +47,9 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         CheckUp checkUp = checkUpService.findById(id).get();
         checkUp.setId(id);
         checkUp.setUpdated(new Timestamp(System.currentTimeMillis()));
-        setterFieldCheckUp(checkUpRequestDto, checkUp);
+        checkUp.setVisible(false);
+        checkUp.setDoctor((Doctor) userFacade.getCurrentUser());
+        checkUp.setAnswer(checkUpRequestDto.getAnswer());
         checkUpService.update(checkUp);
     }
 
@@ -98,6 +101,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         checkUp.setHereditary_diseases(checkUpRequestDto.getHereditary_diseases());
         checkUp.setFeaturesNutrition(checkUpRequestDto.getFeaturesNutrition());
         checkUp.setComplaints(checkUpRequestDto.getComplaints());
+        checkUp.setAnswer(checkUpRequestDto.getAnswer());
         return checkUp;
     }
 }

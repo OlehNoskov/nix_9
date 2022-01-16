@@ -21,35 +21,39 @@
                 <div class="card-body">
                     <table class="table table-hover">
                         <tr>
-                            <th>Name patient</th>
-                            <td th:text="${transcript.getNamePatient()}"></td>
+                        <th>Name patient</th>
+                        <td th:text="${check_up.getNamePatient()}"></td>
                         </tr>
                         <tr>
                             <th>Bad habits</th>
-                            <td th:text="${transcript.getBadHabits()}"></td>
+                            <td th:text="${check_up.getBadHabits()}"></td>
                         </tr>
                         <tr>
                             <th>Drugs taken</th>
-                            <td th:text="${transcript.getDrugsTaken()}"></td>
+                            <td th:text="${check_up.getDrugsTaken()}"></td>
                         </tr>
                         <tr>
                             <th>Chronic diseases</th>
-                            <td th:text="${transcript.getChronicDiseases()}"></td>
+                            <td th:text="${check_up.getChronicDiseases()}"></td>
                         </tr>
                         <tr>
                             <th>Burglary complaints</th>
-                            <td th:text="${transcript.getBurglaryComplaints()}"></td>
+                            <td th:text="${check_up.getBurglaryComplaints()}"></td>
                         </tr>
                         <tr>
                             <th>Hereditary diseases</th>
-                            <td th:text="${transcript.getHereditary_diseases()}"></td>
+                            <td th:text="${check_up.getHereditary_diseases()}"></td>
                         </tr>
                         <tr>
                             <th>Features of nutrition and diet</th>
-                            <td th:text="${transcript.getFeaturesNutrition()}"></td>
+                            <td th:text="${check_up.getFeaturesNutrition()}"></td>
                         </tr>
-                        <!--                        <tr>-->
-                        <!--                        <tr>-->
+                        <tr>
+                            <th>Complaints patient's</th>
+                            <td th:text="${check_up.getComplaints()}"></td>
+                        </tr>
+<!--                        <tr>-->
+<!--                        <tr>-->
                     </table>
                     <hr>
                 </div>
@@ -60,8 +64,8 @@
 
     <div class="wrapper bg-white mt-sm-5 p-5 mb-5">
         <h4 class="pb-4 border-bottom">Answer patient</h4>
-        <form action="#" th:action="@{'/doctors/transcript/details/' + ${transcript.getId()}}"
-              th:object="${transcript}" method="post">
+        <form action="#" th:action="@{'/doctors/check_up/details/' + ${check_up.getId()}}"
+              th:object="${check_up}" method="post">
             <div class="py-2">
                 <div class="row py-2">
                     <div class="form-group col-md-6 col-xl-12 col-12">

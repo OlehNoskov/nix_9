@@ -36,10 +36,10 @@ public class DoctorTranscriptController extends AbstractController {
     private AbstractController.HeaderName[] getColumnTitles() {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
-                new HeaderName("created", "created", "created"),
-                new HeaderName("name patient", "firstname", "firstname"),
-                new HeaderName("price", "price", "price"),
-                new HeaderName("add", null, null),
+                new HeaderName("Created", "created", "created"),
+                new HeaderName("Name patient", "firstname", "firstname"),
+                new HeaderName("Price", "price", "price"),
+                new HeaderName("Review", null, null),
         };
     }
 
@@ -90,14 +90,14 @@ public class DoctorTranscriptController extends AbstractController {
     }
 
     @GetMapping("/details/{id}")
-    public String detailsTranscript(@PathVariable Long id, Model model) {
+    public String detailsCheckUp(@PathVariable Long id, Model model) {
         TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(id);
         model.addAttribute("transcript", transcriptResponseDto);
         return "pages/doctor/transcript_details";
     }
 
     @PostMapping("/details/{id}")
-    public String answerPatient(@PathVariable Long id, @ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) throws ParseException {
+    public String answerPatientTranscript(@PathVariable Long id, @ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) throws ParseException {
         transcriptFacade.update(transcriptRequestDto, id);
         return "redirect:/doctors/dashboard";
     }
