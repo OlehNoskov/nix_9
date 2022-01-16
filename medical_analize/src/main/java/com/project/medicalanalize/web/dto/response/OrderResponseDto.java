@@ -39,6 +39,8 @@ public class OrderResponseDto extends ResponseDto {
 
     private String namePatient;
 
+    private String nameDoctor;
+
     public OrderResponseDto(Order order) {
         super();
         setId(order.getId());
@@ -55,12 +57,10 @@ public class OrderResponseDto extends ResponseDto {
     }
 
     public String getNamePatient() {
-        String result = patient.getFirstName() + " " + patient.getLastName();
-        return result;
+        return patient.getFirstName() + " " + patient.getLastName();
     }
 
     public String getNameDoctor() {
-        String result = doctor.getFirstName() + " " + doctor.getLastName();
-        return result;
+        return doctor.getFirstName() + " " + doctor.getLastName();
     }
 }

@@ -19,6 +19,14 @@ body {
     max-width: 600px
 }
 
+.wrapper.order-details {
+    padding: 30px 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px auto;
+    max-width: 800px
+}
+
 h4 {
     letter-spacing: -1px;
     font-weight: 400
