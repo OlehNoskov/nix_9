@@ -1,8 +1,8 @@
 package com.project.medicalanalize.web.controller.patient.successorders;
 
-import com.project.medicalanalize.facade.CheckUpFacade;
+import com.project.medicalanalize.facade.ConsultationOrderFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
-import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
+import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
 import org.apache.commons.collections4.MapUtils;
@@ -25,13 +25,13 @@ import java.util.Map;
 import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 
 @Controller
-@RequestMapping("/patient/completed/order/check_up")
-public class CheckUpOrderController extends AbstractController {
+@RequestMapping("/patient/completed/order/consultation")
+public class ConsultationOrderController extends AbstractController {
 
-    private final CheckUpFacade checkUpFacade;
+    private final ConsultationOrderFacade consultationOrderFacade;
 
-    public CheckUpOrderController(CheckUpFacade checkUpFacade) {
-        this.checkUpFacade = checkUpFacade;
+    public ConsultationOrderController(ConsultationOrderFacade consultationOrderFacade) {
+        this.consultationOrderFacade = consultationOrderFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -46,15 +46,15 @@ public class CheckUpOrderController extends AbstractController {
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData<CheckUpResponseDto> response = checkUpFacade.findAll(webRequest);
+        PageData<ConsultationResponseDto> response = consultationOrderFacade.findAll(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
+        List<AbstractController.HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
-        model.addAttribute("createUrl", "/patient/completed/order/check_up/all");
+        model.addAttribute("createUrl", "/patient/completed/order/consultation/all");
         model.addAttribute("pageData", response);
-        model.addAttribute("cardHeader", "All my completed check-up");
-        return "pages/patient/order/success_orders/success_order_check_up_all";
+        model.addAttribute("cardHeader", "All my completed consultations");
+        return "pages/patient/order/success_orders/success_order_consultation_all";
     }
 
     @PostMapping("/all")
@@ -66,10 +66,10 @@ public class CheckUpOrderController extends AbstractController {
         return new ModelAndView("redirect:/patients/dashboard", model);
     }
 
-    private List<AbstractController.HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<CheckUpResponseDto> response) {
-        List<HeaderData> headerDataList = new ArrayList<>();
-        for (HeaderName headerName : columnTitles) {
-            HeaderData data = new HeaderData();
+    private List<AbstractController.HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<ConsultationResponseDto> response) {
+        List<AbstractController.HeaderData> headerDataList = new ArrayList<>();
+        for (AbstractController.HeaderName headerName : columnTitles) {
+            AbstractController.HeaderData data = new AbstractController.HeaderData();
             data.setHeaderName(headerName.getColumnName());
             if (StringUtils.isBlank(headerName.getTableName())) {
                 data.setSortable(false);
@@ -90,9 +90,9 @@ public class CheckUpOrderController extends AbstractController {
     }
 
     @GetMapping("/details/{id}")
-    public String detailsCheckUp(@PathVariable Long id, Model model) {
-        CheckUpResponseDto checkUpResponseDto = checkUpFacade.findById(id);
-        model.addAttribute("check_up", checkUpResponseDto);
-        return "pages/patient/order/success_orders/check_up_details";
+    public String detailsConsultation(@PathVariable Long id, Model model) {
+        ConsultationResponseDto consultationResponseDto = consultationOrderFacade.findById(id);
+        model.addAttribute("consultation", consultationResponseDto);
+        return "pages/patient/order/success_orders/consultation_details";
     }
 }

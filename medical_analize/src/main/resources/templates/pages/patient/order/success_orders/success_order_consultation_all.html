@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/patient_success_order_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My consultation all</title>
+    <link href="/css/patient/loaded_analyses.css" rel="stylesheet">
 </head>
 <body>
-<h1>Hello consultation</h1>
+<div layout:fragment="patient_orders_content">
+
+    <tr th:each="consultation,iter : ${pageData.getItems()}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${#calendars.format(consultation.getCreated(),'dd MMMM yyyy HH:mm')}"></td>
+        <!--        <td th:text="${transcript.getNameDoctor()}"></td>-->
+        <td>
+            <a th:href="@{'/patient/completed/order/consultation/details/' + ${consultation.getId()}}"
+               type="button"
+               class="btn btn-warning">Details</a>
+        </td>
+    </tr>
+
+</div>
 </body>
 </html>

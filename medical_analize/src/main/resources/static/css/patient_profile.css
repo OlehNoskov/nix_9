@@ -172,3 +172,8 @@ a.nav-item.nav-link:hover{
 a.nav-item.nav-link {
     color: white;
 }
+
+label.consultation{
+    font-size: 16px;
+    color: #898c8e;
+}
