@@ -8,8 +8,4 @@ public class ConsultationRequestDto extends OrderRequestDto {
     @Getter
     @Setter
     private String complaints;
-
-    @Getter
-    @Setter
-    private String file;
 }

@@ -39,9 +39,6 @@ public class Order extends BaseEntity {
     @Column(name = "complaints")
     private String complaints;
 
-    @Column(name = "link_file")
-    private String file;
-
     @Lob
     @Column(name = "answer", length = 1000)
     private String answer;
@@ -54,7 +51,7 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Doctor doctor;
 
     public Order() {

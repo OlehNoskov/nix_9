@@ -14,13 +14,9 @@ public class TranscriptResponseDto extends OrderResponseDto {
     @Getter
     private Date created;
 
-    @Getter
-    private String file;
-
     public TranscriptResponseDto(TranscriptOrder transcript) {
         super(transcript);
         this.created = transcript.getCreated();
         this.price = transcript.getPrice();
-        this.file = transcript.getFile();
     }
 }

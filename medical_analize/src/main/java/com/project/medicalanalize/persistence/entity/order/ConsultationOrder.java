@@ -9,13 +9,15 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("COMPREHENSIVE_CONSULTATION")
-public class ComprehensiveConsultationOrder extends Order {
+public class ConsultationOrder extends Order {
 
     @Setter
     @Column(name = "price")
     private Integer price;
 
-    public ComprehensiveConsultationOrder() {
+
+
+    public ConsultationOrder() {
         super();
         setOrderType(OrderType.COMPREHENSIVE_CONSULTATION);
     }
