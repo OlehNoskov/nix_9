@@ -7,11 +7,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Page Admin</title>
+    <style>
+        p {
+            color: #6b6f70;
+        }
+
+        div.container {
+            border-color: #ffffff;
+        }
+    </style>
     <link href="/css/admin/admin_dashboard.css" rel="stylesheet">
 </head>
 <body>
 <div layout:fragment="admin_content">
-    <h1>Dashboard admin!!!</h1>
+    <div class="container-fluid mt-5">
+        <div class="container p-5">
+            <div class="row">
+                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
+                    <div class="card" style="width: 20rem;">
+                        <img src="/img/transcript.PNG" alt="" class="card-img-top">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title ricing-card-title"></h4>
+                            <p class="card-text"></p>
+                            <a th:href="@{/admin/transcript}"
+                               class="btn btn-outline-info align-self-end btn btn-lg btn-block mt-auto">All
+                                transcript</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
+                    <div class="card" style="width: 20rem;">
+                        <img src="/img/check-up.PNG" alt="" class="card-img-top">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title ricing-card-title"></h4>
+                            <p class="card-text"></p>
+                            <a th:href="@{/admin/check_up}"
+                               class="btn btn-outline-warning align-self-end btn btn-lg btn-block mt-auto">All
+                                Check-Up</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
+                    <div class="card" style="width: 20rem;">
+                        <img src="/img/comprehensive.png" alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h4 class="card-title "></h4>
+                            <p class="card-text"></p>
+                            <a th:href="@{/admin/consultation}"
+                               class="btn btn-outline-success align-self-end btn btn-lg btn-block mt-auto">All
+                                consultation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container p-5 ml-5">
+            <div class="row">
+                <div class="col text-center col-12 col-md-6 col-xl-6 d-flex align-items-stretch mt-2">
+                    <div class="card" style="width: 20rem;">
+                        <img src="https://cdn-icons.flaticon.com/png/512/1994/premium/1994154.png?token=exp=1642366551~hmac=439e74420471d496a1c4e5299e710e15"
+                             alt="" class="card-img-top p-4">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title ricing-card-title"></h4>
+                            <p class="card-text"></p>
+                            <a th:href="@{/admin/doctors}"
+                               class="btn btn-outline-warning align-self-end btn btn-lg btn-block mt-auto">All
+                                Patients</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center col-12 col-md-6 col-xl-6 d-flex align-items-stretch mt-2">
+                    <div class="card" style="width: 20rem;">
+                        <img src="https://cdn-icons.flaticon.com/png/512/5217/premium/5217806.png?token=exp=1642366586~hmac=b9b8f91372b30a6e54d36fd3e5ab41c1"
+                             alt="" class="card-img-top p-4">
+                        <div class="card-body">
+                            <h4 class="card-title "></h4>
+                            <p class="card-text"></p>
+                            <a th:href="@{/admin/patients}"
+                               class="btn btn-outline-success align-self-end btn btn-lg btn-block mt-auto">All
+                                Doctors</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
 </html>

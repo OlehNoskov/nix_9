@@ -27,6 +27,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 
     private final TranscriptService transcriptService;
     private final UserFacade userFacade;
+    public static Integer countTranscript;
 
     public TranscriptFacadeImpl(TranscriptService transcriptService, UserFacade userFacade) {
         this.transcriptService = transcriptService;
@@ -151,6 +152,8 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
                 stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
+
+        countTranscript = list.size();
 
         PageData<TranscriptResponseDto> pageData = new PageData<>();
         pageData.setItems(list);
