@@ -17,10 +17,26 @@ public class ConsultationResponseDto extends OrderResponseDto {
     @Getter
     private String complaints;
 
+    @Getter
+    private String medicines;
+
+    @Getter
+    private String profileDoctor;
+
+    @Getter
+    private String instrumentalResearch;
+
+    @Getter
+    private String nutritionalAdvice;
+
     public ConsultationResponseDto(ConsultationOrder consultationOrder) {
         super(consultationOrder);
         this.created = consultationOrder.getCreated();
         this.price = consultationOrder.getPrice();
         this.complaints = consultationOrder.getComplaints();
+        this.medicines = consultationOrder.getMedicines();
+        this.profileDoctor = consultationOrder.getProfileDoctor();
+        this.instrumentalResearch = consultationOrder.getInstrumentalResearch();
+        this.nutritionalAdvice = consultationOrder.getNutritionalAdvice();
     }
 }

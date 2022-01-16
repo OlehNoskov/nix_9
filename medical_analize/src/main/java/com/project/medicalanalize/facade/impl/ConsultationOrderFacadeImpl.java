@@ -5,6 +5,7 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
+import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 import com.project.medicalanalize.util.WebRequestUtil;
@@ -46,7 +47,9 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         ConsultationOrder consultationOrder = consultationOrderService.findById(id).get();
         consultationOrder.setId(id);
         consultationOrder.setUpdated(new Timestamp(System.currentTimeMillis()));
-        setterConsultation(consultationRequestDto, consultationOrder);
+        consultationOrder.setVisible(false);
+        consultationOrder.setDoctor((Doctor) userFacade.getCurrentUser());
+        consultationOrder.setAnswer(consultationRequestDto.getAnswer());
         consultationOrderService.update(consultationOrder);
     }
 
@@ -98,6 +101,10 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         consultationOrder.setHereditary_diseases(consultationRequestDto.getHereditary_diseases());
         consultationOrder.setFeaturesNutrition(consultationRequestDto.getFeaturesNutrition());
         consultationOrder.setComplaints(consultationRequestDto.getComplaints());
+        consultationOrder.setMedicines(consultationRequestDto.getMedicines());
+        consultationOrder.setProfileDoctor(consultationRequestDto.getProfileDoctor());
+        consultationOrder.setInstrumentalResearch(consultationRequestDto.getInstrumentalResearch());
+        consultationOrder.setNutritionalAdvice(consultationRequestDto.getNutritionalAdvice());
         return consultationOrder;
     }
 }
