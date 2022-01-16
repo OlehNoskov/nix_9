@@ -17,7 +17,7 @@
         <td th:text="${patient.getFirstName()}"></td>
         <td th:text="${patient.getLastName()}"></td>
         <td>
-            <a th:href="@{'/patients/details/' + ${patient.getId()}}" type="button" class="btn btn-primary">details</a>
+            <a th:href="@{'/admin/patients/details/' + ${patient.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
         <td>
             <a th:href="@{'/patients/update/' + ${patient.getId()}}" type="button" class="btn btn-warning">edit</a>
