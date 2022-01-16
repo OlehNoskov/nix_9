@@ -3,6 +3,8 @@ package com.project.medicalanalize.web.controller;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.ResponseDto;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.Model;
@@ -50,8 +52,16 @@ public abstract class AbstractController {
 
     protected static class HeaderName {
 
+        @Getter
+        @Setter
         private String columnName;
+
+        @Getter
+        @Setter
         private String tableName;
+
+        @Getter
+        @Setter
         private String dbName;
 
         public HeaderName(String columnName, String tableName, String dbName) {
@@ -59,79 +69,29 @@ public abstract class AbstractController {
             this.tableName = tableName;
             this.dbName = dbName;
         }
-
-        public String getColumnName() {
-            return columnName;
-        }
-
-        public void setColumnName(String columnName) {
-            this.columnName = columnName;
-        }
-
-        public String getTableName() {
-            return tableName;
-        }
-
-        public void setTableName(String tableName) {
-            this.tableName = tableName;
-        }
-
-        public String getDbName() {
-            return dbName;
-        }
-
-        public void setDbName(String dbName) {
-            this.dbName = dbName;
-        }
     }
 
     public static class HeaderData {
 
+        @Getter
+        @Setter
         private String headerName;
+
+        @Getter
+        @Setter
         private boolean active;
+
+        @Getter
+        @Setter
         private boolean sortable;
+
+        @Getter
+        @Setter
         private String sort;
+
+        @Getter
+        @Setter
         private String order;
-
-        public String getHeaderName() {
-            return headerName;
-        }
-
-        public void setHeaderName(String headerName) {
-            this.headerName = headerName;
-        }
-
-        public boolean isActive() {
-            return active;
-        }
-
-        public void setActive(boolean active) {
-            this.active = active;
-        }
-
-        public boolean isSortable() {
-            return sortable;
-        }
-
-        public void setSortable(boolean sortable) {
-            this.sortable = sortable;
-        }
-
-        public String getSort() {
-            return sort;
-        }
-
-        public void setSort(String sort) {
-            this.sort = sort;
-        }
-
-        public String getOrder() {
-            return order;
-        }
-
-        public void setOrder(String order) {
-            this.order = order;
-        }
     }
 
     protected void initDataTable(
