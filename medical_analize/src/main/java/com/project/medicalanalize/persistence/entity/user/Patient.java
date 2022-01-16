@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -38,5 +39,19 @@ public class Patient extends User {
         setRoleType(RoleType.ROLE_PATIENT);
         this.orders = new HashSet<>();
         this.feedbacks = new HashSet<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Patient patient = (Patient) o;
+        return Objects.equals(height, patient.height) && Objects.equals(weight, patient.weight) && Objects.equals(feedbacks, patient.feedbacks) && Objects.equals(orders, patient.orders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), height, weight, feedbacks, orders);
     }
 }

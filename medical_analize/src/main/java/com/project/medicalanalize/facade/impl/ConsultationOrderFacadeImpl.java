@@ -81,7 +81,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         DataTableResponse<ConsultationOrder> all = consultationOrderService.findAll(dataTableRequest);
 
         List<ConsultationResponseDto> list = all.getItems().
-                stream().
+                stream().filter(consultation -> consultation.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
 

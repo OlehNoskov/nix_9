@@ -77,7 +77,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         DataTableResponse<CheckUp> all = checkUpService.findAll(dataTableRequest);
 
         List<CheckUpResponseDto> list = all.getItems().
-                stream().
+                stream().filter(c -> c.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
 
