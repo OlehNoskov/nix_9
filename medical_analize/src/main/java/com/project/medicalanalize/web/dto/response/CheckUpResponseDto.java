@@ -1,6 +1,7 @@
 package com.project.medicalanalize.web.dto.response;
 
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
+
 import lombok.Getter;
 
 import java.util.Date;
