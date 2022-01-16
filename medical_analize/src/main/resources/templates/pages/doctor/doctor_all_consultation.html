@@ -18,7 +18,7 @@
         <td th:text="${consultation.getNamePatient()}"></td>
         <td th:text="${consultation.getPrice()}"></td>
         <td>
-            <a th:href="@{'consultation/details/' + ${consultation.getId()}}" type="button" class="btn btn-success">Review</a>
+            <a th:href="@{'/doctors/consultation/details/' + ${consultation.getId()}}" type="button" class="btn btn-success">Review</a>
         </td>
     </tr>
 </div>

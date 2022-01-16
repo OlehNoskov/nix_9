@@ -2,6 +2,7 @@ package com.project.medicalanalize.web.controller.admin;
 
 import com.project.medicalanalize.facade.PatientFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
+import com.project.medicalanalize.web.dto.request.PatientRequestDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 
@@ -9,11 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +82,25 @@ public class AdminPatientController  extends AbstractController{
     public String details(@PathVariable Long id, Model model) {
         PatientResponseDto patientResponseDto = patientFacade.findById(id);
         model.addAttribute("patient", patientResponseDto);
-        return "pages/admin/update-orders/patients_details";
+        return "pages/admin/update/patients_details";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String profileEdit(@PathVariable Long id, Model model) {
+        PatientResponseDto patientResponseDto = patientFacade.findById(id);
+        model.addAttribute("patient", patientResponseDto);
+        return "pages/admin/update/patients_edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updatePatient(@PathVariable Long id, @ModelAttribute("patient") PatientRequestDto patientRequestDto) throws ParseException {
+        patientFacade.update(patientRequestDto, id);
+        return "redirect:/admin/dashboard";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        patientFacade.delete(id);
+        return "redirect:/admin/patients";
     }
 }

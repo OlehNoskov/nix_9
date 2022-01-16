@@ -17,13 +17,13 @@
         <td th:text="${doctor.getFirstName()}"></td>
         <td th:text="${doctor.getLastName()}"></td>
         <td>
-            <a th:href="@{'/doctors/details/' + ${doctor.getId()}}" type="button" class="btn btn-primary">details</a>
+            <a th:href="@{'/admin/doctors/details/' + ${doctor.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
         <td>
-            <a th:href="@{'/doctors/update/' + ${doctor.getId()}}" type="button" class="btn btn-warning">edit</a>
+            <a th:href="@{'/admin/doctors/edit/' + ${doctor.getId()}}" type="button" class="btn btn-warning">edit</a>
         </td>
         <td>
-            <a th:href="@{'/doctors/delete/' + ${doctor.getId()}}" type="button" class="btn btn-danger">delete</a>
+            <a th:href="@{'/admin/doctors/delete/' + ${doctor.getId()}}" type="button" class="btn btn-danger">delete</a>
         </td>
     </tr>
 </div>

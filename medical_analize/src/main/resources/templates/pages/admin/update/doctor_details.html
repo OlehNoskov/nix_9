@@ -12,7 +12,7 @@
 <body>
 <div layout:fragment="auth_content">
     <div class="wrapper bg-white mt-sm-5">
-        <h4 class="pb-4 border-bottom">Patient details</h4>
+        <h4 class="pb-4 border-bottom">Doctor details</h4>
         <div class="py-2">
             <div class="row py-2">
                 <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-xs-12">
@@ -20,40 +20,36 @@
                         <tbody>
                         <tr>
                             <th>Name</th>
-                            <td th:text="${patient.getFirstName()}"></td>
+                            <td th:text="${doctor.getFirstName()}"></td>
                         </tr>
                         <tr>
                             <th>Surname</th>
-                            <td th:text="${patient.getLastName()}"></td>
+                            <td th:text="${doctor.getLastName()}"></td>
                         </tr>
                         <tr>
                             <th>Sex</th>
-                            <td th:text="${patient.getSex()}"></td>
+                            <td th:text="${doctor.getSex()}"></td>
                         </tr>
                         <tr>
                             <th>Country</th>
-                            <td th:text="${patient.getCountry()}"></td>
+                            <td th:text="${doctor.getCountry()}"></td>
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td th:text="${patient.getPhone()}"></td>
+                            <td th:text="${doctor.getPhone()}"></td>
                         </tr>
                         <tr>
                             <th>Birthday</th>
-                            <td th:text="${patient.getBirthDay()}"></td>
-                        </tr>
-                        <tr>
-                            <th>Height</th>
-                            <td th:text="${patient.getHeight()}"></td>
-                        </tr>
-                        <tr>
-                            <th>Weight</th>
-                            <td th:text="${patient.getWeight()}"></td>
+                            <td th:text="${doctor.getBirthDay()}"></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
+        <div>
+            <a th:href="@{/admin/doctors}" type="button"
+               class="btn btn-outline-danger ml-3 mt-3">Back</a>
         </div>
     </div>
 

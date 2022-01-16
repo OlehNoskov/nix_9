@@ -26,12 +26,12 @@ public class Patient extends User {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private Set<Feedback> feedbacks;
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "patient",fetch = FetchType.LAZY)
     private Set<Order> orders;
 
     public Patient() {
@@ -39,19 +39,5 @@ public class Patient extends User {
         setRoleType(RoleType.ROLE_PATIENT);
         this.orders = new HashSet<>();
         this.feedbacks = new HashSet<>();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Patient patient = (Patient) o;
-        return Objects.equals(height, patient.height) && Objects.equals(weight, patient.weight) && Objects.equals(feedbacks, patient.feedbacks) && Objects.equals(orders, patient.orders);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), height, weight, feedbacks, orders);
     }
 }

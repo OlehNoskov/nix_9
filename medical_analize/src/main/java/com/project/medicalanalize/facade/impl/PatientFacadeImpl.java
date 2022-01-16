@@ -86,11 +86,4 @@ public class PatientFacadeImpl implements PatientFacade {
         pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
-
-//    private Date dateFormatter(Date date) throws ParseException {
-//        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        String parseDate = formatter.format(date);
-//        Date result = new SimpleDateFormat("yyyy-MM-dd").parse(parseDate);
-//        return result;
-//    }
 }

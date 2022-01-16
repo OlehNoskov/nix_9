@@ -2,6 +2,7 @@ package com.project.medicalanalize.web.controller.admin;
 
 import com.project.medicalanalize.facade.DoctorFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
+import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
 import com.project.medicalanalize.web.dto.response.DoctorResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -11,12 +12,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -89,5 +89,31 @@ public class AdminDoctorController extends AbstractController {
             headerDataList.add(data);
         }
         return headerDataList;
+    }
+
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable Long id, Model model) {
+        DoctorResponseDto doctorResponseDto = doctorFacade.findById(id);
+        model.addAttribute("doctor", doctorResponseDto);
+        return "pages/admin/update/doctor_details";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String profileEdit(@PathVariable Long id, Model model) {
+        DoctorResponseDto doctorResponseDto = doctorFacade.findById(id);
+        model.addAttribute("doctor", doctorResponseDto);
+        return "pages/admin/update/doctor_edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updatePatient(@PathVariable Long id, @ModelAttribute("doctor") DoctorRequestDto doctorRequestDto) throws ParseException {
+        doctorFacade.update(doctorRequestDto, id);
+        return "redirect:/admin/dashboard";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        doctorFacade.delete(id);
+        return "redirect:/admin/patients";
     }
 }
