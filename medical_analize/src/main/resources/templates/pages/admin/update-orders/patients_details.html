@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/auth_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient details</title>
+    <link href="/css/patient_profile.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="patient_content">
+    <div class="wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom">Patient details</h4>
+        <div class="py-2">
+            <div class="row py-2">
+                <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-xs-12">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td th:text="${patient.getFirstName()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Surname</th>
+                            <td th:text="${patient.getLastName()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Sex</th>
+                            <td th:text="${patient.getSex()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td th:text="${patient.getCountry()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td th:text="${patient.getPhone()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Birthday</th>
+                            <td th:text="${patient.getBirthDay()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Height</th>
+                            <td th:text="${patient.getHeight()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Weight</th>
+                            <td th:text="${patient.getWeight()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

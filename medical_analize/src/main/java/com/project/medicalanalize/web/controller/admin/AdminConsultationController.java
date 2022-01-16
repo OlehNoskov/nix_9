@@ -58,15 +58,6 @@ public class AdminConsultationController extends AbstractController {
         return "pages/admin/admin_consultation_all";
     }
 
-    @PostMapping("/all")
-    public ModelAndView findAllRedirect(WebRequest request, ModelMap model) {
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        if (MapUtils.isNotEmpty(parameterMap)) {
-            parameterMap.forEach(model::addAttribute);
-        }
-        return new ModelAndView("redirect:/admin/dashboard", model);
-    }
-
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<ConsultationResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();
         for (HeaderName headerName : columnTitles) {

@@ -58,15 +58,6 @@ public class AdminTranscriptController extends AbstractController {
         return "pages/admin/admin_transcript_all";
     }
 
-    @PostMapping("/all")
-    public ModelAndView findAllRedirect(WebRequest request, ModelMap model) {
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        if (MapUtils.isNotEmpty(parameterMap)) {
-            parameterMap.forEach(model::addAttribute);
-        }
-        return new ModelAndView("redirect:/admin/dashboard", model);
-    }
-
     private List<AbstractController.HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<TranscriptResponseDto> response) {
         List<AbstractController.HeaderData> headerDataList = new ArrayList<>();
         for (AbstractController.HeaderName headerName : columnTitles) {
