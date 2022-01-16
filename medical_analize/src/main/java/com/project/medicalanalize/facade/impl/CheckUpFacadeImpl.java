@@ -104,4 +104,62 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         checkUp.setAnswer(checkUpRequestDto.getAnswer());
         return checkUp;
     }
+
+    @Override
+    public PageData findAllCheckUpOrdersReviewDoctors(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<CheckUp> all = checkUpService.findAll(dataTableRequest);
+
+        List<CheckUpResponseDto> list = all.getItems().
+                stream().filter(t -> t.getVisible().equals(true)).
+                map(CheckUpResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<CheckUpResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+        return pageData;
+    }
+
+    @Override
+    public PageData findAllCheckUpAdmin(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<CheckUp> all = checkUpService.findAll(dataTableRequest);
+
+        List<CheckUpResponseDto> list = all.getItems().
+                stream().
+                map(CheckUpResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<CheckUpResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+        return pageData;
+    }
 }

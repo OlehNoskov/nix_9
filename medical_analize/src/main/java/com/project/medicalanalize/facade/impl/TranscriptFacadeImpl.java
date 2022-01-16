@@ -104,4 +104,62 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         transcript.setAnswer(transcriptRequestDto.getAnswer());
         return transcript;
     }
+
+    @Override
+    public PageData findAllTranscriptOrdersReviewDoctors(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<TranscriptOrder> all = transcriptService.findAll(dataTableRequest);
+
+        List<TranscriptResponseDto> list = all.getItems().
+                stream().filter(t -> t.getVisible().equals(true)).
+                map(TranscriptResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<TranscriptResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+        return pageData;
+    }
+
+    @Override
+    public PageData findAllTranscriptAdmin(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<TranscriptOrder> all = transcriptService.findAll(dataTableRequest);
+
+        List<TranscriptResponseDto> list = all.getItems().
+                stream().
+                map(TranscriptResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<TranscriptResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+        return pageData;
+    }
 }

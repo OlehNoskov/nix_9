@@ -48,7 +48,7 @@ public class DoctorConsultationController extends AbstractController {
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData<ConsultationResponseDto> response = consultationOrderFacade.findAll(webRequest);
+        PageData response = consultationOrderFacade.findAllConsultationOrdersReviewDoctors(webRequest);
         response.initPaginationState(response.getCurrentPage());
         List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 

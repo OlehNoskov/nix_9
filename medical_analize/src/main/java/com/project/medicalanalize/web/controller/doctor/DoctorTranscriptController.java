@@ -46,9 +46,9 @@ public class DoctorTranscriptController extends AbstractController {
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData<TranscriptResponseDto> response = transcriptFacade.findAll(webRequest);
+        PageData response = transcriptFacade.findAllTranscriptOrdersReviewDoctors(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
+        List headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/doctors/transcript/all");

@@ -1,10 +1,9 @@
 package com.project.medicalanalize.web.dto.response;
 
-import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
-import com.project.medicalanalize.persistence.entity.user.User;
+
 import lombok.Getter;
 
 public class OrderResponseDto extends ResponseDto {
@@ -39,8 +38,6 @@ public class OrderResponseDto extends ResponseDto {
     @Getter
     private Doctor doctor;
 
-//    private UserFacade currentUser;
-
     private String namePatient;
 
     private String nameDoctor;
@@ -67,8 +64,4 @@ public class OrderResponseDto extends ResponseDto {
     public String getNameDoctor() {
         return doctor.getFirstName() + " " + doctor.getLastName();
     }
-
-//    public User getCurrentUser() {
-//        return currentUser.getCurrentUser();
-//    }
 }

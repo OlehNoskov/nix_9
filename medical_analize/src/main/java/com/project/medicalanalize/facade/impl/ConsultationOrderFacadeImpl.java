@@ -69,6 +69,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
 
     @Override
     public PageData<ConsultationResponseDto> findAll(WebRequest request) {
+
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
@@ -106,5 +107,63 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         consultationOrder.setFeaturesNutrition(consultationRequestDto.getFeaturesNutrition());
         consultationOrder.setComplaints(consultationRequestDto.getComplaints());
         return consultationOrder;
+    }
+
+    @Override
+    public PageData findAllConsultationOrdersReviewDoctors(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<ConsultationOrder> all = consultationOrderService.findAll(dataTableRequest);
+
+        List<ConsultationResponseDto> list = all.getItems().
+                stream().filter(t -> t.getVisible().equals(true)).
+                map(ConsultationResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<ConsultationResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+        return pageData;
+    }
+
+    @Override
+    public PageData findAllConsultationAdmin(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<ConsultationOrder> all = consultationOrderService.findAll(dataTableRequest);
+
+        List<ConsultationResponseDto> list = all.getItems().
+                stream().
+                map(ConsultationResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<ConsultationResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+        return pageData;
     }
 }

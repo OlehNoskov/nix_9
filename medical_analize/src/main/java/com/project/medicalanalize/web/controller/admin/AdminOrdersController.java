@@ -47,9 +47,9 @@ public class AdminOrdersController extends AbstractController {
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         AbstractController.HeaderName[] columnTitles = getColumnTitles();
-        PageData<TranscriptResponseDto> response = transcriptFacade.findAll(webRequest);
+        PageData response = transcriptFacade.findAllTranscriptAdmin(webRequest);
         response.initPaginationState(response.getCurrentPage());
-        List<AbstractController.HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
+        List headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/admin/orders/all");
