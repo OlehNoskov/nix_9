@@ -24,12 +24,12 @@ import java.util.Map;
 import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 
 @Controller
-@RequestMapping("/admin/orders")
-public class AdminOrdersController extends AbstractController {
+@RequestMapping("/admin/transcript")
+public class AdminTranscriptController extends AbstractController {
 
     private final TranscriptFacade transcriptFacade;
 
-    public AdminOrdersController(TranscriptFacade transcriptFacade) {
+    public AdminTranscriptController(TranscriptFacade transcriptFacade) {
         this.transcriptFacade = transcriptFacade;
     }
 
@@ -52,11 +52,10 @@ public class AdminOrdersController extends AbstractController {
         List headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);
-        model.addAttribute("createUrl", "/admin/orders/all");
+        model.addAttribute("createUrl", "/admin/transcript/all");
         model.addAttribute("pageData", response);
         model.addAttribute("cardHeader", "All orders");
-        return "pages/admin/admin_orders_all";
-
+        return "pages/admin/admin_transcript_all";
     }
 
     @PostMapping("/all")
@@ -65,7 +64,7 @@ public class AdminOrdersController extends AbstractController {
         if (MapUtils.isNotEmpty(parameterMap)) {
             parameterMap.forEach(model::addAttribute);
         }
-        return new ModelAndView("redirect:/admin/doctors", model);
+        return new ModelAndView("redirect:/admin/dashboard", model);
     }
 
     private List<AbstractController.HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<TranscriptResponseDto> response) {
