@@ -23,25 +23,31 @@
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom">New order Check-Up</h4>
         <div class="py-2">
+
             <div class="row py-2">
-                <div class="col-md-6"><label for="firstname">Name<span class="text-danger">*</span></label>
-                    <input type="text" name="firstName" class="bg-light form-control"
-                           placeholder="Steve" id="firstname" required th:object="${patient}" th:field="*{firstName}" disabled></div>
-                <div class="invalid-feedback">
-                    Please enter your name!
-                </div>
-                <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname<span
-                        class="text-danger">*</span></label>
-                    <input type="text" name="lastName" class="bg-light form-control"
-                           placeholder="Smith" id="lastname" required th:object="${patient}" th:field="*{lastName}" disabled>
-                </div>
-                <div class="invalid-feedback">
-                    Please enter your surname!
+                <div class="row col-xl-10 col-10 col-md-10 ml-1">
+                    <p class="personal-data">Personal data</p>
+                    <div class="edit col-xl-2 col-10 col-md-10">
+                        <a th:href="@{'/patients/profile/edit/'+ ${patient.getId()}}" type="button"
+                           class="btn btn-outline-primary ml-5">Edit profile</a>
+                    </div>
                 </div>
             </div>
 
             <div class="row py-2">
-                <div class="col-md-6"><label for="sex">Sex<span class="text-danger">*</span></label>
+                <div class="col-md-6"><label for="firstname">Name</label>
+                    <input type="text" name="firstName" class="bg-light form-control"
+                           placeholder="Steve" id="firstname" required th:object="${patient}" th:field="*{firstName}"
+                           disabled></div>
+                <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname</label>
+                    <input type="text" name="lastName" class="bg-light form-control"
+                           placeholder="Smith" id="lastname" required th:object="${patient}" th:field="*{lastName}"
+                           disabled>
+                </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-6"><label for="sex">Sex</label>
                     <select name="sex" id="sex" class="bg-light fix" th:object="${patient}" th:field="*{sex}" disabled>
                         <option th:each="sex : ${T(com.project.medicalanalize.persistence.type.Sex).values()}"
                                 th:value="${sex}"
@@ -49,8 +55,9 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-md-6"><label for="country">Country<span class="text-danger">*</span></label>
-                    <select name="country" id="country" class="bg-light fix" th:object="${patient}" th:field="*{country}" disabled>
+                <div class="col-md-6"><label for="country">Country<span class="text-danger"></span></label>
+                    <select name="country" id="country" class="bg-light fix" th:object="${patient}"
+                            th:field="*{country}" disabled>
                         <option th:each="country : ${T(com.project.medicalanalize.persistence.type.Country).values()}"
                                 th:value="${country}"
                                 th:text="${country}">
@@ -61,8 +68,9 @@
 
             <div class="row py-2">
                 <div class="col-md-4 form-material mt-3 required" form-type="date">
-                    <label for="day">Day<span class="text-danger">*</span></label>
-                    <select name="birthday[day]" class="form-control mb-10 bg-light" required="required" id="day">
+                    <label for="day">Day</label>
+                    <select name="birthday[day]" class="form-control mb-10 bg-light" required="required" id="day"
+                            disabled>
                         <option value="01">1</option>
                         <option value="02" selected="selected">2</option>
                         <option value="03">3</option>
@@ -98,9 +106,9 @@
                 </div>
 
                 <div class="col-md-4 form-material mt-3 required" form-type="date">
-                    <label for="month">Month<span class="text-danger">*</span></label>
+                    <label for="month">Month</label>
                     <select name="birthday[month]" class="form-control mb-10 bg-light" required="required"
-                            id="month">
+                            id="month" disabled>
                         <option value="01" selected="selected">January</option>
                         <option value="02">February</option>
                         <option value="03">March</option>
@@ -117,8 +125,9 @@
                 </div>
 
                 <div class="col-md-4 form-material mt-3 required" form-type="date">
-                    <label for="year">Year<span class="text-danger">*</span></label>
-                    <select name="birthday[year]" class="form-control mb-10 bg-light" required="required" id="year">
+                    <label for="year">Year</label>
+                    <select name="birthday[year]" class="form-control mb-10 bg-light" required="required" id="year"
+                            disabled>
                         <option value="2022" selected="selected">2022</option>
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>
@@ -224,6 +233,9 @@
                 </div>
             </div>
 
+            <div class="row py-2 ml-1">
+                    <p class="personal-data">Health Profile</p>
+            </div>
             <form action="#" th:action="@{/patient/order/new/check-up}" th:object="${check_up}" method="post"
                   enctype="multipart/form-data">
                 <div class="row py-2">

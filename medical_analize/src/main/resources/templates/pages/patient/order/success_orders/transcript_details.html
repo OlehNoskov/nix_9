@@ -13,8 +13,62 @@
 <div layout:fragment="patient_content">
 
     <div class="wrapper bg-white mt-sm-5 order-details">
-        <h4 class="pb-4 border-bottom">Details transcript order</h4>
+        <h4 class="pb-4 border-bottom">Details order</h4>
         <div class="col-xl-12 col-12 col-md-12 mt-3">
+
+            <div class="row py-2">
+                <div class="col-md-6 col-xl-6"><label for="firstname">Name</label>
+                    <input type="text" name="firstname" class="bg-light form-control"
+                           id="firstname" th:object="${patient}" th:field="*{firstName}" disabled></div>
+                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="lastname">Surname</label>
+                    <input type="text" name="lastName" class="bg-light form-control"
+                           placeholder id="lastName" th:object="${patient}" th:field="*{lastName}" disabled>
+                </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-6 col-xl-6"><label for="habits">Bad habits</label>
+                    <input type="text" name="habits" class="bg-light form-control"
+                           id="habits" th:object="${transcript}" th:field="*{badHabits}" disabled></div>
+
+                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="drugs_taken">Drugs taken</label>
+                    <input type="text" name="drugs_taken" class="bg-light form-control"
+                           placeholder id="drugs_taken" th:object="${transcript}" th:field="*{drugsTaken}" disabled>
+                </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-6 col-xl-6"><label for="diseases">Chronic diseases</label>
+                    <input type="text" name="diseases" class="bg-light form-control"
+                           id="diseases" th:object="${transcript}" th:field="*{chronicDiseases}" disabled></div>
+
+                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="burglary">Burglary complaints</label>
+                    <input type="text" name="burglary" class="bg-light form-control"
+                           placeholder id="burglary" th:object="${transcript}" th:field="*{burglaryComplaints}"
+                           disabled>
+                </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-6 col-xl-6"><label for="hereditary">Hereditary diseases</label>
+                    <input type="text" name="hereditary" class="bg-light form-control"
+                           id="hereditary" th:object="${transcript}" th:field="*{hereditary_diseases}" disabled></div>
+
+                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="diet">Features of nutrition and diet</label>
+                    <input type="text" name="diet" class="bg-light form-control"
+                           placeholder id="diet" th:object="${transcript}" th:field="*{featuresNutrition}" disabled>
+                </div>
+            </div>
+
+            <div class="row py-4">
+                <div class="row col-xl-6 col-6 col-md-6 ml-1">
+                    <p class="personal-data">Doctor:</p>
+                    <div class="edit col-xl-6 col-6 col-md-6">
+                        <h4 th:object="${transcript}" th:text="${transcript.getNameDoctor()}"></h4>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-body">
                     <p th:object="${transcript}" th:text="${transcript.getAnswer()}">

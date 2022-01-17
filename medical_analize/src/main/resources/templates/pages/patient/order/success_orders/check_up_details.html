@@ -13,7 +13,7 @@
 <div layout:fragment="patient_content">
 
     <div class="wrapper bg-white mt-sm-5 order-details">
-        <h4 class="pb-4 border-bottom">Details transcript order</h4>
+        <h4 class="pb-4 border-bottom">Details order</h4>
         <div class="col-xl-12 col-12 col-md-12 mt-3">
 
             <div class="row py-2">
@@ -36,7 +36,6 @@
                            placeholder id="drugs_taken" th:object="${check_up}" th:field="*{drugsTaken}" disabled>
                 </div>
             </div>
-
 
             <div class="row py-2">
                 <div class="col-md-6 col-xl-6"><label for="diseases">Chronic diseases</label>
@@ -66,7 +65,14 @@
                            id="complaints" th:object="${check_up}" th:field="*{complaints}" disabled></div>
             </div>
 
-            <h4 class="pb-4 border-bottom mt-5 answer">Answer doctor</h4>
+            <div class="row py-4">
+                <div class="row col-xl-6 col-6 col-md-6 ml-1">
+                    <p class="personal-data">Doctor:</p>
+                    <div class="edit col-xl-6 col-6 col-md-6">
+                        <h4 th:object="${check_up}" th:text="${check_up.getNameDoctor()}"></h4>
+                    </div>
+                </div>
+            </div>
 
             <label class="consultation">Recommended list of medical tests <span></span></label>
             <div class="card">

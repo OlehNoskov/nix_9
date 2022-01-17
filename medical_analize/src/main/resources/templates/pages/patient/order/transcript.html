@@ -23,21 +23,26 @@
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom">New order transcript analysis</h4>
         <div class="py-2">
-            <div class="row py-2">
 
-                <div class="col-md-6"><label for="firstname">Name<span class="text-danger">*</span></label>
-                    <input type="text" name="firstname" class="bg-light form-control"
-                           id="firstname" required th:object="${patient}" th:field="*{firstName}" disabled></div>
-                <div class="invalid-feedback">
-                    Please enter your name!
+            <div class="row py-2">
+                <div class="row col-xl-10 col-10 col-md-10 ml-1">
+                    <p class="personal-data">Personal data</p>
+                    <div class="edit col-xl-2 col-10 col-md-10">
+                        <a th:href="@{'/patients/profile/edit/'+ ${patient.getId()}}" type="button"
+                           class="btn btn-outline-primary ml-5">Edit profile</a>
+                    </div>
                 </div>
-                <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname <span
-                        class="text-danger">*</span></label>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-6"><label for="firstname">Name</label>
+                    <input type="text" name="firstname" class="bg-light form-control"
+                           id="firstname" required th:object="${patient}" th:field="*{firstName}" disabled>
+                </div>
+
+                <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname</label>
                     <input type="text" name="lastName" class="bg-light form-control"
                            placeholder id="lastName" required th:object="${patient}" th:field="*{lastName}" disabled>
-                </div>
-                <div class="invalid-feedback">
-                    Please enter your surname!
                 </div>
             </div>
 
@@ -52,7 +57,8 @@
                     </select>
                 </div>
                 <div class="col-md-6"><label for="country">Country</label>
-                    <select name="country" id="country" class="bg-light fix" th:object="${patient}" th:field="*{country}" disabled>
+                    <select name="country" id="country" class="bg-light fix" th:object="${patient}"
+                            th:field="*{country}" disabled>
                         <option th:each="country : ${T(com.project.medicalanalize.persistence.type.Country).values()}"
                                 th:value="${country}"
                                 th:text="${country}">
@@ -64,7 +70,8 @@
             <div class="row py-2">
                 <div class="col-md-4 form-material mt-3 required" form-type="date">
                     <label for="day">Day</label>
-                    <select name="birthday[day]" class="form-control mb-10 bg-light" required="required" id="day">
+                    <select name="birthday[day]" class="form-control mb-10 bg-light" required="required" id="day"
+                            disabled>
                         <option value="01">1</option>
                         <option value="02" selected="selected">2</option>
                         <option value="03">3</option>
@@ -102,7 +109,7 @@
                 <div class="col-md-4 form-material mt-3 required" form-type="date">
                     <label for="month">Month</label>
                     <select name="birthday[month]" class="form-control mb-10 bg-light" required="required"
-                            id="month">
+                            id="month" disabled>
                         <option value="01" selected="selected">January</option>
                         <option value="02">February</option>
                         <option value="03">March</option>
@@ -120,7 +127,8 @@
 
                 <div class="col-md-4 form-material mt-3 required" form-type="date">
                     <label for="year">Year</label>
-                    <select name="birthday[year]" class="form-control mb-10 bg-light" required="required" id="year">
+                    <select name="birthday[year]" class="form-control mb-10 bg-light" required="required" id="year"
+                            disabled>
                         <option value="2022" selected="selected">2022</option>
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>
@@ -226,6 +234,10 @@
                 </div>
             </div>
 
+            <div class="row py-2 ml-1">
+                <p class="personal-data">Health Profile</p>
+            </div>
+
             <form action="#" th:action="@{/patient/order/new/transcript}" th:object="${transcript}" method="post"
                   enctype="multipart/form-data">
                 <div class="row py-2">
@@ -298,23 +310,12 @@
                 <!--                    </div>-->
                 <!--                </div>-->
                 <div class="row py-2">
-                    <!--                    <div class="col-md-3 pb-4 border-bottom">-->
-                    <!--                        <p>Upload file with analyses</p>-->
-                    <!--                        <p><input type="file" name="photo" multiple accept="image/*,image/jpeg/pdf">-->
-                    <!--                    </div>-->
-                    <!--                    <div class="col-md-3 pb-4 border-bottom">-->
-                    <!--                    </div>-->
-                    <!--                    <div class="col-md-3 pb-4 border-bottom">-->
-                    <!--                    </div>-->
                     <div class="col-md-3 pb-4 border-bottom">
                         <button class="btn btn-success mr-3" type="submit">Next</button>
-                        <!--                    <a th:href="@{/patient/new/order/payment}"-->
-                        <!--                       class="btn btn-success align-self-end btn btn-lg btn-block mt-auto payment">Next</a>-->
                     </div>
                 </div>
             </form>
         </div>
-        <!--        </form>-->
     </div>
 </div>
 

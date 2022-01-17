@@ -1,6 +1,7 @@
 package com.project.medicalanalize.web.controller.patient.successorders;
 
 import com.project.medicalanalize.facade.ConsultationOrderFacade;
+import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
@@ -77,7 +78,9 @@ public class ConsultationOrderController extends AbstractController {
     @GetMapping("/details/{id}")
     public String detailsConsultation(@PathVariable Long id, Model model) {
         ConsultationResponseDto consultationResponseDto = consultationOrderFacade.findById(id);
+        Patient patient = consultationResponseDto.getPatient();
         model.addAttribute("consultation", consultationResponseDto);
+        model.addAttribute("patient", patient);
         return "pages/patient/order/success_orders/consultation_details";
     }
 }

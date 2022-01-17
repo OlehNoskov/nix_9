@@ -1,6 +1,7 @@
 package com.project.medicalanalize.web.controller.patient.successorders;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
+import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
@@ -75,7 +76,9 @@ public class TranscriptOrderController extends AbstractController {
     @GetMapping("/details/{id}")
     public String detailsTranscript(@PathVariable Long id, Model model) {
         TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(id);
+        Patient patient = transcriptResponseDto.getPatient();
         model.addAttribute("transcript", transcriptResponseDto);
+        model.addAttribute("patient", patient);
         return "pages/patient/order/success_orders/transcript_details";
     }
 }
