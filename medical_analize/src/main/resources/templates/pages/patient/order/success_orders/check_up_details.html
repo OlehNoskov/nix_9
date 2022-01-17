@@ -15,6 +15,59 @@
     <div class="wrapper bg-white mt-sm-5 order-details">
         <h4 class="pb-4 border-bottom">Details transcript order</h4>
         <div class="col-xl-12 col-12 col-md-12 mt-3">
+
+            <div class="row py-2">
+                <div class="col-md-6 col-xl-6"><label for="firstname">Name</label>
+                    <input type="text" name="firstname" class="bg-light form-control"
+                           id="firstname" th:object="${patient}" th:field="*{firstName}" disabled></div>
+                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="lastname">Surname</label>
+                    <input type="text" name="lastName" class="bg-light form-control"
+                           placeholder id="lastName" th:object="${patient}" th:field="*{lastName}" disabled>
+                </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-6 col-xl-6"><label for="habits">Bad habits</label>
+                    <input type="text" name="habits" class="bg-light form-control"
+                           id="habits" th:object="${check_up}" th:field="*{badHabits}" disabled></div>
+
+                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="drugs_taken">Drugs taken</label>
+                    <input type="text" name="drugs_taken" class="bg-light form-control"
+                           placeholder id="drugs_taken" th:object="${check_up}" th:field="*{drugsTaken}" disabled>
+                </div>
+            </div>
+
+
+            <div class="row py-2">
+                <div class="col-md-6 col-xl-6"><label for="diseases">Chronic diseases</label>
+                    <input type="text" name="diseases" class="bg-light form-control"
+                           id="diseases" th:object="${check_up}" th:field="*{chronicDiseases}" disabled></div>
+
+                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="burglary">Burglary complaints</label>
+                    <input type="text" name="burglary" class="bg-light form-control"
+                           placeholder id="burglary" th:object="${check_up}" th:field="*{burglaryComplaints}" disabled>
+                </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-6 col-xl-6"><label for="hereditary">Hereditary diseases</label>
+                    <input type="text" name="hereditary" class="bg-light form-control"
+                           id="hereditary" th:object="${check_up}" th:field="*{hereditary_diseases}" disabled></div>
+
+                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="diet">Features of nutrition and diet</label>
+                    <input type="text" name="diet" class="bg-light form-control"
+                           placeholder id="diet" th:object="${check_up}" th:field="*{featuresNutrition}" disabled>
+                </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-12 col-xl-12"><label for="complaints">Your complaints</label>
+                    <input type="text" name="complaints" class="bg-light form-control"
+                           id="complaints" th:object="${check_up}" th:field="*{complaints}" disabled></div>
+            </div>
+
+            <h4 class="pb-4 border-bottom mt-5 answer">Answer doctor</h4>
+
             <label class="consultation">Recommended list of medical tests <span></span></label>
             <div class="card">
                 <div class="card-body">

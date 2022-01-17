@@ -1,10 +1,14 @@
 package com.project.medicalanalize.web.controller.patient.successorders;
 
 import com.project.medicalanalize.facade.CheckUpFacade;
+import com.project.medicalanalize.facade.PatientFacade;
+import com.project.medicalanalize.persistence.entity.order.CheckUp;
+import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
+import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 import org.apache.commons.lang3.StringUtils;
 
 import org.springframework.stereotype.Controller;
@@ -24,9 +28,11 @@ import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM
 public class CheckUpOrderController extends AbstractController {
 
     private final CheckUpFacade checkUpFacade;
+    private final PatientFacade patientFacade;
 
-    public CheckUpOrderController(CheckUpFacade checkUpFacade) {
+    public CheckUpOrderController(CheckUpFacade checkUpFacade, PatientFacade patientFacade) {
         this.checkUpFacade = checkUpFacade;
+        this.patientFacade = patientFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -77,7 +83,9 @@ public class CheckUpOrderController extends AbstractController {
     @GetMapping("/details/{id}")
     public String detailsCheckUp(@PathVariable Long id, Model model) {
         CheckUpResponseDto checkUpResponseDto = checkUpFacade.findById(id);
+        Patient patient = checkUpResponseDto.getPatient();
         model.addAttribute("check_up", checkUpResponseDto);
+        model.addAttribute("patient", patient);
         return "pages/patient/order/success_orders/check_up_details";
     }
 }

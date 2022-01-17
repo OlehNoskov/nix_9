@@ -26,14 +26,14 @@
             <div class="row py-2">
                 <div class="col-md-6"><label for="firstname">Name<span class="text-danger">*</span></label>
                     <input type="text" name="firstName" class="bg-light form-control"
-                           placeholder="Steve" id="firstname" required th:object="${patient}" th:field="*{firstName}"></div>
+                           placeholder="Steve" id="firstname" required th:object="${patient}" th:field="*{firstName}" disabled></div>
                 <div class="invalid-feedback">
                     Please enter your name!
                 </div>
                 <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname<span
                         class="text-danger">*</span></label>
                     <input type="text" name="lastName" class="bg-light form-control"
-                           placeholder="Smith" id="lastname" required th:object="${patient}" th:field="*{lastName}">
+                           placeholder="Smith" id="lastname" required th:object="${patient}" th:field="*{lastName}" disabled>
                 </div>
                 <div class="invalid-feedback">
                     Please enter your surname!
@@ -42,7 +42,7 @@
 
             <div class="row py-2">
                 <div class="col-md-6"><label for="sex">Sex<span class="text-danger">*</span></label>
-                    <select name="sex" id="sex" class="bg-light fix" th:object="${patient}" th:field="*{sex}">
+                    <select name="sex" id="sex" class="bg-light fix" th:object="${patient}" th:field="*{sex}" disabled>
                         <option th:each="sex : ${T(com.project.medicalanalize.persistence.type.Sex).values()}"
                                 th:value="${sex}"
                                 th:text="${sex}">
@@ -50,7 +50,7 @@
                     </select>
                 </div>
                 <div class="col-md-6"><label for="country">Country<span class="text-danger">*</span></label>
-                    <select name="country" id="country" class="bg-light fix" th:object="${patient}" th:field="*{country}">
+                    <select name="country" id="country" class="bg-light fix" th:object="${patient}" th:field="*{country}" disabled>
                         <option th:each="country : ${T(com.project.medicalanalize.persistence.type.Country).values()}"
                                 th:value="${country}"
                                 th:text="${country}">
