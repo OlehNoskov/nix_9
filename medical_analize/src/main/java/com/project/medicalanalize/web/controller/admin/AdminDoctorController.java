@@ -68,9 +68,9 @@ public class AdminDoctorController extends AbstractController {
         return new ModelAndView("redirect:/admin/doctors", model);
     }
 
-    private List<AbstractController.HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<DoctorResponseDto> response) {
-        List<AbstractController.HeaderData> headerDataList = new ArrayList<>();
-        for (AbstractController.HeaderName headerName : columnTitles) {
+    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<DoctorResponseDto> response) {
+        List<HeaderData> headerDataList = new ArrayList<>();
+        for (HeaderName headerName : columnTitles) {
             HeaderData data = new HeaderData();
             data.setHeaderName(headerName.getColumnName());
             if (StringUtils.isBlank(headerName.getTableName())) {

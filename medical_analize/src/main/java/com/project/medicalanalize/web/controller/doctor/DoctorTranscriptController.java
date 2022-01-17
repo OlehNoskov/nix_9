@@ -57,15 +57,6 @@ public class DoctorTranscriptController extends AbstractController {
         return "pages/doctor/doctor_all_transcript";
     }
 
-    @PostMapping("/all")
-    public ModelAndView findAllRedirect(WebRequest request, ModelMap model) {
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        if (MapUtils.isNotEmpty(parameterMap)) {
-            parameterMap.forEach(model::addAttribute);
-        }
-        return new ModelAndView("redirect:/doctors/dashboard", model);
-    }
-
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<TranscriptResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();
         for (HeaderName headerName : columnTitles) {

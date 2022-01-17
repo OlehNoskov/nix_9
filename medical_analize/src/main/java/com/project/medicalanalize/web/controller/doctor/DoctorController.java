@@ -7,9 +7,12 @@ import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
 import com.project.medicalanalize.web.dto.response.DoctorResponseDto;
 
+import com.project.medicalanalize.web.dto.response.PageData;
+import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.text.ParseException;
 
@@ -19,13 +22,11 @@ public class DoctorController {
 
     private final DoctorFacade doctorFacade;
     private final UserFacade userFacade;
-    private final TranscriptFacade transcriptFacade;
 
     public DoctorController(DoctorFacade doctorFacade, UserFacade userFacade,
                             TranscriptFacade transcriptFacade) {
         this.doctorFacade = doctorFacade;
         this.userFacade = userFacade;
-        this.transcriptFacade = transcriptFacade;
     }
 
     @GetMapping("/dashboard")
