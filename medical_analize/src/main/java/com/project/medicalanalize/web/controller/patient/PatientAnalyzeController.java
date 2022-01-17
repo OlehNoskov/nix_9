@@ -14,6 +14,11 @@ public class PatientAnalyzeController {
         return "pages/patient/analyzes/type_analysis";
     }
 
+    @GetMapping("/all/examples")
+    public String examplesAnalyses(Model model) {
+        return "pages/patient/analyzes/example";
+    }
+
     @GetMapping("/blood")
     public String blood(Model model){
         return "pages/patient/analyzes/types_analysis/blood_test";
