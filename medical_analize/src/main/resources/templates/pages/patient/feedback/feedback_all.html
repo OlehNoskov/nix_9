@@ -1,72 +1,69 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/patient_layout}">
-<head>
-    <meta charset="UTF-8">
-    <title>My feedback all</title>
-    <link href="/css/patient/loaded_analyses.css" rel="stylesheet">
-</head>
-<body>
-<div layout:fragment="patient_content">
-
-    <div class="wrapper bg-white mt-sm-5">
-        <h4 class="pb-4 border-bottom">My feedback all</h4>
-        <div class="py-2">
-            <div class="row py-2">
-                <div class="form-group col-md-6 col-xl-4 col-sm-12">
-                    <div class="p-3 m-2 bg-light">
-                        <div class="block-content">
-                            <div class="mb-5">
-                                <span class="font-w600">Patient</span>
-                                <div class="float-right">
-                                    <span class="text-muted" title="15 ноября 2020 в 00:00">15-01-2022</span></div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <p>When I ordered an analysis, I read the reviews. I was surprised that all the reviews
-                                positive. And now I understand why they are positive :-)<br>
-                                Really detailed, really adequate, really everything is reasonable.<br>
-                                Many thanks. This is more than I expected. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-</html>
-
-
-
 <!--<!DOCTYPE html>-->
 <!--<html lang="en"-->
 <!--      xmlns="http://www.w3.org/1999/xhtml"-->
 <!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
 <!--      xmlns:th="http://www.thymeleaf.org"-->
-<!--      layout:decorate="~{fragments/patient_success_order_layout}">-->
+<!--      layout:decorate="~{fragments/patient_layout}">-->
 <!--<head>-->
 <!--    <meta charset="UTF-8">-->
 <!--    <title>My feedback all</title>-->
 <!--    <link href="/css/patient/loaded_analyses.css" rel="stylesheet">-->
 <!--</head>-->
 <!--<body>-->
-<!--<div layout:fragment="patient_orders_content">-->
+<!--<div layout:fragment="patient_content">-->
 
-<!--    <tr th:each="feedback,iter : ${pageData.getItems()}">-->
-<!--        <td th:text="${iter.count}"></td>-->
-<!--        <td th:text="${#calendars.format(feedback.getCreated(),'dd MMMM yyyy HH:mm')}"></td>-->
-<!--        <td th:text="${feedback.getNamePatient()}"></td>-->
-<!--        <td>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--    <td>-->
-<!--        <a th:href="@{'/patient/feedback/details/' + ${feedback.getId()}}"-->
-<!--           type="button"-->
-<!--           class="btn btn-outline-warning">Details</a>-->
-<!--    </td>-->
+<!--    <div class="wrapper bg-white mt-sm-5">-->
+<!--        <h4 class="pb-4 border-bottom">My feedback all</h4>-->
+<!--        <div class="py-2">-->
+<!--            <div class="row py-2">-->
+<!--                <div class="form-group col-md-6 col-xl-4 col-sm-12">-->
+<!--                    <div class="p-3 m-2 bg-light">-->
+<!--                        <div class="block-content">-->
+<!--                            <div class="mb-5">-->
+<!--                                <span class="font-w600">Patient</span>-->
+<!--                                <div class="float-right">-->
+<!--                                    <span class="text-muted" title="15 ноября 2020 в 00:00">15-01-2022</span></div>-->
+<!--                            </div>-->
+<!--                            <div class="clearfix"></div>-->
+<!--                            <p>When I ordered an analysis, I read the reviews. I was surprised that all the reviews-->
+<!--                                positive. And now I understand why they are positive :-)<br>-->
+<!--                                Really detailed, really adequate, really everything is reasonable.<br>-->
+<!--                                Many thanks. This is more than I expected. </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 <!--</div>-->
 <!--</body>-->
 <!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/patient_success_order_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>My feedback all</title>
+    <link href="/css/patient/loaded_analyses.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="patient_orders_content">
+
+    <tr th:each="feedback,iter : ${pageData.getItems()}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${#calendars.format(feedback.getCreated(),'dd MMMM yyyy HH:mm')}"></td>
+        <td>
+        </td>
+    </tr>
+    <td>
+        <a th:href="@{'/patient/feedback/details/' + ${feedback.getId()}}"
+           type="button"
+           class="btn btn-outline-warning">Details</a>
+    </td>
+</div>
+</body>
+</html>

@@ -2,9 +2,7 @@ package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.ConsultationOrderFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
-import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
-import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -38,10 +36,10 @@ public class DoctorConsultationController extends AbstractController {
     private HeaderName[] getColumnTitles() {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
-                new HeaderName("created", "created", "created"),
-                new HeaderName("name patient", "firstname", "firstname"),
-                new HeaderName("price", "price", "price"),
-                new HeaderName("add", null, null),
+                new HeaderName("Created", "created", "created"),
+                new HeaderName("Name patient", "firstname", "firstname"),
+                new HeaderName("Price", "price", "price"),
+                new HeaderName("Review", null, null),
         };
     }
 

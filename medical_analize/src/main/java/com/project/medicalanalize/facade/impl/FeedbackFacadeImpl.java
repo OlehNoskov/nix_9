@@ -87,4 +87,33 @@ public class FeedbackFacadeImpl implements FeedbackFacade {
         pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
+
+    @Override
+    public PageData findAllFeedbacksPatient(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<Feedback> all = feedbackService.findAll(dataTableRequest);
+
+        List<FeedbackResponseDto> list = all.getItems().
+                stream().filter(f -> f.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
+                map(FeedbackResponseDto::new).
+                collect(Collectors.toList());
+
+        PageData<FeedbackResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+        return pageData;
+    }
 }
