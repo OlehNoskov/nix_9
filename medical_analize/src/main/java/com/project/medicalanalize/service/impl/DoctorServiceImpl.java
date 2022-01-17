@@ -4,16 +4,13 @@ import com.project.medicalanalize.exception.EntityExistException;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
-import com.project.medicalanalize.persistence.entity.order.Order;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
-import com.project.medicalanalize.persistence.repository.order.OrderRepository;
 import com.project.medicalanalize.persistence.repository.user.DoctorRepository;
 import com.project.medicalanalize.service.DoctorService;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -33,7 +30,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void create(Doctor doctor) {
         if(doctorRepository.existsByEmail(doctor.getEmail())){
             throw new EntityExistException("this doctor is exist!");
@@ -43,12 +40,13 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void update(Doctor doctor) {
         doctorRepositoryHelper.update(doctorRepository, doctor);
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void delete(Long id) {
         doctorRepositoryHelper.delete(doctorRepository, id);
     }

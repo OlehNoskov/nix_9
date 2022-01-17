@@ -24,8 +24,6 @@ public class PatientServiceImpl implements PatientService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final CrudRepositoryHelper<Patient, PatientRepository> patientRepositoryHelper;
     private final PatientRepository patientRepository;
-    private final OrderRepository orderRepository;
-    private final FeedbacksRepository feedbacksRepository;
 
     public PatientServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder,
                               CrudRepositoryHelper<Patient, PatientRepository> patientRepositoryHelper,
@@ -34,8 +32,6 @@ public class PatientServiceImpl implements PatientService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.patientRepositoryHelper = patientRepositoryHelper;
         this.patientRepository = patientRepository;
-        this.orderRepository = orderRepository;
-        this.feedbacksRepository = feedbacksRepository;
     }
 
     @Override
@@ -71,20 +67,4 @@ public class PatientServiceImpl implements PatientService {
     public DataTableResponse<Patient> findAll(DataTableRequest request) {
         return patientRepositoryHelper.findAll(patientRepository,request);
     }
-//
-//    @Override
-//    public void addOrder(Long patientId, Long orderId) {
-//        Order order = (Order) orderRepository.getById(orderId);
-//        Patient patient = findById(patientId).get();
-//        patient.addOrder(order);
-//        update(patient);
-//    }
-//
-//    @Override
-//    public void addFeedback(Long patientId, Long feedbackId) {
-//        Feedback feedback = (Feedback) feedbacksRepository.getById(feedbackId);
-//        Patient patient = findById(patientId).get();
-//        patient.addFeedback(feedback);
-//        update(patient);
-//    }
 }

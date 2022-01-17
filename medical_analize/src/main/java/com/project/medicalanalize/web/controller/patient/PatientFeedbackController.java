@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -105,5 +106,17 @@ public class PatientFeedbackController extends AbstractController {
         FeedbackResponseDto feedbackResponseDto = feedbackFacade.findById(id);
         model.addAttribute("feedback", feedbackResponseDto);
         return "pages/patient/feedback/feedback_details";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateFeedback(@PathVariable Long id, @ModelAttribute("feedback") FeedbackRequestDto feedbackRequestDto) throws ParseException {
+        feedbackFacade.update(feedbackRequestDto,id);
+        return "redirect:/patient/feedback";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        feedbackFacade.delete(id);
+        return "redirect:/patient/feedback";
     }
 }
