@@ -79,7 +79,8 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         DataTableResponse<TranscriptOrder> all = transcriptService.findAll(dataTableRequest);
 
         List<TranscriptResponseDto> list = all.getItems().
-                stream().filter(t -> t.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
+                stream().filter(t -> t.getPatient().getId().equals(userFacade.getCurrentUser().getId()))
+                .filter(transcriptOrder -> transcriptOrder.getVisible().equals(false)).
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
 

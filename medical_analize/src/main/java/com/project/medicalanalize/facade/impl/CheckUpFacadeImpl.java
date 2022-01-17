@@ -78,6 +78,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
 
         List<CheckUpResponseDto> list = all.getItems().
                 stream().filter(c -> c.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
+                filter(checkUp -> checkUp.getVisible().equals(false)).
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
 

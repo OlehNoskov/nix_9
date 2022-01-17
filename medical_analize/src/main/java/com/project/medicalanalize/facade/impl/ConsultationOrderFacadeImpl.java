@@ -83,6 +83,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
 
         List<ConsultationResponseDto> list = all.getItems().
                 stream().filter(consultation -> consultation.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
+                filter(consultationOrder -> consultationOrder.getVisible().equals(false)).
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
 
