@@ -3,7 +3,6 @@ package com.project.medicalanalize.web.controller.patient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,17 +11,26 @@ public class PatientAnalyzeController {
 
     @GetMapping("/all/temp")
     public String tempAnalyses(Model model) {
-//        model.addAttribute("analyses", new AnalysesRequestDto());
-        return "pages/patient/analyzes/loaded_analyses";
+        return "pages/patient/analyzes/type_analysis";
     }
 
-    @PostMapping("/all/temp")
-    public String uploadAnalyses(Model model) {
-        return "redirect:/patients/dashboard";
+    @GetMapping("/blood")
+    public String blood(Model model){
+        return "pages/patient/analyzes/types_analysis/blood_test";
     }
 
-    @GetMapping("/all/examples")
-    public String example(Model model){
-        return "pages/patient/analyzes/example";
+    @GetMapping("/urine")
+    public String urine(Model model){
+        return "pages/patient/analyzes/types_analysis/urine_analysis";
+    }
+
+    @GetMapping("/fecal")
+    public String fecal(Model model){
+        return "pages/patient/analyzes/types_analysis/fecal_analysis";
+    }
+
+    @GetMapping("/cytological")
+    public String cytological(Model model){
+        return "pages/patient/analyzes/types_analysis/cytological_analysis";
     }
 }

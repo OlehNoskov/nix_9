@@ -19,30 +19,8 @@
             <div class="pl-sm-4 pl-2" id="img-section"><b>Profile Photo</b>
                 <p></p>
 
-                <!--                    <div class="custom-file">-->
-                <!--                        <input type="file" class="custom-file-input" id="customFile">-->
-                <!--                        <label class="custom-file-label" for="customFile">Choose file</label>-->
-                <!--                    </div>-->
-
-                <!--                <div class="input-group mb-3">-->
-                <!--                    <div class="custom-file">-->
-                <!--                        <input type="file" class="custom-file-input" id="inputGroupFile02"/>-->
-                <!--                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>-->
-                <!--                    </div>-->
-                <!--                <script>-->
-                <!--                    $('#inputGroupFile02').on('change',function(){-->
-                <!--                        //get the file name-->
-                <!--                        const fileName = $(this).val();-->
-                <!--                        //replace the "Choose a file" label-->
-                <!--                        $(this).next('.custom-file-label').html(fileName);-->
-                <!--                    })-->
-                <!--                </script>-->
-
                 <label class="btn button border">
                     <b>Upload</b> <input type="file" hidden></label>
-                <!--                    <p>Upload file with analyses</p>-->
-                <!--                    <p><input type="file" name="photo" multiple accept="image/*,image/jpeg/pdf">-->
-                <!--                <button class="btn button border"><input type="file" hidden> <b>Upload</b></button>-->
             </div>
         </div>
 
@@ -69,7 +47,7 @@
                 </div>
 
                 <div class="row py-2">
-                    <div class="col-md-6"><label for="sex">Sex</label>
+                    <div class="col-md-6"><label for="sex">Sex</label><span class="text-danger">*</span>
                         <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}" required>
                             <option th:each="sex : ${T(com.project.medicalanalize.persistence.type.Sex).values()}"
                                     th:value="${sex}"
@@ -77,7 +55,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-6"><label for="country">Country</label>
+                    <div class="col-md-6"><label for="country">Country</label><span class="text-danger">*</span>
                         <select name="country" id="country" class="bg-light" th:field="*{country}" required>
                             <option th:each="country : ${T(com.project.medicalanalize.persistence.type.Country).values()}"
                                     th:value="${country}"
@@ -277,7 +255,7 @@
                 </div>
 
                 <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3"><label for="height">Heiqht</label>
+                    <div class="col-md-6 pt-md-0 pt-3"><label for="height">Heiqht</label><span class="text-danger">*</span>
                         <input type="number" name="height" class="bg-light form-control" placeholder min="0" max="300"
                                id="height" aria-describedby="height" value="180" th:field="*{height}" required>
                     </div>
@@ -285,7 +263,7 @@
                         Please enter your height!
                     </div>
                     <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="weight">Weiqht</label>
+                        <label for="weight">Weiqht</label><span class="text-danger">*</span>
                         <input type="number" name="weight" class="bg-light form-control" placeholder min="0" max="300"
                                id="weight" aria-describedby="weight" th:field="*{weight}" required></div>
                     <div class="invalid-feedback">
@@ -294,7 +272,7 @@
                 </div>
 
                 <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Phone</label>
+                    <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Phone</label><span class="text-danger">*</span>
                         <input type="tel" name="phone" class="bg-light form-control" placeholder="+380991565588"
                                id="phone" aria-describedby="phone" value=""
                                pattern="^\+?\d{2}(0\d{9})$" th:field="*{phone}">

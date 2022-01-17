@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/patient_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/patient/loaded_analyses.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="patient_content">
+
+    <div class="back mt-3px">
+        <a th:href="@{/patient/analyzes/all/temp}" type="button" class="btn btn-danger mt-3 ml-3">Back</a>
+    </div>
+    <div class="wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom title">Coprogram - is your gut health</h4>
+        <div class="d-flex align-items-start py-3 border-bottom">
+            <img src="https://cdn-icons.flaticon.com/png/512/4281/premium/4281499.png?token=exp=1642447935~hmac=7275757bacafbb6ad4c15631b8183d12"
+                 class="img center ml-5 p-5" alt="">
+        </div>
+        <div class="py-2">
+            <div class="row py-2">
+                <div class="block">
+                    <div class="block-content">
+                        <p>
+                        <p>
+                            Coprogram is an analysis of intestinal contents.
+                        </p>
+                        <p>
+                            It is used to diagnose various diseases of the gastrointestinal tract: pathology of the
+                            liver, stomach, pancreas, duodenum, small and large intestine, gallbladder and biliary
+                            tract.
+                        </p>
+                        <p>
+                            And to assess the results of treatment of diseases of the gastrointestinal tract.
+                        </p>
+                        <p>
+                            Basically, there are several changes in the contents of the intestine, which can lead to a
+                            malfunction in the body:
+                        </p>
+                        <p>
+                            ☑️ a change in the amount of components that are normally contained in the stool
+                        </p>
+
+                        <p>
+                            ☑️ biological elements and substances released from the body into the intestinal lumen
+                            (erythrocytes, leukocytes, intestinal epithelium)
+                        </p>
+                        <p>
+                            ☑️ various substances that are formed in the intestinal lumen from metabolic products,
+                            tissues and cells of the body (crystals that appear as a result of digestive disorders)
+                        </p>
+                        <p>
+                            ☑️ microorganisms causing fermentation processes in the intestine (iodophilic flora,
+                            yeast-like fungi - developing in case of dysbiosis)
+                        </p>
+                        <p>
+                            ☑️ foreign inclusions of biological and other origin
+                        </p>
+                        <p>
+                            ☑️ they also detect eggs of helminths and protozoa.
+                        </p>
+                        <p>
+                            And when do you need to take the coprogram?
+                        </p>
+                        <p>
+                            ❗ With symptoms of any disease of the digestive system: pain in various parts of the
+                            abdomen, nausea, vomiting, diarrhea or constipation, discoloration of feces, blood in the
+                            stool, loss of appetite, weight loss despite satisfactory nutrition, deterioration of skin
+                            and hair and nails, yellowness of the skin and / or whites of the eyes, increased gas
+                            production.
+                        </p>
+                        <p>
+                            ✔️ Remember, if you are taking a coprogram, you don’t need to separately donate feces for
+                            the study of helminth eggs and protozoa.
+                        </p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
