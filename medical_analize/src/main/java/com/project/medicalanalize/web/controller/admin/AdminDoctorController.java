@@ -114,6 +114,6 @@ public class AdminDoctorController extends AbstractController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         doctorFacade.delete(id);
-        return "redirect:/admin/patients";
+        return "redirect:/admin/doctors";
     }
 }

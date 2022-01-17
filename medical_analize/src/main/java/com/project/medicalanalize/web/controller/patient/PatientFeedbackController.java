@@ -88,15 +88,6 @@ public class PatientFeedbackController extends AbstractController {
         return headerDataList;
     }
 
-
-//    @GetMapping
-//    public String dashboard(Model model) {
-//        User user = userFacade.getCurrentUser();
-//        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
-//        model.addAttribute("patient", patientResponseDto);
-//        return "pages/patient/feedback/feedback_all";
-//    }
-
     @GetMapping("/new")
     public String createNewFeedback(Model model) {
         model.addAttribute("feedback", new FeedbackRequestDto());
@@ -109,7 +100,7 @@ public class PatientFeedbackController extends AbstractController {
         return "redirect:/patients/dashboard";
     }
 
-    @GetMapping("/details/{id}")
+    @GetMapping("/edit/{id}")
     public String detailsFeedback(@PathVariable Long id, Model model) {
         FeedbackResponseDto feedbackResponseDto = feedbackFacade.findById(id);
         model.addAttribute("feedback", feedbackResponseDto);

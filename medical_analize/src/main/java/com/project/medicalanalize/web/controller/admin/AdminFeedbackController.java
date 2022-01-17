@@ -2,6 +2,9 @@ package com.project.medicalanalize.web.controller.admin;
 
 import com.project.medicalanalize.facade.FeedbackFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
+import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
+import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
+import com.project.medicalanalize.web.dto.response.DoctorResponseDto;
 import com.project.medicalanalize.web.dto.response.FeedbackResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -9,10 +12,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,5 +76,18 @@ public class AdminFeedbackController extends AbstractController {
             headerDataList.add(data);
         }
         return headerDataList;
+    }
+
+//    @GetMapping("/details/{id}")
+//    public String detailsFeedback(@PathVariable Long id, Model model) {
+//        FeedbackResponseDto feedbackResponseDto = feedbackFacade.findById(id);
+//        model.addAttribute("feedback", feedbackResponseDto);
+//        return "pages/admin/update/doctor_edit";
+//    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        feedbackFacade.delete(id);
+        return "redirect:/admin/feedback";
     }
 }
