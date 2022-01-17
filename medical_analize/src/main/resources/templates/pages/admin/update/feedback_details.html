@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/auth_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient details</title>
+    <link href="/css/patient_profile.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="auth_content">
+
+    <div class="wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom">Feedback details</h4>
+        <div class="col-xl-12 col-12 col-md-12 mt-3">
+            <div class="row py-2">
+                <div class="col-md-12 col-xl-12"><label for="feedback">Text feedback</label>
+                    <input type="text" name="feedback" class="bg-light form-control"
+                           id="feedback" th:object="${feedback}" th:field="*{feedback}"></div>
+            </div>
+        </div>
+        <div>
+            <a th:href="@{/admin/feedback}" type="button"
+               class="btn btn-outline-danger ml-3 mt-3">Back</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
