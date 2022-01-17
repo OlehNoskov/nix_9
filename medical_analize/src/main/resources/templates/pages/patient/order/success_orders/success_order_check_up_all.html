@@ -15,6 +15,7 @@
     <tr th:each="check_up,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
         <td th:text="${#calendars.format(check_up.getCreated(),'dd MMMM yyyy HH:mm')}"></td>
+        <td th:text="${check_up.getNameDoctor()}"></td>
         <td>
             <a th:href="@{'/patient/completed/order/check_up/details/' + ${check_up.getId()}}"
                type="button"

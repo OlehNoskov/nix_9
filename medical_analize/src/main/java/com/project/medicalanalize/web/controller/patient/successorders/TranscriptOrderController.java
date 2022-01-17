@@ -32,6 +32,7 @@ public class TranscriptOrderController extends AbstractController {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("Order completion date", "updated", "updated"),
+                new HeaderName("Doctor", null, null),
                 new AbstractController.HeaderName("Details", null, null),
         };
     }

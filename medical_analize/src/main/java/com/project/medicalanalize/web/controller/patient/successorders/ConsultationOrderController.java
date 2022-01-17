@@ -34,6 +34,7 @@ public class ConsultationOrderController extends AbstractController {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("Order completion date", "updated", "updated"),
+                new HeaderName("Doctor", null, null),
                 new HeaderName("Details", null, null),
         };
     }
