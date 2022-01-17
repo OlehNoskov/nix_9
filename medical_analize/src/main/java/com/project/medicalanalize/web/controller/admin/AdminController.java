@@ -3,7 +3,6 @@ package com.project.medicalanalize.web.controller.admin;
 import com.project.medicalanalize.facade.TranscriptFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
 
-import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

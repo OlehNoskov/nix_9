@@ -15,15 +15,20 @@ public class FeedbackResponseDto extends ResponseDto {
 
     private String namePatient;
 
+    private String fullNamePatient;
+
     public FeedbackResponseDto(Feedback feedback) {
         super();
         setId(feedback.getId());
-        System.out.println(feedback.getId());
         this.feedback = feedback.getFeedback();
         this.patientEntity = feedback.getPatient();
     }
 
     public String getNamePatient() {
         return patientEntity.getFirstName();
+    }
+
+    public String getFullNamePatient() {
+        return patientEntity.getFirstName()+" "+patientEntity.getLastName();
     }
 }

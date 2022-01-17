@@ -12,18 +12,15 @@
 
 <body>
 <div layout:fragment="data_table_content">
-    <tr th:each="check_up,iter : ${pageData.getItems()}">
+    <tr th:each="feedback,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
-        <td th:text="${#calendars.format(check_up.getCreated(),'dd MMMM yyyy HH:mm')}"></td>
-        <td th:text="${check_up.getNamePatient()}"></td>
+        <td th:text="${#calendars.format(feedback.getCreated(),'dd MMMM yyyy HH:mm')}"></td>
+        <td th:text="${feedback.getFullNamePatient()}"></td>
         <td>
-            <a th:href="@{'/admin/check_up/details/' + ${check_up.getId()}}" type="button" class="btn btn-primary">details</a>
+            <a th:href="@{'/admin/feedback/details/' + ${feedback.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
         <td>
-            <a th:href="@{'/admin/check_up/update/' + ${check_up.getId()}}" type="button" class="btn btn-warning">edit</a>
-        </td>
-        <td>
-            <a th:href="@{'/admin/check_up/delete/' + ${check_up.getId()}}" type="button" class="btn btn-danger">delete</a>
+            <a th:href="@{'/admin/feedback/delete/' + ${feedback.getId()}}" type="button" class="btn btn-danger">delete</a>
         </td>
     </tr>
 </div>

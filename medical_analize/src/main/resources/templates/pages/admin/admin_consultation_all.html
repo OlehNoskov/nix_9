@@ -14,17 +14,17 @@
 <div layout:fragment="data_table_content">
     <tr th:each="consultation,iter : ${pageData.getItems()}">
         <td th:text="${iter.count}"></td>
-        <td th:text="${#calendars.format(consultation.getCreated(),'dd MMMM yyyy')}"></td>
+        <td th:text="${#calendars.format(consultation.getCreated(),'dd MMMM yyyy HH:mm')}"></td>
         <td th:text="${consultation.getNamePatient()}"></td>
         <td>
-            <a th:href="@{'/consultation/details/' + ${consultation.getId()}}" type="button" class="btn btn-primary">details</a>
+            <a th:href="@{'/admin/consultation/details/' + ${consultation.getId()}}" type="button" class="btn btn-primary">details</a>
         </td>
         <td>
-            <a th:href="@{'/consultation/update/' + ${consultation.getId()}}" type="button"
+            <a th:href="@{'/admin/consultation/update/' + ${consultation.getId()}}" type="button"
                class="btn btn-warning">edit</a>
         </td>
         <td>
-            <a th:href="@{'/consultation/delete/' + ${consultation.getId()}}" type="button" class="btn btn-danger">delete</a>
+            <a th:href="@{'/admin/consultation/delete/' + ${consultation.getId()}}" type="button" class="btn btn-danger">delete</a>
         </td>
     </tr>
 </div>
