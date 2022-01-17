@@ -41,7 +41,7 @@ public class AdminTranscriptController extends AbstractController {
 
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
-        AbstractController.HeaderName[] columnTitles = getColumnTitles();
+        HeaderName[] columnTitles = getColumnTitles();
         PageData response = transcriptFacade.findAllTranscriptAdmin(webRequest);
         response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
@@ -53,10 +53,10 @@ public class AdminTranscriptController extends AbstractController {
         return "pages/admin/admin_transcript_all";
     }
 
-    private List<AbstractController.HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<TranscriptResponseDto> response) {
-        List<AbstractController.HeaderData> headerDataList = new ArrayList<>();
-        for (AbstractController.HeaderName headerName : columnTitles) {
-            AbstractController.HeaderData data = new AbstractController.HeaderData();
+    private List<AbstractController.HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<TranscriptResponseDto> response) {
+        List<HeaderData> headerDataList = new ArrayList<>();
+        for (HeaderName headerName : columnTitles) {
+            HeaderData data = new HeaderData();
             data.setHeaderName(headerName.getColumnName());
             if (StringUtils.isBlank(headerName.getTableName())) {
                 data.setSortable(false);

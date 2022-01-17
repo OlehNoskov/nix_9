@@ -29,17 +29,17 @@ import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM
 public class PatientFeedbackController extends AbstractController {
 
     private final FeedbackFacade feedbackFacade;
-    private final UserFacade userFacade;
 
     public PatientFeedbackController(FeedbackFacade feedbackFacade, PatientFacade patientFacade, UserFacade userFacade) {
         this.feedbackFacade = feedbackFacade;
-        this.userFacade = userFacade;
     }
 
     private HeaderName[] getColumnTitles() {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("Created", "created", "created"),
+                new HeaderName("Edit", null, null),
+                new HeaderName("Delete", null, null),
         };
     }
 
