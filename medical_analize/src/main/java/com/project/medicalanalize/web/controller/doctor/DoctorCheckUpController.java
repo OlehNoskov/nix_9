@@ -63,7 +63,7 @@ public class DoctorCheckUpController extends AbstractController {
         if (MapUtils.isNotEmpty(parameterMap)) {
             parameterMap.forEach(model::addAttribute);
         }
-        return new ModelAndView("redirect:/doctors/dashboard", model);
+        return new ModelAndView("redirect:/doctors/check_up", model);
     }
 
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<CheckUpResponseDto> response) {

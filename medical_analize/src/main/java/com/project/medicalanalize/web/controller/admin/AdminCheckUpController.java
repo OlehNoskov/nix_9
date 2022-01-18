@@ -64,7 +64,7 @@ public class AdminCheckUpController extends AbstractController {
         if (MapUtils.isNotEmpty(parameterMap)) {
             parameterMap.forEach(model::addAttribute);
         }
-        return new ModelAndView("redirect:/admin/dashboard", model);
+        return new ModelAndView("redirect:/admin/check_up", model);
     }
 
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<CheckUpResponseDto> response) {

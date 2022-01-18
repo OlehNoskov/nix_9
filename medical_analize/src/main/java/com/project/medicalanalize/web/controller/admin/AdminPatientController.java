@@ -6,16 +6,20 @@ import com.project.medicalanalize.web.dto.request.PatientRequestDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 
@@ -52,10 +56,18 @@ public class AdminPatientController  extends AbstractController{
         model.addAttribute("pageData", response);
         model.addAttribute("cardHeader", "All Patients");
         return "pages/admin/admin_patients_all";
-
     }
 
-    private List<HeaderData> getHeaderDataList(AbstractController.HeaderName[] columnTitles, PageData<PatientResponseDto> response) {
+    @PostMapping("/all")
+    public ModelAndView findAllRedirect(WebRequest request, ModelMap model) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if (MapUtils.isNotEmpty(parameterMap)) {
+            parameterMap.forEach(model::addAttribute);
+        }
+        return new ModelAndView("redirect:/admin/patients", model);
+    }
+
+    private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<PatientResponseDto> response) {
         List<HeaderData> headerDataList = new ArrayList<>();
         for (HeaderName headerName : columnTitles) {
             HeaderData data = new HeaderData();
