@@ -1,6 +1,7 @@
 package com.project.medicalanalize.web.dto.request;
 
 import com.project.medicalanalize.persistence.entity.user.Patient;
+
 import lombok.Getter;
 import lombok.Setter;
 
