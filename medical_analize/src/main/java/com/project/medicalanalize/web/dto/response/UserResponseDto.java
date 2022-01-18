@@ -3,6 +3,7 @@ package com.project.medicalanalize.web.dto.response;
 import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.persistence.type.Country;
 import com.project.medicalanalize.persistence.type.Sex;
+
 import lombok.Getter;
 
 import java.util.Date;
@@ -39,12 +40,4 @@ public class UserResponseDto extends ResponseDto {
         this.phone = user.getPhone();
         this.country = user.getCountry();
     }
-
-//    public Date getBirthDay() throws ParseException {
-//        String s = getYear()+"-"+getDay()+"-"+getMonths();
-//        SimpleDateFormat format = new SimpleDateFormat();
-//        format.applyPattern("yyyy-MM-dd");
-//        return format.parse(s);
-//        return birthDay;
-//    }
 }

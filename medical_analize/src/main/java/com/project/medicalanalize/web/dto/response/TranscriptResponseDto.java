@@ -25,5 +25,5 @@ public class TranscriptResponseDto extends OrderResponseDto {
 
     public Integer getCountAllTranscript() {
         return TranscriptFacadeImpl.countTranscript;
-    }
+    } //TODO
 }

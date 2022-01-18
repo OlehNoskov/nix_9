@@ -9,7 +9,7 @@ import lombok.Getter;
 public class OrderResponseDto extends ResponseDto {
 
 //    @Getter
-//    private Integer price;
+//    private Integer price; //TODO
 
     @Getter
     private String badHabits;

@@ -4,9 +4,9 @@ import com.project.medicalanalize.persistence.entity.user.Admin;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.persistence.repository.user.AdminRepository;
-
 import com.project.medicalanalize.persistence.repository.user.DoctorRepository;
 import com.project.medicalanalize.persistence.repository.user.PatientRepository;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -28,7 +28,9 @@ public class MedicalAnalizeApplication {
     private final DoctorRepository doctorRepository;
 
     public MedicalAnalizeApplication(BCryptPasswordEncoder encoder,
-                                     AdminRepository adminRepository, PatientRepository patientRepository, DoctorRepository doctorRepository) {
+                                     AdminRepository adminRepository,
+                                     PatientRepository patientRepository,
+                                     DoctorRepository doctorRepository) {
         this.encoder = encoder;
         this.adminRepository = adminRepository;
         this.patientRepository = patientRepository;

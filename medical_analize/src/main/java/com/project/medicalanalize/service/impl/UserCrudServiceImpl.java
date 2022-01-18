@@ -65,7 +65,10 @@ public class UserCrudServiceImpl implements UserCrudService {
 
     @Override
     public void update(User entity) {
-        crudRepositoryHelperPatient.update(patientRepository, (Patient) entity);
+        if (entity instanceof Patient) {
+            crudRepositoryHelperPatient.update(patientRepository, (Patient) entity);
+        } else
+            crudRepositoryHelperDoctor.update(doctorRepository, (Doctor) entity);
     }
 
     @Override
@@ -75,7 +78,6 @@ public class UserCrudServiceImpl implements UserCrudService {
 
     @Override
     public Optional<User> findById(Long id) {
-        System.out.println("personal crud service!");
         return Optional.empty();
     }
 

@@ -33,6 +33,10 @@ public class PatientFacadeImpl implements PatientFacade {
 
     @Override
     public void update(PatientRequestDto patientRequestDto, long id) throws ParseException {
+        String m;
+        String d;
+        String y;
+
         Patient patient = patientService.findById(id).get();
         patient.setId(id);
         patient.setFirstName(patientRequestDto.getFirstName());
