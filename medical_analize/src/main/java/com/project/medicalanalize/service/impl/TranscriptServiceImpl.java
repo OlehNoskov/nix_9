@@ -55,4 +55,10 @@ public class TranscriptServiceImpl implements TranscriptService {
     public DataTableResponse<TranscriptOrder> findAll(DataTableRequest request) {
         return transcriptRepositoryHelper.findAll(transcriptRepository, request);
     }
+
+    @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public Long createAndFind(TranscriptOrder order) {
+        return transcriptRepositoryHelper.createAndFind(transcriptRepository, order);
+    }
 }

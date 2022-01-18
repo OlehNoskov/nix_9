@@ -26,6 +26,11 @@ public class CrudRepositoryHelperImpl <
     }
 
     @Override
+    public Long createAndFind(R repository, E entity) {
+        return repository.save(entity).getId();
+    }
+
+    @Override
     public void update(R repository, E entity) {
         checkExist(repository, entity.getId());
         repository.save(entity);

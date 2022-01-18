@@ -7,6 +7,7 @@ import org.springframework.web.context.request.WebRequest;
 
 public interface TranscriptFacade extends BaseFacade<TranscriptRequestDto, TranscriptResponseDto>{
 
+    Long createAndFind(TranscriptRequestDto dto);
     PageData findAllTranscriptOrdersReviewDoctors(WebRequest request);
     PageData findAllTranscriptAdmin(WebRequest request);
 }

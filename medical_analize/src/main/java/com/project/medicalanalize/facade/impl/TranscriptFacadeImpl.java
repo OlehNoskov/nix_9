@@ -36,6 +36,11 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 
     @Override
     public void create(TranscriptRequestDto transcriptRequestDto) {
+
+        String m;
+        String d;
+        String y;
+
         TranscriptOrder transcript = new TranscriptOrder();
         setterTranscript(transcriptRequestDto, transcript);
         transcript.setPrice(transcript.getPrice());
@@ -105,6 +110,15 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         transcript.setFeaturesNutrition(transcriptRequestDto.getFeaturesNutrition());
         transcript.setAnswer(transcriptRequestDto.getAnswer());
         return transcript;
+    }
+
+    @Override
+    public Long createAndFind(TranscriptRequestDto dto) {
+        TranscriptOrder transcript = new TranscriptOrder();
+        setterTranscript(dto, transcript);
+        transcript.setPrice(transcript.getPrice());
+        transcript.setPatient((Patient) userFacade.getCurrentUser());
+        return transcriptService.createAndFind(transcript);
     }
 
     @Override

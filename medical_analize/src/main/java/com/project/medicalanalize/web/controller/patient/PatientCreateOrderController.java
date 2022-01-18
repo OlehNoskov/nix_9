@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/patient/order")
@@ -39,18 +40,20 @@ public class PatientCreateOrderController {
         User user = userFacade.getCurrentUser();
         PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
         model.addAttribute("patient", patientResponseDto);
+        model.addAttribute("some", new String("some"));
         model.addAttribute("transcript", new TranscriptRequestDto());
         return "pages/patient/order/transcript";
     }
 
     @PostMapping("/new/transcript")
-    public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) {
-        transcriptFacade.create(transcriptRequestDto);
+    public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("transcriptId", transcriptFacade.createAndFind(transcriptRequestDto));
         return "redirect:/patient/order/transcript/payment";
     }
 
     @GetMapping("/transcript/payment")
-    public String pagePaymentTranscript(Model model) {
+    public String pagePaymentTranscript(Model model, @RequestParam Long transcriptId) {
+        System.out.println("transcriptId = " + transcriptId);
         model.addAttribute("transcript", new TranscriptRequestDto());
         return "pages/patient/payment";
     }
