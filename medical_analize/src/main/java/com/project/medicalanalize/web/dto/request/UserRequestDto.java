@@ -21,4 +21,7 @@ public class UserRequestDto extends RequestDto {
     private String phone;
     private Country country;
     private Set<Order> orders;
+    private String day;
+    private String months;
+    private String year;
 }

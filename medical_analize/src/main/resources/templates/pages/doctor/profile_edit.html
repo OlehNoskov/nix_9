@@ -15,15 +15,6 @@
 
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom">Profile settings</h4>
-        <div class="d-flex align-items-start py-3 border-bottom">
-            <img src="/img/foto-profile.png"
-                 class="img" alt="">
-            <div class="pl-sm-4 pl-2" id="img-section"><b>Profile Photo</b>
-                <p></p>
-                <label class="btn button border">
-                    <b>Upload</b> <input type="file" hidden></label>
-            </div>
-        </div>
 
         <div class="py-2">
             <form action="#" th:action="@{'/doctors/profile/edit/' + ${doctor.getId()}}" th:object="${doctor}"
@@ -39,7 +30,8 @@
                     <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Surname
                         <span class="text-danger">*</span></label>
                         <input type="text" name="lastName" class="bg-light form-control"
-                               placeholder="Smith" id="lastname" aria-describedby="lastname" th:field="*{lastName}" required>
+                               placeholder="Smith" id="lastname" aria-describedby="lastname" th:field="*{lastName}"
+                               required>
                     </div>
                     <div class="invalid-feedback">
                         Please enter your surname!
@@ -49,11 +41,11 @@
                 <div class="row py-2">
                     <div class="col-md-6"><label for="sex">Sex</label><span class="text-danger">*</span>
                         <select name="sex" id="sex" aria-describedby="sex" class="bg-light" th:field="*{sex}" required>
-                                <option th:each="sex : ${T(com.project.medicalanalize.persistence.type.Sex).values()}"
-                                        th:value="${sex}"
-                                        th:text="${sex}">
-                                </option>
-                            </select>
+                            <option th:each="sex : ${T(com.project.medicalanalize.persistence.type.Sex).values()}"
+                                    th:value="${sex}"
+                                    th:text="${sex}">
+                            </option>
+                        </select>
                         </select>
                     </div>
 
@@ -70,7 +62,8 @@
                 <div class="row py-2">
                     <div class="col-md-4 form-material mt-3 required" form-type="date">
                         <label for="day">Day</label><span class="text-danger">*</span>
-                        <select name="birthday[day]" class="form-control mb-10 bg-light" required="required" id="day">
+                        <select name="birthday[day]" class="form-control mb-10 bg-light" required="required" id="day"
+                                th:field="*{day}">
                             <option value="01">1</option>
                             <option value="02" selected="selected">2</option>
                             <option value="03">3</option>
@@ -108,7 +101,7 @@
                     <div class="col-md-4 form-material mt-3 required" form-type="date">
                         <label for="month">Month</label><span class="text-danger">*</span>
                         <select name="birthday[month]" class="form-control mb-10 bg-light" required="required"
-                                id="month">
+                                id="month" th:field="*{months}">
                             <option value="01" selected="selected">January</option>
                             <option value="02">February</option>
                             <option value="03">March</option>
@@ -126,7 +119,8 @@
 
                     <div class="col-md-4 form-material mt-3 required" form-type="date">
                         <label for="year">Year</label><span class="text-danger">*</span>
-                        <select name="birthday[year]" class="form-control mb-10 bg-light" required="required" id="year">
+                        <select name="birthday[year]" class="form-control mb-10 bg-light" required="required" id="year"
+                                th:field="*{year}">
                             <option value="2022" selected="selected">2022</option>
                             <option value="2021">2021</option>
                             <option value="2020">2020</option>
@@ -231,13 +225,17 @@
                         </select>
                     </div>
                 </div>
-                                <div class="row py-2">
-                                    <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Phone</label><span class="text-danger">*</span>
-                                        <input type="tel" name="phone" class="bg-light form-control" placeholder="+380991565588"
-                                               id="phone" aria-describedby="phone" value=""
-                                               pattern="^\+?\d{2}(0\d{9})$" th:field="*{phone}">
-                                    </div>
-                                </div>
+                <div class="row py-2">
+                    <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Phone</label><span
+                            class="text-danger">*</span>
+                        <input type="tel" name="phone" class="bg-light form-control" placeholder="+380991565588"
+                               id="phone" aria-describedby="phone" value=""
+                               pattern="^\+?\d{2}(0\d{9})$" th:field="*{phone}" required>
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter your phone!
+                    </div>
+                </div>
 
                 <div class="py-3 pb-4 border-bottom">
                     <button class="btn btn-success mr-3" type="submit">Save Changes</button>

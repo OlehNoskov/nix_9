@@ -49,7 +49,7 @@ public class MedicalAnalizeApplication {
             admin.setPassword(encoder.encode("rootroot"));
             adminRepository.save(admin);
         }
-        if (!patientRepository.existsByEmail("patient@mail.com")) {
+            if (!patientRepository.existsByEmail("patient@mail.com")) {
             Patient patient = new Patient();
             patient.setEmail("patient@mail.com");
             patient.setPassword(encoder.encode("rootroot"));

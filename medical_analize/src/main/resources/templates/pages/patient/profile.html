@@ -13,16 +13,13 @@
 <div layout:fragment="patient_content">
 
     <div class="wrapper bg-white mt-sm-5">
-        <h4 class="pb-4 border-bottom">Profile</h4>
-        <div class="d-flex align-items-start py-3 border-bottom">
-            <img src="/img/foto-profile.png" class="img" alt="">
-            <div class="pl-sm-4 pl-2" id="img-section">
-                <p></p>
-            </div>
-            <div class="edit">
-                <a th:href="@{'/patients/profile/edit/'+ ${patient.getId()}}" type="button"
-                   class="btn btn-outline-primary">Edit profile</a>
-            </div>
+
+        <div class="row">
+        <h4 class="pb-4">Profile</h4>
+        <div class="edit">
+            <a th:href="@{'/patients/profile/edit/'+ ${patient.getId()}}" type="button"
+               class="btn btn-outline-danger ml-5">Edit profile</a>
+        </div>
         </div>
 
         <div class="py-2">

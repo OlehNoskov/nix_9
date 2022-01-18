@@ -28,6 +28,15 @@ public class UserResponseDto extends ResponseDto {
     @Getter
     private Country country;
 
+    @Getter
+    private String day;
+
+    @Getter
+    private String months;
+
+    @Getter
+    private String year;
+
     public UserResponseDto(User user) {
         setId(user.getId());
         setCreated(user.getCreated());
