@@ -18,4 +18,3 @@ insert into users
 values (DOCTOR,6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, null, UKRAINE, doctor2@mail.ru, true, 'Igor',
         'Babakin', $2a$10$O56iz58N4CzWOGnOh3D8q.wfG1hjT8m4hBE/fzp5UH4cFnN5Jj4ni, +380991560574, ROLE_DOCTOR, 'MALE',
         null, null);
-
