@@ -3,6 +3,9 @@ package com.project.medicalanalize.facade.impl;
 import com.project.medicalanalize.facade.DoctorFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
+import com.project.medicalanalize.persistence.entity.order.CheckUp;
+import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.service.DoctorService;
 import com.project.medicalanalize.util.WebRequestUtil;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -84,5 +88,20 @@ public class DoctorFacadeImpl implements DoctorFacade {
         pageData.setItemsSize(all.getItemsSize());
         pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
+    }
+
+    @Override
+    public Set<TranscriptOrder> findDoctorAllVisibleTranscript() {
+        return doctorService.findDoctorAllVisibleTranscript();
+    }
+
+    @Override
+    public Set<CheckUp> findDoctorAllVisibleCheckUp() {
+        return doctorService.findDoctorAllVisibleCheckUp();
+    }
+
+    @Override
+    public Set<ConsultationOrder> findDoctorAllVisibleConsultation() {
+        return doctorService.findDoctorAllVisibleConsultation();
     }
 }

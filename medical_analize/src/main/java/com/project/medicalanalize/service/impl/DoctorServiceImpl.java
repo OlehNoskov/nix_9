@@ -4,6 +4,9 @@ import com.project.medicalanalize.exception.EntityExistException;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
+import com.project.medicalanalize.persistence.entity.order.CheckUp;
+import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.repository.user.DoctorRepository;
 import com.project.medicalanalize.service.DoctorService;
@@ -14,6 +17,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -61,5 +65,20 @@ public class DoctorServiceImpl implements DoctorService {
     @Transactional(readOnly = true)
     public DataTableResponse findAll(DataTableRequest request) {
         return doctorRepositoryHelper.findAll(doctorRepository, request);
+    }
+
+    @Override
+    public Set<TranscriptOrder> findDoctorAllVisibleTranscript() {
+        return doctorRepository.findDoctorAllVisibleTranscript();
+    }
+
+    @Override
+    public Set<CheckUp> findDoctorAllVisibleCheckUp() {
+        return doctorRepository.findDoctorAllVisibleCheckUp();
+    }
+
+    @Override
+    public Set<ConsultationOrder> findDoctorAllVisibleConsultation() {
+        return doctorRepository.findDoctorAllVisibleConsultation();
     }
 }
