@@ -21,7 +21,6 @@ public class AdminController extends AbstractController {
 
     @GetMapping("/dashboard")
     public String dashboard(Model model, WebRequest webRequest) {
-//        model.addAttribute("size", result);
         return "pages/admin/dashboard";
     }
 }

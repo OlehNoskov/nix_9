@@ -63,7 +63,7 @@ public class PatientFeedbackController extends AbstractController {
         if (MapUtils.isNotEmpty(parameterMap)) {
             parameterMap.forEach(model::addAttribute);
         }
-        return new ModelAndView("redirect:/patients/dashboard", model);
+        return new ModelAndView("redirect:/patient/feedback", model);
     }
 
     private List<HeaderData> getHeaderDataList(HeaderName[] columnTitles, PageData<FeedbackResponseDto> response) {
