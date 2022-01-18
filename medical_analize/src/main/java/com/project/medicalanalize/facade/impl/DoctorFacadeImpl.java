@@ -6,7 +6,7 @@ import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.service.DoctorService;
 import com.project.medicalanalize.util.WebRequestUtil;
-import com.project.medicalanalize.validatedate.ExaminationValidInputDataCalendar;
+import com.project.medicalanalize.validatedate.UserDateValid;
 import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
@@ -16,8 +16,6 @@ import com.project.medicalanalize.web.dto.response.PageData;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,22 +35,11 @@ public class DoctorFacadeImpl implements DoctorFacade {
 
     @Override
     public void update(DoctorRequestDto doctorRequestDto, long id) {
-
-        String day = doctorRequestDto.getDay();
-        String months = doctorRequestDto.getMonths();
-        String year = doctorRequestDto.getYear();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Integer.parseInt(year), Integer.parseInt(months), Integer.parseInt(day));
-        Date date = calendar.getTime();
-
         Doctor doctor = doctorService.findById(id).get();
         doctor.setId(id);
         doctor.setFirstName(doctorRequestDto.getFirstName());
         doctor.setLastName(doctorRequestDto.getLastName());
-        if(ExaminationValidInputDataCalendar.calendarIsValid(Integer.parseInt(year), Integer.parseInt(months), Integer.parseInt(day))) {
-            doctor.setBirthDay(date);
-        }
+        doctor.setBirthDay(UserDateValid.userValidDate(doctorRequestDto));
         doctor.setSex(doctorRequestDto.getSex());
         doctor.setCountry(doctorRequestDto.getCountry());
         doctor.setPhone(doctorRequestDto.getPhone());
