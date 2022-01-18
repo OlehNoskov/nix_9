@@ -29,11 +29,9 @@ import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM
 public class DoctorTranscriptController extends AbstractController {
 
     private final TranscriptFacade transcriptFacade;
-    private final DoctorFacade doctorFacade;
 
-    public DoctorTranscriptController(TranscriptFacade transcriptFacade, DoctorFacade doctorFacade) {
+    public DoctorTranscriptController(TranscriptFacade transcriptFacade) {
         this.transcriptFacade = transcriptFacade;
-        this.doctorFacade = doctorFacade;
     }
 
     private AbstractController.HeaderName[] getColumnTitles() {
@@ -50,7 +48,6 @@ public class DoctorTranscriptController extends AbstractController {
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
         PageData response = transcriptFacade.findAllTranscriptOrdersReviewDoctors(webRequest);
-//        PageData response = doctorFacade.findDoctorAllVisibleTranscript();
         response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
 
