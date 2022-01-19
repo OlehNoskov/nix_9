@@ -5,6 +5,7 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.CheckUpService;
@@ -94,7 +95,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
     }
 
     private CheckUp setterFieldCheckUp(CheckUpRequestDto checkUpRequestDto, CheckUp checkUp) {
-        checkUp.setPrice(checkUpRequestDto.getPrice());
+//        checkUp.setPrice(checkUpRequestDto.getPrice());
         checkUp.setBadHabits(checkUpRequestDto.getBadHabits());
         checkUp.setDrugsTaken(checkUpRequestDto.getDrugsTaken());
         checkUp.setChronicDiseases(checkUpRequestDto.getChronicDiseases());
@@ -104,6 +105,15 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         checkUp.setComplaints(checkUpRequestDto.getComplaints());
         checkUp.setAnswer(checkUpRequestDto.getAnswer());
         return checkUp;
+    }
+
+    @Override
+    public Long createAndFind(CheckUpRequestDto dto) {
+        CheckUp checkUp = new CheckUp();
+        setterFieldCheckUp(dto, checkUp);
+        checkUp.setPrice(checkUp.getPrice());
+        checkUp.setPatient((Patient) userFacade.getCurrentUser());
+        return checkUpService.createAndFind(checkUp);
     }
 
     @Override

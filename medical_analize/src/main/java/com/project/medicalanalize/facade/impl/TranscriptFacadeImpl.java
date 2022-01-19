@@ -36,11 +36,6 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 
     @Override
     public void create(TranscriptRequestDto transcriptRequestDto) {
-
-        String m;
-        String d;
-        String y;
-
         TranscriptOrder transcript = new TranscriptOrder();
         setterTranscript(transcriptRequestDto, transcript);
         transcript.setPrice(transcript.getPrice());
@@ -101,7 +96,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     }
 
     private TranscriptOrder setterTranscript(TranscriptRequestDto transcriptRequestDto, TranscriptOrder transcript) {
-        transcript.setPrice(transcriptRequestDto.getPrice());
+//        transcript.setPrice(transcriptRequestDto.getPrice());
         transcript.setBadHabits(transcriptRequestDto.getBadHabits());
         transcript.setDrugsTaken(transcriptRequestDto.getDrugsTaken());
         transcript.setChronicDiseases(transcriptRequestDto.getChronicDiseases());

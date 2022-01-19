@@ -8,6 +8,7 @@ import org.springframework.web.context.request.WebRequest;
 
 public interface CheckUpFacade extends BaseFacade<CheckUpRequestDto, CheckUpResponseDto>{
 
+    Long createAndFind(CheckUpRequestDto dto);
     PageData findAllCheckUpOrdersReviewDoctors(WebRequest request);
     PageData findAllCheckUpAdmin(WebRequest request);
 }

@@ -7,6 +7,7 @@ import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
 import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 
+import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,21 +41,22 @@ public class PatientCreateOrderController {
         User user = userFacade.getCurrentUser();
         PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
         model.addAttribute("patient", patientResponseDto);
-        model.addAttribute("some", new String("some"));
         model.addAttribute("transcript", new TranscriptRequestDto());
         return "pages/patient/order/transcript";
     }
 
     @PostMapping("/new/transcript")
-    public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addAttribute("transcriptId", transcriptFacade.createAndFind(transcriptRequestDto));
+    public String createNewTranscript(@ModelAttribute("orderId") TranscriptRequestDto transcriptRequestDto, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("orderId", transcriptFacade.createAndFind(transcriptRequestDto));
         return "redirect:/patient/order/transcript/payment";
     }
 
     @GetMapping("/transcript/payment")
-    public String pagePaymentTranscript(Model model, @RequestParam Long transcriptId) {
-        System.out.println("transcriptId = " + transcriptId);
+    public String pagePaymentTranscript(Model model, @RequestParam Long orderId) {
+        System.out.println("transcriptId = " + orderId);//TODO
         model.addAttribute("transcript", new TranscriptRequestDto());
+        TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(orderId);
+        System.out.println(transcriptResponseDto.getPrice());
         return "pages/patient/payment";
     }
 
@@ -64,7 +66,7 @@ public class PatientCreateOrderController {
     }
 
     @GetMapping("/consultation/payment")
-    public String pagePaymentConsultation(Model model) {
+    public String pagePaymentConsultation(Model model, @RequestParam Long orderId) {
         return "pages/patient/payment";
     }
 
@@ -79,7 +81,8 @@ public class PatientCreateOrderController {
 
     @PostMapping("/new/check-up")
     public String createNewCheckUp(@ModelAttribute("check_up") CheckUpRequestDto checkUpRequestDto) {
-        checkUpFacade.create(checkUpRequestDto);
+//        checkUpFacade.create(checkUpRequestDto);
+//        redirectAttributes.addAttribute("orderId", checkUpFacade.createAndFind(checkUpRequestDto));
         return "redirect:/patient/order/check-up/payment";
     }
 
@@ -103,10 +106,10 @@ public class PatientCreateOrderController {
         return "pages/patient/order/new_order";
     }
 
-    @GetMapping("/all")
-    public String allOrders(Model model, WebRequest webRequest) {
-        return "pages/patient/order/my_orders_all";
-    }
+//    @GetMapping("/all")
+//    public String allOrders(Model model, WebRequest webRequest) { //TODO
+//        return "pages/patient/order/my_orders_all";
+//    }
 
     @GetMapping("/success/all")
     public String allSuccessOrders(Model model, WebRequest webRequest) {

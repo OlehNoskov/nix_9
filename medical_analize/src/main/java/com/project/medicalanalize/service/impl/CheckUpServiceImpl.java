@@ -54,4 +54,9 @@ public class CheckUpServiceImpl implements CheckUpService {
     public DataTableResponse<CheckUp> findAll(DataTableRequest request) {
         return checkUpRepositoryHelper.findAll(checkUpRepository, request);
     }
+
+    @Override
+    public Long createAndFind(CheckUp order) {
+        return checkUpRepositoryHelper.createAndFind(checkUpRepository, order);
+    }
 }
