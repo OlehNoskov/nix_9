@@ -2,7 +2,9 @@ package ua.com.alevel.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
+
 import ua.com.alevel.persistence.dao.AccountDao;
 import ua.com.alevel.persistence.dao.OperationDao;
 import ua.com.alevel.persistence.dao.TransactionDao;
@@ -36,13 +38,13 @@ public class TransactionServiceImpl implements TransactionService {
         BigDecimal payment;
         BigDecimal factor = new BigDecimal("100");
         if(entity.getTransactionSum() == null) {
-            LOGGER_WARN.warn("Попытка проведения операции с нулевым или отрицательным денежным оборотом!");
-            throw new RuntimeException("Нельзя проводить операции с нулевым или отрицательным денежным оборотом!");
+            LOGGER_WARN.warn("An attempt to conduct a transaction with zero or negative cash flow!");
+            throw new RuntimeException("It is impossible to carry out operations with zero or negative cash turnover!");
         }
         BigDecimal enteredSum = entity.getTransactionSum();
         if(enteredSum.compareTo(new BigDecimal("0")) <= 0 ) {
-            LOGGER_WARN.warn("Попытка проведения операции с нулевым или отрицательным денежным оборотом!");
-            throw new RuntimeException("Нельзя проводить операции с нулевым или отрицательным денежным оборотом!");
+            LOGGER_WARN.warn("An attempt to conduct a transaction with zero or negative cash flow!");
+            throw new RuntimeException("It is impossible to carry out operations with zero or negative cash turnover!");
         }
 
         String[] calcTransactionSum = enteredSum.toString().split(",");
@@ -63,8 +65,8 @@ public class TransactionServiceImpl implements TransactionService {
             entity.setTransactionSum(payment);
         } else {
             if(account.getBalance().compareTo(payment) < 0) {
-                LOGGER_WARN.warn("Попытка проведения операции с недостаточным клв. средств!");
-                throw new RuntimeException("Функция овердрафта отключена, вы не можете себе это позволить!");
+                LOGGER_WARN.warn("An attempt to carry out an operation with insufficient CLV. funds!");
+                throw new RuntimeException("The overdraft feature is disabled, you can't afford it!");
             }
             else {
                 account.setBalance(account.getBalance().subtract(payment));
@@ -72,7 +74,6 @@ public class TransactionServiceImpl implements TransactionService {
                 entity.setTransactionSum(payment);
             }
         }
-
         return entity;
     }
 
@@ -90,10 +91,8 @@ public class TransactionServiceImpl implements TransactionService {
         entity.setCategoryName(operation.getCategoryName());
         entity.setCategoryIncomeExpense(incomeExpense);
         entity.setUserName(userDao.findById(entity.getUserId()).getFirstName());
-
         transactionDao.create(entity);
     }
-
 
     @Override
     public Transaction findById(Long id) {

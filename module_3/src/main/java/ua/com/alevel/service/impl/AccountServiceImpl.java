@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import ua.com.alevel.persistence.dao.AccountDao;
 import ua.com.alevel.persistence.entity.Account;
-import ua.com.alevel.persistence.entity.AccountStatement;
-import ua.com.alevel.persistence.entity.AccountForFile;
+import ua.com.alevel.persistence.entity.Statement;
+import ua.com.alevel.persistence.entity.AccountFile;
 import ua.com.alevel.service.AccountService;
 
 import java.io.BufferedWriter;
@@ -68,8 +68,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public String getAccountStatementFileForDownload(AccountStatement accountStatement) {
-        List <AccountForFile> accountForFileList = accountDao.getAccountStatementFileForDownload(accountStatement);
+    public String getAccountStatementFileForDownload(Statement statement) {
+        List <AccountFile> accountForFileList = accountDao.getAccountStatementFileForDownload(statement);
 
         String way = "src/main/resources";
         Path path = Paths.get(way);
@@ -85,12 +85,12 @@ public class AccountServiceImpl implements AccountService {
             new File(way).mkdir();
         }
 
-        way += "/account_" + accountStatement.getId() +"_statement.csv";
+        way += "/account_" + statement.getId() +"_statement.csv";
 
         try (
                 BufferedWriter writer = Files.newBufferedWriter(Paths.get(way));
                 CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-                        .withHeader("Сумма", "Дата", "Доход/Расход")))
+                        .withHeader("Sum", "Date", "income/Consumption")))
         {
             for (int i = 0; i < accountForFileList.size(); i++) {
                 csvPrinter.printRecord(accountForFileList.get(i).getCategoryName(),
@@ -100,7 +100,7 @@ public class AccountServiceImpl implements AccountService {
                 csvPrinter.flush();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось создать файл-распечатку счета! Подробней в журнале.");
+            throw new RuntimeException("Sorry( An error occurred!");
         }
         return way;
     }

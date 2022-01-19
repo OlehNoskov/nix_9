@@ -1,13 +1,24 @@
 package ua.com.alevel.view.dto.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import ua.com.alevel.persistence.entity.Account;
 
 import java.math.BigDecimal;
 
 public class AccountResponseDto extends ResponseDto{
 
+    @Getter
+    @Setter
     private Long userId;
+
+    @Getter
+    @Setter
     private String accountNumbers;
+
+    @Getter
+    @Setter
     private String balance;
 
     public AccountResponseDto() {}
@@ -37,29 +48,5 @@ public class AccountResponseDto extends ResponseDto{
         }
         System.out.println(findBal);
         return money;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getAccountNumbers() {
-        return accountNumbers;
-    }
-
-    public void setAccountNumbers(String accountNumbers) {
-        this.accountNumbers = accountNumbers;
-    }
-
-    public String getBalance() {
-        return balance;
-    }
-
-    public void setBalance(String balance) {
-        this.balance = balance;
     }
 }

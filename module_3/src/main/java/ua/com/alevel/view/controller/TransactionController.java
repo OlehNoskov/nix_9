@@ -30,10 +30,9 @@ public class TransactionController extends AbstractController {
     private final HeaderName[] columnNames = new HeaderName[] {
             new HeaderName("#"),
             new HeaderName("User"),
-            new HeaderName("Number check"),
-            new HeaderName("Appointment"),
+            new HeaderName("Check number"),
+            new HeaderName("Event"),
             new HeaderName("Sum"),
-            new HeaderName("Date")
     };
 
     @GetMapping

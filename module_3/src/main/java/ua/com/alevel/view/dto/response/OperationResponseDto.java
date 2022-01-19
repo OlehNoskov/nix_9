@@ -1,9 +1,18 @@
 package ua.com.alevel.view.dto.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import ua.com.alevel.persistence.entity.Operation;
 
 public class OperationResponseDto extends ResponseDto{
+
+    @Getter
+    @Setter
     private String categoryName;
+
+    @Getter
+    @Setter
     private boolean categoryIncomeExpense;
 
     public OperationResponseDto() {}
@@ -15,21 +24,5 @@ public class OperationResponseDto extends ResponseDto{
         setUpdated(operation.getUpdated());
         this.categoryName = operation.getCategoryName();
         this.categoryIncomeExpense = operation.isCategoryIncomeExpense();
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public boolean isCategoryIncomeExpense() {
-        return categoryIncomeExpense;
-    }
-
-    public void setCategoryIncomeExpense(boolean categoryIncomeExpense) {
-        this.categoryIncomeExpense = categoryIncomeExpense;
     }
 }

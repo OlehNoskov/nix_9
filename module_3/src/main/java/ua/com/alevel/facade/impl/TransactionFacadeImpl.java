@@ -18,15 +18,12 @@ import java.util.List;
 public class TransactionFacadeImpl implements TransactionFacade {
 
     private final TransactionService transactionService;
-    private final UserService userService;
-    private final AccountService accountService;
-    private final OperationService operationService;
 
-    public TransactionFacadeImpl(TransactionService categoryService, UserService userService, AccountService accountService, OperationService operationService) {
+    public TransactionFacadeImpl(TransactionService categoryService,
+                                 UserService userService,
+                                 AccountService accountService,
+                                 OperationService operationService) {
         this.transactionService = categoryService;
-        this.userService = userService;
-        this.accountService = accountService;
-        this.operationService = operationService;
     }
 
     @Override
@@ -45,8 +42,8 @@ public class TransactionFacadeImpl implements TransactionFacade {
 
     @Override
     public List<TransactionResponseDto> findTransactionsByUserId(Long userId) {
-        List <Transaction> transactionList = transactionService.findTransactionsByUserId(userId);
-        List <TransactionResponseDto> allTransactions = new ArrayList<>();
+        List<Transaction> transactionList = transactionService.findTransactionsByUserId(userId);
+        List<TransactionResponseDto> allTransactions = new ArrayList<>();
         for (int i = 0; i < transactionList.size(); i++) {
             allTransactions.add(new TransactionResponseDto(transactionList.get(i)));
         }
@@ -55,8 +52,8 @@ public class TransactionFacadeImpl implements TransactionFacade {
 
     @Override
     public List<TransactionResponseDto> findTransactionsByAccountId(Long accountId) {
-        List <Transaction> transactionList = transactionService.findTransactionsByAccountId(accountId);
-        List <TransactionResponseDto> allTransactions = new ArrayList<>();
+        List<Transaction> transactionList = transactionService.findTransactionsByAccountId(accountId);
+        List<TransactionResponseDto> allTransactions = new ArrayList<>();
         for (int i = 0; i < transactionList.size(); i++) {
             allTransactions.add(new TransactionResponseDto(transactionList.get(i)));
         }
@@ -64,10 +61,12 @@ public class TransactionFacadeImpl implements TransactionFacade {
     }
 
     @Override
-    public void update(TransactionRequestDto transactionRequestDto) {}
+    public void update(TransactionRequestDto transactionRequestDto) {
+    }
 
     @Override
-    public void delete(Long id) {}
+    public void delete(Long id) {
+    }
 
     @Override
     public TransactionResponseDto findById(Long id) {
@@ -76,8 +75,8 @@ public class TransactionFacadeImpl implements TransactionFacade {
 
     @Override
     public List<TransactionResponseDto> findAll() {
-        List <Transaction> transactionList = transactionService.findAll();
-        List <TransactionResponseDto> allTransactions = new ArrayList<>();
+        List<Transaction> transactionList = transactionService.findAll();
+        List<TransactionResponseDto> allTransactions = new ArrayList<>();
         for (int i = 0; i < transactionList.size(); i++) {
             allTransactions.add(new TransactionResponseDto(transactionList.get(i)));
         }

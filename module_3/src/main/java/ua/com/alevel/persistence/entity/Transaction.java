@@ -1,12 +1,15 @@
 package ua.com.alevel.persistence.entity;
 
-import groovy.transform.EqualsAndHashCode;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
+@Data
 @Entity
 @Table(name = "transactions")
 @EqualsAndHashCode(callSuper = true)
@@ -49,67 +52,7 @@ public class Transaction extends BaseEntity {
 
     public Transaction() {}
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public BigDecimal getTransactionSum() {
-        return transactionSum;
-    }
-
-    public void setTransactionSum(BigDecimal transactionSum) {
-        this.transactionSum = transactionSum;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getAccountNumbers() {
-        return accountNumbers;
-    }
-
-    public void setAccountNumbers(String accountNumbers) {
-        this.accountNumbers = accountNumbers;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     public Boolean isCategoryIncomeExpense() {
         return categoryIncomeExpense;
-    }
-
-    public void setCategoryIncomeExpense(boolean categoryIncomeExpense) {
-        this.categoryIncomeExpense = categoryIncomeExpense;
     }
 }

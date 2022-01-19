@@ -18,7 +18,6 @@ import java.util.List;
 public class OperationFacadeImpl implements OperationFacade {
 
     private final OperationService operationService;
-    private static final Logger LOGGER_WARN = LoggerFactory.getLogger("warn");
 
     public OperationFacadeImpl(OperationService operationService) {
         this.operationService = operationService;
@@ -31,10 +30,8 @@ public class OperationFacadeImpl implements OperationFacade {
             operation.setCategoryName(operationRequestDto.getOperationName());
             operation.setCategoryIncomeExpense(operationRequestDto.isCategoryIncomeExpense());
         } catch (NullPointerException ex) {
-            LOGGER_WARN.warn("Человек ленится набрать буковки....!");
-            throw new RuntimeException("Пожалуйста, заполните все поля");
+            throw new RuntimeException("Please fill in all fields");
         }
-
         operationService.create(operation);
     }
 
@@ -60,7 +57,6 @@ public class OperationFacadeImpl implements OperationFacade {
         for (int i = 0; i < operationList.size(); i++) {
             allOperations.add(new OperationResponseDto(operationList.get(i)));
         }
-
         return allOperations;
     }
 }

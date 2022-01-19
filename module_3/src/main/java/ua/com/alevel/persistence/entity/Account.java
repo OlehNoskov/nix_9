@@ -2,6 +2,9 @@ package ua.com.alevel.persistence.entity;
 
 import groovy.transform.EqualsAndHashCode;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -13,12 +16,18 @@ import java.math.BigDecimal;
 public class Account extends BaseEntity {
 
     @Column(name = "user_id")
+    @Getter
+    @Setter
     private Long userId;
 
     @Column(name = "account_numbers")
+    @Getter
+    @Setter
     private String accountNumbers;
 
     @Column(name = "account_balance")
+    @Getter
+    @Setter
     private BigDecimal balance;
 
     public Account() {
@@ -27,30 +36,6 @@ public class Account extends BaseEntity {
     public Account(Long userId, String accountNumbers, BigDecimal balance) {
         this.userId = userId;
         this.accountNumbers = accountNumbers;
-        this.balance = balance;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getAccountNumbers() {
-        return accountNumbers;
-    }
-
-    public void setAccountNumbers(String accountNumbers) {
-        this.accountNumbers = accountNumbers;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 }

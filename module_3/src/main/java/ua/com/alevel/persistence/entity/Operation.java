@@ -2,6 +2,9 @@ package ua.com.alevel.persistence.entity;
 
 import groovy.transform.EqualsAndHashCode;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,10 +13,15 @@ import javax.persistence.Table;
 @Table(name = "categories")
 @EqualsAndHashCode(callSuper = true)
 public class Operation extends BaseEntity {
+
     @Column(name = "category_name")
+    @Getter
+    @Setter
     private String categoryName;
 
     @Column(name = "category_income_expense")
+    @Getter
+    @Setter
     private boolean categoryIncomeExpense;
 
     public Operation(String categoryName, boolean categoryIncomeExpense) {
@@ -22,21 +30,5 @@ public class Operation extends BaseEntity {
     }
 
     public Operation() {
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public boolean isCategoryIncomeExpense() {
-        return categoryIncomeExpense;
-    }
-
-    public void setCategoryIncomeExpense(boolean categoryIncomeExpense) {
-        this.categoryIncomeExpense = categoryIncomeExpense;
     }
 }

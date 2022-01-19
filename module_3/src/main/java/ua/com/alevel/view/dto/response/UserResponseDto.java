@@ -1,7 +1,10 @@
 package ua.com.alevel.view.dto.response;
 
+import lombok.Data;
+
 import ua.com.alevel.persistence.entity.User;
 
+@Data
 public class UserResponseDto extends ResponseDto{
 
     private String firstName;
@@ -18,29 +21,5 @@ public class UserResponseDto extends ResponseDto{
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.age = user.getAge();
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 }

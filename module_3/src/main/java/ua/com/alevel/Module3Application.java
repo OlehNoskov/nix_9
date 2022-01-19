@@ -20,6 +20,7 @@ import ua.com.alevel.persistence.entity.Transaction;
 import ua.com.alevel.persistence.entity.User;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class,
@@ -60,46 +61,71 @@ public class Module3Application {
         try {
             User user1 = new User("Noskov", "Oleh", 28);
             userDao.create(user1);
+            user1.setCreated(new Timestamp(System.currentTimeMillis()));
+
             User user2 = new User("Funtusov", "Iegor", 30);
             userDao.create(user2);
+            user2.setCreated(new Timestamp(System.currentTimeMillis()));
+
             User user3 = new User("Rastvorceva", "Irina", 27);
             userDao.create(user3);
+            user3.setCreated(new Timestamp(System.currentTimeMillis()));
+
             User user4 = new User("Prihodko", "Ilona", 19);
             userDao.create(user4);
+            user4.setCreated(new Timestamp(System.currentTimeMillis()));
+
             User user5 = new User("Kysil", "Sergey", 29);
             userDao.create(user5);
+            user5.setCreated(new Timestamp(System.currentTimeMillis()));
 
             Operation operation1 = new Operation("Salary", true);
             operationDao.create(operation1);
+            operation1.setCreated(new Timestamp(System.currentTimeMillis()));
+
             Operation operation2 = new Operation("Bonus", true);
             operationDao.create(operation2);
+            operation2.setCreated(new Timestamp(System.currentTimeMillis()));
+
             Operation operation3 = new Operation("Present", true);
             operationDao.create(operation3);
-            Operation operation5 = new Operation("Sale of things", true);
+            operation3.setCreated(new Timestamp(System.currentTimeMillis()));
+
+            Operation operation4 = new Operation("Sale of things", true);
+            operationDao.create(operation4);
+            operation4.setCreated(new Timestamp(System.currentTimeMillis()));
+
+            Operation operation5 = new Operation("Shopping in the store", false);
             operationDao.create(operation5);
-            Operation operation6 = new Operation("Shopping in the store", false);
+            operation4.setCreated(new Timestamp(System.currentTimeMillis()));
+
+            Operation operation6 = new Operation("Debt repayment", false);
             operationDao.create(operation6);
-            Operation operation7 = new Operation("Debt repayment", false);
-            operationDao.create(operation7);
+            operation6.setCreated(new Timestamp(System.currentTimeMillis()));
 
+            Account account1 = new Account(1L, "7563 0934 3195 1487", new BigDecimal("1000"));
+            accountDao.create(account1);
+            account1.setCreated(new Timestamp(System.currentTimeMillis()));
 
-            Account testAcc1 = new Account(1L, "7563 0934 3195 1487", new BigDecimal("1000"));
-            accountDao.create(testAcc1);
-            Account testAcc2 = new Account(1L, "6337 1286 4455 1570", new BigDecimal("1000"));
-            accountDao.create(testAcc2);
-            Account testAcc3 = new Account(2L, "7641 2587 6547 7777", new BigDecimal("1000"));
-            accountDao.create(testAcc3);
+            Account account2 = new Account(1L, "6337 1286 4455 1570", new BigDecimal("1000"));
+            accountDao.create(account2);
+            account2.setCreated(new Timestamp(System.currentTimeMillis()));
+
+            Account account3 = new Account(2L, "7641 2587 6547 7777", new BigDecimal("1000"));
+            accountDao.create(account3);
+            account3.setCreated(new Timestamp(System.currentTimeMillis()));
 
             Transaction transaction1 = new Transaction(1L, 1L, 1L, new BigDecimal("1000"), "Oleh Noskov", "7563 0934 3195 1487", "Salary", true);
             transactionDao.create(transaction1);
+            transaction1.setCreated(new Timestamp(System.currentTimeMillis()));
+
             Transaction transaction2 = new Transaction(1L, 1L, 3L, new BigDecimal("2500"), "Ilona Prihodko", "7563 0934 3195 1487", "Present", true);
             transactionDao.create(transaction2);
+            transaction2.setCreated(new Timestamp(System.currentTimeMillis()));
+
             Transaction transaction3 = new Transaction(1L, 1L, 11L, new BigDecimal("5000"), "Iegor Funtusov", "7563 0934 3195 1487", "Shopping in the store", false);
             transactionDao.create(transaction3);
-
-            testAcc1.setBalance(new BigDecimal("8500"));
-            accountDao.update(testAcc1);
-
+            transaction3.setCreated(new Timestamp(System.currentTimeMillis()));
         } catch (Exception ex) {
             System.out.println();
         }

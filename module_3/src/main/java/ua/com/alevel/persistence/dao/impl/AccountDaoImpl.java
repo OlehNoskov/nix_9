@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.AccountDao;
 import ua.com.alevel.persistence.entity.Account;
-import ua.com.alevel.persistence.entity.AccountStatement;
-import ua.com.alevel.persistence.entity.AccountForFile;
+import ua.com.alevel.persistence.entity.Statement;
+import ua.com.alevel.persistence.entity.AccountFile;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -42,15 +42,15 @@ public class AccountDaoImpl implements AccountDao {
     public void create(Account entity) {
         try {
             sessionFactory.getCurrentSession().persist(entity);
-        } catch (Exception he)/*HibernateException*/ {
-            LOGGER_ERROR.error("Не удалось создать Счет!" + he.getMessage());
-            throw new RuntimeException("Обратитесь к администратору!");
+        } catch (Exception he) {
+            LOGGER_ERROR.error("Failed to create an account!" + he.getMessage());
+            throw new RuntimeException("Contact the administrator!");
         }
     }
 
     @Override
     public void create(Long id) {
-        LOGGER_INFO.info("Создание нового Счета!");
+        LOGGER_INFO.info("Creating a New Account!");
         int uahBalance = 100 * 100;
         StringBuilder accountNumbers = new StringBuilder();
         for (int i = 0; i <= 3; i++) {
@@ -65,10 +65,10 @@ public class AccountDaoImpl implements AccountDao {
         try {
             sessionFactory.getCurrentSession().persist(account);
         } catch (Exception he)/*HibernateException*/ {
-            LOGGER_ERROR.error("Не удалось создать Счет!" + he.getMessage());
-            throw new RuntimeException("Обратитесь к администратору!");
+            LOGGER_ERROR.error("Failed to create an account!" + he.getMessage());
+            throw new RuntimeException("Contact the administrator!");
         }
-        LOGGER_INFO.info("Счета создан");
+        LOGGER_INFO.info("Accounts created");
     }
 
     private int rnd() {
@@ -80,28 +80,27 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public void update(Account entity) {
-        LOGGER_INFO.info("Обновление счета:" + entity.getAccountNumbers());
+        LOGGER_INFO.info("Account update:" + entity.getAccountNumbers());
         try {
             sessionFactory.getCurrentSession().merge(entity);
         } catch (Exception he) {
-            LOGGER_ERROR.error("Ошибка! " + entity.getAccountNumbers() + "" + he.getMessage());
-            throw new RuntimeException("Не удалось выполнить операцию!");
+            LOGGER_ERROR.error("Error!" + entity.getAccountNumbers() + "" + he.getMessage());
+            throw new RuntimeException("Operation failed!");
         }
-        LOGGER_INFO.info("Запрос на операцию со счетом " + entity.getAccountNumbers() + " выполнен!");
     }
 
     @Override
     public void delete(Long id) {
-        LOGGER_INFO.info("Удаление счета");
+        LOGGER_INFO.info("Deleting an account");
         try {
             sessionFactory.getCurrentSession().createQuery("delete from Account acc where acc.id = :id")
                     .setParameter("id", id)
                     .executeUpdate();
         } catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось удалить счет!");
-            throw new RuntimeException("Не удалось удалить счет!");
+            LOGGER_ERROR.error("Failed to delete account!");
+            throw new RuntimeException("Failed to delete account!");
         }
-        LOGGER_INFO.info("Счет удален!");
+        LOGGER_INFO.info("Account deleted!");
     }
 
     @Override
@@ -111,19 +110,19 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public Account findById(Long id) {
-        LOGGER_INFO.info("Поиск счета!");
+        LOGGER_INFO.info("Account Search!");
         try {
             Account account = sessionFactory.getCurrentSession().find(Account.class, id);
             return account;
         }catch (Exception he) {
-            LOGGER_ERROR.error("Счет не найден!");
-            throw new RuntimeException("Счет не найден!");
+            LOGGER_ERROR.error("Account not found!");
+            throw new RuntimeException("Account not found!");
         }
     }
 
     @Override
     public List<Account> findAll() {
-        LOGGER_INFO.info("Поиск все счетов");
+        LOGGER_INFO.info("Search all accounts");
         List<Account> accountsAll = new LinkedList<>();
 
         try {
@@ -133,8 +132,8 @@ public class AccountDaoImpl implements AccountDao {
             Root<Account> from = criteriaQuery.from(Account.class);
             accountsAll = session.createQuery(criteriaQuery).getResultList();
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти все счета!");
-            throw new RuntimeException("Не удалось найти все счета!");
+            LOGGER_ERROR.error("Could not find all accounts!");
+            throw new RuntimeException("Could not find all accounts!");
         }
         return accountsAll;
     }
@@ -153,34 +152,34 @@ public class AccountDaoImpl implements AccountDao {
                     .getResultList();
             return userAccounts;
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти счет!");
-            throw new RuntimeException("Не удалось найти счет!");
+            LOGGER_ERROR.error("Could not find accounts!");
+            throw new RuntimeException("Could not find accounts");
         }
     }
 
     @Override
-    public List<AccountForFile> getAccountStatementFileForDownload(AccountStatement accountStatement) {
-        LOGGER_INFO.info("Создание выписки по счету");
+    public List<AccountFile> getAccountStatementFileForDownload(Statement statement) {
+        LOGGER_INFO.info("Create account statement");
         String sql = "SELECT created, transaction_sum, category_name, category_income_expense " +
                 "FROM transactions " +
-                "WHERE account_id = " + accountStatement.getId() + " " +
-                "AND created BETWEEN '" + accountStatement.getDateFrom() +
-                "' AND '" + accountStatement.getDateTo() + "'";
+                "WHERE account_id = " + statement.getId() + " " +
+                "AND created BETWEEN '" + statement.getBeginDate() +
+                "' AND '" + statement.getEndDate() + "'";
 
-        List<AccountForFile> accountForFileList = new LinkedList<>();
+        List<AccountFile> accountForFileList = new LinkedList<>();
         try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(sql)) {
             while (resultSet.next()) {
                 accountForFileList.add(convertResultSetToAccountStatement(resultSet));
             }
         } catch (SQLException e) {
-            LOGGER_ERROR.error("Не удалось выполнить операцию на создание выписки по счету!");
-            throw new RuntimeException("Не удалось выполнить операцию на создание выписки по счету!");
+            LOGGER_ERROR.error("Failed to complete the operation to create an account statement!");
+            throw new RuntimeException("Failed to complete the operation to create an account statement!");
         }
         return accountForFileList;
     }
 
-    private AccountForFile convertResultSetToAccountStatement(ResultSet resultSet) throws SQLException {
-        AccountForFile accountStatement = new AccountForFile(
+    private AccountFile convertResultSetToAccountStatement(ResultSet resultSet) throws SQLException {
+        AccountFile accountStatement = new AccountFile(
                 resultSet.getDate("created"),
                 resultSet.getBigDecimal("transaction_sum"),
                 resultSet.getString("category_name"),

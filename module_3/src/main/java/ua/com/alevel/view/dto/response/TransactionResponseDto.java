@@ -1,9 +1,11 @@
 package ua.com.alevel.view.dto.response;
 
+import lombok.Data;
 import ua.com.alevel.persistence.entity.Transaction;
 
 import java.math.BigDecimal;
 
+@Data
 public class TransactionResponseDto extends ResponseDto{
 
     private Long userId;
@@ -49,69 +51,5 @@ public class TransactionResponseDto extends ResponseDto{
         }
         System.out.println(findBal);
         return money;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getAccountNumbers() {
-        return accountNumbers;
-    }
-
-    public void setAccountNumbers(String accountNumbers) {
-        this.accountNumbers = accountNumbers;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getTransactionSum() {
-        return transactionSum;
-    }
-
-    public void setTransactionSum(String transactionSum) {
-        this.transactionSum = transactionSum;
-    }
-
-    public boolean isCategoryIncomeExpense() {
-        return categoryIncomeExpense;
-    }
-
-    public void setCategoryIncomeExpense(boolean categoryIncomeExpense) {
-        this.categoryIncomeExpense = categoryIncomeExpense;
     }
 }

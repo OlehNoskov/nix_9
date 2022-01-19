@@ -15,18 +15,14 @@
         <div class="col-12">
             <div class="card mb-2 mt-2">
                 <div class="card-header">
-                        <table>
-                            <tr>
-                                <th><h2><b><a style="color:black;">Check</a></b></h2></th>
-                            </tr>
-                        </table>
+                    <table>
+                        <tr>
+                            <th><h2><b><a style="color:black;">Check</a></b></h2></th>
+                        </tr>
+                    </table>
                 </div>
                 <div class="card-body" style="opacity: 1.0">
                     <table class="table table-hover table-light">
-                        <tr>
-                            <th>id</th>
-                            <td th:text="${account.getId()}"></td>
-                        </tr>
                         <tr>
                             <th>Number check</th>
                             <td th:text="${account.getAccountNumbers()}"></td>
@@ -34,10 +30,6 @@
                         <tr>
                             <th>Balance</th>
                             <td th:text="${account.getBalance()}"></td>
-                        </tr>
-                        <tr>
-                            <th>Creating</th>
-                            <td th:text="${account.getCreated()}"></td>
                         </tr>
                         <tr>
                             <th>Updating</th>
@@ -66,15 +58,13 @@
                         </tr>
                     </table>
 
-
                     <div th:if="${accountDataList.size() != 0}">
                         <table class="table table-hover table-dark">
-                            <form action="#" th:action="@{/accounts/getAnExtract }" th:object="${accountStatement}"
+                            <form action="#" th:action="@{/accounts/getAnExtract }" th:object="${statement}"
                                   method="post">
-
                                 <input type="hidden" id="id" aria-describedby="id" th:field="*{id}"
-                                       th:value="${accountStatement.getId()}">
-                                <th>Get an account statement:</th>
+                                       th:value="${statement.getId()}">
+                                <th>Account statement:</th>
                                 <td>
                                     <button type="submit" class="btn btn-success">Download</button>
                                 </td>

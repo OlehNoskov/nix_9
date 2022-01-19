@@ -15,13 +15,13 @@
         <div class="col-12">
             <div class="card mb-2 mt-2">
                 <div class="card-header">
-                        <table>
-                            <tr>
-                                <th><h2><b><a>User</a></b></h2></th>
-                                <td><a th:href="@{'/users/details/update/' + ${user.getId()}}" type="button"
-                                       class="btn btn-outline-primary">update</a></td>
-                            </tr>
-                        </table>
+                    <table>
+                        <tr>
+                            <th><h2><b><a>User</a></b></h2></th>
+                            <td><a th:href="@{'/users/details/update/' + ${user.getId()}}" type="button"
+                                   class="btn btn-outline-primary ml-3">Update</a></td>
+                        </tr>
+                    </table>
 
                 </div>
                 <div class="card-body" style="opacity: 1.0">
@@ -42,14 +42,6 @@
                             <th>Age</th>
                             <td th:text="${user.getAge()}"></td>
                         </tr>
-                        <tr>
-                            <th>Creating</th>
-                            <td th:text="${user.getCreated()}"></td>
-                        </tr>
-                        <tr>
-                            <th>Updating</th>
-                            <td th:text="${user.getUpdated()}"></td>
-                        </tr>
                     </table>
 
                     <table class="table table-hover table-light">
@@ -66,30 +58,25 @@
                             </td>
                             <td>
                                 <a th:href="@{'/accounts/delete/' + ${account.getId()}} " type="button"
-                                   class="btn btn-outline-danger">delete check</a>
+                                   class="btn btn-outline-danger">Delete check</a>
                             </td>
                         </tr>
 
                     </table>
 
-                    <table class="table table-hover table-dark">
+                    <table class="table">
                         <tr>
                             <td>
-                                <a>add check</a>
-                            <td>
-                            <td>
                                 <a th:href="@{'/accounts/create/' + ${user.getId()}}" type="button"
-                                   class="btn btn-outline-success">create check</a>
+                                   class="btn btn-outline-success">Create check</a>
                             </td>
                         </tr>
                     </table>
 
                     <div>
-                        <center>
-                            <a th:href="@{'/users/showTransactions/' + ${user.getId()}}"
-                               type="button"
-                               class="btn btn-outline-primary">all transaction user</a>
-                        </center>
+                        <a th:href="@{'/users/showTransactions/' + ${user.getId()}}"
+                           type="button"
+                           class="btn btn-outline-primary">All user transactions</a>
                     </div>
                 </div>
             </div>

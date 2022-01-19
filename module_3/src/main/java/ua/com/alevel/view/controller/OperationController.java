@@ -22,7 +22,7 @@ public class OperationController extends AbstractController {
 
     private final HeaderName[] columnNames = new HeaderName[] {
             new HeaderName("#"),
-            new HeaderName("Appointment"),
+            new HeaderName("Event"),
             new HeaderName("Income / Consumption"),
             new HeaderName("Delete")
     };

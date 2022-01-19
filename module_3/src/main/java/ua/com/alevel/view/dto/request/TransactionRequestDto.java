@@ -1,25 +1,17 @@
 package ua.com.alevel.view.dto.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 public class TransactionRequestDto extends RequestDto{
 
+    @Getter
+    @Setter
     private BigDecimal transactionSum;
+
+    @Getter
+    @Setter
     private Long accountId;
-
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public BigDecimal getTransactionSum() {
-        return transactionSum;
-    }
-
-    public void setTransactionSum(BigDecimal transactionSum) {
-        this.transactionSum = transactionSum;
-    }
 }

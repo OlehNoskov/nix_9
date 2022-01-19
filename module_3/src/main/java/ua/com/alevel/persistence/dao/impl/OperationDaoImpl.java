@@ -2,17 +2,19 @@ package ua.com.alevel.persistence.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import ua.com.alevel.persistence.dao.OperationDao;
 import ua.com.alevel.persistence.entity.Operation;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.LinkedList;
 import java.util.List;
 
 @Repository
@@ -29,28 +31,28 @@ public class OperationDaoImpl implements OperationDao {
 
     @Override
     public void create(Operation entity) {
-        LOGGER_INFO.info("Выдан запрос на создание новой операции!");
+        LOGGER_INFO.info("A request to create a new operation has been issued!");
         try {
             sessionFactory.getCurrentSession().persist(entity);
-        }catch (Exception he)/*Exception*/ {
-            LOGGER_ERROR.error("Не удалось создать новую Операцию! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось создать новую Операцию! Обратитесь к администратору!");
+        }catch (Exception e) {
+            LOGGER_ERROR.error("Failed to create new Operation! Cause: " + e.getMessage());
+            throw new RuntimeException("Failed to create new Operation! Contact the administrator!");
         }
-        LOGGER_INFO.info("Запрос на создание новой операции выполнен!");
+        LOGGER_INFO.info("The request to create a new operation has been completed!");
     }
 
     @Override
     public void delete(Long id) {
-        LOGGER_INFO.info("Выдан запрос на удаление операции по ID =  " + id);
+        LOGGER_INFO.info("A request was issued to delete an operation by ID =  " + id);
         try {
             sessionFactory.getCurrentSession().createQuery("delete from Operation op where op.id = :id")
                     .setParameter("id", id)
                     .executeUpdate();
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось операцию счет " + id + "! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось операцию счет " + id + "!");
+            LOGGER_ERROR.error("Failed operation account " + id + "! Cause: " + he.getMessage());
+            throw new RuntimeException("Failed operation account " + id + "!");
         }
-        LOGGER_INFO.info("Запрос на удаление операции по ID =  " + id + " выполнен!");
+        LOGGER_INFO.info("Request to delete a transaction ID =  " + id + " completed!");
     }
 
     @Override
@@ -60,21 +62,21 @@ public class OperationDaoImpl implements OperationDao {
 
     @Override
     public Operation findById(Long id) {
-        LOGGER_INFO.info("Выдан запрос на поиск операции по ID =  " + id);
+        LOGGER_INFO.info("A request was issued to search for an operation by ID =  " + id);
         try {
             Operation operation = sessionFactory.getCurrentSession().find(Operation.class, id);
-            LOGGER_INFO.info("Запрос на поиск операции по ID =  " + id + " выполнен!");
+            LOGGER_INFO.info("Request to search for an operation by ID =  " + id + " completed!");
             return operation;
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти операцию по " + id + "! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось найти операцию по " + id + "!");
+            LOGGER_ERROR.error("Failed to find operation " + id + "! Cause: " + he.getMessage());
+            throw new RuntimeException("Failed to find operation " + id + "!");
         }
     }
 
     @Override
     public List<Operation> findAll() {
-        LOGGER_INFO.info("Выдан запрос на поиск всех Операций");
-        List<Operation> operationsAll = new LinkedList<>();
+        LOGGER_INFO.info("A request to search for all Operations has been issued");
+        List<Operation> operationsAll;
 
         try {
             Session session = sessionFactory.getCurrentSession();
@@ -83,11 +85,11 @@ public class OperationDaoImpl implements OperationDao {
             Root<Operation> from = criteriaQuery.from(Operation.class);
             operationsAll = session.createQuery(criteriaQuery).getResultList();
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти все операции! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось найти все операции!");
+            LOGGER_ERROR.error("Could not find all operations! Cause: " + he.getMessage());
+            throw new RuntimeException("Could not find all operations!");
         }
 
-        LOGGER_INFO.info("Запрос на поиск всех Операций выполнен!");
+        LOGGER_INFO.info("The request to search for all Operations has been completed!");
         return operationsAll;
     }
 

@@ -1,23 +1,16 @@
 package ua.com.alevel.view.dto.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class OperationRequestDto extends RequestDto{
 
+
+    @Getter
+    @Setter
     private String operationName;
+
+    @Getter
+    @Setter
     private boolean categoryIncomeExpense;
-
-    public boolean isCategoryIncomeExpense() {
-        return categoryIncomeExpense;
-    }
-
-    public void setCategoryIncomeExpense(boolean categoryIncomeExpense) {
-        this.categoryIncomeExpense = categoryIncomeExpense;
-    }
-
-    public String getOperationName() {
-        return operationName;
-    }
-
-    public void setOperationName(String operationName) {
-        this.operationName = operationName;
-    }
 }

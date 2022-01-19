@@ -16,14 +16,14 @@
     <div class="col-12">
       <div class="card mb-2 mt-2">
         <div class="card-header">
-            <h2><b><a style="color:white;">Transaction</a></b></h2>
+            <h2><b><a style="color:#070707;">Transaction</a></b></h2>
         </div>
         <div class="card-body">
           <form action="#" th:action="@{/transactions/create}" th:object="${transaction}" method="post">
-            <<input type="hidden" id="accountId" aria-describedby="id" th:field="*{accountId}"
+            <input type="hidden" id="accountId" aria-describedby="id" th:field="*{accountId}"
                     th:value="${accountId}" name="accountId">
             <div class="form-group">
-              <label style="color:white;" for="transactionSum">Sum</label>
+              <label style="color:#262626;" for="transactionSum">Sum</label>
               <input type="number" class="form-control" id="transactionSum"
                      aria-describedby="transactionSum" th:field="*{transactionSum}" step="0.01">
             </div>
@@ -46,7 +46,7 @@
               </table>
             </div>
             <hr>
-            <center><button type="submit" class="btn btn-success">Create</button></center>>
+            <button type="submit" class="btn btn-success">Create</button>
           </form>
         </div>
       </div>

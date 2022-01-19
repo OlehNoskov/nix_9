@@ -1,9 +1,10 @@
 package ua.com.alevel.facade.impl;
 
 import org.springframework.stereotype.Service;
+
 import ua.com.alevel.facade.AccountFacade;
 import ua.com.alevel.persistence.entity.Account;
-import ua.com.alevel.persistence.entity.AccountStatement;
+import ua.com.alevel.persistence.entity.Statement;
 import ua.com.alevel.service.AccountService;
 import ua.com.alevel.view.dto.request.AccountRequestDto;
 import ua.com.alevel.view.dto.request.AccountStatementRequestDto;
@@ -37,7 +38,6 @@ public class AccountFacadeImpl implements AccountFacade {
     @Override
     public void delete(Long id) {
         accountService.delete(id);
-
     }
 
     @Override
@@ -47,8 +47,8 @@ public class AccountFacadeImpl implements AccountFacade {
 
     @Override
     public List<AccountResponseDto> findAll() {
-        List <Account> accountList = accountService.findAll();
-        List <AccountResponseDto> userAccounts = new ArrayList<>();
+        List<Account> accountList = accountService.findAll();
+        List<AccountResponseDto> userAccounts = new ArrayList<>();
 
         for (int i = 0; i < accountList.size(); i++) {
             userAccounts.add(new AccountResponseDto(accountList.get(i)));
@@ -58,8 +58,8 @@ public class AccountFacadeImpl implements AccountFacade {
 
     @Override
     public List<AccountResponseDto> findByUserId(Long id) {
-        List <Account> accountList = accountService.findByUserId(id);
-        List <AccountResponseDto> userAccounts = new ArrayList<>();
+        List<Account> accountList = accountService.findByUserId(id);
+        List<AccountResponseDto> userAccounts = new ArrayList<>();
 
         for (int i = 0; i < accountList.size(); i++) {
             userAccounts.add(new AccountResponseDto(accountList.get(i)));
@@ -69,6 +69,6 @@ public class AccountFacadeImpl implements AccountFacade {
 
     @Override
     public String getAccountStatementFileForDownload(AccountStatementRequestDto dto) {
-        return accountService.getAccountStatementFileForDownload(new AccountStatement(dto));
+        return accountService.getAccountStatementFileForDownload(new Statement(dto));
     }
 }

@@ -1,40 +1,23 @@
 package ua.com.alevel.view.dto.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class UserRequestDto extends RequestDto{
+
+    @Getter
+    @Setter
     private Long id;
+
+    @Getter
+    @Setter
     private Integer age;
+
+    @Getter
+    @Setter
     private String firstName;
+
+    @Getter
+    @Setter
     private String lastName;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 }

@@ -1,12 +1,14 @@
 package ua.com.alevel.view.controller;
 
 import org.apache.commons.collections4.MapUtils;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+
 import ua.com.alevel.facade.AccountFacade;
 import ua.com.alevel.facade.TransactionFacade;
 import ua.com.alevel.facade.UserFacade;
@@ -25,7 +27,7 @@ public class UserController extends AbstractController {
     private final HeaderName[] columnNames = new HeaderName[] {
             new HeaderName("#"),
             new HeaderName("Name"),
-            new HeaderName("Lastname"),
+            new HeaderName("Surname"),
             new HeaderName("Age"),
             new HeaderName("Details"),
             new HeaderName("Delete")

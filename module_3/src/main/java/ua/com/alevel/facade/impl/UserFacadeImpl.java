@@ -2,7 +2,9 @@ package ua.com.alevel.facade.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
+
 import ua.com.alevel.facade.UserFacade;
 import ua.com.alevel.persistence.entity.User;
 import ua.com.alevel.service.UserService;
@@ -29,16 +31,14 @@ public class UserFacadeImpl implements UserFacade {
         try {
             user.setFirstName(userRequestDto.getFirstName());
             user.setLastName(userRequestDto.getLastName());
-            if(userRequestDto.getAge() < 0) {
-                LOGGER_WARN.warn("Человек пытается спародировать сюжет фильмы \"Удивительная Жизнь Бенжемина Франка\"");
-                throw new RuntimeException("Нельзя спародировать сюжет фильмы \"Удивительная Жизнь Бенжемина Франка\", возраст должен быть 0+");
+            if (userRequestDto.getAge() < 0) {
+                LOGGER_WARN.warn("Attempt to establish a negative age!");
+                throw new RuntimeException("Age must be greater than zero!");
             }
             user.setAge(userRequestDto.getAge());
         } catch (NullPointerException ex) {
-            LOGGER_WARN.warn("Человек ленится набрать буковки....!");
-            throw new RuntimeException("Пожалуйста, заполните все поля");
+            throw new RuntimeException("Please fill in all fields!");
         }
-
         userService.create(user);
     }
 
@@ -51,9 +51,9 @@ public class UserFacadeImpl implements UserFacade {
             user.setLastName(userRequestDto.getLastName());
             user.setAge(userRequestDto.getAge());
             user.setUpdated(new Date());
-        }catch (NullPointerException ex) {
-            LOGGER_WARN.warn("Человек ленится набрать буковки....!");
-            throw new RuntimeException("Пожалуйста, заполните все поля");
+        } catch (NullPointerException ex) {
+            LOGGER_WARN.warn("Not all fields are filled!");
+            throw new RuntimeException("Please fill in all fields!");
         }
         userService.update(user);
     }
@@ -71,7 +71,7 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     public List<UserResponseDto> findAll() {
         List<User> userList = userService.findAll();
-        List <UserResponseDto> allUsers = new ArrayList<>();
+        List<UserResponseDto> allUsers = new ArrayList<>();
 
         for (int i = 0; i < userList.size(); i++) {
             allUsers.add(new UserResponseDto(userList.get(i)));

@@ -32,20 +32,20 @@ public class TransactionDaoImpl implements TransactionDao {
 
     @Override
     public void create(Transaction entity) {
-        LOGGER_INFO.info("Выдан запрос на создание новой Транзакции!");
+        LOGGER_INFO.info("A request to create a new Transaction has been issued!");
         try {
             sessionFactory.getCurrentSession().persist(entity);
-        }catch (Exception he)/*HibernateException*/ {
-            LOGGER_ERROR.error("Не удалось создать новую Транзакцию! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось создать новую Транзакцию! Обратитесь к администратору!");
+        }catch (Exception e){
+            LOGGER_ERROR.error("Failed to create new Transaction! Cause: " + e.getMessage());
+            throw new RuntimeException("Failed to create new Transaction! Contact the administrator!");
         }
-        LOGGER_INFO.info("Запрос на создание новой Транзакции выполнен!");
+        LOGGER_INFO.info("The request to create a new Transaction has been completed!");
     }
 
     @Override
     public List<Transaction> findAll() {
-        LOGGER_INFO.info("Выдан запрос на поиск всех Транзакций");
-        List<Transaction> transactionsAll = new LinkedList<>();
+        LOGGER_INFO.info("Requested to search for all Transactions");
+        List<Transaction> transactionsAll;
 
         try {
             Session session = sessionFactory.getCurrentSession();
@@ -54,11 +54,11 @@ public class TransactionDaoImpl implements TransactionDao {
             Root<Transaction> from = criteriaQuery.from(Transaction.class);
             transactionsAll = session.createQuery(criteriaQuery).getResultList();
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти все Транзакции! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось найти все Транзакции!");
+            LOGGER_ERROR.error("Could not find all Transactions! Cause: " + he.getMessage());
+            throw new RuntimeException("Could not find all Transactions!");
         }
 
-        LOGGER_INFO.info("Запрос на поиск всех Транзакций выполнен!");
+        LOGGER_INFO.info("The request to search for all Transactions has been completed!");
         return transactionsAll;
     }
 
@@ -69,33 +69,33 @@ public class TransactionDaoImpl implements TransactionDao {
 
     @Override
     public List<Transaction> findTransactionsByUserId(Long userId) {
-        LOGGER_INFO.info("Выдан запрос на поиск всех Транзакций по ID = " + userId + " пользователя!");
+        LOGGER_INFO.info("A request was issued to search for all Transactions by ID = " + userId + " user!");
         try {
             List <Transaction> userTransactions = sessionFactory.getCurrentSession().
                     createQuery("from Transaction tr where tr.userId = :id")
                     .setParameter("id", userId)
                     .getResultList();
-            LOGGER_INFO.info("Запрос на поиск всех Транзакций по ID = " + userId + " пользователя выполнен!");
+            LOGGER_INFO.info("Request to search for all Transactions by ID = " + userId + " user completed!");
             return userTransactions;
-        }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти всех Транзакций по ID = " + userId + ". Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось найти всех Транзакций по ID = " + userId);
+        }catch (Exception e) {
+            LOGGER_ERROR.error("Failed to find all Transactions by ID = " + userId + ". Cause: " + e.getMessage());
+            throw new RuntimeException("Failed to find all Transactions by ID = " + userId);
         }
     }
 
     @Override
     public List<Transaction> findTransactionsByAccountId(Long accountId) {
-        LOGGER_INFO.info("Выдан запрос на поиск всех Транзакций по ID = " + accountId + " счета!");
+        LOGGER_INFO.info("A request was issued to search for all Transactions by ID = " + accountId + " accounts!");
         try {
             List <Transaction> accountTransactions = sessionFactory.getCurrentSession().
                     createQuery("from Transaction tr where tr.accountId = :id")
                     .setParameter("id", accountId)
                     .getResultList();
-            LOGGER_INFO.info("Запрос на поиск всех Транзакций по ID = " + accountId + " счета выполнен!");
+            LOGGER_INFO.info("Request to search for all Transactions by ID = " + accountId + " user completed!!");
             return accountTransactions;
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти всех Транзакций по ID = " + accountId + ". Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось найти всех Транзакций по ID = " + accountId);
+            LOGGER_ERROR.error("Failed to find all Transactions by ID = " + accountId + ". Cause: " + he.getMessage());
+            throw new RuntimeException("Failed to find all Transactions by ID = " + accountId);
         }
     }
 

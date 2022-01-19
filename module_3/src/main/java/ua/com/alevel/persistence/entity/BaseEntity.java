@@ -1,5 +1,8 @@
 package ua.com.alevel.persistence.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,12 +11,18 @@ public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Getter
+    @Setter
     private Date created;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Getter
+    @Setter
     private Date updated;
 
     public BaseEntity() {
@@ -24,29 +33,5 @@ public abstract class BaseEntity {
     @PreUpdate
     public void preUpdate() {
         this.updated = new Date();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
     }
 }

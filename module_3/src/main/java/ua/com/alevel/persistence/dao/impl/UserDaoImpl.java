@@ -15,7 +15,6 @@ import ua.com.alevel.persistence.entity.User;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.LinkedList;
 import java.util.List;
 
 @Repository
@@ -32,41 +31,41 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void create(User entity) {
-        LOGGER_INFO.info("Выдан запрос на создание нового Пользователя!");
+        LOGGER_INFO.info("A request to create a new User has been issued!");
         try {
             sessionFactory.getCurrentSession().persist(entity);
-        }catch (Exception he /*HibernateException*/) {
-            LOGGER_ERROR.error("Не удалось создать нового Пользователя! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось создать нового Пользователя! Обратитесь к администратору!");
+        }catch (Exception e) {
+            LOGGER_ERROR.error("Failed to create new User! Cause: " + e.getMessage());
+            throw new RuntimeException("Failed to create new User! Contact the administrator!");
         }
-        LOGGER_INFO.info("Запрос на создание нового Пользователя выполнен!");
+        LOGGER_INFO.info("The request to create a new User has been completed!");
     }
 
     @Override
     public void update(User entity) {
-        LOGGER_INFO.info("Выдан запрос на обновление Пользователя ");
+        LOGGER_INFO.info("User update request issued");
         try {
             sessionFactory.getCurrentSession().merge(entity);
-        } catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось выполнить операцию обновления Пользователя " + "! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось выполнить операцию обновления Пользователя " + "!");
+        } catch (Exception e) {
+            LOGGER_ERROR.error("User update operation failed " + "! Cause: " + e.getMessage());
+            throw new RuntimeException("User update operation failed!");
         }
-        LOGGER_INFO.info("Запрос на операцию обновления Пользователя " + " выполнен!");
+        LOGGER_INFO.info("Request for Update Account operation completed!");
 
     }
 
     @Override
     public void delete(Long id) {
-        LOGGER_INFO.info("Выдан запрос на удаление Пользователя по ID =  " + id);
+        LOGGER_INFO.info("A request was issued to delete a User by ID =  " + id);
         try {
             sessionFactory.getCurrentSession().createQuery("delete from User us where us.id = :id")
                     .setParameter("id", id)
                     .executeUpdate();
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось удалить Пользователя " + id + "! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось удалить Пользователя " + id + "!");
+            LOGGER_ERROR.error("Failed to delete User " + id + "! Cause: " + he.getMessage());
+            throw new RuntimeException("Failed to delete User " + id + "!");
         }
-        LOGGER_INFO.info("Запрос на удаление Пользователя по ID =  " + id + " выполнен!");
+        LOGGER_INFO.info("Request to delete a User by ID =  " + id + " completed!");
 
     }
 
@@ -77,21 +76,21 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findById(Long id) {
-        LOGGER_INFO.info("Выдан запрос на поиск Пользователя по ID =  " + id);
+        LOGGER_INFO.info("A request was issued to search for a User by ID =  " + id);
         try {
             User user = sessionFactory.getCurrentSession().find(User.class, id);
-            LOGGER_INFO.info("Запрос на поиск Пользователя по ID =  " + id + " выполнен!");
+            LOGGER_INFO.info("Request to search for a User by ID =  " + id + " completed!");
             return user;
         }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти Пользователя по " + id + "! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось найти Пользователя по " + id + "!");
+            LOGGER_ERROR.error("Failed to find User by " + id + "! Cause: " + he.getMessage());
+            throw new RuntimeException("Failed to find User by " + id + "!");
         }
     }
 
     @Override
     public List<User> findAll() {
-        LOGGER_INFO.info("Выдан запрос на поиск всех Пользователей");
-        List<User> usersAll = new LinkedList<>();
+        LOGGER_INFO.info("Requested to search for all Users");
+        List<User> usersAll;
 
         try {
             Session session = sessionFactory.getCurrentSession();
@@ -99,11 +98,11 @@ public class UserDaoImpl implements UserDao {
             CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
             Root<User> from = criteriaQuery.from(User.class);
             usersAll = session.createQuery(criteriaQuery).getResultList();
-        }catch (Exception he) {
-            LOGGER_ERROR.error("Не удалось найти всех Пользователей! Причина: " + he.getMessage());
-            throw new RuntimeException("Не удалось найти всех Пользователей!");
+        }catch (Exception e) {
+            LOGGER_ERROR.error("Could not find all Users! Cause: " + e.getMessage());
+            throw new RuntimeException("Could not find all Users!");
         }
-        LOGGER_INFO.info("Запрос на поиск всех Пользователей выполнен!");
+        LOGGER_INFO.info("Request to search for all Users completed!");
         return usersAll;
     }
 
