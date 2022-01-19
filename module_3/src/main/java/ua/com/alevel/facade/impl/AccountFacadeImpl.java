@@ -50,8 +50,8 @@ public class AccountFacadeImpl implements AccountFacade {
         List<Account> accountList = accountService.findAll();
         List<AccountResponseDto> userAccounts = new ArrayList<>();
 
-        for (int i = 0; i < accountList.size(); i++) {
-            userAccounts.add(new AccountResponseDto(accountList.get(i)));
+        for (Account account : accountList) {
+            userAccounts.add(new AccountResponseDto(account));
         }
         return userAccounts;
     }
@@ -61,8 +61,8 @@ public class AccountFacadeImpl implements AccountFacade {
         List<Account> accountList = accountService.findByUserId(id);
         List<AccountResponseDto> userAccounts = new ArrayList<>();
 
-        for (int i = 0; i < accountList.size(); i++) {
-            userAccounts.add(new AccountResponseDto(accountList.get(i)));
+        for (Account account : accountList) {
+            userAccounts.add(new AccountResponseDto(account));
         }
         return userAccounts;
     }

@@ -72,9 +72,8 @@ public class UserFacadeImpl implements UserFacade {
     public List<UserResponseDto> findAll() {
         List<User> userList = userService.findAll();
         List<UserResponseDto> allUsers = new ArrayList<>();
-
-        for (int i = 0; i < userList.size(); i++) {
-            allUsers.add(new UserResponseDto(userList.get(i)));
+        for (User user : userList) {
+            allUsers.add(new UserResponseDto(user));
         }
         return allUsers;
     }

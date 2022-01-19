@@ -54,9 +54,8 @@ public class AccountDaoImpl implements AccountDao {
         int uahBalance = 100 * 100;
         StringBuilder accountNumbers = new StringBuilder();
         for (int i = 0; i <= 3; i++) {
-            accountNumbers.append(String.valueOf(rnd())).append(" ");
+            accountNumbers.append(String.valueOf(random())).append(" ");
         }
-
         Account account = new Account();
         account.setUserId(id);
         account.setBalance(new BigDecimal(String.valueOf(uahBalance)));
@@ -64,14 +63,14 @@ public class AccountDaoImpl implements AccountDao {
 
         try {
             sessionFactory.getCurrentSession().persist(account);
-        } catch (Exception he)/*HibernateException*/ {
+        } catch (Exception he) {
             LOGGER_ERROR.error("Failed to create an account!" + he.getMessage());
             throw new RuntimeException("Contact the administrator!");
         }
         LOGGER_INFO.info("Accounts created");
     }
 
-    private int rnd() {
+    private int random() {
         int min = 1000;
         int max = 9999;
         max -= min;
@@ -112,9 +111,8 @@ public class AccountDaoImpl implements AccountDao {
     public Account findById(Long id) {
         LOGGER_INFO.info("Account Search!");
         try {
-            Account account = sessionFactory.getCurrentSession().find(Account.class, id);
-            return account;
-        }catch (Exception he) {
+            return sessionFactory.getCurrentSession().find(Account.class, id);
+        } catch (Exception he) {
             LOGGER_ERROR.error("Account not found!");
             throw new RuntimeException("Account not found!");
         }
@@ -123,7 +121,7 @@ public class AccountDaoImpl implements AccountDao {
     @Override
     public List<Account> findAll() {
         LOGGER_INFO.info("Search all accounts");
-        List<Account> accountsAll = new LinkedList<>();
+        List<Account> accountsAll;
 
         try {
             Session session = sessionFactory.getCurrentSession();
@@ -131,7 +129,7 @@ public class AccountDaoImpl implements AccountDao {
             CriteriaQuery<Account> criteriaQuery = criteriaBuilder.createQuery(Account.class);
             Root<Account> from = criteriaQuery.from(Account.class);
             accountsAll = session.createQuery(criteriaQuery).getResultList();
-        }catch (Exception he) {
+        } catch (Exception he) {
             LOGGER_ERROR.error("Could not find all accounts!");
             throw new RuntimeException("Could not find all accounts!");
         }
@@ -151,7 +149,7 @@ public class AccountDaoImpl implements AccountDao {
                     .setParameter("id", id)
                     .getResultList();
             return userAccounts;
-        }catch (Exception he) {
+        } catch (Exception e) {
             LOGGER_ERROR.error("Could not find accounts!");
             throw new RuntimeException("Could not find accounts");
         }

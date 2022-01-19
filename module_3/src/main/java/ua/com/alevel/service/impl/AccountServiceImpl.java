@@ -73,18 +73,15 @@ public class AccountServiceImpl implements AccountService {
 
         String way = "src/main/resources";
         Path path = Paths.get(way);
-
         if (!Files.exists(path)) {
             way = "module_3/src/main/resources";
         }
-
         way += "/temp";
         path = Paths.get(way);
 
         if (!Files.exists(path)) {
             new File(way).mkdir();
         }
-
         way += "/account_" + statement.getId() +"_statement.csv";
 
         try (

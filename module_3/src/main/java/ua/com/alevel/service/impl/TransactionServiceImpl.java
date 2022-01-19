@@ -79,11 +79,8 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void create(Transaction entity) {
-        System.out.println("Transaction entity" + entity);
-
         Operation operation = operationDao.findById(entity.getCategoryId());
         Account account = accountDao.findById(entity.getAccountId());
-
         boolean incomeExpense = operation.isCategoryIncomeExpense();
         paymentProcessing(incomeExpense, entity, account);
         entity.setUserId(account.getUserId());
@@ -101,8 +98,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Transaction> findAll() {
-        List <Transaction> transactionList = transactionDao.findAll();
-        return transactionList;
+        return transactionDao.findAll();
     }
 
     @Override

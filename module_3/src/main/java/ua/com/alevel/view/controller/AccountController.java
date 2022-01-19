@@ -60,8 +60,8 @@ public class AccountController extends AbstractController {
         model.addAttribute("account", accountFacade.findById(id));
         List<TransactionResponseDto> transactionResponseDtoList = transactionFacade.findTransactionsByAccountId(id);
         List<Date> transactionDates = new ArrayList<>();
-        for (int i = 0; i < transactionResponseDtoList.size(); i++) {
-            transactionDates.add(transactionResponseDtoList.get(i).getCreated());
+        for (TransactionResponseDto transactionResponseDto : transactionResponseDtoList) {
+            transactionDates.add(transactionResponseDto.getCreated());
         }
         model.addAttribute("accountTransactions", transactionResponseDtoList);
         model.addAttribute("accountDataList", transactionDates);

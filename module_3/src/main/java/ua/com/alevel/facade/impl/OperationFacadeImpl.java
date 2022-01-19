@@ -50,8 +50,8 @@ public class OperationFacadeImpl implements OperationFacade {
     public List<OperationResponseDto> findAll() {
         List <Operation> operationList = operationService.findAll();
         List <OperationResponseDto> allOperations = new ArrayList<>();
-        for (int i = 0; i < operationList.size(); i++) {
-            allOperations.add(new OperationResponseDto(operationList.get(i)));
+        for (Operation operation : operationList) {
+            allOperations.add(new OperationResponseDto(operation));
         }
         return allOperations;
     }

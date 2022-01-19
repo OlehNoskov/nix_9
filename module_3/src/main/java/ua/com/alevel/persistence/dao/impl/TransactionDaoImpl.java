@@ -15,7 +15,6 @@ import ua.com.alevel.persistence.entity.Transaction;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.LinkedList;
 import java.util.List;
 
 @Repository
