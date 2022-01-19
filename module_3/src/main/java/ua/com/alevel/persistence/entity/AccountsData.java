@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class AccountFile {
+public class AccountsData {
 
     @Getter
     private String operationDate;
@@ -16,8 +16,8 @@ public class AccountFile {
     @Getter
     private String incomeExpense;
 
-    public AccountFile(Date operationDate, BigDecimal transactionSum,
-                       String categoryName, boolean incomeExpense) {
+    public AccountsData(Date operationDate, BigDecimal transactionSum,
+                        String categoryName, boolean incomeExpense) {
         this.operationDate = operationDate.toString();
         this.transactionSum = transformMoney(transactionSum);
         this.categoryName = categoryName;

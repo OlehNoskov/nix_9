@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import ua.com.alevel.persistence.dao.AccountDao;
 import ua.com.alevel.persistence.entity.Account;
 import ua.com.alevel.persistence.entity.Statement;
-import ua.com.alevel.persistence.entity.AccountFile;
+import ua.com.alevel.persistence.entity.AccountsData;
 import ua.com.alevel.service.AccountService;
 
 import java.io.BufferedWriter;
@@ -69,7 +69,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String getAccountStatementFileForDownload(Statement statement) {
-        List <AccountFile> accountForFileList = accountDao.getAccountStatementFileForDownload(statement);
+        List <AccountsData> accountForFileList = accountDao.getAccountStatementFileForDownload(statement);
 
         String way = "src/main/resources";
         Path path = Paths.get(way);

@@ -13,7 +13,7 @@ import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.AccountDao;
 import ua.com.alevel.persistence.entity.Account;
 import ua.com.alevel.persistence.entity.Statement;
-import ua.com.alevel.persistence.entity.AccountFile;
+import ua.com.alevel.persistence.entity.AccountsData;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -158,7 +158,7 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public List<AccountFile> getAccountStatementFileForDownload(Statement statement) {
+    public List<AccountsData> getAccountStatementFileForDownload(Statement statement) {
         LOGGER_INFO.info("Create account statement");
         String sql = "SELECT created, transaction_sum, category_name, category_income_expense " +
                 "FROM transactions " +
@@ -166,7 +166,7 @@ public class AccountDaoImpl implements AccountDao {
                 "AND created BETWEEN '" + statement.getBeginDate() +
                 "' AND '" + statement.getEndDate() + "'";
 
-        List<AccountFile> accountForFileList = new LinkedList<>();
+        List<AccountsData> accountForFileList = new LinkedList<>();
         try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(sql)) {
             while (resultSet.next()) {
                 accountForFileList.add(convertResultSetToAccountStatement(resultSet));
@@ -178,8 +178,8 @@ public class AccountDaoImpl implements AccountDao {
         return accountForFileList;
     }
 
-    private AccountFile convertResultSetToAccountStatement(ResultSet resultSet) throws SQLException {
-        AccountFile accountStatement = new AccountFile(
+    private AccountsData convertResultSetToAccountStatement(ResultSet resultSet) throws SQLException {
+        AccountsData accountStatement = new AccountsData(
                 resultSet.getDate("created"),
                 resultSet.getBigDecimal("transaction_sum"),
                 resultSet.getString("category_name"),
