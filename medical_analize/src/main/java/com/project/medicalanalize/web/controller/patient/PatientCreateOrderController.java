@@ -6,8 +6,8 @@ import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
 import com.project.medicalanalize.web.dto.response.PatientResponseDto;
-
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,6 @@ public class PatientCreateOrderController {
 
     private final TranscriptFacade transcriptFacade;
     private final ConsultationOrderFacade consultationOrderFacade;
-    private final CheckUpFacade checkUpFacade;
     private final UserFacade userFacade;
     private final PatientFacade patientFacade;
 
@@ -31,7 +30,6 @@ public class PatientCreateOrderController {
                                         UserFacade userFacade, PatientFacade patientFacade) {
         this.transcriptFacade = transcriptFacade;
         this.consultationOrderFacade = consultationOrderFacade;
-        this.checkUpFacade = checkUpFacade;
         this.userFacade = userFacade;
         this.patientFacade = patientFacade;
     }

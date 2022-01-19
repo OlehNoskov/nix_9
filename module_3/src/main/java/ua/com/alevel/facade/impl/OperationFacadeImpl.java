@@ -1,8 +1,5 @@
 package ua.com.alevel.facade.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Service;
 
 import ua.com.alevel.facade.OperationFacade;
@@ -53,7 +50,6 @@ public class OperationFacadeImpl implements OperationFacade {
     public List<OperationResponseDto> findAll() {
         List <Operation> operationList = operationService.findAll();
         List <OperationResponseDto> allOperations = new ArrayList<>();
-
         for (int i = 0; i < operationList.size(); i++) {
             allOperations.add(new OperationResponseDto(operationList.get(i)));
         }

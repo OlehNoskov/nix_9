@@ -77,7 +77,6 @@ public class OperationDaoImpl implements OperationDao {
     public List<Operation> findAll() {
         LOGGER_INFO.info("A request to search for all Operations has been issued");
         List<Operation> operationsAll;
-
         try {
             Session session = sessionFactory.getCurrentSession();
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

@@ -61,14 +61,8 @@ public class TransactionController extends AbstractController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute("transaction") TransactionRequestDto dto, @RequestParam("selectedOperation") String selectedOperation) {
-        try {
-            String [] selected = selectedOperation.split(",");
-            long operationId = Long.valueOf(selected[0]);
-            transactionFacade.create(dto, (Long)operationId);
-            return "redirect:/accounts/details/" + dto.getAccountId();
-        }catch (NumberFormatException ex) {
-            throw new RuntimeException("You have not selected an operation!");
-        }
+    public String create(@ModelAttribute("transaction") TransactionRequestDto dto) {
+            transactionFacade.create(dto);
+            return "redirect:/transactions";
     }
 }

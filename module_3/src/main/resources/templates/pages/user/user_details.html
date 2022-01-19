@@ -27,10 +27,6 @@
                 <div class="card-body" style="opacity: 1.0">
                     <table class="table table-hover table-light">
                         <tr>
-                            <th>id</th>
-                            <td th:text="${user.getId()}"></td>
-                        </tr>
-                        <tr>
                             <th>Name</th>
                             <td th:text="${user.getFirstName()}"></td>
                         </tr>
@@ -53,7 +49,7 @@
                                    class="btn btn-outline-primary">transaction</a>
                             </td>
                             <td>
-                                <a th:href="@{'/accounts/details/' + ${account.getId()}}" type="button"
+                                <a th:href="@{'/accounts/details/' + ${user.getId()}}" type="button"
                                    class="btn btn-outline-info">info check</a>
                             </td>
                             <td>

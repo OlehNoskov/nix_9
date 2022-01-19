@@ -2,10 +2,6 @@ package ua.com.alevel.view.controller;
 
 import org.apache.commons.collections4.MapUtils;
 
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,11 +14,6 @@ import ua.com.alevel.facade.TransactionFacade;
 import ua.com.alevel.view.dto.request.AccountStatementRequestDto;
 import ua.com.alevel.view.dto.response.TransactionResponseDto;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,10 +58,8 @@ public class AccountController extends AbstractController {
     @GetMapping("/details/{id}")
     public String findDyId(@PathVariable Long id, Model model) {
         model.addAttribute("account", accountFacade.findById(id));
-
         List<TransactionResponseDto> transactionResponseDtoList = transactionFacade.findTransactionsByAccountId(id);
         List<Date> transactionDates = new ArrayList<>();
-
         for (int i = 0; i < transactionResponseDtoList.size(); i++) {
             transactionDates.add(transactionResponseDtoList.get(i).getCreated());
         }
@@ -90,29 +79,5 @@ public class AccountController extends AbstractController {
     public String createByUser(@PathVariable Long id, Model model) {
         accountFacade.create(id);
         return "redirect:/users/details/" + id;
-    }
-
-    @PostMapping("/getAnExtract")
-    public ResponseEntity<ByteArrayResource> getAnExtract(@ModelAttribute("accountStatement") AccountStatementRequestDto dto) {
-        File file = new File(accountFacade.getAccountStatementFileForDownload(dto));
-        HttpHeaders header = new HttpHeaders();
-        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=account_" + dto.getId() + "_statement.csv");
-        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        header.add("Pragma", "no-cache");
-        header.add("Expires", "0");
-
-        Path path = Paths.get(file.getAbsolutePath());
-        ByteArrayResource resource = null;
-        try {
-            resource = new ByteArrayResource(Files.readAllBytes(path));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return ResponseEntity.ok()
-                .headers(header)
-                .contentLength(file.length())
-                .contentType(MediaType.parseMediaType("application/octet-stream"))
-                .body(resource);
     }
 }
