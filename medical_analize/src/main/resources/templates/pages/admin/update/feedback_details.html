@@ -6,7 +6,7 @@
       layout:decorate="~{fragments/auth_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Patient details</title>
+    <title>Feedback details</title>
     <link href="/css/patient_profile.css" rel="stylesheet">
 </head>
 <body>
@@ -17,8 +17,9 @@
         <div class="col-xl-12 col-12 col-md-12 mt-3">
             <div class="row py-2">
                 <div class="col-md-12 col-xl-12"><label for="feedback">Text feedback</label>
-                    <input type="text" name="feedback" class="bg-light form-control"
-                           id="feedback" th:object="${feedback}" th:field="*{feedback}"></div>
+                    <textarea name="feedback" class="bg-light form-control" id="feedback"
+                              th:object="${feedback}" th:field="*{feedback}"></textarea>
+                </div>
             </div>
         </div>
         <div>

@@ -20,15 +20,22 @@ public class FeedbackResponseDto extends ResponseDto {
     public FeedbackResponseDto(Feedback feedback) {
         super();
         setId(feedback.getId());
+        setCreated(feedback.getCreated());
         this.feedback = feedback.getFeedback();
         this.patientEntity = feedback.getPatient();
     }
 
     public String getNamePatient() {
+        if (patientEntity.getFirstName() == null) {
+            return " ";
+        }
         return patientEntity.getFirstName();
     }
 
     public String getFullNamePatient() {
-        return patientEntity.getFirstName()+" "+patientEntity.getLastName();
+        if (patientEntity.getFirstName() == null && patientEntity.getLastName() == null) {
+            return " ";
+        }
+        return patientEntity.getFirstName() + " " + patientEntity.getLastName();
     }
 }

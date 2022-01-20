@@ -6,24 +6,25 @@
       layout:decorate="~{fragments/patient_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Transcript details</title>
+    <title>Edit feedback</title>
     <link href="/css/patient_profile.css" rel="stylesheet">
 </head>
 <body>
 <div layout:fragment="patient_content">
 
     <div class="wrapper bg-white mt-sm-5 order-details">
-        <h4 class="pb-4 border-bottom">Edit order</h4>
+        <h4 class="pb-4 border-bottom">Edit feedback</h4>
         <div class="col-xl-12 col-12 col-md-12 mt-3">
             <form action="#" th:action="@{'/patient/feedback/edit/' + ${feedback.getId()}}" th:object="${feedback}"
                   method="post" enctype="multipart/form-data">
                 <div class="row py-2">
                     <div class="col-md-12 col-xl-12"><label for="feedback">Text feedback</label>
-                        <input type="text" name="feedback" class="bg-light form-control"
-                               id="feedback" th:object="${feedback}" th:field="*{feedback}"></div>
-                </div>
-                <div class="py-3 pb-4 border-bottom">
-                    <button class="btn btn-success mr-3" type="submit">Save Changes</button>
+                        <textarea name="feedback" class="bg-light form-control" id="feedback" type="text"
+                                  th:object="${feedback}" th:field="*{feedback}" required></textarea>
+                    </div>
+                    <div class="py-3 pb-4">
+                        <button class="btn btn-success ml-3" type="submit">Save Changes</button>
+                    </div>
                 </div>
             </form>
         </div>
