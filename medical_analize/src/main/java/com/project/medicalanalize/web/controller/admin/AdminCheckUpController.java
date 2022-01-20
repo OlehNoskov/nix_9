@@ -40,7 +40,6 @@ public class AdminCheckUpController extends AbstractController {
                 new HeaderName("created", "created", "created"),
                 new HeaderName("name patient",null ,null ),
                 new HeaderName("details", null, null),
-                new HeaderName("edit", null, null),
                 new HeaderName("delete", null, null)
         };
     }
