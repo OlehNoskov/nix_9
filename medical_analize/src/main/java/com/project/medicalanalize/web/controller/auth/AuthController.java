@@ -59,7 +59,6 @@ public class AuthController extends AbstractController {
             }
             if (SecurityUtil.hasRole(RoleType.ROLE_PATIENT.name())) {
                 return "redirect:/patients/dashboard";
-
             } else {
                 return "redirect:/main";
             }
