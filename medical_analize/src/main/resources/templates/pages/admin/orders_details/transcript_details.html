@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/auth_layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Details Student</title>
+    <link href="/css/patient_profile.css" rel="stylesheet">
+</head>
+<body>
+
+<div layout:fragment="auth_content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Details transcript order
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Name patient</th>
+                            <td th:text="${transcript.getNamePatient()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Bad habits</th>
+                            <td th:text="${transcript.getBadHabits()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Drugs taken</th>
+                            <td th:text="${transcript.getDrugsTaken()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Chronic diseases</th>
+                            <td th:text="${transcript.getChronicDiseases()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Burglary complaints</th>
+                            <td th:text="${transcript.getBurglaryComplaints()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Hereditary diseases</th>
+                            <td th:text="${transcript.getHereditary_diseases()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Features of nutrition and diet</th>
+                            <td th:text="${transcript.getFeaturesNutrition()}"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row py-2">
+                    <div class="row col-xl-6 col-6 col-md-6 ml-1">
+                        <p class="personal-data ml-3">Doctor:</p>
+                        <h4 th:object="${transcript}" th:text="${transcript.getNameDoctor()}" class="ml-3 p-1"></h4>
+                    </div>
+                </div>
+
+                <div class="form-group col-xl-12 col-12">
+                    <label class="check_up">Answer doctor for patients<span></span></label>
+                    <div class="card">
+                        <div class="card-body">
+                            <p th:object="${transcript}" th:text="${transcript.getAnswer()}">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a th:href="@{/admin/transcript}" type="button"
+                       class="btn btn-outline-danger ml-3 mt-3 mb-3">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

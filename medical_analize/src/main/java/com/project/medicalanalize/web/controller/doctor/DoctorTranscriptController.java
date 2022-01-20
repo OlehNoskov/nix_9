@@ -90,7 +90,7 @@ public class DoctorTranscriptController extends AbstractController {
     }
 
     @GetMapping("/details/{id}")
-    public String detailsCheckUp(@PathVariable Long id, Model model) {
+    public String detailsTranscript(@PathVariable Long id, Model model) {
         TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(id);
         model.addAttribute("transcript", transcriptResponseDto);
         return "pages/doctor/transcript_details";

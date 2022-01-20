@@ -2,6 +2,7 @@ package com.project.medicalanalize.web.controller.admin;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
+import com.project.medicalanalize.web.dto.response.DoctorResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 
@@ -88,6 +89,13 @@ public class AdminTranscriptController extends AbstractController {
             headerDataList.add(data);
         }
         return headerDataList;
+    }
+
+    @GetMapping("/details/{id}")
+    public String detailsTranscript(@PathVariable Long id, Model model) {
+        TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(id);
+        model.addAttribute("transcript", transcriptResponseDto);
+        return "pages/admin/orders_details/transcript_details";
     }
 
     @GetMapping("/delete/{id}")

@@ -90,7 +90,7 @@ public class DoctorCheckUpController extends AbstractController {
     }
 
     @GetMapping("/details/{id}")
-    public String detailsTranscript(@PathVariable Long id, Model model) {
+    public String detailsCheckUp(@PathVariable Long id, Model model) {
         CheckUpResponseDto checkUpResponseDto = checkUpFacade.findById(id);
         model.addAttribute("check_up", checkUpResponseDto);
         return "pages/doctor/check_up_details";

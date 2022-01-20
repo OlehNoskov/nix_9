@@ -222,7 +222,7 @@
                 </div>
 
                 <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3"><label for="height">Heiqht</label>
+                    <div class="col-md-6 pt-md-0 pt-3"><label for="height">Heiqht</label><span class="text-danger">*</span>
                         <input type="number" name="height" class="bg-light form-control" placeholder min="0" max="300"
                                id="height" aria-describedby="height" value="180" th:field="*{height}" required>
                     </div>
@@ -230,7 +230,7 @@
                         Please enter your height!
                     </div>
                     <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="weight">Weiqht</label>
+                        <label for="weight">Weiqht</label><span class="text-danger">*</span>
                         <input type="number" name="weight" class="bg-light form-control" placeholder min="0" max="300"
                                id="weight" aria-describedby="weight" th:field="*{weight}" required></div>
                     <div class="invalid-feedback">
@@ -239,7 +239,7 @@
                 </div>
 
                 <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Phone</label>
+                    <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Phone</label><span class="text-danger">*</span>
                         <input type="tel" name="phone" class="bg-light form-control" placeholder="+380991565588"
                                id="phone" aria-describedby="phone" value=""
                                pattern="^\+?\d{2}(0\d{9})$" th:field="*{phone}" required>
