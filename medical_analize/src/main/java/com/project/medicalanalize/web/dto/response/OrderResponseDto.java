@@ -58,10 +58,16 @@ public class OrderResponseDto extends ResponseDto {
     }
 
     public String getNamePatient() {
+        if(patient.getFirstName() == null && patient.getLastName() == null){
+            return " ";
+        }
         return patient.getFirstName() + " " + patient.getLastName();
     }
 
     public String getNameDoctor() {
+        if(doctor.getFirstName() == null && doctor.getLastName() == null){
+            return " ";
+        }
         return doctor.getFirstName() + " " + doctor.getLastName();
     }
 }
