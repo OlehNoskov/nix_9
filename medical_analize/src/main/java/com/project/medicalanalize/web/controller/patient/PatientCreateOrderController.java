@@ -36,18 +36,63 @@ public class PatientCreateOrderController {
     }
 
     @GetMapping("/new/transcript")
-    public String newTranscript(Model model) {
+    public String newTranscript(Model model, String error) {
+        showMessage(model, false);
         User user = userFacade.getCurrentUser();
         PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
-        model.addAttribute("patient", patientResponseDto);
-        model.addAttribute("transcript", new TranscriptRequestDto());
-        return "pages/patient/order/transcript";
+        if (user.getFirstName() == null && user.getLastName() == null) {
+            return "redirect:/patients/profile/edit/" + user.getId();
+        } else {
+            model.addAttribute("patient", patientResponseDto);
+            model.addAttribute("transcript", new TranscriptRequestDto());
+            return "pages/patient/order/transcript";
+        }
     }
 
     @PostMapping("/new/transcript")
     public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) {
         transcriptFacade.create(transcriptRequestDto);
         return "redirect:/patient/order/transcript/payment";
+    }
+
+    @GetMapping("/new/check-up")
+    public String newCheckUp(Model model, String error) {
+        showMessage(model, false);
+        User user = userFacade.getCurrentUser();
+        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
+        if (user.getFirstName() == null && user.getLastName() == null) {
+            return "redirect:/patients/profile/edit/" + user.getId();
+        } else {
+            model.addAttribute("patient", patientResponseDto);
+            model.addAttribute("check_up", new CheckUpRequestDto());
+            return "pages/patient/order/check_up";
+        }
+    }
+
+    @PostMapping("/new/check-up")
+    public String createNewCheckUp(@ModelAttribute("check_up") CheckUpRequestDto checkUpRequestDto) {
+        checkUpFacade.create(checkUpRequestDto);
+        return "redirect:/patient/order/check-up/payment";
+    }
+
+    @GetMapping("/new/comprehensive")
+    public String newComprehensive(Model model, String error) {
+        showMessage(model, false);
+        User user = userFacade.getCurrentUser();
+        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
+        if (user.getFirstName() == null && user.getLastName() == null) {
+            return "redirect:/patients/profile/edit/" + user.getId();
+        } else {
+            model.addAttribute("patient", patientResponseDto);
+            model.addAttribute("consultation", new ConsultationRequestDto());
+            return "pages/patient/order/comprehensive";
+        }
+    }
+
+    @PostMapping("/new/comprehensive")
+    public String createConsultation(@ModelAttribute("consultation") ConsultationRequestDto consultationRequestDto) {
+        consultationOrderFacade.create(consultationRequestDto);
+        return "redirect:/patient/order/consultation/payment";
     }
 
     @GetMapping("/transcript/payment")
@@ -66,55 +111,26 @@ public class PatientCreateOrderController {
         return "pages/patient/payment";
     }
 
-    @GetMapping("/new/check-up")
-    public String newCheckUp(Model model) {
-        User user = userFacade.getCurrentUser();
-        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
-        model.addAttribute("patient", patientResponseDto);
-        model.addAttribute("check_up", new CheckUpRequestDto());
-        return "pages/patient/order/check_up";
-    }
-
-    @PostMapping("/new/check-up")
-    public String createNewCheckUp(@ModelAttribute("check_up") CheckUpRequestDto checkUpRequestDto) {
-        checkUpFacade.create(checkUpRequestDto);
-        return "redirect:/patient/order/check-up/payment";
-    }
-
-    @GetMapping("/new/comprehensive")
-    public String newComprehensive(Model model) {
-        User user = userFacade.getCurrentUser();
-        PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
-        model.addAttribute("patient", patientResponseDto);
-        model.addAttribute("consultation", new ConsultationRequestDto());
-        return "pages/patient/order/comprehensive";
-    }
-
-    @PostMapping("/new/comprehensive")
-    public String createConsultation(@ModelAttribute("consultation") ConsultationRequestDto consultationRequestDto) {
-        consultationOrderFacade.create(consultationRequestDto);
-        return "redirect:/patient/order/consultation/payment";
-    }
-
     @GetMapping("/new")
     public String newOrder(Model model, WebRequest webRequest) {
         return "pages/patient/order/new_order";
     }
 
-//    @GetMapping("/all")
-//    public String allOrders(Model model, WebRequest webRequest) {
-//        return "pages/patient/order/my_orders_all";
-//    }
 
     @GetMapping("/success/all")
     public String allSuccessOrders(Model model, WebRequest webRequest) {
         return "pages/patient/order/success_all_orders";
     }
+
+    private void showError(Model model, String message) {
+        model.addAttribute("errorMessage", message);
+        showMessage(model, true);
+    }
+
+    private void showMessage(Model model, boolean show) {
+        model.addAttribute("showMessage", show);
+    }
 }
-
-
-
-
 
 
 
