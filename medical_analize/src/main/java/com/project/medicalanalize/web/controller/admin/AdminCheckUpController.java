@@ -48,7 +48,7 @@ public class AdminCheckUpController extends AbstractController {
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData response = checkUpFacade.findAllCheckUpAdmin(webRequest);
+        PageData response = checkUpFacade.findAllCheckUpSuccessAdmin(webRequest);
         response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
 
@@ -95,7 +95,7 @@ public class AdminCheckUpController extends AbstractController {
     public String detailsCheckUp(@PathVariable Long id, Model model) {
         CheckUpResponseDto checkUpResponseDto = checkUpFacade.findById(id);
         model.addAttribute("check_up", checkUpResponseDto);
-        return "pages/admin/orders_details/check_up_details";
+        return "pages/admin/orders_success_details/check_up_details";
     }
 
     @GetMapping("/delete/{id}")

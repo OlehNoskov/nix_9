@@ -95,7 +95,6 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
     }
 
     private CheckUp setterFieldCheckUp(CheckUpRequestDto checkUpRequestDto, CheckUp checkUp) {
-//        checkUp.setPrice(checkUpRequestDto.getPrice());
         checkUp.setBadHabits(checkUpRequestDto.getBadHabits());
         checkUp.setDrugsTaken(checkUpRequestDto.getDrugsTaken());
         checkUp.setChronicDiseases(checkUpRequestDto.getChronicDiseases());
@@ -146,7 +145,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
     }
 
     @Override
-    public PageData findAllCheckUpAdmin(WebRequest request) {
+    public PageData findAllCheckUpSuccessAdmin(WebRequest request) {
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
@@ -159,7 +158,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         DataTableResponse<CheckUp> all = checkUpService.findAll(dataTableRequest);
 
         List<CheckUpResponseDto> list = all.getItems().
-                stream().
+                stream().filter(t -> t.getVisible().equals(false)).
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
 

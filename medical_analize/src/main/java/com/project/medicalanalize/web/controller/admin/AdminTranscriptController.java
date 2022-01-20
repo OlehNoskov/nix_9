@@ -2,7 +2,6 @@ package com.project.medicalanalize.web.controller.admin;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
-import com.project.medicalanalize.web.dto.response.DoctorResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 
@@ -46,9 +45,9 @@ public class AdminTranscriptController extends AbstractController {
     }
 
     @GetMapping
-    public String findAll(Model model, WebRequest webRequest) {
+    public String findAllSuccess(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData response = transcriptFacade.findAllTranscriptAdmin(webRequest);
+        PageData response = transcriptFacade.findAllTranscriptSuccessAdmin(webRequest);
         response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
 
@@ -95,7 +94,7 @@ public class AdminTranscriptController extends AbstractController {
     public String detailsTranscript(@PathVariable Long id, Model model) {
         TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(id);
         model.addAttribute("transcript", transcriptResponseDto);
-        return "pages/admin/orders_details/transcript_details";
+        return "pages/admin/orders_success_details/transcript_details";
     }
 
     @GetMapping("/delete/{id}")

@@ -10,5 +10,5 @@ public interface CheckUpFacade extends BaseFacade<CheckUpRequestDto, CheckUpResp
 
     Long createAndFind(CheckUpRequestDto dto);
     PageData findAllCheckUpOrdersReviewDoctors(WebRequest request);
-    PageData findAllCheckUpAdmin(WebRequest request);
+    PageData findAllCheckUpSuccessAdmin(WebRequest request);
 }

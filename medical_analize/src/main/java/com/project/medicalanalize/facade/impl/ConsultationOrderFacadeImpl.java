@@ -140,7 +140,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
     }
 
     @Override
-    public PageData findAllConsultationAdmin(WebRequest request) {
+    public PageData findAllConsultationSuccessAdmin(WebRequest request) {
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
@@ -153,7 +153,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         DataTableResponse<ConsultationOrder> all = consultationOrderService.findAll(dataTableRequest);
 
         List<ConsultationResponseDto> list = all.getItems().
-                stream().
+                stream().filter(t -> t.getVisible().equals(false)).
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
 

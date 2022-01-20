@@ -146,7 +146,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     }
 
     @Override
-    public PageData findAllTranscriptAdmin(WebRequest request) {
+    public PageData findAllTranscriptSuccessAdmin(WebRequest request) {
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
@@ -159,7 +159,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         DataTableResponse<TranscriptOrder> all = transcriptService.findAll(dataTableRequest);
 
         List<TranscriptResponseDto> list = all.getItems().
-                stream().
+                stream().filter(t -> t.getVisible().equals(false)).
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
 

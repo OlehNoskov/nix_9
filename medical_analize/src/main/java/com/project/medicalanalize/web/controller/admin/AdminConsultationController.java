@@ -2,7 +2,6 @@ package com.project.medicalanalize.web.controller.admin;
 
 import com.project.medicalanalize.facade.ConsultationOrderFacade;
 import com.project.medicalanalize.web.controller.AbstractController;
-import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -46,9 +45,9 @@ public class AdminConsultationController extends AbstractController {
     }
 
     @GetMapping
-    public String findAll(Model model, WebRequest webRequest) {
+    public String findAllSuccess(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData response = consultationOrderFacade.findAllConsultationAdmin(webRequest);
+        PageData response = consultationOrderFacade.findAllConsultationSuccessAdmin(webRequest);
         response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
 
@@ -95,7 +94,7 @@ public class AdminConsultationController extends AbstractController {
     public String detailsConsultation(@PathVariable Long id, Model model) {
         ConsultationResponseDto consultationResponseDto = consultationOrderFacade.findById(id);
         model.addAttribute("consultation", consultationResponseDto);
-        return "pages/admin/orders_details/consultation_details";
+        return "pages/admin/orders_success_details/consultation_details";
     }
 
     @GetMapping("/delete/{id}")

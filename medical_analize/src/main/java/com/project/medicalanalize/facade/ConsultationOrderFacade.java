@@ -10,5 +10,5 @@ import org.springframework.web.context.request.WebRequest;
 public interface ConsultationOrderFacade extends BaseFacade<ConsultationRequestDto, ConsultationResponseDto>{
 
     PageData findAllConsultationOrdersReviewDoctors(WebRequest request);
-    PageData findAllConsultationAdmin(WebRequest request);
+    PageData findAllConsultationSuccessAdmin(WebRequest request);
 }
