@@ -99,6 +99,6 @@ public class DoctorTranscriptController extends AbstractController {
     @PostMapping("/details/{id}")
     public String answerPatientTranscript(@PathVariable Long id, @ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) throws ParseException {
         transcriptFacade.update(transcriptRequestDto, id);
-        return "redirect:/doctors/dashboard";
+        return "redirect:/doctors/transcript";
     }
 }

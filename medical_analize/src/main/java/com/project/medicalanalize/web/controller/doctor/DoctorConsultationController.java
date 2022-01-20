@@ -99,6 +99,6 @@ public class DoctorConsultationController extends AbstractController {
     @PostMapping("/details/{id}")
     public String answerPatientConsultation(@PathVariable Long id, @ModelAttribute("consultation") ConsultationRequestDto consultationRequestDto) throws ParseException {
         consultationOrderFacade.update(consultationRequestDto, id);
-        return "redirect:/doctors/dashboard";
+        return "redirect:/doctors/consultation";
     }
 }

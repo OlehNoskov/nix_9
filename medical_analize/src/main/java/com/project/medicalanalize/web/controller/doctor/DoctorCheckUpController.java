@@ -99,6 +99,6 @@ public class DoctorCheckUpController extends AbstractController {
     @PostMapping("/details/{id}")
     public String answerPatientCheckUp(@PathVariable Long id, @ModelAttribute("check_up") CheckUpRequestDto checkUpRequestDto) throws ParseException {
         checkUpFacade.update(checkUpRequestDto, id);
-        return "redirect:/doctors/dashboard";
+        return "redirect:/doctors/check_up";
     }
 }
