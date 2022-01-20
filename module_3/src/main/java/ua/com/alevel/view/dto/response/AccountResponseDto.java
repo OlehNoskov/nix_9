@@ -19,7 +19,7 @@ public class AccountResponseDto extends ResponseDto{
 
     @Getter
     @Setter
-    private String balance;
+    private BigDecimal balance;
 
     public AccountResponseDto() {}
 
@@ -30,23 +30,6 @@ public class AccountResponseDto extends ResponseDto{
         setUpdated(account.getUpdated());
         this.userId = account.getUserId();
         this.accountNumbers = account.getAccountNumbers();
-        this.balance = transformMoney(account.getBalance());
-    }
-
-    private String transformMoney (BigDecimal balance) {
-        String money = "";
-        BigDecimal findBal = balance.divide(new BigDecimal ("100"));
-        String [] prepareForView = findBal.toString().split("\\.");
-        if(prepareForView.length == 2) {
-            if(prepareForView[1].length() == 1) {
-                prepareForView[1] = prepareForView[1] + "0";
-            }
-            money = prepareForView[0] + " hryvnia. " +  prepareForView[1] + " kop.";
-        }
-        else {
-            money = prepareForView[0] + " hryvnia. 00 kop.";
-        }
-        System.out.println(findBal);
-        return money;
+        this.balance = account.getBalance();
     }
 }

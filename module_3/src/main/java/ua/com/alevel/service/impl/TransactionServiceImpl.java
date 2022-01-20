@@ -83,6 +83,7 @@ public class TransactionServiceImpl implements TransactionService {
         Account account = accountDao.findById(entity.getAccountId());
         boolean incomeExpense = operation.isCategoryIncomeExpense();
         paymentProcessing(incomeExpense, entity, account);
+
         entity.setUserId(account.getUserId());
         entity.setAccountNumbers(account.getAccountNumbers());
         entity.setCategoryName(operation.getCategoryName());

@@ -36,7 +36,6 @@ public class TransactionFacadeImpl implements TransactionFacade {
         transaction.setAccountId(req.getAccountId());
         transaction.setTransactionSum(req.getTransactionSum());
         transaction.setCategoryId(operationId);
-
         transactionService.create(transaction);
     }
 
@@ -44,8 +43,8 @@ public class TransactionFacadeImpl implements TransactionFacade {
     public List<TransactionResponseDto> findTransactionsByUserId(Long userId) {
         List<Transaction> transactionList = transactionService.findTransactionsByUserId(userId);
         List<TransactionResponseDto> allTransactions = new ArrayList<>();
-        for (int i = 0; i < transactionList.size(); i++) {
-            allTransactions.add(new TransactionResponseDto(transactionList.get(i)));
+        for (Transaction transaction : transactionList) {
+            allTransactions.add(new TransactionResponseDto(transaction));
         }
         return allTransactions;
     }
@@ -54,8 +53,8 @@ public class TransactionFacadeImpl implements TransactionFacade {
     public List<TransactionResponseDto> findTransactionsByAccountId(Long accountId) {
         List<Transaction> transactionList = transactionService.findTransactionsByAccountId(accountId);
         List<TransactionResponseDto> allTransactions = new ArrayList<>();
-        for (int i = 0; i < transactionList.size(); i++) {
-            allTransactions.add(new TransactionResponseDto(transactionList.get(i)));
+        for (Transaction transaction : transactionList) {
+            allTransactions.add(new TransactionResponseDto(transaction));
         }
         return allTransactions;
     }
@@ -77,8 +76,8 @@ public class TransactionFacadeImpl implements TransactionFacade {
     public List<TransactionResponseDto> findAll() {
         List<Transaction> transactionList = transactionService.findAll();
         List<TransactionResponseDto> allTransactions = new ArrayList<>();
-        for (int i = 0; i < transactionList.size(); i++) {
-            allTransactions.add(new TransactionResponseDto(transactionList.get(i)));
+        for (Transaction transaction : transactionList) {
+            allTransactions.add(new TransactionResponseDto(transaction));
         }
         return allTransactions;
     }
