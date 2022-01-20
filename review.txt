@@ -41,7 +41,3 @@ hw_10 = 8
 посмотри внимательно что я добавил ... в пропсы
 
 зашёл, увидел, спасибо)
-
-https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/examples-s3-objects.html
-
-https://supsystic.com/documentation/id-secret-access-key-amazon-s3/
