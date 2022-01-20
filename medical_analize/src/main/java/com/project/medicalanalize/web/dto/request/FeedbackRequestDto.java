@@ -9,7 +9,7 @@ public class FeedbackRequestDto extends RequestDto {
 
     @Getter
     @Setter
-    private String feedback;
+    private String textFeedback;
     @Getter
     @Setter
     private Long patientId;

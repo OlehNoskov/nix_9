@@ -16,9 +16,15 @@
         <h4 class="pb-4 border-bottom">Feedback details</h4>
         <div class="col-xl-12 col-12 col-md-12 mt-3">
             <div class="row py-2">
-                <div class="col-md-12 col-xl-12"><label for="feedback">Text feedback</label>
-                    <textarea name="feedback" class="bg-light form-control" id="feedback"
-                              th:object="${feedback}" th:field="*{feedback}"></textarea>
+
+                <div class="form-group col-xl-12 col-12">
+                    <label class="consultation">Text feedback<span></span></label>
+                    <div class="card">
+                        <div class="card-body">
+                            <p th:object="${feedback}" th:text="*{textFeedback}">
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ public class Feedback extends BaseEntity {
 
     @Lob
     @Column(name = "feedback", length=512)
-    private String feedback;
+    private String textFeedback;
 
     @Transient
     private String namePatient;

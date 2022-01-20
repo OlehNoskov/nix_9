@@ -36,7 +36,7 @@ public class FeedbackFacadeImpl implements FeedbackFacade {
     public void create(FeedbackRequestDto feedbackRequestDto) {
         Feedback feedback = new Feedback();
         feedback.setPatient((Patient) userFacade.getCurrentUser());
-        feedback.setFeedback(feedbackRequestDto.getFeedback());
+        feedback.setTextFeedback(feedbackRequestDto.getTextFeedback());
         feedbackService.create(feedback);
     }
 
@@ -45,7 +45,7 @@ public class FeedbackFacadeImpl implements FeedbackFacade {
         Feedback feedback = feedbackService.findById(id).get();
         feedback.setId(id);
         feedback.setUpdated(new Timestamp(System.currentTimeMillis()));
-        feedback.setFeedback(feedbackRequestDto.getFeedback());
+        feedback.setTextFeedback(feedbackRequestDto.getTextFeedback());
         feedbackService.update(feedback);
     }
 

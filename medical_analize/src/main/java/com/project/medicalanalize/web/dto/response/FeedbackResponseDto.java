@@ -8,7 +8,7 @@ import lombok.Getter;
 public class FeedbackResponseDto extends ResponseDto {
 
     @Getter
-    private String feedback;
+    private String textFeedback;
 
     @Getter
     Patient patientEntity;
@@ -21,7 +21,7 @@ public class FeedbackResponseDto extends ResponseDto {
         super();
         setId(feedback.getId());
         setCreated(feedback.getCreated());
-        this.feedback = feedback.getFeedback();
+        this.textFeedback = feedback.getTextFeedback();
         this.patientEntity = feedback.getPatient();
     }
 
