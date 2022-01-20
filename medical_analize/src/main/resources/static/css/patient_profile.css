@@ -185,3 +185,7 @@ p.personal-data {
     color: #3b3939;
     font-weight: bold;
 }
+
+div.alert{
+    background-color: #d76d03;
+}

@@ -18,9 +18,8 @@ public class Order extends BaseEntity {
 
     private Boolean enabled;
 
-//    @Setter
 //    @Column(name = "price")
-//    private Integer price;
+//    private Integer price;//TODO
 
     @Column(name = "bad_habits")
     private String badHabits;

@@ -26,8 +26,17 @@ public class DoctorController {
         this.userFacade = userFacade;
     }
 
+//    @GetMapping("/dashboard")
+//    public String dashboard(Model model) {
+//        return "pages/doctor/dashboard";
+//    }
+
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
+        User user = userFacade.getCurrentUser();
+        DoctorResponseDto doctorResponseDto = doctorFacade.findById(user.getId());
+        Integer size = doctorResponseDto.getOrders().size();
+        model.addAttribute("size", size);
         return "pages/doctor/dashboard";
     }
 

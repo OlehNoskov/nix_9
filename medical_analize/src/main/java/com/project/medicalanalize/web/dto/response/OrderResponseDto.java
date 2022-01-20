@@ -8,9 +8,6 @@ import lombok.Getter;
 
 public class OrderResponseDto extends ResponseDto {
 
-//    @Getter
-//    private Integer price; //TODO
-
     @Getter
     private String badHabits;
 
@@ -45,7 +42,6 @@ public class OrderResponseDto extends ResponseDto {
     public OrderResponseDto(Order order) {
         super();
         setId(order.getId());
-//        this.price = order.getPrice();
         this.badHabits = order.getBadHabits();
         this.drugsTaken = order.getDrugsTaken();
         this.chronicDiseases = order.getChronicDiseases();

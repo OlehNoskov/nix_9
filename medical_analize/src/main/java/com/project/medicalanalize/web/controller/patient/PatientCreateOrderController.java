@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/patient/order")
@@ -22,7 +23,6 @@ public class PatientCreateOrderController {
     private final CheckUpFacade checkUpFacade;
     private final UserFacade userFacade;
     private final PatientFacade patientFacade;
-
 
     public PatientCreateOrderController(TranscriptFacade transcriptFacade,
                                         ConsultationOrderFacade consultationOrderFacade,
@@ -41,7 +41,9 @@ public class PatientCreateOrderController {
         User user = userFacade.getCurrentUser();
         PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
         if (user.getFirstName() == null && user.getLastName() == null) {
-            return "redirect:/patients/profile/edit/" + user.getId();
+            showError(model, "To order the service, you must fill in your profile data!");
+//            return "redirect:/patients/profile/edit/" + user.getId();
+            return "pages/patient/patient_dashboard";
         } else {
             model.addAttribute("patient", patientResponseDto);
             model.addAttribute("transcript", new TranscriptRequestDto());
@@ -49,9 +51,15 @@ public class PatientCreateOrderController {
         }
     }
 
-    @PostMapping("/new/transcript")
-    public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) {
-        transcriptFacade.create(transcriptRequestDto);
+//    @PostMapping("/new/transcript")
+//    public String createNewTranscript(@ModelAttribute("transcript") TranscriptRequestDto transcriptRequestDto) {
+//        transcriptFacade.create(transcriptRequestDto);
+//        return "redirect:/patient/order/transcript/payment";
+//    }
+
+        @PostMapping("/new/transcript")
+    public String createNewTranscript(@ModelAttribute("orderId") TranscriptRequestDto transcriptRequestDto, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("orderId", transcriptFacade.createAndFind(transcriptRequestDto));
         return "redirect:/patient/order/transcript/payment";
     }
 
@@ -95,19 +103,29 @@ public class PatientCreateOrderController {
         return "redirect:/patient/order/consultation/payment";
     }
 
+//    @GetMapping("/transcript/payment")
+//    public String pagePaymentTranscript(Model model) {
+//        model.addAttribute("transcript", new TranscriptRequestDto());
+//        return "pages/patient/payment";
+//    }
+
+
     @GetMapping("/transcript/payment")
     public String pagePaymentTranscript(Model model) {
         model.addAttribute("transcript", new TranscriptRequestDto());
+        System.out.println(new TranscriptRequestDto().getPrice());
         return "pages/patient/payment";
     }
 
     @GetMapping("/check-up/payment")
     public String pagePaymentCheckUp(Model model) {
+//        model.addAttribute("check_up", new CheckUpRequestDto());
         return "pages/patient/payment";
     }
 
     @GetMapping("/consultation/payment")
     public String pagePaymentConsultation(Model model) {
+//        model.addAttribute("consultation", new ConsultationRequestDto());
         return "pages/patient/payment";
     }
 
