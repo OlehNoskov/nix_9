@@ -30,7 +30,6 @@ public class DoctorFacadeImpl implements DoctorFacade {
 
     @Override
     public void create(DoctorRequestDto doctorRequestDto) {
-
     }
 
     @Override
@@ -39,7 +38,9 @@ public class DoctorFacadeImpl implements DoctorFacade {
         doctor.setId(id);
         doctor.setFirstName(doctorRequestDto.getFirstName());
         doctor.setLastName(doctorRequestDto.getLastName());
-        doctor.setBirthDay(UserDateValid.userValidDate(doctorRequestDto));
+        if (UserDateValid.userValidDate(doctorRequestDto) != null) {
+            doctor.setBirthDay(UserDateValid.userValidDate(doctorRequestDto));
+        }
         doctor.setSex(doctorRequestDto.getSex());
         doctor.setCountry(doctorRequestDto.getCountry());
         doctor.setPhone(doctorRequestDto.getPhone());
