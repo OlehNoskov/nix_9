@@ -84,3 +84,12 @@ p.personal-data{
     font-size: 24px;
     color: #0fa3d0;
 }
+
+select.doses_type {
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 40px;
+    padding: 5px 10px
+}

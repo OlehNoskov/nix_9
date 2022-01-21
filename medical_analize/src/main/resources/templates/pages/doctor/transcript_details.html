@@ -62,6 +62,10 @@
                             <th>Features of nutrition and diet</th>
                             <td th:text="${transcript.getFeaturesNutrition()}"></td>
                         </tr>
+                        <tr>
+                            <th>Type package vitamin and mineral prevention</th>
+                            <td th:text="${transcript.getProphylacticDoses()}"></td>
+                        </tr>
                     </table>
                     <hr>
                 </div>
@@ -77,7 +81,8 @@
             <div class="py-2">
                 <div class="row py-2">
                     <div class="form-group col-md-6 col-xl-12 col-12">
-                        <label for="new_feedback">Answer patient <span class="text-danger">*</span></label>
+                        <label for="new_feedback">Recommended list of vitamins and minerals<span
+                                class="text-danger">*</span></label>
                         <textarea class="form-control" id="new_feedback" rows="3" th:field="*{answer}"
                                   required></textarea>
                     </div>

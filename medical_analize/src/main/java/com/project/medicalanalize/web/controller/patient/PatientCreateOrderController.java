@@ -36,14 +36,11 @@ public class PatientCreateOrderController {
     }
 
     @GetMapping("/new/transcript")
-    public String newTranscript(Model model, String error) {
-        showMessage(model, false);
+    public String newTranscript(Model model) {
         User user = userFacade.getCurrentUser();
         PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
         if (user.getFirstName() == null && user.getLastName() == null) {
-            showError(model, "To order the service, you must fill in your profile data!");
-//            return "redirect:/patients/profile/edit/" + user.getId();
-            return "pages/patient/patient_dashboard";
+            return "redirect:/patients/profile/edit/" + user.getId();
         } else {
             model.addAttribute("patient", patientResponseDto);
             model.addAttribute("transcript", new TranscriptRequestDto());
@@ -64,8 +61,7 @@ public class PatientCreateOrderController {
     }
 
     @GetMapping("/new/check-up")
-    public String newCheckUp(Model model, String error) {
-        showMessage(model, false);
+    public String newCheckUp(Model model) {
         User user = userFacade.getCurrentUser();
         PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
         if (user.getFirstName() == null && user.getLastName() == null) {
@@ -84,8 +80,7 @@ public class PatientCreateOrderController {
     }
 
     @GetMapping("/new/comprehensive")
-    public String newComprehensive(Model model, String error) {
-        showMessage(model, false);
+    public String newComprehensive(Model model) {
         User user = userFacade.getCurrentUser();
         PatientResponseDto patientResponseDto = patientFacade.findById(user.getId());
         if (user.getFirstName() == null && user.getLastName() == null) {
@@ -138,15 +133,6 @@ public class PatientCreateOrderController {
     @GetMapping("/success/all")
     public String allSuccessOrders(Model model, WebRequest webRequest) {
         return "pages/patient/order/success_all_orders";
-    }
-
-    private void showError(Model model, String message) {
-        model.addAttribute("errorMessage", message);
-        showMessage(model, true);
-    }
-
-    private void showMessage(Model model, boolean show) {
-        model.addAttribute("showMessage", show);
     }
 }
 

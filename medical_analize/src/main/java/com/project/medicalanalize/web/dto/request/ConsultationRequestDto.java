@@ -5,9 +5,6 @@ import lombok.Setter;
 
 public class ConsultationRequestDto extends OrderRequestDto {
 
-//    @Getter
-//    private Integer price;
-
     @Getter
     @Setter
     private String complaints;

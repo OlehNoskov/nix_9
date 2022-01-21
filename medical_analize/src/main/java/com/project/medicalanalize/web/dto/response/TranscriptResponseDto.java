@@ -1,6 +1,7 @@
 package com.project.medicalanalize.web.dto.response;
 
 import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
+import com.project.medicalanalize.persistence.type.ProphylacticDoses;
 
 import lombok.Getter;
 
@@ -12,11 +13,19 @@ public class TranscriptResponseDto extends OrderResponseDto {
     private Integer price;
 
     @Getter
+    private String complaints;
+
+    @Getter
     private Date created;
+
+    @Getter
+    ProphylacticDoses prophylacticDoses;
 
     public TranscriptResponseDto(TranscriptOrder transcript) {
         super(transcript);
         this.created = transcript.getCreated();
+        this.complaints = transcript.getComplaints();
         this.price = transcript.getPrice();
+        this.prophylacticDoses = transcript.getProphylacticDoses();
     }
 }

@@ -96,7 +96,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     }
 
     private TranscriptOrder setterTranscript(TranscriptRequestDto transcriptRequestDto, TranscriptOrder transcript) {
-//        transcript.setPrice(transcriptRequestDto.getPrice());
+        transcript.setProphylacticDoses(transcriptRequestDto.getProphylactic_doses_type());
         transcript.setBadHabits(transcriptRequestDto.getBadHabits());
         transcript.setDrugsTaken(transcriptRequestDto.getDrugsTaken());
         transcript.setChronicDiseases(transcriptRequestDto.getChronicDiseases());

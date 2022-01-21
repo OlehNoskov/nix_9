@@ -68,14 +68,32 @@
                                th:field="*{featuresNutrition}">
                 </div>
             </div>
+
             <div class="row py-2">
-                <div class="col-md-3 pb-4">
-                    <button class="btn btn-success mr-3" type="submit">Next</button>
+                <div class="form-group col-md-12 col-xl-12 col-12">
+                    <label for="complaints">Your complaints <span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="complaints" rows="3" th:field="*{complaints}"
+                              required></textarea>
                 </div>
+            </div>
+
+            <div class="row py-2">
+                <div class="col-md-9"><label for="prophylactic_doses_type">Select service type:</label><span
+                        class="text-danger">*</span>
+                    <select name="prophylactic_doses_type" id="prophylactic_doses_type" aria-describedby="prophylactic_doses_type"
+                            class="bg-light doses_type" th:field="*{prophylactic_doses_type}" required>
+                        <option th:each="prophylactic_doses_type : ${T(com.project.medicalanalize.persistence.type.ProphylacticDoses).values()}"
+                                th:value="${prophylactic_doses_type}"
+                                th:text="${prophylactic_doses_type}">
+                        </option>
+                    </select>
+                </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-success ml-5 mt-4" type="submit">Next</button>
+                    </div>
             </div>
         </form>
     </div>
-</div>
 </div>
 
 </body>
