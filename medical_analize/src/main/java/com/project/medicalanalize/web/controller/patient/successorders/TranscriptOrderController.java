@@ -51,7 +51,7 @@ public class TranscriptOrderController extends AbstractController {
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/patient/completed/order/transcript/all");
         model.addAttribute("pageData", response);
-        model.addAttribute("cardHeader", "All my completed transcript");
+        model.addAttribute("cardHeader", "All my completed orders personal list vitamins");
         return "pages/patient/order/success_orders/success_order_transcript_all";
     }
 

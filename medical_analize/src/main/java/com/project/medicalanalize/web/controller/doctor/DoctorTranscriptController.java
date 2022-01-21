@@ -54,7 +54,7 @@ public class DoctorTranscriptController extends AbstractController {
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/doctors/transcript/all");
         model.addAttribute("pageData", response);
-        model.addAttribute("cardHeader", "All transcript");
+        model.addAttribute("cardHeader", "All orders");
         return "pages/doctor/doctor_all_transcript";
     }
 

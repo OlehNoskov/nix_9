@@ -23,5 +23,5 @@ a.nav-item.nav-link {
     border: 1px solid #ddd;
     border-radius: 15px;
     margin: 10px auto;
-    max-width: 900px;
+    /*max-width: 900px;*/
 }
