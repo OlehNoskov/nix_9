@@ -18,9 +18,6 @@ public class Order extends BaseEntity {
 
     private Boolean enabled;
 
-//    @Column(name = "price")
-//    private Integer price;//TODO
-
     @Column(name = "bad_habits")
     private String badHabits;
 
@@ -41,6 +38,9 @@ public class Order extends BaseEntity {
 
     @Column(name = "complaints")
     private String complaints;
+
+    @Column(name = "payment")
+    private Boolean payment;
 
     @Lob
     @Column(name = "answer", length = 1000)

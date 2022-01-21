@@ -54,18 +54,21 @@
                                     future payment</label></div>
                             </div>
                         </div>
+<!--                        <form action="#" th:action="@{'/patient/order/transcript/payment?orderId=' + ${transcript.getId()}}" th:object="${transcript}"-->
+<!--                              method="post" enctype="multipart/form-data">-->
                         <div class="col-sm-5 text-sm-center justify-content-center pt-4 pb-4">
                             <small class="text-sm text-muted">Payment amount</small>
                             <div class="row px-3 justify-content-sm-center">
                                 <h2 class="">
-<!--                                    <span class="text-danger"></span>-->
 <!--                                    <span th:text="${transcript.getPrice()}"></span>-->
                                     <span class="text-md font-weight-bold mr-2">$</span>
                                 </h2>
                             </div>
                             <a th:href="@{/patients/dashboard/}" type="button"
                                class="btn btn-red text-center mt-4">Pay</a>
+<!--                            <button class="btn btn-red text-center mt-4" type="submit">Pay</button>-->
                         </div>
+<!--                        </form>-->
                     </div>
                 </div>
             </div>

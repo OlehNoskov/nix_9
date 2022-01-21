@@ -11,7 +11,14 @@ public class TranscriptRequestDto extends OrderRequestDto {
     @Setter
     private ProphylacticDoses prophylactic_doses_type;
 
+    @Setter
+    private Integer price;
+
     @Getter
     @Setter
     private String complaints;
+
+    public Integer getPrice() {
+        return 6;
+    }
 }

@@ -5,6 +5,9 @@ import lombok.Setter;
 
 public class ConsultationRequestDto extends OrderRequestDto {
 
+    @Setter
+    private Integer price;
+
     @Getter
     @Setter
     private String complaints;
@@ -24,4 +27,8 @@ public class ConsultationRequestDto extends OrderRequestDto {
     @Getter
     @Setter
     private String nutritionalAdvice;
+
+    public Integer getPrice() {
+        return 12;
+    }
 }

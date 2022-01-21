@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class OrderRequestDto extends RequestDto {
 
-    private Integer price;
+//    private Integer price;
     private String badHabits;
     private String drugsTaken;
     private String chronicDiseases;

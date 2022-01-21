@@ -96,6 +96,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     }
 
     private TranscriptOrder setterTranscript(TranscriptRequestDto transcriptRequestDto, TranscriptOrder transcript) {
+        transcript.setPayment(false);
         transcript.setProphylacticDoses(transcriptRequestDto.getProphylactic_doses_type());
         transcript.setBadHabits(transcriptRequestDto.getBadHabits());
         transcript.setDrugsTaken(transcriptRequestDto.getDrugsTaken());
@@ -174,5 +175,11 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         pageData.setItemsSize(all.getItemsSize());
         pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
+    }
+
+    @Override
+    public void paymentStatus(long id) {
+        TranscriptOrder transcript = transcriptService.findById(id).get();
+        transcript.setPayment(true);
     }
 }

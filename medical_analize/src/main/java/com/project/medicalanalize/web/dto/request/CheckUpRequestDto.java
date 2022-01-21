@@ -5,10 +5,14 @@ import lombok.Setter;
 
 public class CheckUpRequestDto extends OrderRequestDto{
 
-//    @Getter
-//    private Integer price;
+    @Setter
+    private Integer price;
 
     @Getter
     @Setter
     private String complaints;
+
+    public Integer getPrice() {
+        return 8;
+    }
 }
