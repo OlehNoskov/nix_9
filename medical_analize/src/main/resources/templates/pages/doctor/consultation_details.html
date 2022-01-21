@@ -25,6 +25,19 @@
                             <td th:text="${consultation.getNamePatient()}"></td>
                         </tr>
                         <tr>
+                            <th>Birthday</th>
+                            <td th:text="${consultation.getPatient().getBirthDay()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Height</th>
+                            <td th:text="${consultation.getPatient().getHeight()}"></td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <th>Weight</th>
+                            <td th:text="${consultation.getPatient().getWeight()}"></td>
+                        </tr>
+                        <tr>
                             <th>Bad habits</th>
                             <td th:text="${consultation.getBadHabits()}"></td>
                         </tr>
