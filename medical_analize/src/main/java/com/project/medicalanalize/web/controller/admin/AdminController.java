@@ -75,6 +75,9 @@ public class AdminController extends AbstractController {
         Long allGeneralMoney = generalMoney(countSuccessTranscript, countSuccessCheckUp, countSuccessConsultation);
         model.addAttribute("allGeneralMoney", allGeneralMoney);
 
+        Double disposableIncome = allGeneralMoney * 0.25;
+        model.addAttribute("disposableIncome", disposableIncome);
+
         Long allOrders = allSuccessOrders(countSuccessTranscript, countSuccessCheckUp, countSuccessConsultation) +
                 allReviewsOrders(countReviewTranscript, countReviewCheckUp, countReviewConsultation);
         model.addAttribute("allOrders", allOrders);
@@ -107,4 +110,5 @@ public class AdminController extends AbstractController {
         return (countSuccessTranscript * TranscriptOrder.getPrice()) + (countSuccessCheckUp * CheckUp.getPrice() +
                 countSuccessConsultation * ConsultationOrder.getPrice());
     }
+
 }

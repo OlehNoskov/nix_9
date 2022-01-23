@@ -55,7 +55,7 @@ public class DoctorController {
         Long sizeConsultation = consultationOrderRepository.countSuccessDoctorConsultation(user.getId());
         model.addAttribute("countConsultation", sizeConsultation);
 
-        Long salaryDoctor = salaryDoctor(sizeTranscript, sizeCheckUp, sizeConsultation);
+        Double salaryDoctor = salaryDoctor(sizeTranscript, sizeCheckUp, sizeConsultation);
         model.addAttribute("salaryDoctor", salaryDoctor);
         return "pages/doctor/dashboard";
     }
@@ -81,9 +81,9 @@ public class DoctorController {
         return "redirect:/doctors/dashboard";
     }
 
-    Long salaryDoctor(Long countTranscript, Long countCheckUp, Long countConsultation) {
+    Double salaryDoctor(Long countTranscript, Long countCheckUp, Long countConsultation) {
         return (countTranscript * TranscriptOrder.getPrice()) +
                 (countCheckUp * CheckUp.getPrice()) +
-                (countConsultation * ConsultationOrder.getPrice());
+                (countConsultation * ConsultationOrder.getPrice() * 0.75);
     }
 }
