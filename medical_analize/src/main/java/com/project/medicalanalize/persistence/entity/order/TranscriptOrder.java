@@ -26,7 +26,7 @@ public class TranscriptOrder extends Order {
         setOrderType(OrderType.TRANSCRIPT);
     }
 
-    public Integer getPrice() {
+    public static Integer getPrice() {
         return 6;
     }
 }

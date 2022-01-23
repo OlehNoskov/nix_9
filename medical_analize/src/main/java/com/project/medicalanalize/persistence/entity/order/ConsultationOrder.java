@@ -42,7 +42,7 @@ public class ConsultationOrder extends Order {
         setOrderType(OrderType.COMPREHENSIVE_CONSULTATION);
     }
 
-    public Integer getPrice() {
+    public static Integer getPrice() {
         return 12;
     }
 }

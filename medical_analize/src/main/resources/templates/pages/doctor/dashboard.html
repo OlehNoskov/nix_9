@@ -12,58 +12,37 @@
 <body>
 <div layout:fragment="doctor_content">
     <div class="wrapper bg-white mt-sm-5 p-5">
-        <h1>My work in numbers</h1>
+        <h1 class="title ml-3">My work in numbers</h1>
         <div class="container-fluid">
 
-            <div class="my-2">
-                <span>My success all orders:</span>
-                <span th:text="${size}"></span>
+            <div class="my-3">
+                <span class="order">My success all orders:</span>
+                <span class="order" th:text="${size}"></span>
             </div>
 
-            <p>My success Transcript orders:</p>
+            <div class="my-3">
+                <span class="order">My success List vitamins orders:</span>
+                <span class="order" th:text="${countTranscript}"></span>
+            </div>
 
-            <p>My success Check-UP orders:</p>
+            <div class="my-3">
+                <span class="order">My success Check-UP orders:</span>
+                <span class="order" th:text="${countCheckUp}"></span>
+            </div>
 
-            <p>My success Consultation orders:</p>
+            <div class="my-3">
+                <span class="order">My success Consultation orders:</span>
+                <span class="order" th:text="${countConsultation}"></span>
+            </div>
 
-            <p>My salary all time:</p>
+            <div class="my-3">
+                <span class="order">My salary all time:</span>
+                <span class="order" th:text="${salaryDoctor}"></span>
+                <span class="order">$</span>
+            </div>
 
         </div>
     </div>
 </div>
 </body>
 </html>
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en"-->
-<!--      xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      xmlns:th="http://www.thymeleaf.org"-->
-<!--      layout:decorate="~{fragments/doctor_layout}">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>All orders</title>-->
-<!--    <link href="/css/doctor/doctor_dashboard.css" rel="stylesheet">-->
-<!--</head>-->
-<!--<body>-->
-<!--<div layout:fragment="doctor_content">-->
-<!--    <div class="wrapper bg-white mt-sm-5 p-5">-->
-<!--        <h1>My work in numbers</h1>-->
-<!--        <div class="container-fluid">-->
-<!--            <p>My success Transcript orders:</p>-->
-<!--            <p></p>-->
-
-<!--            <p>My success Check-UP orders:</p>-->
-<!--            <p></p>-->
-
-<!--            <p>My success Consultation orders:</p>-->
-<!--            <p></p>-->
-
-<!--            <p>My salary all time:</p>-->
-<!--            <p></p>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->

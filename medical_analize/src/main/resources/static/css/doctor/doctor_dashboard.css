@@ -23,5 +23,15 @@ a.nav-item.nav-link {
     border: 1px solid #ddd;
     border-radius: 15px;
     margin: 10px auto;
-    /*max-width: 900px;*/
+}
+
+h1.title{
+    font-size: 40px;
+    text-decoration-line: underline;
+    color: #00adf1;
+}
+
+span.order{
+    font-size: 24px;
+    color: #3b3939;
 }

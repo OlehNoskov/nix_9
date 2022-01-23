@@ -21,7 +21,7 @@ public class CheckUp extends Order {
         setOrderType(OrderType.CHECK_UP);
     }
 
-    public Integer getPrice() {
+    public static Integer getPrice() {
         return 8;
     }
 }
