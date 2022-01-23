@@ -1,18 +1,17 @@
 package com.project.medicalanalize.web.dto.request;
 
+import com.project.medicalanalize.persistence.entity.order.CheckUp;
+
 import lombok.Getter;
 import lombok.Setter;
 
 public class CheckUpRequestDto extends OrderRequestDto{
-
-    @Setter
-    private Integer price;
 
     @Getter
     @Setter
     private String complaints;
 
     public Integer getPrice() {
-        return 8;
+        return CheckUp.getPrice();
     }
 }

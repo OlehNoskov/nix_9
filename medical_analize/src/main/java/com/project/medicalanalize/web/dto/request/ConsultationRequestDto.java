@@ -1,12 +1,11 @@
 package com.project.medicalanalize.web.dto.request;
 
+import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
+
 import lombok.Getter;
 import lombok.Setter;
 
 public class ConsultationRequestDto extends OrderRequestDto {
-
-    @Setter
-    private Integer price;
 
     @Getter
     @Setter
@@ -29,6 +28,6 @@ public class ConsultationRequestDto extends OrderRequestDto {
     private String nutritionalAdvice;
 
     public Integer getPrice() {
-        return 12;
+        return ConsultationOrder.getPrice();
     }
 }

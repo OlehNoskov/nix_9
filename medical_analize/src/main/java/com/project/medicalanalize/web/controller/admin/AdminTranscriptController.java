@@ -38,7 +38,7 @@ public class AdminTranscriptController extends AbstractController {
         return new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("created", "created", "created"),
-                new HeaderName("name patient",null ,null ),
+                new HeaderName("name patient", null, null),
                 new HeaderName("details", null, null),
                 new HeaderName("delete", null, null)
         };
@@ -48,7 +48,6 @@ public class AdminTranscriptController extends AbstractController {
     public String findAllSuccess(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
         PageData response = transcriptFacade.findAllTranscriptSuccessAdmin(webRequest);
-        response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
 
         model.addAttribute("headerDataList", headerDataList);

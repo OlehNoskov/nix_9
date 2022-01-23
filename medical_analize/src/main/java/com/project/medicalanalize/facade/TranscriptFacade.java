@@ -6,9 +6,10 @@ import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 
 import org.springframework.web.context.request.WebRequest;
 
-public interface TranscriptFacade extends BaseFacade<TranscriptRequestDto, TranscriptResponseDto>{
+public interface TranscriptFacade extends BaseFacade<TranscriptRequestDto, TranscriptResponseDto> {
 
     Long createAndFind(TranscriptRequestDto dto);
+
     PageData findAllTranscriptOrdersReviewDoctors(WebRequest request);
     PageData findAllTranscriptSuccessAdmin(WebRequest request);
     void paymentStatus(long id);

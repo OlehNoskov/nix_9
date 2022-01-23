@@ -1,5 +1,6 @@
 package com.project.medicalanalize.util;
 
+import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.BaseEntity;
 import com.project.medicalanalize.web.dto.response.PageData;
@@ -18,5 +19,13 @@ public class WebResponseUtil {
         pageData.setItemsSize(tableResponse.getItemsSize());
         pageData.initPaginationState(tableResponse.getCurrentPage());
         return pageData;
+    }
+
+    public static void initDataTableResponse(DataTableRequest request, DataTableResponse<? extends BaseEntity> dataTableResponse, long count) {
+        dataTableResponse.setItemsSize(count);
+        dataTableResponse.setCurrentPage(request.getPage());
+        dataTableResponse.setPageSize(request.getSize());
+        dataTableResponse.setOrder(request.getOrder());
+        dataTableResponse.setSort(request.getSort());
     }
 }

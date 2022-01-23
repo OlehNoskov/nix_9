@@ -47,6 +47,16 @@ h2.title{
     text-decoration-line: underline;
     color: #05be02;
 }
+h2.title2{
+    font-size: 32px;
+    text-decoration-line: underline;
+    color: #32b4a3
+}
+h2.title3{
+    font-size: 32px;
+    text-decoration-line: underline;
+    color: #fe4444;
+}
 
 span.order{
     font-size: 24px;

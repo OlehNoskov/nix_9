@@ -90,7 +90,6 @@ public class AdminController extends AbstractController {
 
         Long countAllConsultation = consultationOrderRepository.countAllConsultation();
         model.addAttribute("allConsultation", countAllConsultation);
-
         return "pages/admin/dashboard";
     }
 

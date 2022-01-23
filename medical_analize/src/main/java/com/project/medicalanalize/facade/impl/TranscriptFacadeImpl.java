@@ -9,6 +9,7 @@ import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.TranscriptService;
 import com.project.medicalanalize.util.WebRequestUtil;
+import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
@@ -27,7 +28,6 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 
     private final TranscriptService transcriptService;
     private final UserFacade userFacade;
-    public static Integer countTranscript;
 
     public TranscriptFacadeImpl(TranscriptService transcriptService, UserFacade userFacade) {
         this.transcriptService = transcriptService;
@@ -38,7 +38,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     public void create(TranscriptRequestDto transcriptRequestDto) {
         TranscriptOrder transcript = new TranscriptOrder();
         setterTranscript(transcriptRequestDto, transcript);
-        transcript.setPrice(transcript.getPrice());
+        transcript.setPrice(TranscriptOrder.getPrice());
         transcript.setPatient((Patient) userFacade.getCurrentUser());
         transcriptService.create(transcript);
     }
@@ -147,33 +147,15 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     }
 
     @Override
-    public PageData findAllTranscriptSuccessAdmin(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-
-        DataTableResponse<TranscriptOrder> all = transcriptService.findAll(dataTableRequest);
-
-        List<TranscriptResponseDto> list = all.getItems().
+    public PageData<TranscriptResponseDto> findAllTranscriptSuccessAdmin(WebRequest request) {
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<TranscriptOrder> tableResponse  = transcriptService.findAll(dataTableRequest);
+        List<TranscriptResponseDto> list = tableResponse .getItems().
                 stream().filter(t -> t.getVisible().equals(false)).
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
-
-        countTranscript = list.size();
-
-        PageData<TranscriptResponseDto> pageData = new PageData<>();
+        PageData<TranscriptResponseDto> pageData = (PageData<TranscriptResponseDto>) WebResponseUtil.initPageData(tableResponse);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 

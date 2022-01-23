@@ -1,6 +1,7 @@
 package com.project.medicalanalize.persistence.datatable;
 
 import com.project.medicalanalize.persistence.entity.BaseEntity;
+
 import lombok.Data;
 
 import java.util.Collections;
