@@ -27,3 +27,28 @@ div.classic{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.wrapper {
+    padding: 30px 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px auto;
+}
+
+h1.title{
+    font-size: 40px;
+    text-decoration-line: underline;
+    color: #00adf1;
+
+}
+
+h2.title{
+    font-size: 32px;
+    text-decoration-line: underline;
+    color: #05be02;
+}
+
+span.order{
+    font-size: 24px;
+    color: #3b3939;
+}

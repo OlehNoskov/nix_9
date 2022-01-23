@@ -11,4 +11,13 @@ public interface ConsultationOrderRepository extends OrderRepository<Consultatio
 
     @Query(value = "select COUNT(*) from orders where visible=false and order_type='COMPREHENSIVE_CONSULTATION' and doctor_id =:idDoctor", nativeQuery=true)
     Long countSuccessDoctorConsultation( @Param("idDoctor") Long idDoctor);
+
+    @Query(value = "select COUNT(*) from orders where order_type='COMPREHENSIVE_CONSULTATION'", nativeQuery = true)
+    Long countAllConsultation();
+
+    @Query(value = "select COUNT(*) from orders where visible=false and order_type='COMPREHENSIVE_CONSULTATION'", nativeQuery = true)
+    Long countSuccessConsultation();
+
+    @Query(value = "select COUNT(*) from orders where visible=true and order_type='COMPREHENSIVE_CONSULTATION'", nativeQuery = true)
+    Long countReviewConsultation();
 }

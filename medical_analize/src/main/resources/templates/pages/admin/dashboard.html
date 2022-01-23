@@ -20,12 +20,110 @@
 </head>
 <body>
 <div layout:fragment="admin_content">
+
+    <div class="wrapper bg-white mt-sm-5 p-5">
+        <h1 class="title mt-3 mb-3" align="center">Statistics "Doctor online"</h1>
+        <div class="container-fluid">
+
+            <div class="row ml-5">
+                <div class="col-12 col-md-6 col-xl-6">
+                    <h2 class="title mt-5">Users</h2>
+                    <div class="my-3">
+                        <span class="order">Doctors:</span>
+                        <span class="order" th:text="${countDoctors}"></span>
+                    </div>
+
+                    <div class="my-3">
+                        <span class="order">Patients:</span>
+                        <span class="order" th:text="${countPatients}"></span>
+                    </div>
+
+                    <div class="my-3">
+                        <span class="order">All users:</span>
+                        <span class="order" th:text="${allUsers}"></span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-6">
+                    <h2 class="title mt-5">All orders</h2>
+                    <div class="my-3">
+                        <span class="order">List vitamins orders:</span>
+                        <span class="order" th:text="${allTranscript}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">Check-UP orders:</span>
+                        <span class="order" th:text="${allCheckUp}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">Consultation orders:</span>
+                        <span class="order" th:text="${allConsultation}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">All orders:</span>
+                        <span class="order" th:text="${allOrders}"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ml-5">
+                <div class="col-12 col-md-6 col-xl-6">
+                    <h2 class="title mt-5">Success orders</h2>
+                    <div class="my-3">
+                        <span class="order">List vitamins orders:</span>
+                        <span class="order" th:text="${countSuccessTranscript}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">Check-UP orders:</span>
+                        <span class="order" th:text="${countSuccessCheckUp}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">Consultation orders:</span>
+                        <span class="order" th:text="${countSuccessConsultation}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">All success orders:</span>
+                        <span class="order" th:text="${allSuccessOrders}"></span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-6">
+                    <h2 class="title mt-5">Review orders</h2>
+                    <div class="my-3">
+                        <span class="order">List vitamins orders:</span>
+                        <span class="order" th:text="${countReviewTranscript}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">Check-UP orders:</span>
+                        <span class="order" th:text="${countReviewCheckUp}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">Consultation orders:</span>
+                        <span class="order" th:text="${countReviewConsultation}"></span>
+                    </div>
+                    <div class="my-3">
+                        <span class="order">All review orders:</span>
+                        <span class="order" th:text="${allReviewsOrders}"></span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="title mt-5 ml-5">General money turnover</h2>
+            <div class="my-3">
+                <span class="order ml-5">Total turnover:</span>
+                <span class="order" th:text="${allGeneralMoney}"></span>
+                <span class="order">$</span>
+            </div>
+
+        </div>
+    </div>
+
     <div class="container-fluid mt-5">
         <div class="container p-5">
             <div class="row">
                 <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
                     <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=etzxZYHybb0iFEp" alt="" class="card-img-top p-5">
+                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=etzxZYHybb0iFEp"
+                             alt="" class="card-img-top p-5">
                         <div class="card-body d-flex flex-column">
                             <h4 class="card-title ricing-card-title"></h4>
                             <p class="card-text"></p>
@@ -37,10 +135,11 @@
                 </div>
                 <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
                     <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=jsY4nP9vO0RzjIb" alt="" class="card-img-top">
+                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=jsY4nP9vO0RzjIb"
+                             alt="" class="card-img-top">
                         <div class="card-body d-flex flex-column">
                             <h4 class="card-title ricing-card-title"></h4>
-                            <p class="card-text"> </p>
+                            <p class="card-text"></p>
                             <a th:href="@{/admin/check_up}"
                                class="btn btn-outline-warning align-self-end btn btn-lg btn-block mt-auto">All
                                 Check-Up</a>
@@ -49,7 +148,8 @@
                 </div>
                 <div class="col text-center col-12 col-md-12 col-xl-4 d-flex align-items-stretch mt-2">
                     <div class="card" style="width: 20rem;">
-                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=24K8JzUMGT4r7r9" alt="" class="card-img-top">
+                        <img src="https://cloud.vodafone.ua/mmb/v2/publink/file/get?disposition_mode=inline&type=original&link=24K8JzUMGT4r7r9"
+                             alt="" class="card-img-top">
                         <div class="card-body">
                             <h4 class="card-title mb-5"></h4>
                             <p class="card-text"></p>
