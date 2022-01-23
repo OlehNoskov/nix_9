@@ -110,5 +110,4 @@ public class AdminController extends AbstractController {
         return (countSuccessTranscript * TranscriptOrder.getPrice()) + (countSuccessCheckUp * CheckUp.getPrice() +
                 countSuccessConsultation * ConsultationOrder.getPrice());
     }
-
 }
