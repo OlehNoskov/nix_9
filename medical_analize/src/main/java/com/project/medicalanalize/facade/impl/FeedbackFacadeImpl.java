@@ -5,7 +5,6 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.feedback.Feedback;
-import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.service.FeedbackService;
@@ -14,7 +13,6 @@ import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
-import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.FeedbackResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 

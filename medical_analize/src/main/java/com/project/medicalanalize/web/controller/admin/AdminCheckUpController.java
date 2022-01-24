@@ -5,7 +5,6 @@ import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
-import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 

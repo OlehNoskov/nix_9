@@ -5,7 +5,6 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
-import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.persistence.entity.user.User;
@@ -109,7 +108,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
     public Long createAndFind(CheckUpRequestDto dto) {
         CheckUp checkUp = new CheckUp();
         setterFieldCheckUp(dto, checkUp);
-        checkUp.setPrice(checkUp.getPrice());
+        checkUp.setPrice(CheckUp.getPrice());
         checkUp.setPatient((Patient) userFacade.getCurrentUser());
         return checkUpService.createAndFind(checkUp);
     }

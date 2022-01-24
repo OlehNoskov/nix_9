@@ -5,7 +5,6 @@ import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.feedback.Feedback;
-import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.persistence.repository.feedback.FeedbackRepository;
 import com.project.medicalanalize.service.FeedbackService;
@@ -65,6 +64,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public DataTableResponse<Feedback> findAllFeedbacksPatient(DataTableRequest request, Long idPatient) {
         User user = userFacade.getCurrentUser();
         Sort sort = request.getOrder().equals("desc")

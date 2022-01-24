@@ -17,7 +17,6 @@ import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 

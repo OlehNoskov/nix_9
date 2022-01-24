@@ -5,7 +5,6 @@ import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
-import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.persistence.repository.order.CheckUpRepository;
 import com.project.medicalanalize.service.CheckUpService;

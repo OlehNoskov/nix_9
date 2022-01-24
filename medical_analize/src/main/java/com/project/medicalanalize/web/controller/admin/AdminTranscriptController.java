@@ -1,7 +1,6 @@
 package com.project.medicalanalize.web.controller.admin;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
-import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;

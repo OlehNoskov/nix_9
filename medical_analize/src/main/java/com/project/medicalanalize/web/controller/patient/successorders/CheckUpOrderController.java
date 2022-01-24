@@ -1,7 +1,6 @@
 package com.project.medicalanalize.web.controller.patient.successorders;
 
 import com.project.medicalanalize.facade.CheckUpFacade;
-import com.project.medicalanalize.facade.PatientFacade;
 import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.persistence.entity.user.User;

@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PatientRepository extends UserRepository<Patient> {
-    Long countPatientByRoleTypeRolePatient = 0L;
 }

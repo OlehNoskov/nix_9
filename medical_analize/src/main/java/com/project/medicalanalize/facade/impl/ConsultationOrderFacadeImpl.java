@@ -4,7 +4,6 @@ import com.project.medicalanalize.facade.ConsultationOrderFacade;
 import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
-import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
@@ -15,7 +14,6 @@ import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
-import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -73,7 +71,6 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
 
     @Override
     public PageData<ConsultationResponseDto> findAll(WebRequest request) {
-
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
