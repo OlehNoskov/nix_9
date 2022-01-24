@@ -6,6 +6,7 @@ import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
+import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 
@@ -64,13 +65,13 @@ public class PatientCreateOrderController {
         return "pages/patient/payment";
     }
 
-//    @PostMapping("/transcript/payment")
-//    public String pagePaymentTranscriptPayment(Model model, @RequestParam Long orderId) {
-//        TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(orderId);
-//        transcriptFacade.paymentStatus(transcriptResponseDto, orderId);
-//        model.addAttribute("transcript", new TranscriptRequestDto());
-//        return "redirect:/patients/dashboard";
-//    }
+    @PostMapping("/transcript/payment")
+    public String pagePaymentTranscriptPayment(Model model, @RequestParam Long orderId) {
+        TranscriptResponseDto transcriptResponseDto = transcriptFacade.findById(orderId);
+        transcriptFacade.paymentStatus(orderId);
+        model.addAttribute("transcript", new TranscriptRequestDto());
+        return "redirect:/patients/dashboard";
+    }
 
     @GetMapping("/new/check-up")
     public String newCheckUp(Model model) {
@@ -93,8 +94,9 @@ public class PatientCreateOrderController {
 
     @GetMapping("/check-up/payment")
     public String pagePaymentCheckUp(Model model) {
-//        model.addAttribute("check_up", new CheckUpRequestDto());
-        return "pages/patient/payment";
+//        CheckUpResponseDto checkUpResponseDto = checkUpFacade.findById(orderId);
+        model.addAttribute("check_up", new CheckUpRequestDto());
+        return "pages/patient/payment_check_up";
     }
 
     @GetMapping("/new/comprehensive")
@@ -118,8 +120,8 @@ public class PatientCreateOrderController {
 
     @GetMapping("/consultation/payment")
     public String pagePaymentConsultation(Model model) {
-//        model.addAttribute("consultation", new ConsultationRequestDto());
-        return "pages/patient/payment";
+        model.addAttribute("consultation", new ConsultationRequestDto());
+        return "pages/patient/payment_consultation";
     }
 
     @GetMapping("/new")
