@@ -60,6 +60,7 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
     }
 
     @Override
+    @Transactional(readOnly = true)
     public DataTableResponse<ConsultationOrder> findAllSuccessConsultationVisibleAdmin(DataTableRequest request) {
         Sort sort = request.getOrder().equals("desc")
                 ? Sort.by(request.getSort()).descending()
@@ -70,6 +71,7 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
     }
 
     @Override
+    @Transactional(readOnly = true)
     public DataTableResponse<ConsultationOrder> findAllConsultationVisibleDoctor(DataTableRequest request) {
         Sort sort = request.getOrder().equals("desc")
                 ? Sort.by(request.getSort()).descending()

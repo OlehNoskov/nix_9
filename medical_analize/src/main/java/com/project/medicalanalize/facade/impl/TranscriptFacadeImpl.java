@@ -118,23 +118,8 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         return transcriptService.createAndFind(transcript);
     }
 
-//    @Override
-//    public PageData<TranscriptResponseDto> findAllTranscriptSuccessAdmin(WebRequest request) {
-//        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
-//        DataTableResponse<TranscriptOrder> tableResponse  = transcriptService.findAll(dataTableRequest);
-//        List<TranscriptResponseDto> list = tableResponse .getItems().
-//                stream().filter(t -> t.getVisible().equals(false)).
-//                map(TranscriptResponseDto::new).
-//                collect(Collectors.toList());
-//        PageData<TranscriptResponseDto> pageData = (PageData<TranscriptResponseDto>) WebResponseUtil.initPageData(tableResponse);
-//        pageData.setItems(list);
-//        return pageData;
-//    }//TODO
-
-
     @Override
     public PageData<TranscriptResponseDto> findAllSuccessTranscriptVisibleAdmin(WebRequest request) {
-//        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
@@ -149,9 +134,6 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         List<TranscriptResponseDto> list = tableResponse.getItems().stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
-
-//        PageData<TranscriptResponseDto> pageData = (PageData<TranscriptResponseDto>) WebResponseUtil.initPageData(tableResponse);
-//        pageData.setItems(list);
 
         PageData<TranscriptResponseDto> pageData = new PageData<>();
         pageData.setItems(list);
