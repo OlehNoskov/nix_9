@@ -12,4 +12,6 @@ public interface TranscriptService extends BaseCrudService<TranscriptOrder> {
     DataTableResponse<TranscriptOrder> findAllSuccessTranscriptVisibleAdmin(DataTableRequest request);
 
     DataTableResponse<TranscriptOrder> findAllTranscriptVisibleDoctor(DataTableRequest request);
+
+    DataTableResponse<TranscriptOrder> findAllSuccessTranscriptPatient(DataTableRequest request, Long idPatient);
 }

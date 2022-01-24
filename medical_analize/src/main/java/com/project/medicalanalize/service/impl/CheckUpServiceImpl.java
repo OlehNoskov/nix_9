@@ -1,10 +1,12 @@
 package com.project.medicalanalize.service.impl;
 
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.persistence.repository.order.CheckUpRepository;
 import com.project.medicalanalize.service.CheckUpService;
 
@@ -23,10 +25,12 @@ public class CheckUpServiceImpl implements CheckUpService {
 
     private final CrudRepositoryHelper<CheckUp, CheckUpRepository> checkUpRepositoryHelper;
     private final CheckUpRepository checkUpRepository;
+    private final UserFacade userFacade;
 
-    public CheckUpServiceImpl(CrudRepositoryHelper<CheckUp, CheckUpRepository> checkUpRepositoryHelper, CheckUpRepository checkUpRepository) {
+    public CheckUpServiceImpl(CrudRepositoryHelper<CheckUp, CheckUpRepository> checkUpRepositoryHelper, CheckUpRepository checkUpRepository, UserFacade userFacade) {
         this.checkUpRepositoryHelper = checkUpRepositoryHelper;
         this.checkUpRepository = checkUpRepository;
+        this.userFacade = userFacade;
     }
 
     @Override
@@ -83,6 +87,17 @@ public class CheckUpServiceImpl implements CheckUpService {
                 : Sort.by(request.getSort()).ascending();
         Page<CheckUp> entityPage = checkUpRepository.findAllCheckUpVisibleDoctor(
                 PageRequest.of(request.getPage() - 1, request.getSize(), sort));
+        return getCheckUpDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    public DataTableResponse<CheckUp> findAllSuccessCheckUpPatient(DataTableRequest request, Long idPatient) {
+        User user = userFacade.getCurrentUser();
+        Sort sort = request.getOrder().equals("desc")
+                ? Sort.by(request.getSort()).descending()
+                : Sort.by(request.getSort()).ascending();
+        Page<CheckUp> entityPage = checkUpRepository.findAllSuccessCheckUpPatient(
+                PageRequest.of(request.getPage() - 1, request.getSize(), sort), user.getId());
         return getCheckUpDataTableResponse(request, entityPage);
     }
 

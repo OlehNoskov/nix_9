@@ -29,4 +29,7 @@ public interface CheckUpRepository extends OrderRepository<CheckUp> {
 
     @Query(value = "select * from orders where visible=true and  order_type='CHECK_UP'", nativeQuery = true)
     Page<CheckUp> findAllCheckUpVisibleDoctor(Pageable pageable);
+
+    @Query(value = "select * from orders where visible=false and  order_type='CHECK_UP'and patient_id =:idPatient", nativeQuery = true)
+    Page<CheckUp> findAllSuccessCheckUpPatient(Pageable pageable, @Param("idPatient") Long idPatient);
 }

@@ -8,6 +8,7 @@ import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.service.CheckUpService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.util.WebResponseUtil;
@@ -17,6 +18,7 @@ import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
+import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
@@ -75,12 +77,9 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         dataTableRequest.setPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
-
         DataTableResponse<CheckUp> all = checkUpService.findAll(dataTableRequest);
-
         List<CheckUpResponseDto> list = all.getItems().
-                stream().filter(c -> c.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
-                filter(checkUp -> checkUp.getVisible().equals(false)).
+                stream().
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
         PageData<CheckUpResponseDto> pageData = new PageData<>();
@@ -120,6 +119,19 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
     public PageData findAllCheckUpOrdersReviewDoctors(WebRequest request) {
         DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<CheckUp> tableResponse = checkUpService.findAllTranscriptVisibleDoctor(dataTableRequest);
+        List<CheckUpResponseDto> list = tableResponse.getItems().stream().
+                map(CheckUpResponseDto::new).
+                collect(Collectors.toList());
+        PageData<CheckUpResponseDto> pageData = (PageData<CheckUpResponseDto>) WebResponseUtil.initPageData(tableResponse);
+        pageData.setItems(list);
+        return pageData;
+    }
+
+    @Override
+    public PageData<CheckUpResponseDto> findAllSuccessCheckUpPatient(WebRequest request, Long idPatient) {
+        User user = userFacade.getCurrentUser();
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<CheckUp> tableResponse = checkUpService.findAllSuccessCheckUpPatient(dataTableRequest, user.getId());
         List<CheckUpResponseDto> list = tableResponse.getItems().stream().
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());

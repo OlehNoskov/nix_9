@@ -9,4 +9,6 @@ public interface ComprehensiveConsultationOrderService extends BaseCrudService<C
     DataTableResponse<ConsultationOrder> findAllSuccessConsultationVisibleAdmin(DataTableRequest request);
 
     DataTableResponse<ConsultationOrder> findAllConsultationVisibleDoctor(DataTableRequest request);
+
+    DataTableResponse<ConsultationOrder> findAllSuccessConsultationPatient(DataTableRequest request, Long idPatient);
 }

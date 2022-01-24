@@ -14,5 +14,7 @@ public interface TranscriptFacade extends BaseFacade<TranscriptRequestDto, Trans
 
     PageData<TranscriptResponseDto> findAllTranscriptVisibleDoctor(WebRequest request);
 
+    PageData<TranscriptResponseDto> findAllSuccessTranscriptPatient(WebRequest request, Long idPatient);
+
     void paymentStatus(long id);
 }

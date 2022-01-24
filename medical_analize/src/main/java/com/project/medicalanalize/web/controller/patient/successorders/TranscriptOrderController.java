@@ -1,7 +1,9 @@
 package com.project.medicalanalize.web.controller.patient.successorders;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
@@ -27,9 +29,11 @@ import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM
 public class TranscriptOrderController extends AbstractController {
 
     private final TranscriptFacade transcriptFacade;
+    private final UserFacade userFacade;
 
-    public TranscriptOrderController(TranscriptFacade transcriptFacade) {
+    public TranscriptOrderController(TranscriptFacade transcriptFacade, UserFacade userFacade) {
         this.transcriptFacade = transcriptFacade;
+        this.userFacade = userFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -44,7 +48,8 @@ public class TranscriptOrderController extends AbstractController {
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData<TranscriptResponseDto> response = transcriptFacade.findAll(webRequest);
+        User user = userFacade.getCurrentUser();
+        PageData<TranscriptResponseDto> response = transcriptFacade.findAllSuccessTranscriptPatient(webRequest, user.getId());
         response.initPaginationState(response.getCurrentPage());
         List<AbstractController.HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 

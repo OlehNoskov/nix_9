@@ -7,6 +7,7 @@ import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.service.TranscriptService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.util.WebResponseUtil;
@@ -67,21 +68,20 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 
     @Override
     public PageData<TranscriptResponseDto> findAll(WebRequest request) {
-
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
-
         DataTableRequest dataTableRequest = new DataTableRequest();
         dataTableRequest.setSize(pageAndSizeData.getSize());
         dataTableRequest.setPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
-
         DataTableResponse<TranscriptOrder> all = transcriptService.findAll(dataTableRequest);
+        return getTranscriptResponseDtoPageData(pageAndSizeData, sortData, all);
+    }
 
+    private PageData<TranscriptResponseDto> getTranscriptResponseDtoPageData(PageAndSizeData pageAndSizeData, SortData sortData, DataTableResponse<TranscriptOrder> all) {
         List<TranscriptResponseDto> list = all.getItems().
-                stream().filter(t -> t.getPatient().getId().equals(userFacade.getCurrentUser().getId()))
-                .filter(transcriptOrder -> transcriptOrder.getVisible().equals(false)).
+                stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
 
@@ -131,25 +131,26 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 
         DataTableResponse<TranscriptOrder> tableResponse = transcriptService.findAllSuccessTranscriptVisibleAdmin(dataTableRequest);
 
-        List<TranscriptResponseDto> list = tableResponse.getItems().stream().
-                map(TranscriptResponseDto::new).
-                collect(Collectors.toList());
-
-        PageData<TranscriptResponseDto> pageData = new PageData<>();
-        pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(tableResponse.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
-        return pageData;
+        return getTranscriptResponseDtoPageData(pageAndSizeData, sortData, tableResponse);
     }
 
     @Override
     public PageData<TranscriptResponseDto> findAllTranscriptVisibleDoctor(WebRequest request) {
         DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<TranscriptOrder> tableResponse = transcriptService.findAllTranscriptVisibleDoctor(dataTableRequest);
+        List<TranscriptResponseDto> list = tableResponse.getItems().stream().
+                map(TranscriptResponseDto::new).
+                collect(Collectors.toList());
+        PageData<TranscriptResponseDto> pageData = (PageData<TranscriptResponseDto>) WebResponseUtil.initPageData(tableResponse);
+        pageData.setItems(list);
+        return pageData;
+    }
+
+    @Override
+    public PageData<TranscriptResponseDto> findAllSuccessTranscriptPatient(WebRequest request, Long idPatient) {
+        User user = userFacade.getCurrentUser();
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<TranscriptOrder> tableResponse = transcriptService.findAllSuccessTranscriptPatient(dataTableRequest, user.getId());
         List<TranscriptResponseDto> list = tableResponse.getItems().stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());

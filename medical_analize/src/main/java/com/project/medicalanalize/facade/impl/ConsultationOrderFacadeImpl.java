@@ -4,15 +4,18 @@ import com.project.medicalanalize.facade.ConsultationOrderFacade;
 import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
+import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
+import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -79,12 +82,9 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         dataTableRequest.setPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
-
         DataTableResponse<ConsultationOrder> all = consultationOrderService.findAll(dataTableRequest);
-
         List<ConsultationResponseDto> list = all.getItems().
-                stream().filter(consultation -> consultation.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
-                filter(consultationOrder -> consultationOrder.getVisible().equals(false)).
+                stream().
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
         PageData<ConsultationResponseDto> pageData = new PageData<>();
@@ -111,7 +111,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
     }
 
     @Override
-    public PageData findAllConsultationOrdersReviewDoctors(WebRequest request) {
+    public PageData<ConsultationResponseDto> findAllConsultationOrdersReviewDoctors(WebRequest request) {
         DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<ConsultationOrder> tableResponse = consultationOrderService.findAllConsultationVisibleDoctor(dataTableRequest);
         List<ConsultationResponseDto> list = tableResponse.getItems().stream().
@@ -123,9 +123,22 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
     }
 
     @Override
-    public PageData findAllConsultationSuccessAdmin(WebRequest request) {
+    public PageData<ConsultationResponseDto> findAllConsultationSuccessAdmin(WebRequest request) {
         DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<ConsultationOrder> tableResponse = consultationOrderService.findAllSuccessConsultationVisibleAdmin(dataTableRequest);
+        List<ConsultationResponseDto> list = tableResponse.getItems().stream().
+                map(ConsultationResponseDto::new).
+                collect(Collectors.toList());
+        PageData<ConsultationResponseDto> pageData = (PageData<ConsultationResponseDto>) WebResponseUtil.initPageData(tableResponse);
+        pageData.setItems(list);
+        return pageData;
+    }
+
+    @Override
+    public PageData<ConsultationResponseDto> findAllSuccessConsultationPatient(WebRequest request, Long idPatient) {
+        User user = userFacade.getCurrentUser();
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<ConsultationOrder> tableResponse = consultationOrderService.findAllSuccessConsultationPatient(dataTableRequest, user.getId());
         List<ConsultationResponseDto> list = tableResponse.getItems().stream().
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());

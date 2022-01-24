@@ -2,7 +2,9 @@ package com.project.medicalanalize.web.controller.patient.successorders;
 
 import com.project.medicalanalize.facade.CheckUpFacade;
 import com.project.medicalanalize.facade.PatientFacade;
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
@@ -31,11 +33,11 @@ import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM
 public class CheckUpOrderController extends AbstractController {
 
     private final CheckUpFacade checkUpFacade;
-    private final PatientFacade patientFacade;
+    private final UserFacade userFacade;
 
-    public CheckUpOrderController(CheckUpFacade checkUpFacade, PatientFacade patientFacade) {
+    public CheckUpOrderController(CheckUpFacade checkUpFacade, UserFacade userFacade) {
         this.checkUpFacade = checkUpFacade;
-        this.patientFacade = patientFacade;
+        this.userFacade = userFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -49,8 +51,9 @@ public class CheckUpOrderController extends AbstractController {
 
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
+        User user = userFacade.getCurrentUser();
         HeaderName[] columnTitles = getColumnTitles();
-        PageData<CheckUpResponseDto> response = checkUpFacade.findAll(webRequest);
+        PageData<CheckUpResponseDto> response = checkUpFacade.findAllSuccessCheckUpPatient(webRequest, user.getId());
         response.initPaginationState(response.getCurrentPage());
         List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 

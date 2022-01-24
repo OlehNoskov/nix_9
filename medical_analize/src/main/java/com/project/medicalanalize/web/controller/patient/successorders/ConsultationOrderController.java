@@ -1,7 +1,9 @@
 package com.project.medicalanalize.web.controller.patient.successorders;
 
 import com.project.medicalanalize.facade.ConsultationOrderFacade;
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
@@ -30,9 +32,11 @@ import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM
 public class ConsultationOrderController extends AbstractController {
 
     private final ConsultationOrderFacade consultationOrderFacade;
+    private final UserFacade userFacade;
 
-    public ConsultationOrderController(ConsultationOrderFacade consultationOrderFacade) {
+    public ConsultationOrderController(ConsultationOrderFacade consultationOrderFacade, UserFacade userFacade) {
         this.consultationOrderFacade = consultationOrderFacade;
+        this.userFacade = userFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -46,8 +50,9 @@ public class ConsultationOrderController extends AbstractController {
 
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
+        User user = userFacade.getCurrentUser();
         HeaderName[] columnTitles = getColumnTitles();
-        PageData<ConsultationResponseDto> response = consultationOrderFacade.findAll(webRequest);
+        PageData<ConsultationResponseDto> response = consultationOrderFacade.findAllSuccessConsultationPatient(webRequest, user.getId());
         response.initPaginationState(response.getCurrentPage());
         List<HeaderData> headerDataList = getHeaderDataList(columnTitles, response);
 

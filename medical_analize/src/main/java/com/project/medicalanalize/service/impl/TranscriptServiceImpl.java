@@ -1,9 +1,11 @@
 package com.project.medicalanalize.service.impl;
 
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.persistence.repository.order.TranscriptRepository;
 import com.project.medicalanalize.service.TranscriptService;
 
@@ -22,11 +24,13 @@ public class TranscriptServiceImpl implements TranscriptService {
 
     private final CrudRepositoryHelper<TranscriptOrder, TranscriptRepository> transcriptRepositoryHelper;
     private final TranscriptRepository transcriptRepository;
+    private final UserFacade userFacade;
 
     public TranscriptServiceImpl(CrudRepositoryHelper<TranscriptOrder, TranscriptRepository> transcriptRepositoryHelper,
-                                 TranscriptRepository transcriptRepository) {
+                                 TranscriptRepository transcriptRepository, UserFacade userFacade) {
         this.transcriptRepositoryHelper = transcriptRepositoryHelper;
         this.transcriptRepository = transcriptRepository;
+        this.userFacade = userFacade;
     }
 
     @Override
@@ -84,6 +88,17 @@ public class TranscriptServiceImpl implements TranscriptService {
                 : Sort.by(request.getSort()).ascending();
         Page<TranscriptOrder> entityPage = transcriptRepository.findAllTranscriptVisibleDoctor(
                 PageRequest.of(request.getPage() - 1, request.getSize(), sort));
+        return getTranscriptOrderDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    public DataTableResponse<TranscriptOrder> findAllSuccessTranscriptPatient(DataTableRequest request, Long idPatient) {
+        User user = userFacade.getCurrentUser();
+        Sort sort = request.getOrder().equals("desc")
+                ? Sort.by(request.getSort()).descending()
+                : Sort.by(request.getSort()).ascending();
+        Page<TranscriptOrder> entityPage = transcriptRepository.findAllSuccessTranscriptPatient(
+                PageRequest.of(request.getPage() - 1, request.getSize(), sort), user.getId());
         return getTranscriptOrderDataTableResponse(request, entityPage);
     }
 

@@ -1,10 +1,12 @@
 package com.project.medicalanalize.service.impl;
 
+import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
-import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.persistence.repository.order.ConsultationOrderRepository;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 
@@ -23,10 +25,12 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
 
     private final CrudRepositoryHelper<ConsultationOrder, ConsultationOrderRepository> consultationRepositoryHelper;
     private final ConsultationOrderRepository consultationOrderRepository;
+    private final UserFacade userFacade;
 
-    public ComprehensiveConsultationOrderImpl(CrudRepositoryHelper<ConsultationOrder, ConsultationOrderRepository> consultationRepositoryHelper, ConsultationOrderRepository consultationOrderRepository) {
+    public ComprehensiveConsultationOrderImpl(CrudRepositoryHelper<ConsultationOrder, ConsultationOrderRepository> consultationRepositoryHelper, ConsultationOrderRepository consultationOrderRepository, UserFacade userFacade) {
         this.consultationRepositoryHelper = consultationRepositoryHelper;
         this.consultationOrderRepository = consultationOrderRepository;
+        this.userFacade = userFacade;
     }
 
     @Override
@@ -78,6 +82,17 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
                 : Sort.by(request.getSort()).ascending();
         Page<ConsultationOrder> entityPage = consultationOrderRepository.findAllConsultationVisibleDoctor(
                 PageRequest.of(request.getPage() - 1, request.getSize(), sort));
+        return getConsultationDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    public DataTableResponse<ConsultationOrder> findAllSuccessConsultationPatient(DataTableRequest request, Long idPatient) {
+        User user = userFacade.getCurrentUser();
+        Sort sort = request.getOrder().equals("desc")
+                ? Sort.by(request.getSort()).descending()
+                : Sort.by(request.getSort()).ascending();
+        Page<ConsultationOrder> entityPage = consultationOrderRepository.findAllSuccessConsultationPatient(
+                PageRequest.of(request.getPage() - 1, request.getSize(), sort), user.getId());
         return getConsultationDataTableResponse(request, entityPage);
     }
 

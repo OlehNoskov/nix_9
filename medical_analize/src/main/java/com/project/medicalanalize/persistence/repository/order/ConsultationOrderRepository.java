@@ -1,6 +1,5 @@
 package com.project.medicalanalize.persistence.repository.order;
 
-import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
 
 import org.springframework.data.domain.Page;
@@ -29,4 +28,7 @@ public interface ConsultationOrderRepository extends OrderRepository<Consultatio
 
     @Query(value = "select * from orders where visible=true and  order_type='COMPREHENSIVE_CONSULTATION'", nativeQuery = true)
     Page<ConsultationOrder> findAllConsultationVisibleDoctor(Pageable pageable);
+
+    @Query(value = "select * from orders where visible=false and  order_type='COMPREHENSIVE_CONSULTATION'and patient_id =:idPatient", nativeQuery = true)
+    Page<ConsultationOrder> findAllSuccessConsultationPatient(Pageable pageable, @Param("idPatient") Long idPatient);
 }

@@ -1,7 +1,6 @@
 package com.project.medicalanalize.web.controller.doctor;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
-import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
 import com.project.medicalanalize.web.dto.response.PageData;
@@ -47,7 +46,6 @@ public class DoctorTranscriptController extends AbstractController {
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-//        PageData response = transcriptFacade.findAllTranscriptOrdersReviewDoctors(webRequest);
         PageData response = transcriptFacade.findAllTranscriptVisibleDoctor(webRequest);
         response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
