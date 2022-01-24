@@ -3,10 +3,14 @@ package com.project.medicalanalize.service.impl;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
+import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
 import com.project.medicalanalize.persistence.repository.order.ConsultationOrderRepository;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -40,7 +44,7 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void delete(Long id) {
-        consultationRepositoryHelper.delete(consultationOrderRepository,id);
+        consultationRepositoryHelper.delete(consultationOrderRepository, id);
     }
 
     @Override
@@ -52,6 +56,38 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
     @Override
     @Transactional(readOnly = true)
     public DataTableResponse<ConsultationOrder> findAll(DataTableRequest request) {
-        return consultationRepositoryHelper.findAll(consultationOrderRepository,request);
+        return consultationRepositoryHelper.findAll(consultationOrderRepository, request);
+    }
+
+    @Override
+    public DataTableResponse<ConsultationOrder> findAllSuccessConsultationVisibleAdmin(DataTableRequest request) {
+        Sort sort = request.getOrder().equals("desc")
+                ? Sort.by(request.getSort()).descending()
+                : Sort.by(request.getSort()).ascending();
+        Page<ConsultationOrder> entityPage = consultationOrderRepository.findAllSuccessConsultationVisibleAdmin(
+                PageRequest.of(request.getPage() - 1, request.getSize(), sort));
+        return getConsultationDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    public DataTableResponse<ConsultationOrder> findAllConsultationVisibleDoctor(DataTableRequest request) {
+        Sort sort = request.getOrder().equals("desc")
+                ? Sort.by(request.getSort()).descending()
+                : Sort.by(request.getSort()).ascending();
+        Page<ConsultationOrder> entityPage = consultationOrderRepository.findAllConsultationVisibleDoctor(
+                PageRequest.of(request.getPage() - 1, request.getSize(), sort));
+        return getConsultationDataTableResponse(request, entityPage);
+    }
+
+    private DataTableResponse<ConsultationOrder> getConsultationDataTableResponse(DataTableRequest request, Page<ConsultationOrder> entityPage) {
+        DataTableResponse<ConsultationOrder> dataTableResponse = new DataTableResponse<>();
+        dataTableResponse.setCurrentPage(request.getPage());
+        dataTableResponse.setPageSize(request.getSize());
+        dataTableResponse.setOrder(request.getOrder());
+        dataTableResponse.setSort(request.getSort());
+        dataTableResponse.setItemsSize(entityPage.getTotalElements());
+        dataTableResponse.setTotalPages(entityPage.getTotalPages());
+        dataTableResponse.setItems(entityPage.getContent());
+        return dataTableResponse;
     }
 }

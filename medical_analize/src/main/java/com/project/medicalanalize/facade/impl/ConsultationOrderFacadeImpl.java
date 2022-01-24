@@ -87,15 +87,7 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
 
-        PageData<ConsultationResponseDto> pageData = new PageData<>();
-        pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
-        return pageData;
+        return getPageData(pageAndSizeData, sortData, all, list);
     }
 
     private ConsultationOrder setterConsultation(ConsultationRequestDto consultationRequestDto, ConsultationOrder consultationOrder) {
@@ -121,22 +113,14 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
 
-        DataTableResponse<ConsultationOrder> all = consultationOrderService.findAll(dataTableRequest);
+        DataTableResponse<ConsultationOrder> all = consultationOrderService.findAllConsultationVisibleDoctor(dataTableRequest);
 
         List<ConsultationResponseDto> list = all.getItems().
                 stream().filter(t -> t.getVisible().equals(true)).
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
 
-        PageData<ConsultationResponseDto> pageData = new PageData<>();
-        pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
-        return pageData;
+        return getPageData(pageAndSizeData, sortData, all, list);
     }
 
     @Override
@@ -150,13 +134,17 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
 
-        DataTableResponse<ConsultationOrder> all = consultationOrderService.findAll(dataTableRequest);
+        DataTableResponse<ConsultationOrder> all = consultationOrderService.findAllSuccessConsultationVisibleAdmin(dataTableRequest);
 
         List<ConsultationResponseDto> list = all.getItems().
                 stream().filter(t -> t.getVisible().equals(false)).
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
 
+        return getPageData(pageAndSizeData, sortData, all, list);
+    }
+
+    private PageData getPageData(PageAndSizeData pageAndSizeData, SortData sortData, DataTableResponse<ConsultationOrder> all, List<ConsultationResponseDto> list) {
         PageData<ConsultationResponseDto> pageData = new PageData<>();
         pageData.setItems(list);
         pageData.setCurrentPage(pageAndSizeData.getPage());
