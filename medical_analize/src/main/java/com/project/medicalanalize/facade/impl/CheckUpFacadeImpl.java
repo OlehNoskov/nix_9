@@ -5,10 +5,12 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.CheckUpService;
 import com.project.medicalanalize.util.WebRequestUtil;
+import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
@@ -81,8 +83,16 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
                 filter(checkUp -> checkUp.getVisible().equals(false)).
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
+        PageData<CheckUpResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
 
-        return getPageData(pageAndSizeData, sortData, all, list);
+        return pageData;
     }
 
     private CheckUp setterFieldCheckUp(CheckUpRequestDto checkUpRequestDto, CheckUp checkUp) {
@@ -108,50 +118,25 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
 
     @Override
     public PageData findAllCheckUpOrdersReviewDoctors(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-        DataTableResponse<CheckUp> all = checkUpService.findAllTranscriptVisibleDoctor(dataTableRequest);
-        return getPageData(pageAndSizeData, sortData, all);
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<CheckUp> tableResponse = checkUpService.findAllTranscriptVisibleDoctor(dataTableRequest);
+        List<CheckUpResponseDto> list = tableResponse.getItems().stream().
+                map(CheckUpResponseDto::new).
+                collect(Collectors.toList());
+        PageData<CheckUpResponseDto> pageData = (PageData<CheckUpResponseDto>) WebResponseUtil.initPageData(tableResponse);
+        pageData.setItems(list);
+        return pageData;
     }
 
     @Override
     public PageData findAllCheckUpSuccessAdmin(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-
-        DataTableResponse<CheckUp> all = checkUpService.findAllSuccessTranscriptVisibleAdmin(dataTableRequest);
-
-        return getPageData(pageAndSizeData, sortData, all);
-    }
-
-    private PageData getPageData(PageAndSizeData pageAndSizeData, SortData sortData, DataTableResponse<CheckUp> all) {
-        List<CheckUpResponseDto> list = all.getItems().
-                stream().
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<CheckUp> tableResponse = checkUpService.findAllSuccessTranscriptVisibleAdmin(dataTableRequest);
+        List<CheckUpResponseDto> list = tableResponse.getItems().stream().
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
-        return getPageData(pageAndSizeData, sortData, all, list);
-    }
-
-    private PageData getPageData(PageAndSizeData pageAndSizeData, SortData sortData, DataTableResponse<CheckUp> all, List<CheckUpResponseDto> list) {
-        PageData<CheckUpResponseDto> pageData = new PageData<>();
+        PageData<CheckUpResponseDto> pageData = (PageData<CheckUpResponseDto>) WebResponseUtil.initPageData(tableResponse);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 }

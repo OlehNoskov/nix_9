@@ -9,6 +9,7 @@ import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 import com.project.medicalanalize.util.WebRequestUtil;
+import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
@@ -86,8 +87,15 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
                 filter(consultationOrder -> consultationOrder.getVisible().equals(false)).
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
-
-        return getPageData(pageAndSizeData, sortData, all, list);
+        PageData<ConsultationResponseDto> pageData = new PageData<>();
+        pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
+        return pageData;
     }
 
     private ConsultationOrder setterConsultation(ConsultationRequestDto consultationRequestDto, ConsultationOrder consultationOrder) {
@@ -104,55 +112,25 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
 
     @Override
     public PageData findAllConsultationOrdersReviewDoctors(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-
-        DataTableResponse<ConsultationOrder> all = consultationOrderService.findAllConsultationVisibleDoctor(dataTableRequest);
-
-        List<ConsultationResponseDto> list = all.getItems().
-                stream().filter(t -> t.getVisible().equals(true)).
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<ConsultationOrder> tableResponse = consultationOrderService.findAllConsultationVisibleDoctor(dataTableRequest);
+        List<ConsultationResponseDto> list = tableResponse.getItems().stream().
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
-
-        return getPageData(pageAndSizeData, sortData, all, list);
+        PageData<ConsultationResponseDto> pageData = (PageData<ConsultationResponseDto>) WebResponseUtil.initPageData(tableResponse);
+        pageData.setItems(list);
+        return pageData;
     }
 
     @Override
     public PageData findAllConsultationSuccessAdmin(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-
-        DataTableResponse<ConsultationOrder> all = consultationOrderService.findAllSuccessConsultationVisibleAdmin(dataTableRequest);
-
-        List<ConsultationResponseDto> list = all.getItems().
-                stream().filter(t -> t.getVisible().equals(false)).
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<ConsultationOrder> tableResponse = consultationOrderService.findAllSuccessConsultationVisibleAdmin(dataTableRequest);
+        List<ConsultationResponseDto> list = tableResponse.getItems().stream().
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
-
-        return getPageData(pageAndSizeData, sortData, all, list);
-    }
-
-    private PageData getPageData(PageAndSizeData pageAndSizeData, SortData sortData, DataTableResponse<ConsultationOrder> all, List<ConsultationResponseDto> list) {
-        PageData<ConsultationResponseDto> pageData = new PageData<>();
+        PageData<ConsultationResponseDto> pageData = (PageData<ConsultationResponseDto>) WebResponseUtil.initPageData(tableResponse);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 }

@@ -9,6 +9,7 @@ import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.TranscriptService;
 import com.project.medicalanalize.util.WebRequestUtil;
+import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
@@ -130,8 +131,10 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
 //        return pageData;
 //    }//TODO
 
+
     @Override
     public PageData<TranscriptResponseDto> findAllSuccessTranscriptVisibleAdmin(WebRequest request) {
+//        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
@@ -141,50 +144,35 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
 
-        DataTableResponse<TranscriptOrder> all = transcriptService.findAllSuccessTranscriptVisibleAdmin(dataTableRequest);
+        DataTableResponse<TranscriptOrder> tableResponse = transcriptService.findAllSuccessTranscriptVisibleAdmin(dataTableRequest);
 
-        List<TranscriptResponseDto> list = all.getItems().stream().
+        List<TranscriptResponseDto> list = tableResponse.getItems().stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
 
-        PageData<TranscriptResponseDto> pageData = new PageData<>();
+//        PageData<TranscriptResponseDto> pageData = (PageData<TranscriptResponseDto>) WebResponseUtil.initPageData(tableResponse);
+//        pageData.setItems(list);
 
+        PageData<TranscriptResponseDto> pageData = new PageData<>();
         pageData.setItems(list);
         pageData.setCurrentPage(pageAndSizeData.getPage());
         pageData.setPageSize(pageAndSizeData.getSize());
         pageData.setOrder(sortData.getOrder());
         pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
+        pageData.setItemsSize(tableResponse.getItemsSize());
         pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 
     @Override
     public PageData<TranscriptResponseDto> findAllTranscriptVisibleDoctor(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-
-        DataTableResponse<TranscriptOrder> all = transcriptService.findAllTranscriptVisibleDoctor(dataTableRequest);
-
-        List<TranscriptResponseDto> list = all.getItems().stream().
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<TranscriptOrder> tableResponse = transcriptService.findAllTranscriptVisibleDoctor(dataTableRequest);
+        List<TranscriptResponseDto> list = tableResponse.getItems().stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
-
-        PageData<TranscriptResponseDto> pageData = new PageData<>();
-
+        PageData<TranscriptResponseDto> pageData = (PageData<TranscriptResponseDto>) WebResponseUtil.initPageData(tableResponse);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 
