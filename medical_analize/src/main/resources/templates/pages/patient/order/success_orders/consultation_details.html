@@ -58,15 +58,18 @@
                            placeholder id="diet" th:object="${consultation}" th:field="*{featuresNutrition}" disabled>
                 </div>
             </div>
-
-            <div class="row py-2">
-                <div class="col-md-12 col-xl-12"><label for="complaints">Your complaints</label>
-                    <input type="text" name="complaints" class="bg-light form-control"
-                           id="complaints" th:object="${consultation}" th:field="*{complaints}" disabled></div>
+        <div class="form-group col-xl-12 col-12 p-1">
+            <label>Complaints patient's<span></span></label>
+            <div class="card">
+                <div class="card-body">
+                    <p th:text="${consultation.getComplaints()}">
+                    </p>
+                </div>
             </div>
+        </div>
 
-            <div class="row py-4">
-                <div class="row col-xl-12 col-12 col-md-12 ml-1">
+            <div class="row py-4 pl-2">
+                <div class="row col-xl-12 col-12 col-md-12 ml-1 p-1">
                     <p class="personal-data">Doctor:</p>
                     <div class="edit col-xl-6 col-6 col-md-6">
                         <h4 th:object="${consultation}" th:text="${consultation.getNameDoctor()}" class="ml-2 p-1"></h4>
@@ -74,7 +77,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-xl-12 col-12">
+            <div class="form-group col-xl-12 col-12 p-1">
                 <label class="consultation">Recommended list of medical tests <span></span></label>
                 <div class="card">
                     <div class="card-body">
@@ -83,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group col-xl-12 col-12">
+            <div class="form-group col-xl-12 col-12 p-1">
                 <label class="consultation">Recommended drug list<span></span></label>
                 <div class="card">
                     <div class="card-body">
@@ -92,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group col-xl-12 col-12">
+            <div class="form-group col-xl-12 col-12 p-1">
                 <label class="consultation">Recommended of a specialized specialist <span></span></label>
                 <div class="card">
                     <div class="card-body">
@@ -102,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-xl-12 col-12">
+            <div class="form-group col-xl-12 col-12 p-1">
                 <label class="consultation">Recommended list of instrumental studies <span></span></label>
                 <div class="card">
                     <div class="card-body">
@@ -112,7 +115,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-xl-12 col-12">
+            <div class="form-group col-xl-12 col-12 p-1">
                 <label class="consultation"> Recommendations nutrition advice <span></span></label>
                 <div class="card">
                     <div class="card-body">
@@ -123,7 +126,7 @@
             </div>
         <div>
             <a th:href="@{/patient/completed/order/consultation}" type="button"
-               class="btn btn-outline-danger ml-3 mt-3">Back</a>
+               class="btn btn-outline-danger ml-1 mt-3">Back</a>
         </div>
     </div>
 

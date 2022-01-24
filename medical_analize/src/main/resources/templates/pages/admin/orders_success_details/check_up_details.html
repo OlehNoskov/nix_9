@@ -65,13 +65,17 @@
                             <th>Features of nutrition and diet</th>
                             <td th:text="${check_up.getFeaturesNutrition()}"></td>
                         </tr>
-                        <tr>
-                            <th>Complaints patient's</th>
-                            <td th:text="${check_up.getComplaints()}"></td>
-                        </tr>
                     </table>
+                    <div class="form-group col-xl-12 col-12 p-1">
+                        <label class="complaints">Complaints patient's<span></span></label>
+                        <div class="card">
+                            <div class="card-body">
+                                <p th:text="${check_up.getComplaints()}">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
                 <div class="row py-2">
                     <div class="row col-xl-6 col-6 col-md-6 ml-1">
                         <p class="personal-data ml-3">Doctor:</p>

@@ -36,7 +36,7 @@ public class Order extends BaseEntity {
     @Column(name = "features_nutrition")
     private String featuresNutrition;
 
-    @Column(name = "complaints")
+    @Column(name = "complaints", length = 1000)
     private String complaints;
 
     @Column(name = "payment")

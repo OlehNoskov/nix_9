@@ -65,11 +65,16 @@
                             <th>Features of nutrition and diet</th>
                             <td th:text="${consultation.getFeaturesNutrition()}"></td>
                         </tr>
-                        <tr>
-                            <th>Complaints patient's</th>
-                            <td th:text="${consultation.getComplaints()}"></td>
-                        </tr>
                     </table>
+                    <div class="form-group col-xl-12 col-12 p-1">
+                        <label class="complaints">Complaints patient's<span></span></label>
+                        <div class="card">
+                            <div class="card-body">
+                                <p th:text="${consultation.getComplaints()}">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row py-2">

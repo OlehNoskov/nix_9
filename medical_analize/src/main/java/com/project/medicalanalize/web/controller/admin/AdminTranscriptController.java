@@ -1,6 +1,7 @@
 package com.project.medicalanalize.web.controller.admin;
 
 import com.project.medicalanalize.facade.TranscriptFacade;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
@@ -47,9 +48,8 @@ public class AdminTranscriptController extends AbstractController {
     @GetMapping
     public String findAllSuccess(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData response = transcriptFacade.findAllTranscriptSuccessAdmin(webRequest);
+        PageData response = transcriptFacade.findAllSuccessTranscriptVisibleAdmin(webRequest);
         List headerDataList = getHeaderDataList(columnTitles, response);
-
         model.addAttribute("headerDataList", headerDataList);
         model.addAttribute("createUrl", "/admin/transcript/all");
         model.addAttribute("pageData", response);

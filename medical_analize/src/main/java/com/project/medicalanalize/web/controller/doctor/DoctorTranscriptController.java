@@ -47,7 +47,8 @@ public class DoctorTranscriptController extends AbstractController {
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
         HeaderName[] columnTitles = getColumnTitles();
-        PageData response = transcriptFacade.findAllTranscriptOrdersReviewDoctors(webRequest);
+//        PageData response = transcriptFacade.findAllTranscriptOrdersReviewDoctors(webRequest);
+        PageData response = transcriptFacade.findAllTranscriptVisibleDoctor(webRequest);
         response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
 

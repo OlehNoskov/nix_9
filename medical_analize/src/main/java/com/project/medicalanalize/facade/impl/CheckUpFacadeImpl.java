@@ -5,7 +5,6 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
-import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.CheckUpService;
@@ -83,15 +82,7 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
 
-        PageData<CheckUpResponseDto> pageData = new PageData<>();
-        pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
-        return pageData;
+        return getPageData(pageAndSizeData, sortData, all, list);
     }
 
     private CheckUp setterFieldCheckUp(CheckUpRequestDto checkUpRequestDto, CheckUp checkUp) {
@@ -125,43 +116,34 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         dataTableRequest.setPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
-
-        DataTableResponse<CheckUp> all = checkUpService.findAll(dataTableRequest);
-
-        List<CheckUpResponseDto> list = all.getItems().
-                stream().filter(t -> t.getVisible().equals(true)).
-                map(CheckUpResponseDto::new).
-                collect(Collectors.toList());
-
-        PageData<CheckUpResponseDto> pageData = new PageData<>();
-        pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
-        return pageData;
+        DataTableResponse<CheckUp> all = checkUpService.findAllTranscriptVisibleDoctor(dataTableRequest);
+        return getPageData(pageAndSizeData, sortData, all);
     }
 
     @Override
     public PageData findAllCheckUpSuccessAdmin(WebRequest request) {
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
-
         DataTableRequest dataTableRequest = new DataTableRequest();
         dataTableRequest.setSize(pageAndSizeData.getSize());
         dataTableRequest.setPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
 
-        DataTableResponse<CheckUp> all = checkUpService.findAll(dataTableRequest);
+        DataTableResponse<CheckUp> all = checkUpService.findAllSuccessTranscriptVisibleAdmin(dataTableRequest);
 
+        return getPageData(pageAndSizeData, sortData, all);
+    }
+
+    private PageData getPageData(PageAndSizeData pageAndSizeData, SortData sortData, DataTableResponse<CheckUp> all) {
         List<CheckUpResponseDto> list = all.getItems().
-                stream().filter(t -> t.getVisible().equals(false)).
+                stream().
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
+        return getPageData(pageAndSizeData, sortData, all, list);
+    }
 
+    private PageData getPageData(PageAndSizeData pageAndSizeData, SortData sortData, DataTableResponse<CheckUp> all, List<CheckUpResponseDto> list) {
         PageData<CheckUpResponseDto> pageData = new PageData<>();
         pageData.setItems(list);
         pageData.setCurrentPage(pageAndSizeData.getPage());

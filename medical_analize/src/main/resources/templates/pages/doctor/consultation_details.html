@@ -65,12 +65,17 @@
                             <th>Features of nutrition and diet</th>
                             <td th:text="${consultation.getFeaturesNutrition()}"></td>
                         </tr>
-                        <tr>
-                            <th>Complaints patient's</th>
-                            <td th:text="${consultation.getComplaints()}"></td>
-                        </tr>
                     </table>
                     <hr>
+                    <div class="form-group col-xl-12 col-12">
+                        <label class="complaints">Complaints patient's<span></span></label>
+                        <div class="card">
+                            <div class="card-body">
+                                <p th:text="${consultation.getComplaints()}">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             </form>
@@ -94,14 +99,17 @@
                                   required></textarea>
                     </div>
                     <div class="form-group col-xl-12 col-12">
-                        <label for="profileDoctor">Recommended of a specialized specialist <span class="text-danger">*</span></label>
+                        <label for="profileDoctor">Recommended of a specialized specialist <span
+                                class="text-danger">*</span></label>
                         <textarea class="form-control" id="profileDoctor" rows="3" th:field="*{profileDoctor}"
                                   required></textarea>
                     </div>
 
                     <div class="form-group col-xl-12 col-12">
-                        <label for="instrumentalResearch">Recommended list of instrumental studies <span class="text-danger">*</span></label>
-                        <textarea class="form-control" id="instrumentalResearch" rows="3" th:field="*{instrumentalResearch}"
+                        <label for="instrumentalResearch">Recommended list of instrumental studies <span
+                                class="text-danger">*</span></label>
+                        <textarea class="form-control" id="instrumentalResearch" rows="3"
+                                  th:field="*{instrumentalResearch}"
                                   required></textarea>
                     </div>
 

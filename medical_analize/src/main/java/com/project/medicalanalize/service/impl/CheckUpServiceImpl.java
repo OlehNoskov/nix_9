@@ -4,9 +4,13 @@ import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
+import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 import com.project.medicalanalize.persistence.repository.order.CheckUpRepository;
 import com.project.medicalanalize.service.CheckUpService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -58,5 +62,39 @@ public class CheckUpServiceImpl implements CheckUpService {
     @Override
     public Long createAndFind(CheckUp order) {
         return checkUpRepositoryHelper.createAndFind(checkUpRepository, order);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public DataTableResponse<CheckUp> findAllSuccessTranscriptVisibleAdmin(DataTableRequest request) {
+        Sort sort = request.getOrder().equals("desc")
+                ? Sort.by(request.getSort()).descending()
+                : Sort.by(request.getSort()).ascending();
+        Page<CheckUp> entityPage = checkUpRepository.findAllSuccessCheckUpVisibleAdmin(
+                PageRequest.of(request.getPage() - 1, request.getSize(), sort));
+        return getCheckUpDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public DataTableResponse<CheckUp> findAllTranscriptVisibleDoctor(DataTableRequest request) {
+        Sort sort = request.getOrder().equals("desc")
+                ? Sort.by(request.getSort()).descending()
+                : Sort.by(request.getSort()).ascending();
+        Page<CheckUp> entityPage = checkUpRepository.findAllCheckUpVisibleDoctor(
+                PageRequest.of(request.getPage() - 1, request.getSize(), sort));
+        return getCheckUpDataTableResponse(request, entityPage);
+    }
+
+    private DataTableResponse<CheckUp> getCheckUpDataTableResponse(DataTableRequest request, Page<CheckUp> entityPage) {
+        DataTableResponse<CheckUp> dataTableResponse = new DataTableResponse<>();
+        dataTableResponse.setCurrentPage(request.getPage());
+        dataTableResponse.setPageSize(request.getSize());
+        dataTableResponse.setOrder(request.getOrder());
+        dataTableResponse.setSort(request.getSort());
+        dataTableResponse.setItemsSize(entityPage.getTotalElements());
+        dataTableResponse.setTotalPages(entityPage.getTotalPages());
+        dataTableResponse.setItems(entityPage.getContent());
+        return dataTableResponse;
     }
 }

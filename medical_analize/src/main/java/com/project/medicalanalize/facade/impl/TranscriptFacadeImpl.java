@@ -9,12 +9,12 @@ import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.TranscriptService;
 import com.project.medicalanalize.util.WebRequestUtil;
-import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.request.TranscriptRequestDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.TranscriptResponseDto;
+
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
@@ -112,13 +112,26 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     public Long createAndFind(TranscriptRequestDto dto) {
         TranscriptOrder transcript = new TranscriptOrder();
         setterTranscript(dto, transcript);
-        transcript.setPrice(transcript.getPrice());
+        transcript.setPrice(TranscriptOrder.getPrice());
         transcript.setPatient((Patient) userFacade.getCurrentUser());
         return transcriptService.createAndFind(transcript);
     }
 
+//    @Override
+//    public PageData<TranscriptResponseDto> findAllTranscriptSuccessAdmin(WebRequest request) {
+//        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+//        DataTableResponse<TranscriptOrder> tableResponse  = transcriptService.findAll(dataTableRequest);
+//        List<TranscriptResponseDto> list = tableResponse .getItems().
+//                stream().filter(t -> t.getVisible().equals(false)).
+//                map(TranscriptResponseDto::new).
+//                collect(Collectors.toList());
+//        PageData<TranscriptResponseDto> pageData = (PageData<TranscriptResponseDto>) WebResponseUtil.initPageData(tableResponse);
+//        pageData.setItems(list);
+//        return pageData;
+//    }//TODO
+
     @Override
-    public PageData findAllTranscriptOrdersReviewDoctors(WebRequest request) {
+    public PageData<TranscriptResponseDto> findAllSuccessTranscriptVisibleAdmin(WebRequest request) {
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
 
@@ -128,14 +141,14 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
 
-        DataTableResponse<TranscriptOrder> all = transcriptService.findAll(dataTableRequest);
+        DataTableResponse<TranscriptOrder> all = transcriptService.findAllSuccessTranscriptVisibleAdmin(dataTableRequest);
 
-        List<TranscriptResponseDto> list = all.getItems().
-                stream().filter(t -> t.getVisible().equals(true)).
+        List<TranscriptResponseDto> list = all.getItems().stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
 
         PageData<TranscriptResponseDto> pageData = new PageData<>();
+
         pageData.setItems(list);
         pageData.setCurrentPage(pageAndSizeData.getPage());
         pageData.setPageSize(pageAndSizeData.getSize());
@@ -147,15 +160,31 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     }
 
     @Override
-    public PageData<TranscriptResponseDto> findAllTranscriptSuccessAdmin(WebRequest request) {
-        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
-        DataTableResponse<TranscriptOrder> tableResponse  = transcriptService.findAll(dataTableRequest);
-        List<TranscriptResponseDto> list = tableResponse .getItems().
-                stream().filter(t -> t.getVisible().equals(false)).
+    public PageData<TranscriptResponseDto> findAllTranscriptVisibleDoctor(WebRequest request) {
+        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
+        SortData sortData = WebRequestUtil.generateSortData(request);
+
+        DataTableRequest dataTableRequest = new DataTableRequest();
+        dataTableRequest.setSize(pageAndSizeData.getSize());
+        dataTableRequest.setPage(pageAndSizeData.getPage());
+        dataTableRequest.setSort(sortData.getSort());
+        dataTableRequest.setOrder(sortData.getOrder());
+
+        DataTableResponse<TranscriptOrder> all = transcriptService.findAllTranscriptVisibleDoctor(dataTableRequest);
+
+        List<TranscriptResponseDto> list = all.getItems().stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
-        PageData<TranscriptResponseDto> pageData = (PageData<TranscriptResponseDto>) WebResponseUtil.initPageData(tableResponse);
+
+        PageData<TranscriptResponseDto> pageData = new PageData<>();
+
         pageData.setItems(list);
+        pageData.setCurrentPage(pageAndSizeData.getPage());
+        pageData.setPageSize(pageAndSizeData.getSize());
+        pageData.setOrder(sortData.getOrder());
+        pageData.setSort(sortData.getSort());
+        pageData.setItemsSize(all.getItemsSize());
+        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 

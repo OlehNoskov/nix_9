@@ -189,3 +189,9 @@ p.personal-data {
 div.alert{
     background-color: #f8ff91;
 }
+
+label.complaints{
+    font-weight: bold;
+    color: #262626;
+    font-size: 16px;
+}
