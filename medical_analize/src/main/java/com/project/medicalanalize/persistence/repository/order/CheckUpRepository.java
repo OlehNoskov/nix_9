@@ -1,7 +1,6 @@
 package com.project.medicalanalize.persistence.repository.order;
 
 import com.project.medicalanalize.persistence.entity.order.CheckUp;
-import com.project.medicalanalize.persistence.entity.order.TranscriptOrder;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

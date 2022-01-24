@@ -8,5 +8,5 @@ import org.springframework.web.context.request.WebRequest;
 
 public interface FeedbackFacade extends BaseFacade<FeedbackRequestDto, FeedbackResponseDto>{
 
-    PageData findAllFeedbacksPatient(WebRequest request);
+    PageData<FeedbackResponseDto> findAllFeedbackPatient(WebRequest request, Long idPatient);
 }

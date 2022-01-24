@@ -5,12 +5,16 @@ import com.project.medicalanalize.facade.UserFacade;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.feedback.Feedback;
+import com.project.medicalanalize.persistence.entity.order.CheckUp;
 import com.project.medicalanalize.persistence.entity.user.Patient;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.service.FeedbackService;
 import com.project.medicalanalize.util.WebRequestUtil;
+import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
+import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.FeedbackResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -27,7 +31,7 @@ public class FeedbackFacadeImpl implements FeedbackFacade {
     private final FeedbackService feedbackService;
     private final UserFacade userFacade;
 
-    public FeedbackFacadeImpl(FeedbackService feedbackService,UserFacade userFacade) {
+    public FeedbackFacadeImpl(FeedbackService feedbackService, UserFacade userFacade) {
         this.feedbackService = feedbackService;
         this.userFacade = userFacade;
     }
@@ -89,31 +93,15 @@ public class FeedbackFacadeImpl implements FeedbackFacade {
     }
 
     @Override
-    public PageData findAllFeedbacksPatient(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-
-        DataTableResponse<Feedback> all = feedbackService.findAll(dataTableRequest);
-
-        List<FeedbackResponseDto> list = all.getItems().
-                stream().filter(f -> f.getPatient().getId().equals(userFacade.getCurrentUser().getId())).
+    public PageData<FeedbackResponseDto> findAllFeedbackPatient(WebRequest request, Long idPatient) {
+        User user = userFacade.getCurrentUser();
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
+        DataTableResponse<Feedback> tableResponse = feedbackService.findAllFeedbacksPatient(dataTableRequest, user.getId());
+        List<FeedbackResponseDto> list = tableResponse.getItems().stream().
                 map(FeedbackResponseDto::new).
                 collect(Collectors.toList());
-
-        PageData<FeedbackResponseDto> pageData = new PageData<>();
+        PageData<FeedbackResponseDto> pageData = (PageData<FeedbackResponseDto>) WebResponseUtil.initPageData(tableResponse);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 }

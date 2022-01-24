@@ -1,8 +1,8 @@
 package com.project.medicalanalize.web.controller.patient;
 
 import com.project.medicalanalize.facade.FeedbackFacade;
-import com.project.medicalanalize.facade.PatientFacade;
 import com.project.medicalanalize.facade.UserFacade;
+import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.web.controller.AbstractController;
 import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
 import com.project.medicalanalize.web.dto.response.*;
@@ -29,9 +29,11 @@ import static com.project.medicalanalize.util.WebRequestUtil.DEFAULT_ORDER_PARAM
 public class PatientFeedbackController extends AbstractController {
 
     private final FeedbackFacade feedbackFacade;
+    private final UserFacade userFacade;
 
-    public PatientFeedbackController(FeedbackFacade feedbackFacade, PatientFacade patientFacade, UserFacade userFacade) {
+    public PatientFeedbackController(FeedbackFacade feedbackFacade, UserFacade userFacade) {
         this.feedbackFacade = feedbackFacade;
+        this.userFacade = userFacade;
     }
 
     private HeaderName[] getColumnTitles() {
@@ -45,8 +47,9 @@ public class PatientFeedbackController extends AbstractController {
 
     @GetMapping
     public String findAll(Model model, WebRequest webRequest) {
+        User user = userFacade.getCurrentUser();
         HeaderName[] columnTitles = getColumnTitles();
-        PageData response = feedbackFacade.findAllFeedbacksPatient(webRequest);
+        PageData response = feedbackFacade.findAllFeedbackPatient(webRequest, user.getId());
         response.initPaginationState(response.getCurrentPage());
         List headerDataList = getHeaderDataList(columnTitles, response);
 
@@ -110,7 +113,7 @@ public class PatientFeedbackController extends AbstractController {
 
     @PostMapping("/edit/{id}")
     public String updateFeedback(@PathVariable Long id, @ModelAttribute("feedback") FeedbackRequestDto feedbackRequestDto) throws ParseException {
-        feedbackFacade.update(feedbackRequestDto,id);
+        feedbackFacade.update(feedbackRequestDto, id);
         return "redirect:/patient/feedback";
     }
 
