@@ -63,6 +63,12 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public Long createAndFind(ConsultationOrder order) {
+        return consultationRepositoryHelper.createAndFind(consultationOrderRepository, order);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public DataTableResponse<ConsultationOrder> findAllSuccessConsultationVisibleAdmin(DataTableRequest request) {
         Sort sort = request.getOrder().equals("desc")

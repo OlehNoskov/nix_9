@@ -149,4 +149,11 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
         pageData.setItems(list);
         return pageData;
     }
+
+    @Override
+    public void paymentStatus(long id) {
+        CheckUp checkUp = checkUpService.findById(id).get();
+        checkUp.setPayment(true);
+        checkUpService.update(checkUp);
+    }
 }

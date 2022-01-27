@@ -26,7 +26,7 @@ public interface TranscriptRepository extends OrderRepository<TranscriptOrder> {
     @Query(value = "select * from orders where visible=false and  order_type='TRANSCRIPT'", nativeQuery = true)
     Page<TranscriptOrder> findAllSuccessTranscriptVisibleAdmin(Pageable pageable);
 
-    @Query(value = "select * from orders where visible=true and  order_type='TRANSCRIPT'", nativeQuery = true)
+    @Query(value = "select * from orders where visible=true and payment = true and  order_type='TRANSCRIPT'", nativeQuery = true)
     Page<TranscriptOrder> findAllTranscriptVisibleDoctor(Pageable pageable);
 
     @Query(value = "select * from orders where visible=false and  order_type='TRANSCRIPT'and patient_id =:idPatient", nativeQuery = true)

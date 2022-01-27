@@ -26,7 +26,7 @@ public interface ConsultationOrderRepository extends OrderRepository<Consultatio
     @Query(value = "select * from orders where visible=false and  order_type='COMPREHENSIVE_CONSULTATION'", nativeQuery = true)
     Page<ConsultationOrder> findAllSuccessConsultationVisibleAdmin(Pageable pageable);
 
-    @Query(value = "select * from orders where visible=true and  order_type='COMPREHENSIVE_CONSULTATION'", nativeQuery = true)
+    @Query(value = "select * from orders where visible=true and payment = true and order_type='COMPREHENSIVE_CONSULTATION'", nativeQuery = true)
     Page<ConsultationOrder> findAllConsultationVisibleDoctor(Pageable pageable);
 
     @Query(value = "select * from orders where visible=false and  order_type='COMPREHENSIVE_CONSULTATION'and patient_id =:idPatient", nativeQuery = true)

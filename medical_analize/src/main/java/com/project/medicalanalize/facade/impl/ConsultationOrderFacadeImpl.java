@@ -11,6 +11,7 @@ import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.util.WebResponseUtil;
+import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
@@ -108,6 +109,15 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
     }
 
     @Override
+    public Long createAndFind(ConsultationRequestDto dto) {
+        ConsultationOrder consultationOrder = new ConsultationOrder();
+        setterConsultation(dto, consultationOrder);
+        consultationOrder.setPrice(ConsultationOrder.getPrice());
+        consultationOrder.setPatient((Patient) userFacade.getCurrentUser());
+        return consultationOrderService.createAndFind(consultationOrder);
+    }
+
+    @Override
     public PageData<ConsultationResponseDto> findAllConsultationOrdersReviewDoctors(WebRequest request) {
         DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<ConsultationOrder> tableResponse = consultationOrderService.findAllConsultationVisibleDoctor(dataTableRequest);
@@ -142,5 +152,12 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         PageData<ConsultationResponseDto> pageData = (PageData<ConsultationResponseDto>) WebResponseUtil.initPageData(tableResponse);
         pageData.setItems(list);
         return pageData;
+    }
+
+    @Override
+    public void paymentStatus(long id) {
+        ConsultationOrder consultationOrder = consultationOrderService.findById(id).get();
+        consultationOrder.setPayment(true);
+        consultationOrderService.update(consultationOrder);
     }
 }

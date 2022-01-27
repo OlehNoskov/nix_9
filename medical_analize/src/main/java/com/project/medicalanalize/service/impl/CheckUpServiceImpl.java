@@ -63,6 +63,7 @@ public class CheckUpServiceImpl implements CheckUpService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public Long createAndFind(CheckUp order) {
         return checkUpRepositoryHelper.createAndFind(checkUpRepository, order);
     }

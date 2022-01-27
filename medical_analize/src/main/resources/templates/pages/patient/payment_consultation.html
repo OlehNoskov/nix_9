@@ -55,21 +55,21 @@
                                     future payment</label></div>
                             </div>
                         </div>
-                        <!--                        <form action="#" th:action="@{'/patient/order/transcript/payment?orderId=' + ${consultation.getId()}}" th:object="${consultation}"-->
-                        <!--                              method="post" enctype="multipart/form-data">-->
-                        <div class="col-sm-5 text-sm-center justify-content-center pt-4 pb-4">
-                            <small class="text-sm text-muted">Payment amount</small>
-                            <div class="row px-3 justify-content-sm-center">
-                                <h2 class="">
-                                    <span th:text="${consultation.getPrice()}"></span>
-                                    <span class="text-md font-weight-bold mr-2">$</span>
-                                </h2>
+                        <form action="#"
+                              th:action="@{'/patient/order/consultation/payment?orderId=' + ${consultation.getId()}}"
+                              th:object="${consultation}"
+                              method="post" enctype="multipart/form-data">
+                            <div class="col-sm-5 text-sm-center justify-content-center pt-4 pb-4">
+                                <small class="text-sm text-muted">Payment amount</small>
+                                <div class="row px-3 justify-content-sm-center">
+                                    <h2 class="">
+                                        <span th:text="${consultation.getPrice()}"></span>
+                                        <span class="text-md font-weight-bold mr-2">$</span>
+                                    </h2>
+                                </div>
+                                <button class="btn btn-red text-center mt-4" type="submit">Pay</button>
                             </div>
-                            <a th:href="@{/patients/dashboard/}" type="button"
-                               class="btn btn-red text-center mt-4">Pay</a>
-                            <!--                            <button class="btn btn-red text-center mt-4" type="submit">Pay</button>-->
-                        </div>
-                        <!--                        </form>-->
+                        </form>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ public class TranscriptResponseDto extends OrderResponseDto {
         super(transcript);
         this.created = transcript.getCreated();
         this.complaints = transcript.getComplaints();
-        this.price = transcript.getPrice();
+        this.price = TranscriptOrder.getPrice();
         this.prophylacticDoses = transcript.getProphylacticDoses();
     }
 }

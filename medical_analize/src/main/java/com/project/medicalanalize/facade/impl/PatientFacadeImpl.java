@@ -6,10 +6,9 @@ import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.user.Patient;
 import com.project.medicalanalize.service.PatientService;
 import com.project.medicalanalize.util.WebRequestUtil;
+import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.validatedate.UserDateValid;
-import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.PatientRequestDto;
-import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.response.PageData;
 import com.project.medicalanalize.web.dto.response.PatientResponseDto;
 
@@ -30,7 +29,8 @@ public class PatientFacadeImpl implements PatientFacade {
     }
 
     @Override
-    public void create(PatientRequestDto patientRequestDto) {}
+    public void create(PatientRequestDto patientRequestDto) {
+    }
 
     @Override
     public void update(PatientRequestDto patientRequestDto, long id) throws ParseException {
@@ -39,7 +39,7 @@ public class PatientFacadeImpl implements PatientFacade {
         patient.setId(id);
         patient.setFirstName(patientRequestDto.getFirstName());
         patient.setLastName(patientRequestDto.getLastName());
-        if(UserDateValid.userValidDate(patientRequestDto) != null) {
+        if (UserDateValid.userValidDate(patientRequestDto) != null) {
             patient.setBirthDay(UserDateValid.userValidDate(patientRequestDto));
         }
         patient.setSex(patientRequestDto.getSex());
@@ -62,29 +62,14 @@ public class PatientFacadeImpl implements PatientFacade {
 
     @Override
     public PageData<PatientResponseDto> findAll(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<Patient> all = patientService.findAll(dataTableRequest);
-
         List<PatientResponseDto> list = all.getItems().
                 stream().
                 map(PatientResponseDto::new).
                 collect(Collectors.toList());
-
-        PageData<PatientResponseDto> pageData = new PageData<>();
+        PageData<PatientResponseDto> pageData = (PageData<PatientResponseDto>) WebResponseUtil.initPageData(all);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 }

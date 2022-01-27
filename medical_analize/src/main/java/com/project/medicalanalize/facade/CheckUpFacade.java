@@ -15,4 +15,6 @@ public interface CheckUpFacade extends BaseFacade<CheckUpRequestDto, CheckUpResp
     PageData<CheckUpResponseDto> findAllCheckUpOrdersReviewDoctors(WebRequest request);
 
     PageData<CheckUpResponseDto> findAllSuccessCheckUpPatient(WebRequest request, Long idPatient);
+
+    void paymentStatus(long id);
 }

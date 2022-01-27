@@ -6,10 +6,9 @@ import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.user.Doctor;
 import com.project.medicalanalize.service.DoctorService;
 import com.project.medicalanalize.util.WebRequestUtil;
+import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.validatedate.UserDateValid;
 import com.project.medicalanalize.web.dto.request.DoctorRequestDto;
-import com.project.medicalanalize.web.dto.request.PageAndSizeData;
-import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.response.DoctorResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -60,30 +59,14 @@ public class DoctorFacadeImpl implements DoctorFacade {
 
     @Override
     public PageData<DoctorResponseDto> findAll(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<Doctor> all = doctorService.findAll(dataTableRequest);
-
         List<DoctorResponseDto> list = all.getItems().
                 stream().
                 map(DoctorResponseDto::new).
                 collect(Collectors.toList());
-
-        PageData<DoctorResponseDto> pageData = new PageData<>();
+        PageData<DoctorResponseDto> pageData = (PageData<DoctorResponseDto>) WebResponseUtil.initPageData(all);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 }

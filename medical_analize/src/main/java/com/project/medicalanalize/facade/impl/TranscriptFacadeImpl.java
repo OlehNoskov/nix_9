@@ -127,9 +127,7 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         dataTableRequest.setPage(pageAndSizeData.getPage());
         dataTableRequest.setSort(sortData.getSort());
         dataTableRequest.setOrder(sortData.getOrder());
-
         DataTableResponse<TranscriptOrder> tableResponse = transcriptService.findAllSuccessTranscriptVisibleAdmin(dataTableRequest);
-
         return getTranscriptResponseDtoPageData(pageAndSizeData, sortData, tableResponse);
     }
 
@@ -162,5 +160,6 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     public void paymentStatus(long id) {
         TranscriptOrder transcript = transcriptService.findById(id).get();
         transcript.setPayment(true);
+        transcriptService.update(transcript);
     }
 }
