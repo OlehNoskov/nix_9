@@ -42,19 +42,13 @@
                     <input type="text" name="diseases" class="bg-light form-control"
                            id="diseases" th:object="${transcript}" th:field="*{chronicDiseases}" disabled></div>
 
-                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="burglary">Burglary complaints</label>
-                    <input type="text" name="burglary" class="bg-light form-control"
-                           placeholder id="burglary" th:object="${transcript}" th:field="*{burglaryComplaints}"
-                           disabled>
-                </div>
-            </div>
-
-            <div class="row py-2">
                 <div class="col-md-6 col-xl-6"><label for="hereditary">Hereditary diseases</label>
                     <input type="text" name="hereditary" class="bg-light form-control"
                            id="hereditary" th:object="${transcript}" th:field="*{hereditary_diseases}" disabled></div>
+            </div>
 
-                <div class="col-md-6 col-xl-6 pt-md-0 pt-3"><label for="diet">Features of nutrition and diet</label>
+            <div class="row py-2">
+                <div class="col-md-12 col-xl-12 pt-md-0 pt-3"><label for="diet">Features of nutrition and diet</label>
                     <input type="text" name="diet" class="bg-light form-control"
                            placeholder id="diet" th:object="${transcript}" th:field="*{featuresNutrition}" disabled>
                 </div>

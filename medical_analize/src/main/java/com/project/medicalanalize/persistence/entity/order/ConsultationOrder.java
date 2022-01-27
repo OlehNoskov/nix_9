@@ -19,7 +19,7 @@ public class ConsultationOrder extends Order {
 
     @Getter
     @Setter
-    @Column(name = "medicines")
+    @Column(name = "medicines", length = 1000)
     private String medicines;
 
     @Getter
@@ -29,12 +29,12 @@ public class ConsultationOrder extends Order {
 
     @Getter
     @Setter
-    @Column(name = "instrumental_research")
+    @Column(name = "instrumental_research", length = 1000)
     private String instrumentalResearch;
 
     @Getter
     @Setter
-    @Column(name = "nutritional_advice")
+    @Column(name = "nutritional_advice", length = 1000)
     private String nutritionalAdvice;
 
     public ConsultationOrder() {
