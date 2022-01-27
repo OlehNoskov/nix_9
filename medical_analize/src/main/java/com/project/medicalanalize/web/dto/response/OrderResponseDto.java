@@ -18,9 +18,6 @@ public class OrderResponseDto extends ResponseDto {
     private String chronicDiseases;
 
     @Getter
-    private String burglaryComplaints;
-
-    @Getter
     private String hereditary_diseases;
 
     @Getter
@@ -45,7 +42,6 @@ public class OrderResponseDto extends ResponseDto {
         this.badHabits = order.getBadHabits();
         this.drugsTaken = order.getDrugsTaken();
         this.chronicDiseases = order.getChronicDiseases();
-        this.burglaryComplaints = order.getBurglaryComplaints();
         this.hereditary_diseases = order.getHereditary_diseases();
         this.featuresNutrition = order.getFeaturesNutrition();
         this.answer = order.getAnswer();

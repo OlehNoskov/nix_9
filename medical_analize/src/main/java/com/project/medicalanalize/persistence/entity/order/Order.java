@@ -27,9 +27,6 @@ public class Order extends BaseEntity {
     @Column(name = "chronic_diseases")
     private String chronicDiseases;
 
-    @Column(name = "burglary_complaints")
-    private String burglaryComplaints;
-
     @Column(name = "hereditary_diseases")
     private String hereditary_diseases;
 

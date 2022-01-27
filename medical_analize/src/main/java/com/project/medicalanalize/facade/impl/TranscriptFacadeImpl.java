@@ -101,7 +101,6 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
         transcript.setBadHabits(transcriptRequestDto.getBadHabits());
         transcript.setDrugsTaken(transcriptRequestDto.getDrugsTaken());
         transcript.setChronicDiseases(transcriptRequestDto.getChronicDiseases());
-        transcript.setBurglaryComplaints(transcriptRequestDto.getBurglaryComplaints());
         transcript.setHereditary_diseases(transcriptRequestDto.getHereditary_diseases());
         transcript.setFeaturesNutrition(transcriptRequestDto.getFeaturesNutrition());
         transcript.setAnswer(transcriptRequestDto.getAnswer());

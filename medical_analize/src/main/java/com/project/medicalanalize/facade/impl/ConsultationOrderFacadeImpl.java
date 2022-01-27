@@ -11,7 +11,6 @@ import com.project.medicalanalize.persistence.entity.user.User;
 import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.util.WebResponseUtil;
-import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
 import com.project.medicalanalize.web.dto.request.PageAndSizeData;
 import com.project.medicalanalize.web.dto.request.SortData;
@@ -101,7 +100,6 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
         consultationOrder.setBadHabits(consultationRequestDto.getBadHabits());
         consultationOrder.setDrugsTaken(consultationRequestDto.getDrugsTaken());
         consultationOrder.setChronicDiseases(consultationRequestDto.getChronicDiseases());
-        consultationOrder.setBurglaryComplaints(consultationRequestDto.getBurglaryComplaints());
         consultationOrder.setHereditary_diseases(consultationRequestDto.getHereditary_diseases());
         consultationOrder.setFeaturesNutrition(consultationRequestDto.getFeaturesNutrition());
         consultationOrder.setComplaints(consultationRequestDto.getComplaints());
