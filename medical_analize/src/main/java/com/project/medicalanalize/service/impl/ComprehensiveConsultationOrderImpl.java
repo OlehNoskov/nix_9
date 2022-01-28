@@ -55,15 +55,15 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void delete(Long id) {
-        loggerService.commit(LoggerLevel.INFO, "Start delete consultation! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Start delete consultation! Id=" + id);
         consultationRepositoryHelper.delete(consultationOrderRepository, id);
-        loggerService.commit(LoggerLevel.INFO, "Consultation successfully removed! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Consultation successfully removed! Id=" + id);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<ConsultationOrder> findById(Long id) {
-        loggerService.commit(LoggerLevel.WARN, "Start search consultation! Id=" + id);
+        loggerService.commit(LoggerLevel.INFO, "Start search consultation! Id=" + id);
         return consultationRepositoryHelper.findById(consultationOrderRepository, id);
     }
 

@@ -59,15 +59,15 @@ public class PatientServiceImpl implements PatientService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void delete(Long id) {
-        loggerService.commit(LoggerLevel.INFO, "Start delete patient! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Start delete patient! Id=" + id);
         patientRepositoryHelper.delete(patientRepository, id);
-        loggerService.commit(LoggerLevel.INFO, "Patient successfully removed! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Patient successfully removed! Id=" + id);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Patient> findById(Long id) {
-        loggerService.commit(LoggerLevel.WARN, "Start search patient! Id=" + id);
+        loggerService.commit(LoggerLevel.INFO, "Start search patient! Id=" + id);
         return patientRepositoryHelper.findById(patientRepository, id);
     }
 

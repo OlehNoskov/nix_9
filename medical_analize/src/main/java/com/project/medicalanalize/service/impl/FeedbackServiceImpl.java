@@ -56,15 +56,15 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void delete(Long id) {
-        loggerService.commit(LoggerLevel.INFO, "Start delete feedback! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Start delete feedback! Id=" + id);
         feedbackRepositoryHelper.delete(feedbackRepository, id);
-        loggerService.commit(LoggerLevel.INFO, "Feedback successfully removed! Id=" + id + " User id=" + userFacade.getCurrentUser());
+        loggerService.commit(LoggerLevel.WARN, "Feedback successfully removed! Id=" + id + " User id=" + userFacade.getCurrentUser());
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Feedback> findById(Long id) {
-        loggerService.commit(LoggerLevel.WARN, "Start search feedback! Id=" + id);
+        loggerService.commit(LoggerLevel.INFO, "Start search feedback! Id=" + id);
         return feedbackRepositoryHelper.findById(feedbackRepository, id);
     }
 

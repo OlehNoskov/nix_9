@@ -56,15 +56,15 @@ public class TranscriptServiceImpl implements TranscriptService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void delete(Long id) {
-        loggerService.commit(LoggerLevel.INFO, "Start delete transcript! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Start delete transcript! Id=" + id);
         transcriptRepositoryHelper.delete(transcriptRepository, id);
-        loggerService.commit(LoggerLevel.INFO, "Transcript successfully removed! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Transcript successfully removed! Id=" + id);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<TranscriptOrder> findById(Long id) {
-        loggerService.commit(LoggerLevel.WARN, "Start search transcript! Id=" + id);
+        loggerService.commit(LoggerLevel.INFO, "Start search transcript! Id=" + id);
         return transcriptRepositoryHelper.findById(transcriptRepository, id);
     }
 

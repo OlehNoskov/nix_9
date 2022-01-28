@@ -55,9 +55,9 @@ public class CheckUpServiceImpl implements CheckUpService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void delete(Long id) {
-        loggerService.commit(LoggerLevel.INFO, "Start delete check-up! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Start delete check-up! Id=" + id);
         checkUpRepositoryHelper.delete(checkUpRepository, id);
-        loggerService.commit(LoggerLevel.INFO, "Check-Up successfully removed! Id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Check-Up successfully removed! Id=" + id);
     }
 
     @Override

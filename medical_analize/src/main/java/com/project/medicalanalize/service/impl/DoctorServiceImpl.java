@@ -57,15 +57,15 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void delete(Long id) {
-        loggerService.commit(LoggerLevel.INFO, "Start delete doctor id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Start delete doctor id=" + id);
         doctorRepositoryHelper.delete(doctorRepository, id);
-        loggerService.commit(LoggerLevel.INFO, "Doctor successfully removed id=" + id);
+        loggerService.commit(LoggerLevel.WARN, "Doctor successfully removed id=" + id);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional findById(Long id) {
-        loggerService.commit(LoggerLevel.WARN, "Start search doctor id=" + id);
+        loggerService.commit(LoggerLevel.INFO, "Start search doctor id=" + id);
         return doctorRepositoryHelper.findById(doctorRepository, id);
     }
 
