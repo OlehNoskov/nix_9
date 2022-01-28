@@ -8,12 +8,15 @@ public class AuthDto {
     @Getter
     @Setter
     private String role;
+
     @Getter
     @Setter
     private String email;
+
     @Getter
     @Setter
     private String password;
+
     @Getter
     @Setter
     private String passwordConfirm;

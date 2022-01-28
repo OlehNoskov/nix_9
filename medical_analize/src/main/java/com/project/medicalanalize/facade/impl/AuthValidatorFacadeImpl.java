@@ -26,7 +26,7 @@ public class AuthValidatorFacadeImpl implements AuthValidatorFacade {
     public void validate(Object target, Errors errors) {
         AuthDto dto = (AuthDto) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
-        if (dto.getEmail().length() < 6 || dto.getEmail().length() > 32) { //TODO Сделать регулярку
+        if (dto.getEmail().length() < 6 || dto.getEmail().length() > 32) {
             errors.rejectValue("email", "Size.authForm.email");
         }
         if (securityService.existsByEmail(dto.getEmail())) {

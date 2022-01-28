@@ -32,7 +32,7 @@ public class ConsultationResponseDto extends OrderResponseDto {
     public ConsultationResponseDto(ConsultationOrder consultationOrder) {
         super(consultationOrder);
         this.created = consultationOrder.getCreated();
-        this.price = consultationOrder.getPrice();
+        this.price = ConsultationOrder.getPrice();
         this.complaints = consultationOrder.getComplaints();
         this.medicines = consultationOrder.getMedicines();
         this.profileDoctor = consultationOrder.getProfileDoctor();

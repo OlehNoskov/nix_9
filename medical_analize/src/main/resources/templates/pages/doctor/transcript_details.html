@@ -68,6 +68,15 @@
                         </tr>
                     </table>
                     <hr>
+                    <div class="form-group col-xl-12 col-12">
+                        <label class="complaints">Complaints patient's<span></span></label>
+                        <div class="card">
+                            <div class="card-body">
+                                <p th:text="${transcript.getComplaints()}">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             </form>

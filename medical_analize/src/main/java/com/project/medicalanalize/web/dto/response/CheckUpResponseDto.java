@@ -20,7 +20,7 @@ public class CheckUpResponseDto extends OrderResponseDto {
     public CheckUpResponseDto(CheckUp checkUp) {
         super(checkUp);
         this.created = checkUp.getCreated();
-        this.price = checkUp.getPrice();
+        this.price = CheckUp.getPrice();
         this.complaints = checkUp.getComplaints();
     }
 }

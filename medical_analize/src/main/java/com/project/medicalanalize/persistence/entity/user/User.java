@@ -7,6 +7,7 @@ import com.project.medicalanalize.persistence.type.Sex;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

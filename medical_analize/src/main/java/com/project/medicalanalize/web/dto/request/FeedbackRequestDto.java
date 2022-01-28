@@ -10,9 +10,11 @@ public class FeedbackRequestDto extends RequestDto {
     @Getter
     @Setter
     private String textFeedback;
+
     @Getter
     @Setter
     private Long patientId;
+
     @Getter
     @Setter
     private Patient patient;
