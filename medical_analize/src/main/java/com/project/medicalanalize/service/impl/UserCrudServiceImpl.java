@@ -44,20 +44,18 @@ public class UserCrudServiceImpl implements UserCrudService {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
     public void create(User personal) {
-        if (personal instanceof Doctor) {
+        if (personal instanceof Doctor doctor) {
             if (doctorRepository.existsByEmail(personal.getEmail())) {
                 throw new EntityExistException("this doctor is exist");
             }
-            Doctor doctor = (Doctor) personal;
             doctor.setPassword(bCryptPasswordEncoder.encode(personal.getPassword()));
             crudRepositoryHelperDoctor.create(doctorRepository, doctor);
         }
 
-        if (personal instanceof Patient) {
+        if (personal instanceof Patient patient) {
             if (patientRepository.existsByEmail(personal.getEmail())) {
                 throw new EntityExistException("this patient is exist");
             }
-            Patient patient = (Patient) personal;
             patient.setPassword(bCryptPasswordEncoder.encode(personal.getPassword()));
             crudRepositoryHelperPatient.create(patientRepository, patient);
         }

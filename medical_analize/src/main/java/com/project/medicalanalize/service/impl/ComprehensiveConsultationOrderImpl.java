@@ -1,6 +1,8 @@
 package com.project.medicalanalize.service.impl;
 
 import com.project.medicalanalize.facade.UserFacade;
+import com.project.medicalanalize.logger.LoggerLevel;
+import com.project.medicalanalize.logger.LoggerService;
 import com.project.medicalanalize.persistence.crud.CrudRepositoryHelper;
 import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
@@ -25,52 +27,64 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
     private final CrudRepositoryHelper<ConsultationOrder, ConsultationOrderRepository> consultationRepositoryHelper;
     private final ConsultationOrderRepository consultationOrderRepository;
     private final UserFacade userFacade;
+    private final LoggerService loggerService;
 
-    public ComprehensiveConsultationOrderImpl(CrudRepositoryHelper<ConsultationOrder, ConsultationOrderRepository> consultationRepositoryHelper, ConsultationOrderRepository consultationOrderRepository, UserFacade userFacade) {
+    public ComprehensiveConsultationOrderImpl(CrudRepositoryHelper<ConsultationOrder, ConsultationOrderRepository> consultationRepositoryHelper, ConsultationOrderRepository consultationOrderRepository, UserFacade userFacade, LoggerService loggerService) {
         this.consultationRepositoryHelper = consultationRepositoryHelper;
         this.consultationOrderRepository = consultationOrderRepository;
         this.userFacade = userFacade;
+        this.loggerService = loggerService;
     }
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void create(ConsultationOrder entity) {
+        loggerService.commit(LoggerLevel.INFO, "Start create consultation!");
         consultationRepositoryHelper.create(consultationOrderRepository, entity);
+        loggerService.commit(LoggerLevel.INFO, "Consultation successfully created! Id=" + entity.getId());
     }
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void update(ConsultationOrder entity) {
+        loggerService.commit(LoggerLevel.INFO, "Start update consultation! Id=" + entity.getId());
         consultationRepositoryHelper.update(consultationOrderRepository, entity);
+        loggerService.commit(LoggerLevel.INFO, "Consultation successfully updated! Id=" + entity.getId());
     }
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void delete(Long id) {
+        loggerService.commit(LoggerLevel.INFO, "Start delete consultation! Id=" + id);
         consultationRepositoryHelper.delete(consultationOrderRepository, id);
+        loggerService.commit(LoggerLevel.INFO, "Consultation successfully removed! Id=" + id);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<ConsultationOrder> findById(Long id) {
+        loggerService.commit(LoggerLevel.WARN, "Start search consultation! Id=" + id);
         return consultationRepositoryHelper.findById(consultationOrderRepository, id);
     }
 
     @Override
     @Transactional(readOnly = true)
     public DataTableResponse<ConsultationOrder> findAll(DataTableRequest request) {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll consultations!");
         return consultationRepositoryHelper.findAll(consultationOrderRepository, request);
     }
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public Long createAndFind(ConsultationOrder order) {
+        loggerService.commit(LoggerLevel.INFO, "Start create and find consultation! Patient id=" + userFacade.getCurrentUser().getId());
         return consultationRepositoryHelper.createAndFind(consultationOrderRepository, order);
     }
 
     @Override
     @Transactional(readOnly = true)
     public DataTableResponse<ConsultationOrder> findAllSuccessConsultationVisibleAdmin(DataTableRequest request) {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll consultations admin! Admin id=" + userFacade.getCurrentUser().getId());
         Sort sort = request.getOrder().equals("desc")
                 ? Sort.by(request.getSort()).descending()
                 : Sort.by(request.getSort()).ascending();
@@ -82,6 +96,7 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
     @Override
     @Transactional(readOnly = true)
     public DataTableResponse<ConsultationOrder> findAllConsultationVisibleDoctor(DataTableRequest request) {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll consultations doctor! Doctor id=" + userFacade.getCurrentUser().getId());
         Sort sort = request.getOrder().equals("desc")
                 ? Sort.by(request.getSort()).descending()
                 : Sort.by(request.getSort()).ascending();
@@ -92,6 +107,7 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
 
     @Override
     public DataTableResponse<ConsultationOrder> findAllSuccessConsultationPatient(DataTableRequest request, Long idPatient) {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll personal consultations patient! Patient id=" + idPatient);
         User user = userFacade.getCurrentUser();
         Sort sort = request.getOrder().equals("desc")
                 ? Sort.by(request.getSort()).descending()
