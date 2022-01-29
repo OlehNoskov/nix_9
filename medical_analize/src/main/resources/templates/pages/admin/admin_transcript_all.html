@@ -1,33 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"-->
-<!--      layout:decorate="~{fragments/admin_layout}">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Transcript all</title>-->
-<!--    <link href="/css/admin/admin_dashboard.css" rel="stylesheet">-->
-<!--</head>-->
-
-<!--<body>-->
-<!--<div layout:fragment="data_table_content">-->
-<!--    <tr th:each="transcript,iter : ${list}">-->
-<!--        <td th:text="${iter.count}"></td>-->
-<!--        <td th:text="${#calendars.format(transcript.getCreated(),'dd MMMM yyyy HH:mm')}"></td>-->
-<!--        <td th:text="${transcript.getPatient().getFirstName() + transcript.getPatient().getLastName()}"></td>-->
-<!--        <td>-->
-<!--            <a th:href="@{'/admin/transcript/details/' + ${transcript.getId()}}" type="button" class="btn btn-primary">details</a>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--            <a th:href="@{'/admin/transcript/delete/' + ${transcript.getId()}}" type="button" class="btn btn-danger">delete</a>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
