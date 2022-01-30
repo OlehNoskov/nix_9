@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -116,6 +117,12 @@ public class TranscriptServiceImpl implements TranscriptService {
         Page<TranscriptOrder> entityPage = transcriptRepository.findAllSuccessTranscriptPatient(
                 PageRequest.of(request.getPage() - 1, request.getSize(), sort), user.getId());
         return getTranscriptOrderDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    public List<TranscriptOrder> findAll() {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll transcripts!");
+        return transcriptRepository.findAll();
     }
 
     private DataTableResponse<TranscriptOrder> getTranscriptOrderDataTableResponse(DataTableRequest request, Page<TranscriptOrder> entityPage) {

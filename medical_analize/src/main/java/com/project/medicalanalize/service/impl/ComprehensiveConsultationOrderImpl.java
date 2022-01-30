@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -115,6 +116,12 @@ public class ComprehensiveConsultationOrderImpl implements ComprehensiveConsulta
         Page<ConsultationOrder> entityPage = consultationOrderRepository.findAllSuccessConsultationPatient(
                 PageRequest.of(request.getPage() - 1, request.getSize(), sort), user.getId());
         return getConsultationDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    public List<ConsultationOrder> findAll() {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll consultations!");
+        return consultationOrderRepository.findAll();
     }
 
     private DataTableResponse<ConsultationOrder> getConsultationDataTableResponse(DataTableRequest request, Page<ConsultationOrder> entityPage) {

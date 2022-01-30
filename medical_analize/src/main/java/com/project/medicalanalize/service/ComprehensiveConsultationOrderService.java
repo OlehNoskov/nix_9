@@ -4,6 +4,8 @@ import com.project.medicalanalize.persistence.datatable.DataTableRequest;
 import com.project.medicalanalize.persistence.datatable.DataTableResponse;
 import com.project.medicalanalize.persistence.entity.order.ConsultationOrder;
 
+import java.util.List;
+
 public interface ComprehensiveConsultationOrderService extends BaseCrudService<ConsultationOrder>{
 
     Long createAndFind(ConsultationOrder order);
@@ -13,4 +15,6 @@ public interface ComprehensiveConsultationOrderService extends BaseCrudService<C
     DataTableResponse<ConsultationOrder> findAllConsultationVisibleDoctor(DataTableRequest request);
 
     DataTableResponse<ConsultationOrder> findAllSuccessConsultationPatient(DataTableRequest request, Long idPatient);
+
+    List<ConsultationOrder> findAll();
 }

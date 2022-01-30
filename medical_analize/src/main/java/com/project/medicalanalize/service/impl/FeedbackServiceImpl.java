@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,7 +59,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     public void delete(Long id) {
         loggerService.commit(LoggerLevel.WARN, "Start delete feedback! Id=" + id);
         feedbackRepositoryHelper.delete(feedbackRepository, id);
-        loggerService.commit(LoggerLevel.WARN, "Feedback successfully removed! Id=" + id + " User id=" + userFacade.getCurrentUser());
+        loggerService.commit(LoggerLevel.WARN, "Feedback successfully removed! Id feedback=" + id);
     }
 
     @Override
@@ -86,6 +87,12 @@ public class FeedbackServiceImpl implements FeedbackService {
         Page<Feedback> entityPage = feedbackRepository.findAllFeedbacksPatient(
                 PageRequest.of(request.getPage() - 1, request.getSize(), sort), user.getId());
         return getFeedbackDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    public List<Feedback> findAll() {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll feedbacks!");
+        return feedbackRepository.findAll();
     }
 
     private DataTableResponse<Feedback> getFeedbackDataTableResponse(DataTableRequest request, Page<Feedback> entityPage) {

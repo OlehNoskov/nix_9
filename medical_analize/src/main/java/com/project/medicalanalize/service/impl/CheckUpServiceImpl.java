@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -107,7 +108,7 @@ public class CheckUpServiceImpl implements CheckUpService {
 
     @Override
     public DataTableResponse<CheckUp> findAllSuccessCheckUpPatient(DataTableRequest request, Long idPatient) {
-        loggerService.commit(LoggerLevel.INFO, "Start findAll personal transcripts patient! Patient id=" + idPatient);
+        loggerService.commit(LoggerLevel.INFO, "Start findAll personal check up patient! Patient id=" + idPatient);
         User user = userFacade.getCurrentUser();
         Sort sort = request.getOrder().equals("desc")
                 ? Sort.by(request.getSort()).descending()
@@ -115,6 +116,12 @@ public class CheckUpServiceImpl implements CheckUpService {
         Page<CheckUp> entityPage = checkUpRepository.findAllSuccessCheckUpPatient(
                 PageRequest.of(request.getPage() - 1, request.getSize(), sort), user.getId());
         return getCheckUpDataTableResponse(request, entityPage);
+    }
+
+    @Override
+    public List<CheckUp> findAll() {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll check-up!");
+        return checkUpRepository.findAll();
     }
 
     private DataTableResponse<CheckUp> getCheckUpDataTableResponse(DataTableRequest request, Page<CheckUp> entityPage) {

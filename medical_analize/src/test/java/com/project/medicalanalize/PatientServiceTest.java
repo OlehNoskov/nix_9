@@ -21,7 +21,7 @@ public class PatientServiceTest {
     @Autowired
     PatientService patientService;
     private final int ITEMS_SIZE = 1;
-    private final int sizeAllPatients = ITEMS_SIZE + 2;
+    private final int sizeAllPatients = ITEMS_SIZE + 1;
 
     @BeforeAll
     void init() {
