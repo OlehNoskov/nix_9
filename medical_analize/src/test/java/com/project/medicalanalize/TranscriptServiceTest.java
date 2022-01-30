@@ -17,8 +17,7 @@ public class TranscriptServiceTest {
 
     @Autowired
     TranscriptService transcriptService;
-    private final int ITEMS_SIZE = 0;
-//    private final int sizeAllPatients = ITEMS_SIZE + 2;
+    private final int ITEMS_SIZE = 3;
 
     @Order(1)
     @Test
