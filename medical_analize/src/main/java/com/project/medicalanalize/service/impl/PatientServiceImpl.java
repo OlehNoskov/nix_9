@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -76,5 +77,11 @@ public class PatientServiceImpl implements PatientService {
     public DataTableResponse<Patient> findAll(DataTableRequest request) {
         loggerService.commit(LoggerLevel.INFO, "Start findAll patients!");
         return patientRepositoryHelper.findAll(patientRepository, request);
+    }
+
+    @Override
+    public List<Patient> findAll() {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll patients!");
+        return patientRepository.findAll();
     }
 }

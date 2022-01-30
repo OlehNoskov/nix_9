@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -74,5 +75,11 @@ public class DoctorServiceImpl implements DoctorService {
     public DataTableResponse findAll(DataTableRequest request) {
         loggerService.commit(LoggerLevel.INFO, "Start findAll doctors!");
         return doctorRepositoryHelper.findAll(doctorRepository, request);
+    }
+
+    @Override
+    public List<Doctor> findAll() {
+        loggerService.commit(LoggerLevel.INFO, "Start findAll doctors!");
+        return doctorRepository.findAll();
     }
 }

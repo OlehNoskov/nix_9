@@ -21,7 +21,6 @@ public class AuthorServiceTest {
         author.setName(null);
         author.setLastName("Noskov");
         authorService.create(author);
-
         verifyAuthorListWhenAuthorListIsNotEmpty(AUTHORS_SIZE + 1);
     }
 
