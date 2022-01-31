@@ -83,7 +83,6 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
                 stream().
                 map(TranscriptResponseDto::new).
                 collect(Collectors.toList());
-
         PageData<TranscriptResponseDto> pageData = new PageData<>();
         pageData.setItems(list);
         pageData.setCurrentPage(pageAndSizeData.getPage());
@@ -121,7 +120,6 @@ public class TranscriptFacadeImpl implements TranscriptFacade {
     public PageData<TranscriptResponseDto> findAllSuccessTranscriptVisibleAdmin(WebRequest request) {
         PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
         SortData sortData = WebRequestUtil.generateSortData(request);
-
         DataTableRequest dataTableRequest = new DataTableRequest();
         dataTableRequest.setSize(pageAndSizeData.getSize());
         dataTableRequest.setPage(pageAndSizeData.getPage());

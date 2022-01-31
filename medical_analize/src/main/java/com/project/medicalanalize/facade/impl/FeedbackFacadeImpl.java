@@ -11,8 +11,6 @@ import com.project.medicalanalize.service.FeedbackService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.FeedbackRequestDto;
-import com.project.medicalanalize.web.dto.request.PageAndSizeData;
-import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.response.FeedbackResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -63,30 +61,15 @@ public class FeedbackFacadeImpl implements FeedbackFacade {
 
     @Override
     public PageData<FeedbackResponseDto> findAll(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
-
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<Feedback> all = feedbackService.findAll(dataTableRequest);
 
         List<FeedbackResponseDto> list = all.getItems().
                 stream().
                 map(FeedbackResponseDto::new).
                 collect(Collectors.toList());
-
-        PageData<FeedbackResponseDto> pageData = new PageData<>();
+        PageData<FeedbackResponseDto> pageData = (PageData<FeedbackResponseDto>) WebResponseUtil.initPageData(all);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 

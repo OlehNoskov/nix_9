@@ -12,8 +12,6 @@ import com.project.medicalanalize.service.ComprehensiveConsultationOrderService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.ConsultationRequestDto;
-import com.project.medicalanalize.web.dto.request.PageAndSizeData;
-import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.response.ConsultationResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -71,27 +69,14 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
 
     @Override
     public PageData<ConsultationResponseDto> findAll(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<ConsultationOrder> all = consultationOrderService.findAll(dataTableRequest);
         List<ConsultationResponseDto> list = all.getItems().
                 stream().
                 map(ConsultationResponseDto::new).
                 collect(Collectors.toList());
-        PageData<ConsultationResponseDto> pageData = new PageData<>();
+        PageData<ConsultationResponseDto> pageData = (PageData<ConsultationResponseDto>) WebResponseUtil.initPageData(all);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
         return pageData;
     }
 

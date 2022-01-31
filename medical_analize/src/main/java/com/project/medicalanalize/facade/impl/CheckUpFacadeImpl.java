@@ -12,8 +12,6 @@ import com.project.medicalanalize.service.CheckUpService;
 import com.project.medicalanalize.util.WebRequestUtil;
 import com.project.medicalanalize.util.WebResponseUtil;
 import com.project.medicalanalize.web.dto.request.CheckUpRequestDto;
-import com.project.medicalanalize.web.dto.request.PageAndSizeData;
-import com.project.medicalanalize.web.dto.request.SortData;
 import com.project.medicalanalize.web.dto.response.CheckUpResponseDto;
 import com.project.medicalanalize.web.dto.response.PageData;
 
@@ -67,28 +65,14 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
 
     @Override
     public PageData<CheckUpResponseDto> findAll(WebRequest request) {
-        PageAndSizeData pageAndSizeData = WebRequestUtil.generatePageAndSizeData(request);
-        SortData sortData = WebRequestUtil.generateSortData(request);
-
-        DataTableRequest dataTableRequest = new DataTableRequest();
-        dataTableRequest.setSize(pageAndSizeData.getSize());
-        dataTableRequest.setPage(pageAndSizeData.getPage());
-        dataTableRequest.setSort(sortData.getSort());
-        dataTableRequest.setOrder(sortData.getOrder());
+        DataTableRequest dataTableRequest = WebRequestUtil.initDataTableRequest(request);
         DataTableResponse<CheckUp> all = checkUpService.findAll(dataTableRequest);
         List<CheckUpResponseDto> list = all.getItems().
                 stream().
                 map(CheckUpResponseDto::new).
                 collect(Collectors.toList());
-        PageData<CheckUpResponseDto> pageData = new PageData<>();
+        PageData<CheckUpResponseDto> pageData = (PageData<CheckUpResponseDto>) WebResponseUtil.initPageData(all);
         pageData.setItems(list);
-        pageData.setCurrentPage(pageAndSizeData.getPage());
-        pageData.setPageSize(pageAndSizeData.getSize());
-        pageData.setOrder(sortData.getOrder());
-        pageData.setSort(sortData.getSort());
-        pageData.setItemsSize(all.getItemsSize());
-        pageData.initPaginationState(pageData.getCurrentPage());
-
         return pageData;
     }
 
