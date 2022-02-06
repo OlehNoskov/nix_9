@@ -12,6 +12,9 @@ public class ConsultationResponseDto extends OrderResponseDto {
     private Date created;
 
     @Getter
+    private Date updated;
+
+    @Getter
     private Integer price;
 
     @Getter
@@ -32,6 +35,7 @@ public class ConsultationResponseDto extends OrderResponseDto {
     public ConsultationResponseDto(ConsultationOrder consultationOrder) {
         super(consultationOrder);
         this.created = consultationOrder.getCreated();
+        this.updated = consultationOrder.getUpdated();
         this.price = ConsultationOrder.getPrice();
         this.complaints = consultationOrder.getComplaints();
         this.medicines = consultationOrder.getMedicines();

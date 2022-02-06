@@ -12,6 +12,9 @@ public class CheckUpResponseDto extends OrderResponseDto {
     private Date created;
 
     @Getter
+    private Date updated;
+
+    @Getter
     private Integer price;
 
     @Getter
@@ -20,6 +23,7 @@ public class CheckUpResponseDto extends OrderResponseDto {
     public CheckUpResponseDto(CheckUp checkUp) {
         super(checkUp);
         this.created = checkUp.getCreated();
+        this.updated = checkUp.getUpdated();
         this.price = CheckUp.getPrice();
         this.complaints = checkUp.getComplaints();
     }

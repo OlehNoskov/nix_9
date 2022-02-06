@@ -19,11 +19,15 @@ public class TranscriptResponseDto extends OrderResponseDto {
     private Date created;
 
     @Getter
+    private Date updated;
+
+    @Getter
     ProphylacticDoses prophylacticDoses;
 
     public TranscriptResponseDto(TranscriptOrder transcript) {
         super(transcript);
         this.created = transcript.getCreated();
+        this.updated = transcript.getUpdated();
         this.complaints = transcript.getComplaints();
         this.price = TranscriptOrder.getPrice();
         this.prophylacticDoses = transcript.getProphylacticDoses();
