@@ -44,7 +44,7 @@ MySQL
 Для заполнения базы нужно использовать скрипт: data.sql;
 ---------------
 Пользователи:
-логин: admin@gmail.com
+логин: admin@mail.com
 пароль: rootroot
 
 логин: patient@mail.com
