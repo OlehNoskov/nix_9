@@ -97,7 +97,7 @@
                         <select name="birthday[month]" class="form-control mb-10 bg-light" required="required"
                                 id="month" th:field="*{months}">
                             <option th:each="month : ${T(com.project.medicalanalize.persistence.type.Months).values()}"
-                                    th:value="${month}"
+                                    th:value="${month.ordinal() + 1}"
                                     th:text="${month}">
                             </option>
                         </select>
