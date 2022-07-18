@@ -15,13 +15,13 @@ import javax.persistence.*;
 public class Feedback extends BaseEntity {
 
     @Lob
-    @Column(name = "feedback", length=512)
+    @Column(name = "feedback", length = 512)
     private String textFeedback;
 
     @Transient
     private String namePatient;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 }

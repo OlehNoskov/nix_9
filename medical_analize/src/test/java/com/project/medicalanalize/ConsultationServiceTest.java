@@ -17,7 +17,7 @@ public class ConsultationServiceTest {
 
     @Autowired
     ComprehensiveConsultationOrderService consultationOrderService;
-    private final int ITEMS_SIZE = 0;
+    private final int ITEMS_SIZE = 6;
 
     @Order(1)
     @Test

@@ -16,7 +16,7 @@ public class CheckUpServiceTest {
 
     @Autowired
     CheckUpService checkUpService;
-    private final int ITEMS_SIZE = 0;
+    private final int ITEMS_SIZE = 6;
 
     @Order(1)
     @Test
