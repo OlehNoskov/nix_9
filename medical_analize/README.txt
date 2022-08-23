@@ -2,6 +2,8 @@
 
 Использованные технологии:
 Spring Boot
+Spring JPA
+Spring Web
 Thymeleaf (HTML), CSS, Bootstrap, JS
 MySQL
 
