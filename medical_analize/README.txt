@@ -4,6 +4,8 @@
 Spring Boot
 Spring JPA
 Spring Web
+Spring Security
+Hibernate
 Thymeleaf (HTML), CSS, Bootstrap, JS
 MySQL
 
