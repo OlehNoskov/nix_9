@@ -25,7 +25,7 @@ public class PatientController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(Model model) {
+    public String dashboard() {
         return "pages/patient/patient_dashboard";
     }
 

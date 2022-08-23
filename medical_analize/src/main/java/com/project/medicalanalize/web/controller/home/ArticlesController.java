@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/main/articles/article")
+@RequestMapping("/main/articles")
 public class ArticlesController {
 
     @GetMapping("/diagnostics_of_the_gastritis")
