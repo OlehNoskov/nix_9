@@ -43,7 +43,6 @@ public class FeedbackFacadeImpl implements FeedbackFacade {
     @Override
     public void update(FeedbackRequestDto feedbackRequestDto, long id) {
         Feedback feedback = feedbackService.findById(id).get();
-        feedback.setId(id);
         feedback.setUpdated(new Timestamp(System.currentTimeMillis()));
         feedback.setTextFeedback(feedbackRequestDto.getTextFeedback());
         feedbackService.update(feedback);

@@ -45,7 +45,6 @@ public class ConsultationOrderFacadeImpl implements ConsultationOrderFacade {
     @Override
     public void update(ConsultationRequestDto consultationRequestDto, long id) {
         ConsultationOrder consultationOrder = consultationOrderService.findById(id).get();
-        consultationOrder.setId(id);
         consultationOrder.setUpdated(new Timestamp(System.currentTimeMillis()));
         consultationOrder.setVisible(false);
         consultationOrder.setDoctor((Doctor) userFacade.getCurrentUser());

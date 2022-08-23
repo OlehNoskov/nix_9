@@ -18,7 +18,7 @@ public class FeedbackServiceTest {
 
     @Autowired
     FeedbackService feedbackService;
-    private final int ITEMS_SIZE = 3;
+    private final int ITEMS_SIZE = 6;
 
     @Autowired
     PatientService patientService;

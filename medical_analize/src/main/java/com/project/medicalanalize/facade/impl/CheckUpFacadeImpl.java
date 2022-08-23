@@ -45,7 +45,6 @@ public class CheckUpFacadeImpl implements CheckUpFacade {
     @Override
     public void update(CheckUpRequestDto checkUpRequestDto, long id) {
         CheckUp checkUp = checkUpService.findById(id).get();
-        checkUp.setId(id);
         checkUp.setUpdated(new Timestamp(System.currentTimeMillis()));
         checkUp.setVisible(false);
         checkUp.setDoctor((Doctor) userFacade.getCurrentUser());

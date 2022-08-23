@@ -2,7 +2,7 @@ insert into orders
 values ('TRANSCRIPT', 1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, null, 'smoking', 'No',
         'Fatigue, low energy, poor sleep',
         'vitamin d, fish oil', true, 'No', 'No', 'TRANSCRIPT', true, 6, null, null, null, null, 'AFTER_COVID_19', null,
-        249);
+        2);
 
 insert into orders
 values ('CHECK_UP', 2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false,
@@ -13,7 +13,7 @@ My complaints from the sacro-transverse region: aching pain in the sacrum or
 across .. I don’t know how to formulate it correctly (over the booty - across ... whines)
 As for the discharge: for example, just drink a little wine, or eat sweetness - itching
 into the vagina',
-        'vitamin d, fish oil', true, 'No', 'No', 'CHECK_UP', true, 6, null, null, null, null, null, 250, 249);
+        'vitamin d, fish oil', true, 'No', 'No', 'CHECK_UP', true, 6, null, null, null, null, null, 2, 3);
 
 insert into orders
 values ('COMPREHENSIVE_CONSULTATION', 3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, null, 'smoking', 'No', 'Intestinal bloating, low acidity, poor digestion of food, poor
@@ -24,13 +24,13 @@ across .. I don’t know how to formulate it correctly (over the booty - across 
 As for the discharge: for example, just drink a little wine, or eat sweetness - itching
 into the vagina',
         'vitamin d, fish oil', true, 'No', 'No', 'COMPREHENSIVE_CONSULTATION', true, 6, null, null, null, null, null,
-        null, 249);
+        2, null);
 
 insert into orders
 values ('TRANSCRIPT', 4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, null, 'smoking', 'No',
         'Fatigue, low energy, poor sleep',
-        'vitamin d, fish oil', true, 'No', 'No', 'TRANSCRIPT', true, 6, null, null, null, null, 'AFTER_COVID_19', null,
-        249);
+        'vitamin d, fish oil', true, 'No', 'No', 'TRANSCRIPT', true, 6, null, null, null, null, 'AFTER_COVID_19', 2,
+        3);
 
 insert into orders
 values ('CHECK_UP', 5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false,
@@ -41,7 +41,7 @@ My complaints from the sacro-transverse region: aching pain in the sacrum or
 across .. I don’t know how to formulate it correctly (over the booty - across ... whines)
 As for the discharge: for example, just drink a little wine, or eat sweetness - itching
 into the vagina',
-        'vitamin d, fish oil', true, 'No', 'No', 'CHECK_UP', true, 6, null, null, null, null, null, 250, 249);
+        'vitamin d, fish oil', true, 'No', 'No', 'CHECK_UP', true, 6, null, null, null, null, null, 2, 3);
 
 insert into orders
 values ('COMPREHENSIVE_CONSULTATION', 6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, null, 'smoking', 'No', 'Intestinal bloating, low acidity, poor digestion of food, poor
@@ -52,13 +52,13 @@ across .. I don’t know how to formulate it correctly (over the booty - across 
 As for the discharge: for example, just drink a little wine, or eat sweetness - itching
 into the vagina',
         'vitamin d, fish oil', true, 'No', 'No', 'COMPREHENSIVE_CONSULTATION', true, 6, null, null, null, null, null,
-        null, 249);
+        2, null);
 
 insert into orders
 values ('TRANSCRIPT', 7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, null, 'smoking', 'No',
         'Fatigue, low energy, poor sleep',
-        'vitamin d, fish oil', true, 'No', 'No', 'TRANSCRIPT', true, 6, null, null, null, null, 'AFTER_COVID_19', null,
-        249);
+        'vitamin d, fish oil', true, 'No', 'No', 'TRANSCRIPT', true, 6, null, null, null, null, 'AFTER_COVID_19',2,
+        null);
 
 insert into orders
 values ('CHECK_UP', 8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false,
@@ -69,7 +69,7 @@ My complaints from the sacro-transverse region: aching pain in the sacrum or
 across .. I don’t know how to formulate it correctly (over the booty - across ... whines)
 As for the discharge: for example, just drink a little wine, or eat sweetness - itching
 into the vagina',
-        'vitamin d, fish oil', true, 'No', 'No', 'CHECK_UP', true, 6, null, null, null, null, null, 250, 249);
+        'vitamin d, fish oil', true, 'No', 'No', 'CHECK_UP', true, 6, null, null, null, null, null, 2, 3);
 
 insert into orders
 values ('COMPREHENSIVE_CONSULTATION', 9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, null, 'smoking', 'No', 'Intestinal bloating, low acidity, poor digestion of food, poor
@@ -80,7 +80,7 @@ across .. I don’t know how to formulate it correctly (over the booty - across 
 As for the discharge: for example, just drink a little wine, or eat sweetness - itching
 into the vagina',
         'vitamin d, fish oil', true, 'No', 'No', 'COMPREHENSIVE_CONSULTATION', true, 6, null, null, null, null, null,
-        null, 249);
+        2, null);
 
 insert into feedbacks
 values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'When I ordered an analysis, I read the reviews. I was surprised that all the reviews positive. And now I understand why they are positive :-)

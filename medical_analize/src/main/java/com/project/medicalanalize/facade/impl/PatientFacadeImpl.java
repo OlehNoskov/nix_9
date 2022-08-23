@@ -36,7 +36,6 @@ public class PatientFacadeImpl implements PatientFacade {
     public void update(PatientRequestDto patientRequestDto, long id) throws ParseException {
 
         Patient patient = patientService.findById(id).get();
-        patient.setId(id);
         patient.setFirstName(patientRequestDto.getFirstName());
         patient.setLastName(patientRequestDto.getLastName());
         if (UserDateValid.userValidDate(patientRequestDto) != null) {

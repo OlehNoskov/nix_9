@@ -34,7 +34,6 @@ public class DoctorFacadeImpl implements DoctorFacade {
     @Override
     public void update(DoctorRequestDto doctorRequestDto, long id) {
         Doctor doctor = doctorService.findById(id).get();
-        doctor.setId(id);
         doctor.setFirstName(doctorRequestDto.getFirstName());
         doctor.setLastName(doctorRequestDto.getLastName());
         if (UserDateValid.userValidDate(doctorRequestDto) != null) {

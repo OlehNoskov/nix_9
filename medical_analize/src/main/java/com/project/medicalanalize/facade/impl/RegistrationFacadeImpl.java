@@ -20,13 +20,13 @@ public class RegistrationFacadeImpl implements RegistrationFacade {
     @Override
     public void registration(AuthDto dto) {
         switch (dto.getRole()) {
-            case "DOCTOR" : {
+            case "DOCTOR" -> {
                 Doctor doctor = new Doctor();
                 doctor.setPassword(dto.getPassword());
                 doctor.setEmail(dto.getEmail());
                 personalService.create(doctor);
-            } break;
-            case "PATIENT" : {
+            }
+            case "PATIENT" -> {
                 Patient patient = new Patient();
                 patient.setPassword(dto.getPassword());
                 patient.setEmail(dto.getEmail());
