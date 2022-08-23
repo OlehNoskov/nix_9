@@ -1,11 +1,11 @@
 package ua.com.alevel.persistence.dao.impl;
 
 import org.springframework.stereotype.Service;
+
 import ua.com.alevel.config.jpa.JpaConfig;
 import ua.com.alevel.persistence.dao.StudentDao;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
-import ua.com.alevel.persistence.entity.Group;
 import ua.com.alevel.persistence.entity.Student;
 
 import java.sql.PreparedStatement;
@@ -35,16 +35,6 @@ public class StudentDaoImpl implements StudentDao {
             preparedStatement.setString(4, student.getFirstname());
             preparedStatement.setString(5, student.getLastname());
             preparedStatement.setInt(6, student.getAge());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("problem new: = " + e.getMessage());
-        }
-    }
-
-    private void insertStudentInGroup(Group group, Student student) {
-        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(INSERT_STUDENT_IN_GROUP)) {
-            preparedStatement.setLong(1, group.getId());
-            preparedStatement.setLong(2, student.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("problem new: = " + e.getMessage());

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CheckUpRepository extends OrderRepository<CheckUp> {
 
-    @Query(value = "select COUNT(*) from orders where visible=false and order_type='CHECK_UP' and doctor_id =:idDoctor", nativeQuery=true)
-    Long countSuccessDoctorCheckUp( @Param("idDoctor") Long idDoctor);
+    @Query(value = "select COUNT(*) from orders where visible=false and order_type='CHECK_UP' and doctor_id =:idDoctor", nativeQuery = true)
+    Long countSuccessDoctorCheckUp(@Param("idDoctor") Long idDoctor);
 
     @Query(value = "select COUNT(*) from orders where order_type='CHECK_UP'", nativeQuery = true)
     Long countAllCheckUp();

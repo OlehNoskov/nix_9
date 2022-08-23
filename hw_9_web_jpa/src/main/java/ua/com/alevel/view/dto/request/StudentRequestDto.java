@@ -13,31 +13,16 @@ public class StudentRequestDto extends RequestDto{
         return firstname;
     }
 
-    public void setFirstname(String firstName) {
-        this.firstname = firstName;
-    }
-
     public String getLastname() {
         return lastname;
-    }
-
-    public void setLastname(String lastName) {
-        this.lastname = lastName;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public List<Long> getGroupsIds() {
         return groupsIds;
     }
 
-    public void setGroupsIds(List<Long> groupsIds) {
-        this.groupsIds = groupsIds;
-    }
 }

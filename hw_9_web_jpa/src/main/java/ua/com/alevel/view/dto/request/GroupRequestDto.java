@@ -15,11 +15,4 @@ public class GroupRequestDto extends RequestDto {
         this.name = name;
     }
 
-    public List<Long> getStudentsIds() {
-        return studentsIds;
-    }
-
-    public void setStudentsIds(List<Long> studentsIds) {
-        this.studentsIds = studentsIds;
-    }
 }

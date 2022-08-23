@@ -45,13 +45,4 @@ public class Group extends BaseEntity {
         this.students = students;
     }
 
-    public void addStudent(Student student) {
-        students.add(student);
-        student.getGroups().add(this);
-    }
-
-    public void removeStudent(Student student) {
-        students.remove(student);
-        student.getGroups().remove(this);
-    }
 }

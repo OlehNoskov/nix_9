@@ -1,7 +1,6 @@
 package com.project.medicalanalize.web.controller.home;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,22 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomePage {
 
     @GetMapping()
-    public String dashboard(Model model) {
+    public String dashboard() {
         return "pages/open/open_dashboard";
     }
 
     @GetMapping("/about")
-    public String aboutUs(Model model) {
+    public String aboutUs() {
         return "pages/open/about_us";
     }
 
     @GetMapping("/articles")
-    public String articles(Model model) {
+    public String articles() {
         return "pages/open/articles";
     }
 
     @GetMapping("/feedback")
-    public String feedback(Model model) {
+    public String feedback() {
         return "pages/open/feedback";
     }
 }

@@ -49,10 +49,6 @@ public class Student extends BaseEntity {
         this.age = age;
     }
 
-    public Set<Group> getGroups() {
-        return groups;
-    }
-
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }

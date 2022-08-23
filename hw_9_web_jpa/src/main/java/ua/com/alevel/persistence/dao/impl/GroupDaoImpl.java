@@ -25,6 +25,7 @@ import java.util.Map;
 @Transactional
 public class GroupDaoImpl implements GroupDao {
 
+    // Один экземпляр EntityManager должен быть общим для всех операций
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -36,7 +37,6 @@ public class GroupDaoImpl implements GroupDao {
     @Override
     public void update(Group entity) {
         entityManager.merge(entity);
-        System.out.println("!!!!");
     }
 
     @Override
