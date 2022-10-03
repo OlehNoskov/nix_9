@@ -42,7 +42,7 @@ public class AuthController extends AbstractController {
     }
 
     @GetMapping("/open")
-    public String open(Model model) {
+    public String open() {
         return "pages/open/open_dashboard";
     }
 

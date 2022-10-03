@@ -30,7 +30,7 @@ public class StudentFacadeImpl implements StudentFacade {
 
     private final StudentService studentService;
 
-    public StudentFacadeImpl(StudentService studentService, GroupService groupService) {
+    public StudentFacadeImpl(StudentService studentService) {
         this.studentService = studentService;
     }
 
